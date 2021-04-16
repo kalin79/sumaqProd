@@ -57,13 +57,13 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@aceforth/nuxt-optimized-images',
+    // '@aceforth/nuxt-optimized-images',
   ],
-  optimizedImages: {
-    optimizeImages: true,
-    optimizeImagesInDev: true, // este por defecto siempre esta en false,
-    imageminMozjpeg: true,
-  },
+  // optimizedImages: {
+  //   optimizeImages: true,
+  //   optimizeImagesInDev: true, // este por defecto siempre esta en false,
+  //   imageminMozjpeg: true,
+  // },
   /*
   ** Nuxt.js modules
   */
