@@ -1,0 +1,32 @@
+@import 'vars/colors' 
+@import 'vars/fonts'
+
+@import 'abstracts/ciclos'
+@import 'abstracts/mixins'
+body
+     overflow-x: hidden
+.container-fluid
+     border: 0px solid red
+.container-fluid
+     &.container-fluid-xxl
+          @media screen and (min-width: 1400px)
+               width: 1320px
+.breadcrumb
+     background: transparent
+     padding-left: 0
+     li
+          &.breadcrumb-item
+               &.active
+                    @include font-libre(.85rem,.85rem,.85rem,.65rem,$Oswald,400,$grayDark)
+                    padding-left: .25rem
+                    line-height: 1.95em
+
+               &:before
+                    content: ''
+                    padding: 0
+          svg
+               color: $pink
+               font-size: .75rem 
+          a
+               @include font-libre(.85rem,.85rem,.85rem,.65rem,$Oswald,500,$pink)
+

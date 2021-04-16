@@ -1,0 +1,256 @@
+@mixin svg-font($sizeS:1rem,$size:2rem,$color:$red)
+     svg
+          font-size: $sizeS
+          color: $color
+          @media screen and (min-width: 992px)
+               font-size: $size
+
+
+@mixin font-menu($weight,$sizeS,$sizeM,$sizeL,$size,$color,$colorHover)
+     a
+          line-height: 1.5em
+          text-transform: uppercase
+          display: inline-block
+          padding: 0rem .15rem
+          margin: 0 .5rem
+          text-decoration: none
+          position: relative
+          @media screen and (min-width: 992px)
+               margin: 0 .35rem
+          @media screen and (min-width: 1200px)
+               margin: 0 .65rem
+          @media screen and (min-width: 1400px)
+               margin: 0 1rem
+          .icon-chevron-down
+               position: absolute
+               bottom: -14px
+               left: 50%
+               color: $color
+               transform: translateX(-50%)
+          span 
+               font-family: $font-menu
+               font-weight: $weight
+               font-size: $sizeS
+               color: $color
+               transition: .5s ease color
+               letter-spacing: -.025em
+               @media screen and (min-width: 992px)
+                    font-size: $sizeM
+               @media screen and (min-width: 1200px)
+                    font-size: $sizeL
+               @media screen and (min-width: 1400px)
+                    font-size: $size
+          &:hover
+               svg,
+               span
+                    color: $colorHover
+          &.btn-event-main
+               color: $pink
+               @include svg-font($sizeS,1.5rem,$pink)
+               svg
+                    margin-right: .5rem 
+
+               &:hover 
+                    color: $pink
+
+@mixin font-account($weight,$sizeS,$size,$color,$colorHover)
+     a
+          text-decoration: none
+          span
+               font-family: $font-account
+               font-weight: $weight
+               font-size: $sizeS
+               color: $color 
+               transition: .5s ease color
+               @media screen and (min-width: 992px)
+                    font-size: $size
+          &:hover
+               span 
+                    color: $colorHover 
+@mixin font-title($color)
+     font-family: $font-title
+     font-weight: $font-weightTitle
+     font-size: $font-sizeTitleM
+     font-style: italic
+     color: $color
+     margin: 0
+     padding: 0
+     @media screen and (min-width: 992px)
+          font-size: $font-sizeTitle992
+     @media screen and (min-width: 1200px)
+          font-size: $font-sizeTitle
+
+@mixin font-subtitle($color)
+     font-family: $font-subTitle
+     font-weight: $font-weightSubTitle
+     font-size: $font-sizeSubTitleM
+     color: $color
+     margin: 0
+     padding: 0
+     @media screen and (min-width: 992px)
+          font-size: $font-sizeSubTitle
+
+@mixin font-description($color,$align)
+     font-family: $font-description
+     font-weight: $font-weightDescription
+     font-size: $font-sizeDescriptionM
+     color: $color
+     margin: 0
+     padding: 0
+     text-align: $align
+     line-height: 1.25em
+     @media screen and (min-width: 992px)
+          font-size: $font-sizeDescription992
+     @media screen and (min-width: 1200px)
+          font-size: $font-sizeDescription
+
+@mixin font-libre($fontSize,$fontSize1200, $fontSize992,$fontSizeM,$fontTitle,$fontWeight,$fontColor)
+     font-family: $fontTitle
+     font-weight: $fontWeight
+     font-size: $fontSizeM
+     color: $fontColor
+     margin: 0
+     padding: 0
+     @media screen and (min-width: 992px)
+          font-size: $fontSize992
+     @media screen and (min-width: 1200px)
+          font-size: $fontSize1200
+     @media screen and (min-width: 1400px)
+          font-size: $fontSize
+         
+@mixin fullscreen-picture($height)
+     picture
+          width: 100%
+          height: $height
+          img
+               width: 100%
+               height: inherit
+               object-fit: cover
+@mixin title-line-center($padTop, $padBot, $padLeft, $padRight)
+     position: relative 
+     &::before,
+     &::after
+          content : ''
+          position: absolute 
+          width: 50%
+          height: 1px
+          background: rgba($grayDark, .2)
+          top: 50%
+          transform: translateY(-50%)
+     &::before
+          left: 0
+     &::after
+          right: 0
+     >div
+          background: white
+          position: relative
+          z-index: 2
+          border: 0px solid red
+          padding: $padTop $padRight $padBot $padLeft
+@mixin cardProduct
+     .cardBox
+          width: 100%
+          border-radius: 5px
+          overflow: hidden
+          box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.1), 0 0px 5px 0 rgba(0, 0, 0, 0.2)
+          // transition: .5 ease all
+          height: 100%
+          &.CardBoxBanner
+               height: 300px
+               display: block
+               @media screen and (min-width: 992px)
+                    height: 290px
+               @media screen and (min-width: 1200px)
+                    height: 350px
+               .cardImage
+                    height: 100%
+               &:hover
+                    .cardImage
+                         picture
+                              &:first-child
+                                   opacity: 1
+          &:hover
+               // transform: scale(1.1)
+               .cardImage
+                    .CartText
+                         bottom: 0
+                    picture
+                         &:first-child
+                              opacity: 0
+                         &:nth-of-type(2)
+                              opacity: 1
+          .cardDetail
+               text-decoration: none
+               .cardTitle
+                    padding: .75rem 0 0
+                    h2
+                         @include font-libre(1.15rem,1.15rem,1.15rem,.75rem,$Oswald,300,$gray)
+                         text-align: center
+               .cardPriceOld
+                    padding: .15rem 0 0rem 0
+                    margin: auto
+                    text-align: center
+                    h3
+                         @include font-libre(.85rem,.85rem,.85rem,.65rem,$Oswald,500,$pink)
+                         text-align: center
+                         position: relative
+                         display: inline-block
+                         &:before
+                              content: ''
+                              width: 100%
+                              height: 1px
+                              background: $pink
+                              position: absolute
+                              top: 50%
+                              left: 0
+                              transform: translateY(-50%) 
+               .cardPrice
+                    padding: 0.15rem 0 .75rem 0
+                    h3
+                         @include font-libre(1.5rem,1.5rem,1.5rem,1rem,$Oswald,500,$gray)
+                         text-align: center
+          .cardImage
+               height: 310px
+               overflow: hidden
+               position: relative
+               width: 100%
+               @media screen and (min-width: 992px)
+                    height: 290px
+               @media screen and (min-width: 1200px)
+                    height: 350px
+               picture
+                    position: absolute
+                    top: 0
+                    left: 0
+                    height: 100%
+                    width: 100%
+                    transition: .5s ease all
+                    opacity: 0
+                    &:first-child
+                         opacity: 1
+                    img
+                         width: 100%
+                         height: 100%
+                         object-fit: cover
+               .CartText
+                    position: absolute
+                    bottom: 0%
+                    left: 0
+                    width: 100%
+                    z-index: 10
+                    box-sizing: border-box
+                    padding: .5rem 1rem
+                    text-transform: uppercase
+                    background: rgba($pink,.75)
+                    transition: .5s ease bottom
+                    text-decoration: none
+                    @media screen and (min-width: 992px)
+                         bottom: -100%
+                    p
+                         @include font-libre(.85rem,.85rem,1.5rem,.65rem,$Oswald,500,white)
+
+
+     
+    
+
+     

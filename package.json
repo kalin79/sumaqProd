@@ -1,0 +1,36 @@
+{
+  "name": "sumaq-pe-v2",
+  "version": "1.0.0",
+  "description": "My dandy Nuxt.js project",
+  "author": "Carlos Espinoza",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@popperjs/core": "^2.8.2",
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.0.0",
+    "core-js": "^3.8.3",
+    "gsap": "^3.6.0",
+    "har-validator": "^5.1.5",
+    "jquery": "^3.5.1",
+    "node-sass": "^5.0.0",
+    "nuxt": "^2.15.1",
+    "resolve-url": "^0.2.1",
+    "sass-loader": "^10.1.1",
+    "vue-carousel": "^0.18.0",
+    "vueperslides": "^2.12.1"
+  },
+  "devDependencies": {
+    "@aceforth/nuxt-optimized-images": "^1.4.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.1",
+    "imagemin-svgo": "^8.0.0"
+  }
+}
