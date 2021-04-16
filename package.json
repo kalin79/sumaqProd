@@ -26,5 +26,11 @@
     "sass-loader": "^10.1.1",
     "vue-carousel": "^0.18.0",
     "vueperslides": "^2.12.1"
+  },
+  "devDependencies": {
+    "@aceforth/nuxt-optimized-images": "^1.4.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "^9.0.0"
   }
 }
