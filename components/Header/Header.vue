@@ -59,6 +59,9 @@ export default {
      .HeaderMain
           padding: 1.5rem 0 1rem
           background: white
+          .iconShoppingCart
+               position: relative
+               transform: translateY(-4px)
           .fullHeight
                height: 100%
           .boxShoppingCart
