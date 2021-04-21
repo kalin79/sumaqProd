@@ -177,7 +177,8 @@
                          .boxButtonTienda
                               padding: 0rem
                               button
-                                   background: $brown
+                                   background: $greenLight3
+                                   transition: .5s ease-in background
                                    @include font-libre(.813rem,.75rem,.75rem,.5rem,$Montserrat,600,white)
                                    border: 0
                                    line-height: 3.85em
@@ -191,6 +192,8 @@
                                         padding: 0 3.25rem
                                    @media screen and (min-width: 1400px)
                                         line-height: 4.45em
+                                   &:hover
+                                        background: $pinkLight
                     .boxComunication
                          padding-top: 1rem
                          a

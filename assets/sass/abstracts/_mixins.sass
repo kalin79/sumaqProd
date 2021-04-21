@@ -1,3 +1,26 @@
+@keyframes cardDetailButtomHoverIn
+     0%
+          opacity: 0
+          transform: translateY(-10px)
+     100%
+          opacity: 1
+          transform: translateY(0px)
+@keyframes cardDetailHoverIn
+     from
+          opacity: 0
+          height: 0
+     to
+          opacity: 1
+          height: 70px
+@keyframes cardDetailHoverOut
+     from
+          opacity: 1
+          height: 70px
+     to
+          opacity: 0
+          height: 0px
+          
+     
 @mixin svg-font($sizeS:1rem,$size:2rem,$color:$red)
      svg
           font-size: $sizeS

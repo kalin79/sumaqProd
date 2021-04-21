@@ -1,5 +1,11 @@
 <template>
      <div>
+          <div class="fixedWhatsApp">
+               <a href="https://wa.link/i7kwid" target="_blank" >
+                    <img src="@/assets/images/atencion.png" alt="Comunicate con nosotros por WhatsApp">
+               </a>
+          </div>
+          
           <banner-home />
           <beneficios />
           <categorias />
@@ -12,7 +18,7 @@
 <script>
 import BannerHome from '@/components/Banner/Home'
 import Categorias from '@/components/Home/CategoriasCarrusel'
-import Destacados from '@/components/Home/DestacadosV2'
+import Destacados from '@/components/Home/Destacados'
 import Planes from '@/components/Home/Planes'
 import Beneficios from '@/components/Home/Beneficios'
 import Blog from '@/components/Home/Blog'
@@ -145,5 +151,24 @@ export default {
 }
 </script>
 <style lang="sass">
+     .fixedWhatsApp
+          position: fixed
+          right: 1.5rem
+          bottom: 6rem
+          z-index: 400
+          @media screen and (min-width: 992px)
+               bottom: 8rem
+          @media screen and (min-width: 1200px)
+               bottom: 9rem
+          @media screen and (min-width: 1400px)
+               bottom: 9rem
+          img
+               width: 30px
+               @media screen and (min-width: 992px)
+                    width: 70px
+               @media screen and (min-width: 1200px)
+                    width: 75px
+               @media screen and (min-width: 1400px)
+                    width: 98px
 
 </style>

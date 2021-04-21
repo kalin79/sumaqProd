@@ -9,7 +9,7 @@
                <div class="boxConentPlanes">
                     <div class="boxFlor pos1">
                          <picture>
-                              <img src="@/assets/images/vect1.png" />
+                              <img src="@/assets/images/vect7.png" />
                          </picture>
                     </div>  
                     <div class="boxFlor pos2">
@@ -148,25 +148,32 @@
                                         width: 421px
                     &.pos1
                          bottom: 0
-                         left: 0
+                         left: 50%
+                         transform: translateX(-50%)
                          @media screen and (min-width: 992px)
-                              bottom: -12.25rem
-                              left: -16rem
+                              left: 27%
+                              transform: translateX(35%)
+                              bottom: -2.5rem
+                              // left: -5.25rem 
                          @media screen and (min-width: 1200px)
-                              bottom: -12rem
-                              left: -12rem
+                              left: 27%
+                              transform: translateX(22%)
+                              bottom: .35rem
+                              // left: -6rem 
                          @media screen and (min-width: 1400px)
-                              bottom: -11.75rem
-                              left: -13rem
+                              left: 27%
+                              transform: translateX(27%)
+                              bottom: 1.5rem
                          picture
+                              opacity: .25
                               img
-                                   width: 556px
+                                   width: 300px
                                    @media screen and (min-width: 992px)
-                                        width: 550px
+                                        width: 400px
                                    @media screen and (min-width: 1200px)
-                                        width: 550px
+                                        width: 300px
                                    @media screen and (min-width: 1400px)
-                                        width: 550px
+                                        width: 300px
           .boxAdorno
                position: absolute
                top: -4rem
@@ -175,6 +182,11 @@
           .boxPlanes
                position: relative
                z-index: 60
+               padding-left: 15px
+               padding-right: 15px
+               >div
+                    padding-left: 0
+                    padding-right: 0
                .itemPlan
                     display: block
                     height: 380px
@@ -203,7 +215,7 @@
                               object-fit: cover
                               transition: 1s ease transform
                          .linePicture
-                              border: 1px solid $grayDark3
+                              border: 1px solid rgba(white,.45)
                               height: 100%
                               padding: 0 .5rem 1rem
                               position: relative

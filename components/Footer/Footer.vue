@@ -200,7 +200,7 @@ export default {
                               text-decoration: none
                               transition: .5s ease color
                               &:hover
-                                   color: $pink
+                                   text-decoration: underline
           .separate
                width: 100%
                height: 3rem

@@ -10,7 +10,7 @@
                          </div>
                          <div class="boxVector pos2">
                               <picture>
-                                   <img src="@/assets/images/vect2.png" />
+                                   <img src="@/assets/images/vect7.png" />
                               </picture>
                          </div>
                          <div class="boxVector pos3">
@@ -41,125 +41,146 @@
                               </div>
                          </div>
                          <div class="separate"></div>
-                         <div class="row">
-                              <div class="col-6 col-md-4 col-lg-3">
-                                   <div class="card">
-                                        <nuxt-link to="/">
-                                             <figure>
-                                                  <img src="~/assets/images/d1.jpg" class="card-img-top">
-                                             </figure>
-                                             <div class="card-body">
-                                                  <h5 class="card-title">Ramo Ana Lucia1</h5>
-                                                  <h5 class="card-price">S/ 155.00</h5>
-                                                  <h5 class="card-price-old">Antes: <span>S/ 299.00</span></h5>
-                                             </div>
-                                        </nuxt-link>
-                                   </div>
-                              </div>
-                              <div class="col-6 col-md-4 col-lg-3">
-                                   <div class="card">
-                                        <nuxt-link to="/">
-                                             <figure>
-                                                  <img src="~/assets/images/d2.jpg" class="card-img-top">
-                                             </figure>
-                                             <div class="card-body">
-                                                  <h5 class="card-title">Canasta Luxury</h5>
-                                                  <h5 class="card-price">S/ 89.00</h5>
+                         <div class="boxListOcaciones">
+                              <div>
+                                   <div class="animationCard">
+                                        <div class="cardOcacion">
+                                             <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                  <img src="@/assets/images/ojos.png" class="imgEye">
+                                             </nuxt-link>
+                                             <picture>
+                                                  <img src="@/assets/images/oca1.jpg" alt="oca1" class="img1">
+                                             </picture>
+                                             <div class="cardDetail">
+                                                  <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                       <nuxt-link to="/">
+                                                            <div class="d-flex justify-content-start align-items-center">
+                                                                 <client-only>
+                                                                 <b-icon-cart3></b-icon-cart3>
+                                                                 </client-only>
+                                                                 <span>Añadir al Carrito</span>
+                                                            </div>
+                                                       </nuxt-link>
+                                                  </div>
+                                                  <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
                                                   <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
                                              </div>
-                                        </nuxt-link>
+                                        </div>
                                    </div>
                               </div>
-                              <div class="col-6 col-md-4 col-lg-3">
-                                   <div class="card">
-                                        <nuxt-link to="/">
-                                             <figure>
-                                                  <img src="~/assets/images/d3.jpg" class="card-img-top">
-                                             </figure>
-                                             <div class="card-body">
-                                                  <h5 class="card-title">Peluche Unicornio</h5>
-                                                  <h5 class="card-price">S/ 35.00</h5>
-                                                  <h5 class="card-price-old">Antes: <span>S/ 49.00</span></h5>
+                              <div>
+                                   <div class="d-flex">
+                                        <div>
+                                             <div class="animationCard">
+                                                  <div class="cardOcacion">
+                                                       <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                            <img src="@/assets/images/ojos.png" class="imgEye">
+                                                       </nuxt-link>
+                                                       <picture>
+                                                            <img src="@/assets/images/oca2.jpg" alt="oca1" class="img2">
+                                                       </picture>
+                                                       <div class="cardDetail">
+                                                            <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                                 <nuxt-link to="/">
+                                                                      <div class="d-flex justify-content-start align-items-center">
+                                                                           <client-only>
+                                                                           <b-icon-cart3></b-icon-cart3>
+                                                                           </client-only>
+                                                                           <span>Añadir al Carrito</span>
+                                                                      </div>
+                                                                 </nuxt-link>
+                                                            </div>
+                                                            <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
+                                                            <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
+                                                       </div>
+                                                  </div>
                                              </div>
-                                        </nuxt-link>
-                                   </div>
-                              </div>
-                              <div class="col-6 col-md-4 col-lg-3">
-                                   <div class="card">
-                                        <nuxt-link to="/">
-                                             <figure>
-                                                  <img src="~/assets/images/d5.jpg" class="card-img-top">
-                                             </figure>
-                                             <div class="card-body">
-                                                  <h5 class="card-title">Eclairs</h5>
-                                                  <h5 class="card-price">S/ 45.00</h5>
-                                                  <h5 class="card-price-old">Antes: <span>S/ 299.00</span></h5>
+                                        </div>
+                                        <div>
+                                             <div class="animationCard">
+                                                  <div class="cardOcacion">
+                                                       <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                            <img src="@/assets/images/ojos.png" class="imgEye">
+                                                       </nuxt-link>
+                                                       <picture>
+                                                            <img src="@/assets/images/oca3.jpg" alt="oca1" class="img2">
+                                                       </picture>
+                                                       <div class="cardDetail">
+                                                            <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                                 <nuxt-link to="/">
+                                                                      <div class="d-flex justify-content-start align-items-center">
+                                                                           <client-only>
+                                                                           <b-icon-cart3></b-icon-cart3>
+                                                                           </client-only>
+                                                                           <span>Añadir al Carrito</span>
+                                                                      </div>
+                                                                 </nuxt-link>
+                                                            </div>
+                                                            <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
+                                                            <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
+                                                       </div>
+                                                  </div>
                                              </div>
-                                        </nuxt-link>
+                                        </div>
                                    </div>
-                              </div>
-
-                              <div class="col-6 col-md-4 col-lg-3">
-                                   <div class="card">
-                                        <nuxt-link to="/">
-                                             <figure>
-                                                  <img src="~/assets/images/d6.jpg" class="card-img-top">
-                                             </figure>
-                                             <div class="card-body">
-                                                  <h5 class="card-title">Ramo Ana Lucia</h5>
-                                                  <h5 class="card-price">S/ 155.00</h5>
-                                                  <h5 class="card-price-old">Antes: <span>S/ 299.00</span></h5>
+                                   <div class="d-flex">
+                                        <div>
+                                             <div class="animationCard">
+                                                  <div class="cardOcacion">
+                                                       <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                            <img src="@/assets/images/ojos.png" class="imgEye">
+                                                       </nuxt-link>
+                                                       <picture>
+                                                            <img src="@/assets/images/oca4.jpg" alt="oca1" class="img3">
+                                                       </picture>
+                                                       <div class="cardDetail">
+                                                            <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                                 <nuxt-link to="/">
+                                                                      <div class="d-flex justify-content-start align-items-center">
+                                                                           <client-only>
+                                                                           <b-icon-cart3></b-icon-cart3>
+                                                                           </client-only>
+                                                                           <span>Añadir al Carrito</span>
+                                                                      </div>
+                                                                 </nuxt-link>
+                                                            </div>
+                                                            <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
+                                                            <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
+                                                       </div>
+                                                  </div>
                                              </div>
-                                        </nuxt-link>
-                                   </div>
-                              </div>
-                              <div class="col-6 col-md-4 col-lg-3">
-                                   <div class="card">
-                                        <nuxt-link to="/">
-                                             <figure>
-                                                  <img src="~/assets/images/d8.jpg" class="card-img-top">
-                                             </figure>
-                                             <div class="card-body">
-                                                  <h5 class="card-title">Canasta Luxury</h5>
-                                                  <h5 class="card-price">S/ 89.00</h5>
-                                                  <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
+                                        </div>
+                                        <div>
+                                             <div class="animationCard">
+                                                  <div class="cardOcacion">
+                                                       <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                            <img src="@/assets/images/ojos.png" class="imgEye">
+                                                       </nuxt-link>
+                                                       <picture>
+                                                            <img src="@/assets/images/oca5.jpg" alt="oca1" class="img3">
+                                                       </picture>
+                                                       <div class="cardDetail">
+                                                            <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                                 <nuxt-link to="/">
+                                                                      <div class="d-flex justify-content-start align-items-center">
+                                                                           <client-only>
+                                                                           <b-icon-cart3></b-icon-cart3>
+                                                                           </client-only>
+                                                                           <span>Añadir al Carrito</span>
+                                                                      </div>
+                                                                 </nuxt-link>
+                                                            </div>
+                                                            <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
+                                                            <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
+                                                       </div>
+                                                  </div>
                                              </div>
-                                        </nuxt-link>
+                                        </div>
                                    </div>
                               </div>
-                              <div class="col-6 col-md-4 col-lg-3">
-                                   <div class="card">
-                                        <nuxt-link to="/">
-                                             <figure>
-                                                  <img src="~/assets/images/d7.jpg" class="card-img-top">
-                                             </figure>
-                                             <div class="card-body">
-                                                  <h5 class="card-title">Peluche Unicornio</h5>
-                                                  <h5 class="card-price">S/ 35.00</h5>
-                                                  <h5 class="card-price-old">Antes: <span>S/ 49.00</span></h5>
-                                             </div>
-                                        </nuxt-link>
-                                   </div>
-                              </div>
-                              <div class="col-6 col-md-4 col-lg-3">
-                                   <div class="card">
-                                        <nuxt-link to="/">
-                                             <figure>
-                                                  <img src="~/assets/images/d9.png" class="card-img-top">
-                                             </figure>
-                                             <div class="card-body">
-                                                  <h5 class="card-title">Eclairs</h5>
-                                                  <h5 class="card-price">S/ 45.00</h5>
-                                                  <h5 class="card-price-old">Antes: <span>S/ 299.00</span></h5>
-                                             </div>
-                                        </nuxt-link>
-                                   </div>
-                              </div>
-                              
-                              
                          </div>
                          <div class="boxButtonTienda d-flex justify-content-center align-items-center">
-                              <button>Ver tiende de Amor / Aniversario</button>
+                              <button>Ver tienda</button>
                          </div>
                     </div>
                </div>
@@ -211,38 +232,48 @@
                @media screen and (min-width: 1200px)
                     height: 33rem
                @media screen and (min-width: 1400px)
-                    height: 35rem
+                    height: 32rem
 
           .boxButtonTienda
-               padding-top: 1rem 
+               padding-top: 3.5rem 
                position: relative
                z-index: 30
                button
-                    background: $brown
+                    background: $greenLight3
                     @include font-libre(.813rem,.8rem,.785rem,.7rem,$Montserrat,600,white)
                     border: 0
                     line-height: 3em
-                    padding: 0 2rem
+                    padding: 0 3rem
                     border-radius: 30px
+                    transition: .5s ease-in background
                     @media screen and (min-width: 992px)
                          line-height: 4em
-                         padding: 0 2.85rem
+                         padding: 0 5.5rem
                     @media screen and (min-width: 1200px)
-                         line-height: 4.5em
-                         padding: 0 4rem
+                         line-height: 4em
+                         padding: 0 5.5rem
+                    @media screen and (min-width: 1200px)
+                         line-height: 4em
+                         padding: 0 5.5rem
+                    &:hover
+                         background: $pinkLight
+                    
           .boxDestacadoTop
                padding-top: 4.5rem
-               padding-bottom: 16rem
+               padding-bottom: 10rem
                padding-left: 
                padding-right: 0
                position: relative
                z-index: 10
                @media screen and (min-width: 992px)
                     padding-top: 3rem 
+                    padding-bottom: 10rem
                @media screen and (min-width: 1200px)
                     padding-top: 3.5rem
+                    padding-bottom: 9rem
                @media screen and (min-width: 1400px)
                     padding-top: 4.5rem
+                    padding-bottom: 10rem
                .boxVector
                     position: absolute
                     &.pos3
@@ -257,8 +288,8 @@
                               bottom: -7.5rem
                               // left: -6rem 
                          @media screen and (min-width: 1400px)
-                              bottom: -8.5rem
-                              right: -10rem
+                              bottom: 13.5rem
+                              right: -8rem
                               // left: -11.15rem  
                          picture
                               opacity: .75
@@ -275,27 +306,30 @@
                          left: 50%
                          transform: translateX(-50%)
                          @media screen and (min-width: 992px)
-                              transform: translateX(-70%)
-                              bottom: -20.5rem
+                              left: 27%
+                              transform: translateX(10%)
+                              bottom: 1.5rem
                               // left: -5.25rem 
                          @media screen and (min-width: 1200px)
-                              transform: translateX(-70%)
-                              bottom: -21rem
+                              left: 27%
+                              transform: translateX(22%)
+                              bottom: .35rem
                               // left: -6rem 
                          @media screen and (min-width: 1400px)
-                              bottom: -22.25rem
-                              transform: translateX(-70%)
+                              left: 27%
+                              transform: translateX(27%)
+                              bottom: 1.5rem
                               // left: -11.15rem  
                          picture
-                              // opacity: .75
+                              opacity: .35
                               img
                                    width: 542px
                                    @media screen and (min-width: 992px)
-                                        width: 500px 
+                                        width: 300px 
                                    @media screen and (min-width: 1200px)
-                                        width: 520px
+                                        width: 300px
                                    @media screen and (min-width: 1400px)
-                                        width: 542px
+                                        width: 300px
                     &.pos1
                          bottom: 0
                          left: 0 
@@ -389,50 +423,211 @@
                h2
                     @include font-libre(2.375rem,1.95rem, 1.75rem,.85rem,$Playfair,400,$black)
                     font-style: italic
-          .card
-               border: 0
-               margin: 0rem 0 3rem
-               background: transparent
-               a
-                    text-decoration: none
-                    &.blur
-                         filter: blur(1rem)
-                    figure
-                         overflow: hidden
-                         margin: 0
-                         border-radius: 10px
-                         img
-                              border-radius: 0
-                              height: auto
-                              transition: 1s ease transform
-                              @media screen and (min-width: 992px)
-                                   height: auto
+          .boxListOcaciones
+               display: flex
+               flex-direction: row
+               align-items: stretch
+               position: relative
+               z-index: 30
+               margin-top: 2rem
+               background: white
+               > div
+                    &:first-child
+                         width: 35%
+                         border: 1px solid $grayDark8
+                    &:last-child
+                         border-bottom: 1px solid $grayDark8
+                         border-top: 1px solid $grayDark8
+                         border-right: 1px solid $grayDark8
+                         > .d-flex
+                              &:last-child
+                                   > div
+                                        &:first-child
+                                             border-right: 1px solid $grayDark8
+                              &:first-child
+                                   > div
+                                        &:first-child
+                                             border-bottom: 1px solid $grayDark8
+                                             border-right: 1px solid $grayDark8
+                                        &:last-child
+                                             border-bottom: 1px solid $grayDark8
+               .animationCard
                     &:hover
-                         img
-                              transform: scale(1.3)
-                    .card-body
-                         padding: .85rem 0 0 1.25rem
-                         h5
-                              @include font-libre(1.5rem,1.35rem,1.25rem,.85rem,$Playfair,400,$blackLight)
-                              text-align: left
-                              &.card-price-old
-                                   @include font-libre(.875rem,.825rem,.75rem,.7rem,$Roboto,400,$grayLight3)
-                                   span
-                                        position: relative
+                         .cardOcacion
+                              .boxEye
+                                   opacity: 1
+                                   picture
+                                        img
+                                             transform: scale(1)
+                              picture
+                                   img
+                                        transform: scale(1.25)
+                              .cardDetail
+                                   &::after
+                                        border-left: .35rem solid rgba($greenLight3, 0.25)
+                                        border-right: .35rem solid rgba($greenLight3, 0.25)
+                                        border-bottom: .35rem solid rgba($greenLight3, 0.25)
+                                   .cardShopping
+                                        animation-name: cardDetailHoverIn
+                                        animation-duration: .25s
+                                        animation-timing-function: ease-in
+                                        animation-fill-mode: forwards
+                                        border-left: .35rem solid rgba($greenLight3, 0.25)
+                                        border-right: .35rem solid rgba($greenLight3, 0.25)
+                                        a
+                                             animation-name: cardDetailButtomHoverIn
+                                             animation-duration: .25s
+                                             animation-timing-function: ease-in
+                                             animation-fill-mode: forwards
+                                             animation-delay: .25s
+                              &::after
+                                   border: .35rem solid rgba($greenLight3, 0.25)
+                    .cardOcacion
+                         position: relative
+                         overflow: hidden
+                         &::after
+                              content: ''
+                              position: absolute
+                              z-index: 2
+                              top: 0
+                              left: 0
+                              width: 100%
+                              height: 100%
+                              border: 0rem solid rgba($greenLight3, 0.35)
+                              transition: .25s ease border
+                         .boxEye
+                              position: absolute
+                              top: .5rem
+                              right: .5rem
+                              display: inline-block
+                              background: $greenLight3
+                              border-radius: 50%
+                              width: 25px
+                              height: 25px
+                              border: 1px solid white
+                              z-index: 30
+                              opacity: 0
+                              transition: .5s ease all
+                              &:hover
+                                   background: $pinkLight
+                                   border: 2px solid rgba(white,.65)
+                              .imgEye
+                                   width: 16px
+                         picture
+                              overflow: hidden
+                              margin: 0
+                              border-radius: 10px
+                              img
+                                   border-radius: 0
+                                   height: auto
+                                   transition: 1s ease transform
+                                   width: 100%
+                                   object-fit: cover
+                                   object-position: center
+                                   @media screen and (min-width: 992px)
+                                        height: $altoDesHome
+                                   @media screen and (min-width: 1200px)
+                                        height: $altoDesHome1200
+                                   @media screen and (min-width: 1400px)
+                                        height: 220px
+                                   &.img1
+                                        object-position: 0 25%
+                                        @media screen and (min-width: 992px)
+                                             height: 440px
+                                        @media screen and (min-width: 1200px)
+                                             height: 460px
+                                        @media screen and (min-width: 1400px)
+                                             height: 520px
+                                   &.img3
+                                        // object-position: 0 25%
+                                        @media screen and (min-width: 992px)
+                                             height: $altoDesHome
+                                        @media screen and (min-width: 1200px)
+                                             height: $altoDesHome1200
+                                        @media screen and (min-width: 1400px)
+                                             height: 210px
+
+                         .cardDetail
+                              padding: .85rem 0 1rem 1.25rem
+                              background: white
+                              position: relative
+                              z-index: 10
+                              &::after
+                                   content: ''
+                                   position: absolute
+                                   top: 0
+                                   left: 0
+                                   width: 100%
+                                   height: 100%
+                                   transition: .25s ease border
+                              .cardShopping
+                                   position: absolute
+                                   bottom: 4.89rem
+                                   left: 0
+                                   width: 100%
+                                   height: 0px
+                                   padding-top: .95rem
+                                   opacity: 0
+                                   background: white
+                                   animation-name: cardDetailHoverOut
+                                   animation-duration: .25s
+                                   animation-timing-function: ease-in
+                                   transition: .25s ease border
+                                   a
                                         display: inline-block
-                                        &:before,
-                                        &:after
-                                             content: ''
+                                        opacity: 0
+                                        background: $greenLight3
+                                        line-height: 2.5em
+                                        padding: 0 1.5rem
+                                        border-radius: 30px
+                                        text-decoration: none
+                                        position: relative
+                                        transition: .5s ease background
+                                        &::after
                                              position: absolute
-                                             top: 50%
-                                             transform: translateY(-50%)
-                                             width: 50%
+                                             content: ''
+                                             border: 0rem solid rgba(white, .35)
+                                             border-radius: 30px
+                                             width: 100%
+                                             height: 100%
+                                             z-index: 10
+                                             top: 0
                                              left: 0
-                                             right: auto 
-                                             background: $grayLight3
-                                             height: 1px
-                                        &:after
-                                             right: 0
-                                             left: auto
+                                             transition: .1s ease border
+                                        &:hover
+                                             background: $pinkLight
+                                             &::after
+                                                  border: .25rem solid rgba(white, .35)
+
+                                        svg
+                                             transform: scaleX(-1)
+                                             color: white
+                                             margin-right: .5rem
+                                        span
+                                             @include font-libre(.813rem,.8rem,.785rem,.7rem,$Montserrat,600,white)
+                              h5
+                                   @include font-libre(1.25rem,1.25rem,1rem,1rem,$Playfair,400,$blackLight)
+                                   text-align: left
+                                   &.card-price-old
+                                        @include font-libre(.625rem,.6rem,.6rem,.75rem,$Montserrat,600,black)
+                                        span
+                                             position: relative
+                                             display: inline-block
+                                             &:before,
+                                             &:after
+                                                  content: ''
+                                                  position: absolute
+                                                  top: 50%
+                                                  transform: translateY(-50%)
+                                                  width: 50%
+                                                  left: 0
+                                                  right: auto 
+                                                  background: black
+                                                  height: 1px
+                                             &:after
+                                                  right: 0
+                                                  left: auto
+
+
 
 </style>

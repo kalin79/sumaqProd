@@ -29,7 +29,7 @@
                                              <div class="itemDetail animation1">
                                                   <h4><span>26 FEB 2021</span></h4>
                                                   <h3><span>Aprende a conservar <br>tus rosas</span></h3>
-                                                  <div class="btnView d-flex flex-row justify-content-start align-items-center ">
+                                                  <div class="btnView d-flex flex-row justify-content-end align-items-center ">
                                                        <p>VER ARTÍCULO</p>
                                                        <client-only>
                                                             <b-icon-chevron-right class="icon-chevron"></b-icon-chevron-right>
@@ -38,7 +38,7 @@
                                              </div>
                                         </div>
                                    </a>
-                                   <div class="separate"></div>
+                                   <!-- <div class="separate"></div> -->
                                    <a href="javascript:void(0)" class="itemBlog">
                                         <div class="fullImage">
                                              <img src="@/assets/images/blog2.jpg" alt="Aprende a conservar tus rosas">
@@ -47,7 +47,7 @@
                                              <div class="itemDetail animation2">
                                                   <h4><span>26 FEB 2021</span></h4>
                                                   <h3><span>El significado de <br>regalar rosas</span></h3>
-                                                  <div class="btnView d-flex flex-row justify-content-start align-items-center ">
+                                                  <div class="btnView d-flex flex-row justify-content-end align-items-center ">
                                                        <p>VER ARTÍCULO</p>
                                                        <client-only>
                                                             <b-icon-chevron-right class="icon-chevron"></b-icon-chevron-right>
@@ -85,7 +85,7 @@
                                              <div class="itemDetail animation1">
                                                   <h4><span>26 FEB 2021</span></h4>
                                                   <h3><span>Especial por el <br>Día de la Madre</span></h3>
-                                                  <div class="btnView d-flex flex-row justify-content-start align-items-center ">
+                                                  <div class="btnView d-flex flex-row justify-content-end align-items-center ">
                                                        <p>VER ARTÍCULO</p>
                                                        <client-only>
                                                             <b-icon-chevron-right class="icon-chevron"></b-icon-chevron-right>
@@ -94,7 +94,7 @@
                                              </div>
                                         </div>
                                    </a>
-                                   <div class="separate"></div>
+                                   <!-- <div class="separate"></div> -->
                                    <a href="javascript:void(0)" class="itemBlog">
                                         <div class="fullImage">
                                              <img src="@/assets/images/blog5.jpg" alt="Aprende a conservar tus rosas">
@@ -103,7 +103,7 @@
                                              <div class="itemDetail animation2">
                                                   <h4><span>26 FEB 2021</span></h4>
                                                   <h3><span>El chocolate nos <br>hace más felices</span></h3>
-                                                  <div class="btnView d-flex flex-row justify-content-start align-items-center ">
+                                                  <div class="btnView d-flex flex-row justify-content-end align-items-center ">
                                                        <p>VER ARTÍCULO</p>
                                                        <client-only>
                                                             <b-icon-chevron-right class="icon-chevron"></b-icon-chevron-right>
@@ -193,7 +193,8 @@
                position: relative
                z-index: 2
                button
-                    background: $brown
+                    background: $greenLight3
+                    transition: .5s ease-in background
                     @include font-libre(.813rem,.75rem,.75rem,.5rem,$Montserrat,600,white)
                     border: 0
                     line-height: 3em
@@ -204,10 +205,18 @@
                     @media screen and (min-width: 1200px)
                          line-height: 4.5em
                          padding: 0 5rem
+                    &:hover
+                         background: $pinkLight
           .boxBlogs
                padding: 0rem 0 1.25rem
                position: relative
                z-index: 2
+               .row
+                    padding-left: 15px
+                    padding-right: 15px
+                    > div
+                         padding-left: 0
+                         padding-right: 0
                .separate
                     height: 1.15rem
                     width: 100%
@@ -215,11 +224,17 @@
                     overflow: hidden
                     position: relative
                     width: 100%
-                    display: inline-block
-                    height: 301px
+                    display: block
+                    height: 240px
                     text-decoration: none
+                    @media screen and (min-width: 992px)
+                         height: 240px
+                    @media screen and (min-width: 1200px)
+                         height: 250px
+                    @media screen and (min-width: 1400px)
+                         height: 300px
                     &.fullHeight
-                         height: 99%
+                         height: 100%
                     &:hover
                          // .itemDetail
                          //      &.animation1
@@ -234,7 +249,7 @@
                     .itemDetail
                          position: relative
                          z-index: 2
-                         width: 80%
+                         width: 100%
                          padding: 1rem
                          box-sizing: border-box
                          transition: .5s ease transform
@@ -283,7 +298,7 @@
                          position: absolute
                          top: 0
                          left: 0
-                         border-radius: 10px
+                         border-radius: 0px
                          overflow: hidden
                          img 
                               width: 100%
