@@ -371,6 +371,7 @@ export default {
                          width: 100%
                          text-decoration: none
                          position: relative
+                         height: 44px
                          svg
                               position: absolute
                               top: 50%
