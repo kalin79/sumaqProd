@@ -95,7 +95,7 @@ export default {
      .HeaderMainMovil
           display: block
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0px 10px 0 rgba(0, 0, 0, 0.2)
-          @media screen and (min-width: 992px)
+          @media screen and (min-width: 1200px)
                display: none
           .container-fluid
                .menuNav
@@ -131,7 +131,7 @@ export default {
                          width: 20px
                          height: 20px
                     p
-                         @include font-libre(0.813rem,0.75rem,0.65rem,0.8rem,$Montserrat,600,white)
+                         @include font-libre(0.813rem,0.75rem,0.8rem,0.8rem,$Montserrat,600,white)
                          // padding-bottom: .25rem
                          text-align: center
                     
@@ -139,7 +139,7 @@ export default {
           padding: .75rem 0 .95rem
           background: white
           display: none
-          @media screen and (min-width: 992px)
+          @media screen and (min-width: 1200px)
                display: block
           .boxMoney
                position: relative

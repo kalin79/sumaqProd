@@ -23,7 +23,7 @@
                <div class="boxCarrusel">
                     <client-only>
                          <carousel
-                         :perPageCustom="[[300, 1], [992,4], [1200,5]]" 
+                         :perPageCustom="[[300, 1], [992,3], [1200,5]]" 
                          :autoplay="true" 
                          :autoplayTimeout=5000
                          :paginationPadding=10

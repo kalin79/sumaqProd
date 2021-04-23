@@ -68,7 +68,7 @@ export default {
                width: 100%
                height: 73px
                @media screen and (min-width: 992px)
-                    height: 117px
+                    height: 73px
                @media screen and (min-width: 1200px)
                     height: 133px
                @media screen and (min-width: 1400px)

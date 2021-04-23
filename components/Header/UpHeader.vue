@@ -49,7 +49,7 @@ export default {
      .HeaderUp
           background-color: $greenLight3
           display: none
-          @media screen and (min-width: 992px)
+          @media screen and (min-width: 1200px)
                display: block
           .ContentHeaderUp
                padding: .5rem 0

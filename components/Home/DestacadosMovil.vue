@@ -300,21 +300,21 @@
                     height: 55px
                     border-radius: 10px
                     position: relative
-                    border: 0px solid $greenLight3
+                    border: .35rem solid rgba($greenLight, 0.25)  
                     margin: .85rem auto 0
                     overflow: hidden
                     cursor: pointer
                     position: relative
-                    &::before
-                       position: absolute
-                       content: ''
-                       top: 0
-                       left: 0
-                       width: 100%
-                       height: 100%
-                       border-radius: 10px
-                       border: .35rem solid rgba($greenLight, 0.25)  
-                       z-index: 20
+                    // &::before
+                    //    position: absolute
+                    //    content: ''
+                    //    top: 0
+                    //    left: 0
+                    //    width: 100%
+                    //    height: 100%
+                    //    border-radius: 10px
+                    //    border: .35rem solid rgba($greenLight, 0.25)  
+                    //    z-index: 20
                     &:focus,
                     &.active
                          outline: none

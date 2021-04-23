@@ -231,7 +231,7 @@
                          width: 90%
                          margin: auto
                          @media screen and (min-width: 992px)
-                               width: 31.5rem
+                               width: 28.5rem
                                margin: 0
                          @media screen and (min-width: 1200px)
                                width: 33.5rem
@@ -313,7 +313,12 @@
                     // flex-grow: 1
                     width: 49%
                     .boxInfo
-                         padding-left: 6rem 
+                         padding-left: 6rem
+                         @media screen and (min-width: 992px)
+                              padding-left: 1.5rem
+                         @media screen and (min-width: 1200px)
+                              padding-left: 6rem
+
                .boxLine
                     // flex-grow: 0
                     width: 2%
