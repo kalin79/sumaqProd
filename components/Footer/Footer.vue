@@ -180,11 +180,12 @@
                     <div class="boxDetail">
                          <div class="accordion" role="tablist">
 
-                              <!-- <div class="accordionHeader">
-                                   <button>
+                              <div class="accordionFooter">
+                                   <button class="accordionHeader" v-on:click="accordionFooter(1)">
                                         <h2>CONÓCENOS</h2>
+                                        <b-icon-chevron-down></b-icon-chevron-down>
                                    </button>
-                                   <div class="accordionDetail">
+                                   <div class="accordionDetail accordionDetail-1">
                                         <ul>
                                              <li>
                                                   <nuxt-link to="/">Quienes Somos</nuxt-link>
@@ -200,47 +201,14 @@
                                              </li>
                                         </ul>
                                    </div>
-                              </div> -->
+                              </div>
 
-                              <b-card no-body class="mb-1">
-                                   <b-card-header header-tag="header" class="p-1" role="tab">
-                                   <b-button block v-b-toggle.accordion-1 variant="info">
-                                        <h2>CONÓCENOS</h2>
-                                        <b-icon-chevron-down></b-icon-chevron-down>
-                                   </b-button>
-                                   </b-card-header>
-                                   <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
-                                   <b-card-body>
-                                        <ul>
-                                             <li>
-                                                  <nuxt-link to="/">Quienes Somos</nuxt-link>
-                                             </li>
-                                             <li>
-                                                  <nuxt-link to="/">Blog</nuxt-link>
-                                             </li>
-                                             <li>
-                                                  <nuxt-link to="/">Preguntas frecuentes</nuxt-link>
-                                             </li>
-                                             <li>
-                                                  <nuxt-link to="/">Contáctenos</nuxt-link>
-                                             </li>
-                                        </ul>
-                                   </b-card-body>
-                                   </b-collapse>
-                              </b-card>
-
-
-                              
-
-                              <b-card no-body class="mb-1">
-                                   <b-card-header header-tag="header" class="p-1" role="tab">
-                                   <b-button block v-b-toggle.accordion-2 variant="info">
+                              <div class="accordionFooter">
+                                   <button class="accordionHeader" v-on:click="accordionFooter(2)">
                                         <h2>POLÍTICAS</h2>
                                         <b-icon-chevron-down></b-icon-chevron-down>
-                                   </b-button>
-                                   </b-card-header>
-                                   <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
-                                   <b-card-body>
+                                   </button>
+                                   <div class="accordionDetail accordionDetail-2">
                                         <ul>
                                              <li>
                                                   <nuxt-link to="/">Horarios de atención</nuxt-link>
@@ -264,19 +232,15 @@
                                                   <nuxt-link to="/">Libro de reclamaciones</nuxt-link>
                                              </li>
                                         </ul>
-                                   </b-card-body>
-                                   </b-collapse>
-                              </b-card>
+                                   </div>
+                              </div>
 
-                              <b-card no-body class="mb-1">
-                                   <b-card-header header-tag="header" class="p-1 notMB" role="tab">
-                                   <b-button block v-b-toggle.accordion-3 variant="info">
+                              <div class="accordionFooter">
+                                   <button class="accordionHeader" v-on:click="accordionFooter(3)">
                                         <h2>MI PEDIDO</h2>
                                         <b-icon-chevron-down></b-icon-chevron-down>
-                                   </b-button>
-                                   </b-card-header>
-                                   <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
-                                   <b-card-body>
+                                   </button>
+                                   <div class="accordionDetail accordionDetail-3">
                                         <ul>
                                              <li>
                                                   <nuxt-link to="/">Estado del pedido</nuxt-link>
@@ -285,9 +249,10 @@
                                                   <nuxt-link to="/">Cobertura</nuxt-link>
                                              </li>
                                         </ul>
-                                   </b-card-body>
-                                   </b-collapse>
-                              </b-card>
+                                   </div>
+                              </div>
+
+                              
                          </div>
                     </div>
                     <div class="container">
@@ -337,6 +302,39 @@ export default {
      components: {
           IconWhatsapp,
           IconFacebook,
+     },
+     data() {
+          return {
+               anterior: 0
+          }
+     },
+     mounted() {
+          this.accordionFooter()
+     },
+     methods : {
+          accordionFooter (id){
+               const element = '.accordionDetail-'+id
+               const elmentAll = '.accordionDetail'
+               console.log(id)
+               if (this.anterior != id){
+                    $('.accordionDetail-'+id).removeClass('active')
+               }
+               $(elmentAll).css('display','none')
+               // setTimeout(function(){ 
+                    // $(element).toggle()
+               // }, 1000)
+               
+               if ($(element).hasClass("active")){
+                    $(element).fadeOut('slow')
+                    $(element).removeClass("active")
+               }else{
+                    $(element).addClass("active")
+                    $(element).fadeIn('slow')
+               }
+
+               this.anterior = id
+               
+          }
      }
 }
 </script>
@@ -350,9 +348,7 @@ export default {
                display: block
                @media screen and (min-width: 992px)
                     display: none
-               .mb-1, 
-               .my-1
-                    margin-bottom: 0 !important
+               
                .boxTarjetas
                     padding-top: 1.75rem
                .boxDetail
@@ -361,47 +357,28 @@ export default {
                     h2
                          text-align: center
                .accordion
-                    padding: 1.75rem 0 0
-                    > .card
-                         > .card-header
-                              &.notMB
-                                   margin-bottom: 0
-                                   h2
-                                        border-bottom: 1px solid white
-
-               .card
-                    border: 0
-                    background-color: transparent
-                    
-                    .p-1
-                         padding: 0 !important
-                    .card-body
-                         padding: .5rem 1rem 1.5rem
-                    .card-header
-                         background-color: transparent 
+                    padding: 1rem 0 0
+               .accordionFooter
+                    border-top: 1px solid white
+                    border-bottom: 1px solid white
+                    .accordionDetail
+                         padding-bottom: 1.5rem
+                         padding-left: 1rem
+                         display: none
+                    .accordionHeader
                          border: 0
-                         
-                         .btn-info
-                              position: relative
-                              padding: 0
-                              h2
-                                   border-top: 1px solid white
-                                   
-                                   line-height: 3rem
-                              svg
-                                   position: absolute
-                                   top: 50%
-                                   transform: translateY(-50%)
-                                   right: 1rem
-                         .btn-info
-                              background-color: transparent 
-                              border-color: transparent
-                              &:hover,
-                              &:active,
-                              &:focus
-                                   background-color: transparent 
-                                   border-color: transparent
-                                   box-shadow: none
+                         background: transparent
+                         width: 100%
+                         text-decoration: none
+                         position: relative
+                         svg
+                              position: absolute
+                              top: 50%
+                              transform: translateY(-50%)
+                              right: 1rem
+                              color: white
+                         h2
+                              line-height: 2.5rem 
                                    
                .boxInfoTienda
                     margin-top: .75rem
