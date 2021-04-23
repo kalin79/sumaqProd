@@ -183,7 +183,9 @@
                               <div class="accordionFooter">
                                    <button class="accordionHeader" v-on:click="accordionFooter(1)">
                                         <h2>CONÓCENOS</h2>
+                                        <client-only>
                                         <b-icon-chevron-down></b-icon-chevron-down>
+                                        </client-only>
                                    </button>
                                    <div class="accordionDetail accordionDetail-1">
                                         <ul>
@@ -206,7 +208,9 @@
                               <div class="accordionFooter">
                                    <button class="accordionHeader" v-on:click="accordionFooter(2)">
                                         <h2>POLÍTICAS</h2>
+                                        <client-only>
                                         <b-icon-chevron-down></b-icon-chevron-down>
+                                        </client-only>
                                    </button>
                                    <div class="accordionDetail accordionDetail-2">
                                         <ul>
@@ -238,7 +242,9 @@
                               <div class="accordionFooter">
                                    <button class="accordionHeader" v-on:click="accordionFooter(3)">
                                         <h2>MI PEDIDO</h2>
+                                        <client-only>
                                         <b-icon-chevron-down></b-icon-chevron-down>
+                                        </client-only>
                                    </button>
                                    <div class="accordionDetail accordionDetail-3">
                                         <ul>
