@@ -188,6 +188,16 @@
                          padding: 6.5rem 0 5.35rem
                     .boxInfoTop
                          padding: 0 0 2rem 0rem
+                         .boxComunicate
+                              p
+                                   @include font-libre(.875rem,0.875rem,0.875rem,.8rem,$Montserrat,500,black)
+                                   text-align: left
+                                   margin-top: .5rem
+                                   padding: 0 .25rem
+                                   @media screen and (min-width: 992px)
+                                        text-align: left
+                                        margin: 0
+                                        padding: 0
                          .boxDetail
                               margin-left: 0rem
                               padding-top: 1rem
@@ -259,9 +269,9 @@
                               button
                                    background: $greenLight3
                                    transition: .5s ease-in background
-                                   @include font-libre(.813rem,.75rem,.75rem,.5rem,$Montserrat,600,white)
+                                   @include font-libre(.813rem,.75rem,.75rem,.7rem,$Montserrat,600,white)
                                    border: 0
-                                   line-height: 3.7em
+                                   line-height: 3em
                                    padding: 0 3rem
                                    border-radius: 30px
                                    @media screen and (min-width: 992px)

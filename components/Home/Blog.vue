@@ -303,7 +303,7 @@
                button
                     background: $greenLight3
                     transition: .5s ease-in background
-                    @include font-libre(.813rem,.75rem,.75rem,.5rem,$Montserrat,600,white)
+                    @include font-libre(.813rem,.75rem,.75rem,.7rem,$Montserrat,600,white)
                     border: 0
                     line-height: 3em
                     padding: 0 3.5rem
