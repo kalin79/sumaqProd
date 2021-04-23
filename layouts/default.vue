@@ -8,7 +8,7 @@
           <suscripcion />
           <restriccion-bebida />
           <footer-main />
-          <footer-buttom />
+          <!-- <footer-buttom /> -->
      </div>
 </template>
 <script>

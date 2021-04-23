@@ -329,6 +329,9 @@ export default {
                display: block
                @media screen and (min-width: 992px)
                     display: none
+               .mb-1, 
+               .my-1
+                    margin-bottom: 0 !important
                .boxTarjetas
                     padding-top: 1.75rem
                .boxDetail
@@ -342,23 +345,33 @@ export default {
                          > .card-header
                               &.notMB
                                    margin-bottom: 0
+                                   h2
+                                        border-bottom: 1px solid white
+
                .card
                     border: 0
                     background-color: transparent
+                    
+                    .p-1
+                         padding: 0 !important
                     .card-body
-                         padding: .5rem 1rem
+                         padding: .5rem 1rem 1.5rem
                     .card-header
                          background-color: transparent 
                          border: 0
-                         border-top: 1px solid white   !important
-                         border-bottom: 1px solid white !important  
+                         
                          .btn-info
                               position: relative
+                              padding: 0
+                              h2
+                                   border-top: 1px solid white
+                                   
+                                   line-height: 3rem
                               svg
                                    position: absolute
                                    top: 50%
                                    transform: translateY(-50%)
-                                   right: 0
+                                   right: 2rem
                          .btn-info
                               background-color: transparent 
                               border-color: transparent
