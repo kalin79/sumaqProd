@@ -48,6 +48,9 @@ export default {
 <style lang="sass">
      .HeaderUp
           background-color: $greenLight3
+          display: none
+          @media screen and (min-width: 992px)
+               display: block
           .ContentHeaderUp
                padding: .5rem 0
                @media screen and (min-width: 992px)

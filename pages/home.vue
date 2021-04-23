@@ -9,7 +9,12 @@
           <banner-home />
           <beneficios />
           <categorias />
-          <destacados />
+          <div class="_destacado_pc">
+               <destacados />
+          </div>
+          <div class="_destacado_movil">
+               <destacados-m />
+          </div>
           <planes />
           <blog />
           
@@ -19,6 +24,7 @@
 import BannerHome from '@/components/Banner/Home'
 import Categorias from '@/components/Home/CategoriasCarrusel'
 import Destacados from '@/components/Home/Destacados'
+import DestacadosM from '@/components/Home/DestacadosMovil'
 import Planes from '@/components/Home/Planes'
 import Beneficios from '@/components/Home/Beneficios'
 import Blog from '@/components/Home/Blog'
@@ -38,6 +44,7 @@ export default {
      components: {
           BannerHome,
           Destacados,
+          DestacadosM,
           Categorias,
           Beneficios,
           Planes,
@@ -151,6 +158,14 @@ export default {
 }
 </script>
 <style lang="sass">
+     ._destacado_movil
+          display: block
+          @media screen and (min-width: 992px)
+               display: none
+     ._destacado_pc
+          display: none
+          @media screen and (min-width: 992px)
+               display: block
      .fixedWhatsApp
           position: fixed
           right: 1.5rem
@@ -163,7 +178,7 @@ export default {
           @media screen and (min-width: 1400px)
                bottom: 9rem
           img
-               width: 30px
+               width: 60px
                @media screen and (min-width: 992px)
                     width: 70px
                @media screen and (min-width: 1200px)

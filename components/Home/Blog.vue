@@ -18,6 +18,106 @@
                               </div>
                          </div>
                     </div>
+                    <div class="boxBlogMovil">
+                         <div class="row">
+                              <div class="col-12">
+                                   <a href="javascript:void(0)" class="itemBlog">
+                                        <div class="fullImage">
+                                             <img src="@/assets/images/blog1.jpg" alt="Aprende a conservar tus rosas">
+                                        </div>
+                                        <div class="boxFlexInfo d-flex flex-column justify-content-end align-items-start">
+                                             <div class="itemDetail animation1">
+                                                  <h4><span>26 FEB 2021</span></h4>
+                                                  <h3><span>Aprende a conservar <br>tus rosas</span></h3>
+                                                  <div class="btnView d-flex flex-row justify-content-end align-items-center ">
+                                                       <p>VER ARTÍCULO</p>
+                                                       <client-only>
+                                                            <b-icon-chevron-right class="icon-chevron"></b-icon-chevron-right>
+                                                       </client-only>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </a>
+                              </div>
+                              <div class="col-6">
+                                   <a href="javascript:void(0)" class="itemBlog">
+                                        <div class="fullImage">
+                                             <img src="@/assets/images/blog2.jpg" alt="Aprende a conservar tus rosas">
+                                        </div>
+                                        <div class="boxFlexInfo d-flex flex-column justify-content-end align-items-start">
+                                             <div class="itemDetail animation2">
+                                                  <h4><span>26 FEB 2021</span></h4>
+                                                  <h3><span>El significado de <br>regalar rosas</span></h3>
+                                                  <div class="btnView d-flex flex-row justify-content-end align-items-center ">
+                                                       <p>VER ARTÍCULO</p>
+                                                       <client-only>
+                                                            <b-icon-chevron-right class="icon-chevron"></b-icon-chevron-right>
+                                                       </client-only>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </a>
+                              </div>
+                              <div class="col-6">
+                                   <a href="javascript:void(0)" class="itemBlog">
+                                        <div class="fullImage">
+                                             <img src="@/assets/images/blog3.jpg" alt="Aprende a conservar tus rosas">
+                                        </div>
+                                        <div class="boxFlexInfo d-flex flex-column justify-content-end align-items-start">
+                                             <div class="itemDetail animation2">
+                                                  <h4><span>26 FEB 2021</span></h4>
+                                                  <h3><span>Que nunca acaben<br> los detalles...</span></h3>
+                                                  <div class="btnView d-flex flex-row justify-content-start align-items-center ">
+                                                       <p>VER ARTÍCULO</p>
+                                                       <client-only>
+                                                            <b-icon-chevron-right class="icon-chevron"></b-icon-chevron-right>
+                                                       </client-only>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </a>
+                                   
+                              </div>
+                              <div class="col-12">
+                                   <a href="javascript:void(0)" class="itemBlog">
+                                        <div class="fullImage">
+                                             <img src="@/assets/images/blog4.jpg" alt="Aprende a conservar tus rosas">
+                                        </div>
+                                        <div class="boxFlexInfo d-flex flex-column justify-content-end align-items-start">
+                                             <div class="itemDetail animation1">
+                                                  <h4><span>26 FEB 2021</span></h4>
+                                                  <h3><span>Especial por el <br>Día de la Madre</span></h3>
+                                                  <div class="btnView d-flex flex-row justify-content-end align-items-center ">
+                                                       <p>VER ARTÍCULO</p>
+                                                       <client-only>
+                                                            <b-icon-chevron-right class="icon-chevron"></b-icon-chevron-right>
+                                                       </client-only>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </a>
+                              </div>
+                              <div class="col-12">
+                                   <a href="javascript:void(0)" class="itemBlog">
+                                        <div class="fullImage">
+                                             <img src="@/assets/images/blog5.jpg" alt="Aprende a conservar tus rosas">
+                                        </div>
+                                        <div class="boxFlexInfo d-flex flex-column justify-content-end align-items-start">
+                                             <div class="itemDetail animation2">
+                                                  <h4><span>26 FEB 2021</span></h4>
+                                                  <h3><span>El chocolate nos <br>hace más felices</span></h3>
+                                                  <div class="btnView d-flex flex-row justify-content-end align-items-center ">
+                                                       <p>VER ARTÍCULO</p>
+                                                       <client-only>
+                                                            <b-icon-chevron-right class="icon-chevron"></b-icon-chevron-right>
+                                                       </client-only>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </a>
+                              </div>
+                         </div>
+                    </div>
                     <div class="boxBlogs">
                          <div class="row">
                               <div class="col-5 col-xl-5">
@@ -65,7 +165,7 @@
                                         <div class="boxFlexInfo d-flex flex-column justify-content-end align-items-start">
                                              <div class="itemDetail animation2">
                                                   <h4><span>26 FEB 2021</span></h4>
-                                                  <h3><span>Que nunca acaben los <br>detalles...</span></h3>
+                                                  <h3><span>Que nunca acaben<br> los detalles...</span></h3>
                                                   <div class="btnView d-flex flex-row justify-content-start align-items-center ">
                                                        <p>VER ARTÍCULO</p>
                                                        <client-only>
@@ -145,8 +245,10 @@
                @media screen and (min-width: 1400px)
                     height: 22.5rem
           .boxConentBlog
-               padding-bottom: 6rem
+               padding-bottom: 3.5rem
                position: relative
+               @media screen and (min-width: 992px)
+                    padding-bottom: 6rem
                .boxBflor
                     position: absolute
                     &.pos1
@@ -171,11 +273,17 @@
                                    width: 390px 
           .boxAdorno
                position: absolute
+               img
+                    width: 80px
+                    @media screen and (min-width: 992px)
+                         width: auto
                &.pos1
-                    top: -3.5rem
+                    top: -2.5rem
                     left: 50%
                     transform: translateX(-50%)
                     z-index: 2
+                    @media screen and (min-width: 992px)
+                         top: -3.5rem
           .topBlog
                position: absolute
                bottom: 0
@@ -207,10 +315,14 @@
                          padding: 0 5rem
                     &:hover
                          background: $pinkLight
-          .boxBlogs
+          .boxBlogs,
+          .boxBlogMovil    
                padding: 0rem 0 1.25rem
                position: relative
                z-index: 2
+               display: none
+               @media screen and (min-width: 992px)
+                    display: block
                .row
                     padding-left: 15px
                     padding-right: 15px
@@ -281,6 +393,10 @@
                                    top: -1px
                          span 
                               background: rgba($pinkLight,.9)
+                              br
+                                   display: none
+                                   @media screen and (min-width: 992px)
+                                        display: block
                          // &.bgPink
                          //      span 
                          //           background: rgba($pinkLight,.9)
@@ -305,6 +421,10 @@
                               height: 100%
                               object-fit: cover
                               transition: .5s ease transform
+          .boxBlogMovil 
+               display: block
+               @media screen and (min-width: 992px)
+                    display: none
           .boxTitle
                position: relative
                .boxSubtitle
@@ -312,7 +432,7 @@
                     top: 30%
                     width: 100%
                     h3
-                         @include font-libre(2.15rem,1.9rem,1.9rem,.85rem,$Playfair,400,black)
+                         @include font-libre(2.15rem,1.9rem,1.9rem,1.4rem,$Playfair,400,black)
                          font-style: italic
                          line-height: 2.5rem
 
@@ -320,7 +440,7 @@
                          width: 35px
                          margin: 0
                h2
-                    @include font-libre(16.25rem,14.25rem,14.25rem,10rem,$Playfair,500,$greenLight)
+                    @include font-libre(16.25rem,14.25rem,14.25rem,7.75rem,$Playfair,500,$greenLight)
                     line-height: .8em
                     font-style: italic
                     text-align: center

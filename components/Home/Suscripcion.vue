@@ -11,6 +11,58 @@
                          <img src="@/assets/images/vect6.png" />
                     </picture>
                </div>
+               <div class="boxSuscriptionM boxSuscription">
+                    <div class="row">
+                         <div class="col-12">
+                              <div class="boxInfo">
+                                   <div class="boxInfoTop">
+                                        <div class="boxIcon">
+                                             <img src="@/assets/images/new.png" />
+                                        </div>
+                                        <div class="boxDetail">
+                                             <h2>Newsletter</h2>
+                                             <p>No te pierdas de las promociones y descuentos <br>en nuestra tienda.</p>
+                                        </div>
+                                        <div class="boxForm">
+                                             <input type="email" class="form-control" placeholder="tucorreo@correo.com">
+                                             <div class="boxButtonTienda d-flex justify-content-center align-items-center">
+                                                  <button>SUSCRIBIRME</button>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-12">
+                              <div class="boxInfo">
+                                   <div class="boxInfoTop">
+                                        <div class="boxIcon">
+                                             <img src="@/assets/images/aten.png" />
+                                        </div>
+                                        <div class="boxDetail">
+                                             <h2>Atención al cliente</h2>
+                                             <p>Atendemos vía WhatsApp , Chat y Llamada: <br>Lunes a Sábado: 7:00 am - 5:00 pm</p>
+                                        </div>
+                                        <div class="boxComunicate">
+                                             <div class="boxComunication d-flex justify-content-between align-items-center">
+                                                  <a href="https://wa.link/7rz9o8" target="_blank">
+                                                       <div class="d-flex justify-content-start align-items-center">
+                                                            <img src="@/assets/images/wha.png" />
+                                                            <p>(+51) 985 757 450</p>
+                                                       </div>
+                                                  </a>
+                                                  <a href="mailto:hola@sumaq.pe?subject=Atención%20al%20cliente" target="_blank">
+                                                       <div class="d-flex justify-content-start align-items-center">
+                                                            <img src="@/assets/images/email.png" />
+                                                            <p>hola@sumaq.pe</p>
+                                                       </div>
+                                                  </a>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
                <div class="boxSuscription">
                     <div class="boxNewsletter">
                          <div class="boxInfo">
@@ -67,15 +119,18 @@
 </template>
 <style lang="sass">
      .suscriptionHome
-          border-top: 1px solid $grayDark4
+          border-top: 0px solid $grayDark4
           position: relative
           z-index: 90
+          @media screen and (min-width: 992px)
+               border-top: 1px solid $grayDark4
           .container-fluid
                position: relative
                .boxFlor
                     position: absolute
+                    
                     &.pos2
-                         bottom: 0
+                         bottom: 8rem
                          right: 0
                          @media screen and (min-width: 992px)
                               bottom: -23.15rem
@@ -89,7 +144,7 @@
                          picture
                               opacity: .5
                               img
-                                   width: 421px
+                                   width: 180px
                                    @media screen and (min-width: 992px)
                                         width: 380px
                                    @media screen and (min-width: 1200px) 
@@ -97,8 +152,8 @@
                                    @media screen and (min-width: 1400px) 
                                         width: 421px
                     &.pos1 
-                         top: 0
-                         left: 0
+                         top: -8rem
+                         left: -5rem
                          @media screen and (min-width: 992px)
                               top: -5.85rem
                               left: -15rem
@@ -110,7 +165,7 @@
                               left: -15rem
                          picture
                               img
-                                   width: 556px
+                                   width: 250px
                                    @media screen and (min-width: 992px)
                                         width: 460px
                                    @media screen and (min-width: 1200px) 
@@ -118,8 +173,10 @@
                                    @media screen and (min-width: 1400px) 
                                         width: 550px
           .boxSuscription
-               display: flex
-               flex-direction: row
+               display: none
+               @media screen and (min-width: 992px)
+                    display: flex
+                    flex-direction: row
                .boxInfo
                     position: relative
                     z-index: 3
@@ -132,27 +189,46 @@
                     .boxInfoTop
                          padding: 0 0 2rem 0rem
                          .boxDetail
-                              margin-left: .75rem
-                              padding-top: 1.35rem
+                              margin-left: 0rem
+                              padding-top: 1rem
+                              @media screen and (min-width: 992px)
+                                   margin-left: .75rem
+                                   padding-top: 1.35rem
                               h2
-                                   @include font-libre(1rem,1rem,1rem,1rem,$Montserrat,800,black)
+                                   @include font-libre(1rem,1rem,1rem,1.75rem,$Montserrat,800,black)
                                    line-height: 1.5em
+                                   text-align: center
+                                   @media screen and (min-width: 992px)
+                                        text-align: left
                               p
-                                   @include font-libre(.875rem,0.875rem,0.875rem,0.875rem,$Montserrat,500,black)
+                                   @include font-libre(.875rem,0.875rem,0.875rem,.8rem,$Montserrat,500,black)
+                                   text-align: center
+                                   margin-top: .5rem
+                                   padding: 0 1rem
+                                   @media screen and (min-width: 992px)
+                                        text-align: left
+                                        margin: 0
+                                        padding: 0
                          .boxIcon
-                              margin-right: .85rem
+                              margin: auto
+                              text-align: center
+                              @media screen and (min-width: 992px)
+                                  margin: 0 .85rem 0 0 
+                                  text-align: left
                               img
                                    width: 58px 
                     .boxForm
-                         width: 36.688rem
+                         width: 90%
+                         margin: auto
                          @media screen and (min-width: 992px)
                                width: 31.5rem
+                               margin: 0
                          @media screen and (min-width: 1200px)
                                width: 33.5rem
                          @media screen and (min-width: 1400px)
                                width: 36.688rem
                          input[type="email"]
-                              line-height: 4.35em
+                              line-height: 3em
                               height: auto
                               border-radius: 30px
                               background: $grayLight5
@@ -160,9 +236,10 @@
                               @include font-libre(.875rem,0.875rem,0.875rem,0.875rem,$Montserrat,500,$blue)
                               padding-left: 1rem
                               padding-right: .5rem
-                              margin-right: 1.5rem
+                              margin: 1rem 1.5rem 1rem 0
                               @media screen and (min-width: 992px)
                                    line-height: 3em
+                                   margin: 0rem 1.5rem 0 0
                               @media screen and (min-width: 1200px)
                                    line-height: 3.75em
                               @media screen and (min-width: 1400px)
@@ -176,12 +253,15 @@
                                    color: $blue
                          .boxButtonTienda
                               padding: 0rem
+                              margin-bottom: 2rem
+                              @media screen and (min-width: 992px)
+                                   margin-bottom: 0
                               button
                                    background: $greenLight3
                                    transition: .5s ease-in background
                                    @include font-libre(.813rem,.75rem,.75rem,.5rem,$Montserrat,600,white)
                                    border: 0
-                                   line-height: 3.85em
+                                   line-height: 3.7em
                                    padding: 0 3rem
                                    border-radius: 30px
                                    @media screen and (min-width: 992px)
@@ -200,6 +280,7 @@
                               text-decoration: none
                               p
                                    transition: .5s ease color
+                                   margin-bottom: 0
                               &:hover
                                    &:first-child
                                         p 
@@ -230,6 +311,10 @@
                          width: 1px
                          height: 100%
                          background: $grayDark4
+          .boxSuscriptionM
+               display: block
+               @media screen and (min-width: 992px)
+                    display: none
           .boxFlor
                position: absolute
                z-index: 1

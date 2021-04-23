@@ -62,16 +62,20 @@
                     border: 1px solid $grayLight2
                     border-radius: 20px
                     box-sizing: border-box
-                    padding: 2rem 4rem
+                    padding: 2rem .5rem
                     box-shadow: 3px 5px 8px -5px rgba(black,.25)
                     z-index: 31
+                    @media screen and (min-width: 992px)
+                         padding: 2rem 4rem
                     .itemBeneficio
                          // &:nth-child(2)
                          //      margin: 0 2.5rem
                          figure
                               &.boxImage1
                                    width: 38px
+                                   display: none
                                    @media screen and (min-width: 992px)
+                                        display: block
                                         width: 38px
                                    @media screen and (min-width: 1200px)
                                         width: 40px
@@ -79,16 +83,20 @@
                                         width: auto
                               &.boxImage2
                                    width: 45px
+                                   display: none
                                    @media screen and (min-width: 992px)
                                         width: 50px
+                                        display: block
                                    @media screen and (min-width: 1200px)
                                         width: 58px
                                    @media screen and (min-width: 1400px)
                                         width: auto
                               &.boxImage3
                                    width: 45px
+                                   display: none
                                    @media screen and (min-width: 992px)
                                         width: 50px
+                                        display: block
                                    @media screen and (min-width: 1200px)
                                         width: 58px
                                    @media screen and (min-width: 1400px)
@@ -99,7 +107,16 @@
                               padding-left: 1rem
                               h3
                                    @include font-libre(1.125rem,1rem, .85rem,.75rem,$Playfair,700,$brown)
-                                   line-height: 2.25em
+                                   line-height: 1.5em
+                                   margin-bottom: 0.5rem
+                                   @media screen and (min-width: 992px)
+                                        line-height: 2.25em
+                                        margin-bottom: 0
                               p
                                    @include font-libre(0.875rem,.775rem, .7rem,.6rem,$Montserrat,500,$grayLight4)
+                                   br
+                                        display: none
+                                        @media screen and (min-width: 992px)
+                                             display: block
+
 </style>

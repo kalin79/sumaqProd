@@ -126,11 +126,13 @@ export default {
 </script>
 <style lang="sass">
      .homeCategory
-          padding: 1.25rem 0 2.5rem
+          padding: 1.25rem 0 2rem
+          @media screen and (min-width: 992px)
+               padding: 1.25rem 0 2.5rem
           .boxCarrusel
                position: relative
                z-index: 100
-               padding: 4.5rem 0 10rem
+               padding: 1.5rem 0 3rem
                border: 0px solid blue
                @media screen and (min-width: 992px)
                     padding: 2.5rem 0 3rem
@@ -153,12 +155,12 @@ export default {
                     .cardDescription
                          text-align: center
                          p
-                              @include font-libre(0.875rem,.80rem, .75rem,.7rem,$Montserrat,500,$grayDark6)
+                              @include font-libre(0.875rem,.80rem, .75rem,.75rem,$Montserrat,500,$grayDark6)
                     .cardTitle
                          padding: 1rem 0 .5rem
                          text-align: center
                          h2
-                              @include font-libre(1.5rem,1.45rem, 1.25rem,1rem,$Montserrat,500,$brown)
+                              @include font-libre(1.5rem,1.45rem, 1.25rem,1.15rem,$Montserrat,500,$brown)
                     .cardCarrsuel
                          padding: 1rem
                          border: 0px solid red
@@ -176,8 +178,8 @@ export default {
                          picture
                               display: block
                               overflow: hidden
-                              width: 16.25px
-                              height: 16.25px
+                              width: 12.25rem
+                              height: 12.25rem
                               border-radius: 50%
                               position: relative 
                               border: 2px solid $greenLight3
@@ -222,13 +224,16 @@ export default {
                     position: absolute
                     top: 0
                     z-index: 20
+                    
                     &.pos4
                          bottom: 0
                          top: auto
                          left: 0rem
+                         display: none
                          @media screen and (min-width: 992px)
                               bottom: -16.35rem
                               left: 0rem
+                              display: block
                          @media screen and (min-width: 1200px)
                               bottom: -18.65rem
                               left: 0rem
@@ -248,10 +253,12 @@ export default {
                          top: 0
                          right: 0rem
                          left: auto
+                         display: none
                          @media screen and (min-width: 992px)
                               top: 5.15rem
                               right: -4.5rem
                               left: auto
+                              display: block
                          @media screen and (min-width: 1200px)
                               top: 5.9rem
                               right: -4.5rem
@@ -270,9 +277,9 @@ export default {
                               @media screen and (min-width: 1400px)
                                    width: 421px
                     &.pos2
-                         top: 65%
-                         left: 49%
-                         transform: translate(-65%,-40%)
+                         top: -5rem
+                         left: 45%
+                         transform: translateX(-50%)
                          @media screen and (min-width: 992px)
                               transform: translate(-65%,-40%)
                          @media screen and (min-width: 1200px)
@@ -280,7 +287,7 @@ export default {
                          @media screen and (min-width: 1400px)
                               transform: translate(-65%,-35%)
                          img
-                              width: 556px
+                              width: 230px
                               @media screen and (min-width: 992px)
                                    width: 460px
                               @media screen and (min-width: 1200px)
@@ -288,8 +295,8 @@ export default {
                               @media screen and (min-width: 1400px)
                                    width: 542px
                     &.pos1
-                         top: -12rem
-                         left: -18rem
+                         top: -11.5rem
+                         left: -12rem
                          @media screen and (min-width: 992px)
                               top: -11.65rem
                               left: -14.85rem
@@ -300,7 +307,7 @@ export default {
                               top: -12rem
                               left: -18rem
                          img
-                              width: 556px
+                              width: 300px
                               @media screen and (min-width: 992px)
                                    width: 490px
                               @media screen and (min-width: 1200px)
@@ -312,12 +319,12 @@ export default {
                figure
                     margin: 0
                h2
-                    @include font-libre(2.375rem,2rem, 1.75rem,.95rem,$Playfair,500,$black)
+                    @include font-libre(2.375rem,2rem, 1.75rem,1.35rem,$Playfair,500,$black)
                     font-style: italic
                     line-height: 1em
                     margin-bottom: .5rem
                p
-                    @include font-libre(1rem,.85rem, .75rem,.6rem,$Montserrat,500,$grayDark6)
+                    @include font-libre(1rem,.85rem, .75rem,.726rem,$Montserrat,500,$grayDark6)
                     line-height: 1.75em
 
 </style>

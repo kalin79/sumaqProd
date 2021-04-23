@@ -14,10 +14,10 @@
           position: relative
           z-index: 100
           h5
-               @include font-libre(1.813rem,1.813rem,1.813rem,1rem,$Montserrat,200,black)
+               @include font-libre(1.813rem,1.813rem,1.813rem,.5rem,$Montserrat,200,black)
                text-align: center
                color: rgba(white, .25)
-               line-height: 1.25rem
+               line-height: .75rem
                @media screen and (min-width: 992px)
                     line-height: 1.85rem
                @media screen and (min-width: 1200px)
