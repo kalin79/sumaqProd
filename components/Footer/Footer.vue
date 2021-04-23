@@ -3,7 +3,7 @@
           <div class="boxFooter">
                <div class="container-fluid container-fluid-xxl">
                     <div class="row">
-                         <div class="col">
+                         <div class="col-12">
                               <nuxt-link to="/" class="boxLogo">
                                    <img src="@/assets/images/logoP5.svg" alt="Sumaq.pe">
                               </nuxt-link>
@@ -140,129 +140,157 @@
                               </div>
                          </div>
                     </div>
-                    <div class="viewMovil">
-                         <div class="boxDetail">
-                              <ul>
-                                   <li>
-                                        <div class="boxSocial d-flex justify-content-center align-items-center">
-                                             <a href="javascript:void(0)" target="_blank">
+               </div>
+               <div class="viewMovil">
+                    <div class="boxDetail">
+                         <ul>
+                              <li>
+                                   <div class="boxSocial d-flex justify-content-center align-items-center">
+                                        <a href="javascript:void(0)" target="_blank">
+                                             <client-only>
+                                                  <b-icon-facebook class="icon-facebook"></b-icon-facebook>
+                                             </client-only>
+                                        </a>
+                                        <a href="javascript:void(0)" target="_blank">
+                                             <div class="boxInstagram d-flex justify-content-center flex-column align-items-center">
                                                   <client-only>
-                                                       <b-icon-facebook class="icon-facebook"></b-icon-facebook>
+                                                       <b-icon-instagram class="icon-instagram"></b-icon-instagram>
                                                   </client-only>
-                                             </a>
-                                             <a href="javascript:void(0)" target="_blank">
-                                                  <div class="boxInstagram d-flex justify-content-center flex-column align-items-center">
-                                                       <client-only>
-                                                            <b-icon-instagram class="icon-instagram"></b-icon-instagram>
-                                                       </client-only>
-                                                  </div>
-                                             </a>
-                                             <a href="javascript:void(0)" target="_blank">
-                                                  <div class="boxWhatsAppFlex d-flex justify-content-center flex-column align-items-center">
-                                                       <icon-whatsapp />
-                                                  </div>
-                                             </a>
-                                        </div>
-                                   </li>
-                                   <li>
-                                        <div class="boxInfoTienda d-flex flex-column justify-content-center align-items-center">
-                                        <h2>INFORMACIÓN DE LA TIENDA</h2>
-                                   
-                                        <a href="https://wa.link/7rz9o8" target="_blank">(+51)  985757450</a>
-                                   
-                                        <a href="mailto:hola@info@sumaq.pe?subject=Información%20al%20cliente" target="_blank">info@sumaq.pe</a>
-                                        </div>
-                                   </li>
-                                   
-                              </ul>
-                         </div>
-                         <div class="boxDetail">
-                              <div class="accordion" role="tablist">
-                                   <b-card no-body class="mb-1">
-                                        <b-card-header header-tag="header" class="p-1" role="tab">
-                                             <b-button block v-b-toggle.accordion-1 variant="info">
-                                                  <h2>CONÓCENOS</h2>
-                                                  <b-icon-chevron-down></b-icon-chevron-down>
-                                             </b-button>
-                                        </b-card-header>
-                                        <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
-                                             <b-card-body>
-                                                  <ul>
-                                                       <li>
-                                                            <nuxt-link to="/">Quienes Somos</nuxt-link>
-                                                       </li>
-                                                       <li>
-                                                            <nuxt-link to="/">Blog</nuxt-link>
-                                                       </li>
-                                                       <li>
-                                                            <nuxt-link to="/">Preguntas frecuentes</nuxt-link>
-                                                       </li>
-                                                       <li>
-                                                            <nuxt-link to="/">Contáctenos</nuxt-link>
-                                                       </li>
-                                                  </ul>
-                                             </b-card-body>
-                                        </b-collapse>
-                                   </b-card>
+                                             </div>
+                                        </a>
+                                        <a href="javascript:void(0)" target="_blank">
+                                             <div class="boxWhatsAppFlex d-flex justify-content-center flex-column align-items-center">
+                                                  <icon-whatsapp />
+                                             </div>
+                                        </a>
+                                   </div>
+                              </li>
+                              <li>
+                                   <div class="boxInfoTienda d-flex flex-column justify-content-center align-items-center">
+                                   <h2>INFORMACIÓN DE LA TIENDA</h2>
+                              
+                                   <a href="https://wa.link/7rz9o8" target="_blank">(+51)  985757450</a>
+                              
+                                   <a href="mailto:hola@info@sumaq.pe?subject=Información%20al%20cliente" target="_blank">info@sumaq.pe</a>
+                                   </div>
+                              </li>
+                              
+                         </ul>
+                    </div>
+                    <div class="boxDetail">
+                         <div class="accordion" role="tablist">
 
-                                   <b-card no-body class="mb-1">
-                                        <b-card-header header-tag="header" class="p-1" role="tab">
-                                        <b-button block v-b-toggle.accordion-2 variant="info">
-                                             <h2>POLÍTICAS</h2>
-                                             <b-icon-chevron-down></b-icon-chevron-down>
-                                        </b-button>
-                                        </b-card-header>
-                                        <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
-                                        <b-card-body>
-                                             <ul>
-                                                  <li>
-                                                       <nuxt-link to="/">Horarios de atención</nuxt-link>
-                                                  </li>
-                                                  <li>
-                                                       <nuxt-link to="/">Términos y condiciones</nuxt-link>
-                                                  </li>
-                                                  <li>
-                                                       <nuxt-link to="/">Políticas de entrega y devolución</nuxt-link>
-                                                  </li>
-                                                  <li>
-                                                       <nuxt-link to="/">Políticas de privacidad</nuxt-link>
-                                                  </li>
-                                                  <li>
-                                                       <nuxt-link to="/">Política de cockies</nuxt-link>
-                                                  </li>
-                                                  <li>
-                                                       <nuxt-link to="/">Política de datos</nuxt-link>
-                                                  </li>
-                                                  <li>
-                                                       <nuxt-link to="/">Libro de reclamaciones</nuxt-link>
-                                                  </li>
-                                             </ul>
-                                        </b-card-body>
-                                        </b-collapse>
-                                   </b-card>
+                              <!-- <div class="accordionHeader">
+                                   <button>
+                                        <h2>CONÓCENOS</h2>
+                                   </button>
+                                   <div class="accordionDetail">
+                                        <ul>
+                                             <li>
+                                                  <nuxt-link to="/">Quienes Somos</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Blog</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Preguntas frecuentes</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Contáctenos</nuxt-link>
+                                             </li>
+                                        </ul>
+                                   </div>
+                              </div> -->
 
-                                   <b-card no-body class="mb-1">
-                                        <b-card-header header-tag="header" class="p-1 notMB" role="tab">
-                                        <b-button block v-b-toggle.accordion-3 variant="info">
-                                             <h2>MI PEDIDO</h2>
-                                             <b-icon-chevron-down></b-icon-chevron-down>
-                                        </b-button>
-                                        </b-card-header>
-                                        <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
-                                        <b-card-body>
-                                             <ul>
-                                                  <li>
-                                                       <nuxt-link to="/">Estado del pedido</nuxt-link>
-                                                  </li>
-                                                  <li>
-                                                       <nuxt-link to="/">Cobertura</nuxt-link>
-                                                  </li>
-                                             </ul>
-                                        </b-card-body>
-                                        </b-collapse>
-                                   </b-card>
-                              </div>
+                              <b-card no-body class="mb-1">
+                                   <b-card-header header-tag="header" class="p-1" role="tab">
+                                   <b-button block v-b-toggle.accordion-1 variant="info">
+                                        <h2>CONÓCENOS</h2>
+                                        <b-icon-chevron-down></b-icon-chevron-down>
+                                   </b-button>
+                                   </b-card-header>
+                                   <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
+                                   <b-card-body>
+                                        <ul>
+                                             <li>
+                                                  <nuxt-link to="/">Quienes Somos</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Blog</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Preguntas frecuentes</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Contáctenos</nuxt-link>
+                                             </li>
+                                        </ul>
+                                   </b-card-body>
+                                   </b-collapse>
+                              </b-card>
+
+
+                              
+
+                              <b-card no-body class="mb-1">
+                                   <b-card-header header-tag="header" class="p-1" role="tab">
+                                   <b-button block v-b-toggle.accordion-2 variant="info">
+                                        <h2>POLÍTICAS</h2>
+                                        <b-icon-chevron-down></b-icon-chevron-down>
+                                   </b-button>
+                                   </b-card-header>
+                                   <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+                                   <b-card-body>
+                                        <ul>
+                                             <li>
+                                                  <nuxt-link to="/">Horarios de atención</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Términos y condiciones</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Políticas de entrega y devolución</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Políticas de privacidad</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Política de cockies</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Política de datos</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Libro de reclamaciones</nuxt-link>
+                                             </li>
+                                        </ul>
+                                   </b-card-body>
+                                   </b-collapse>
+                              </b-card>
+
+                              <b-card no-body class="mb-1">
+                                   <b-card-header header-tag="header" class="p-1 notMB" role="tab">
+                                   <b-button block v-b-toggle.accordion-3 variant="info">
+                                        <h2>MI PEDIDO</h2>
+                                        <b-icon-chevron-down></b-icon-chevron-down>
+                                   </b-button>
+                                   </b-card-header>
+                                   <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+                                   <b-card-body>
+                                        <ul>
+                                             <li>
+                                                  <nuxt-link to="/">Estado del pedido</nuxt-link>
+                                             </li>
+                                             <li>
+                                                  <nuxt-link to="/">Cobertura</nuxt-link>
+                                             </li>
+                                        </ul>
+                                   </b-card-body>
+                                   </b-collapse>
+                              </b-card>
                          </div>
+                    </div>
+                    <div class="container">
                          <div class="row">
                               <div class="col">
                                    <div class="boxDetail separateDetail">
@@ -317,14 +345,7 @@ export default {
           background: $brown
           position: relative
           z-index: 100
-          .container-fluid
-               padding-left: 0
-               padding-right: 0
-               overflow-x: hidden
-               @media screen and (min-width: 992px)
-                    padding-left: 15px
-                    padding-right: 15px
-                    overflow-x: visible
+          
           .viewMovil
                display: block
                @media screen and (min-width: 992px)
@@ -371,7 +392,7 @@ export default {
                                    position: absolute
                                    top: 50%
                                    transform: translateY(-50%)
-                                   right: 2rem
+                                   right: 1rem
                          .btn-info
                               background-color: transparent 
                               border-color: transparent
