@@ -320,9 +320,11 @@ export default {
           .container-fluid
                padding-left: 0
                padding-right: 0
+               overflow-x: hidden
                @media screen and (min-width: 992px)
                     padding-left: 15px
                     padding-right: 15px
+                    overflow-x: visible
           .viewMovil
                display: block
                @media screen and (min-width: 992px)
