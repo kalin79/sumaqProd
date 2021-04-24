@@ -292,7 +292,7 @@
                               right: -8rem
                               // left: -11.15rem  
                          picture
-                              opacity: .75
+                              opacity: .25
                               img
                                    width: 421px
                                    @media screen and (min-width: 992px)
@@ -321,7 +321,7 @@
                               bottom: 1.5rem
                               // left: -11.15rem  
                          picture
-                              opacity: .35
+                              opacity: .15
                               img
                                    width: 542px
                                    @media screen and (min-width: 992px)
@@ -343,7 +343,7 @@
                               bottom: 13.05rem
                               left: -11.15rem  
                          picture
-                              opacity: .75
+                              opacity: .35
                               img
                                    width: 618px
                                    @media screen and (min-width: 992px)

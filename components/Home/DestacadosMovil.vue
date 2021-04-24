@@ -261,7 +261,7 @@
                          right: 0
                          display: none
                          picture
-                              opacity: .75
+                              opacity: .35
                               img
                                    width: 421px
                                   
@@ -271,7 +271,7 @@
                          transform: translateX(-50%)
                          
                          picture
-                              opacity: .35
+                              opacity: .15
                               img
                                    width: 220px
                                    
@@ -280,7 +280,7 @@
                          left: 0 
                          display: none
                          picture
-                              opacity: .75
+                              opacity: .35
                               img
                                    width: 618px
                                    

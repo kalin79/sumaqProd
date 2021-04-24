@@ -242,7 +242,7 @@ export default {
                               left: 0rem
                          img
                               width: 389px
-                              opacity: .5
+                              opacity: .35
                               @media screen and (min-width: 992px)
                                    width: 300px
                               @media screen and (min-width: 1200px)
@@ -269,7 +269,7 @@ export default {
                               left: auto
                          img
                               width: 421px
-                              opacity: .5
+                              opacity: .35
                               @media screen and (min-width: 992px)
                                    width: 340px
                               @media screen and (min-width: 1200px)
@@ -288,6 +288,7 @@ export default {
                               transform: translate(-65%,-35%)
                          img
                               width: 230px
+                              opacity: .75
                               @media screen and (min-width: 992px)
                                    width: 460px
                               @media screen and (min-width: 1200px)
@@ -308,6 +309,7 @@ export default {
                               left: -18rem
                          img
                               width: 300px
+                              // opacity: .65
                               @media screen and (min-width: 992px)
                                    width: 490px
                               @media screen and (min-width: 1200px)

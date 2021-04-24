@@ -160,7 +160,7 @@
                               bottom: -32rem
                               right: -13rem
                          picture
-                              opacity: .5
+                              opacity: .25
                               img
                                    width: 421px
                                    @media screen and (min-width: 992px)
@@ -188,7 +188,7 @@
                               transform: translateX(27%)
                               bottom: 1.5rem
                          picture
-                              opacity: .25
+                              opacity: .15
                               img
                                    width: 180px
                                    @media screen and (min-width: 992px)
