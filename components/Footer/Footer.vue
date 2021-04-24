@@ -18,26 +18,26 @@
                                         <h2>INFORMACIÓN <br>DE LA TIENDA</h2>
                                         <ul>
                                              <li>
-                                                  <a href="https://wa.link/7rz9o8" target="_blank">(+51)  985757450</a>
+                                                  <a href="https://wa.link/i7kwid" target="_blank">(+51) 985757450</a>
                                              </li>
                                              <li>
                                                   <a href="mailto:hola@info@sumaq.pe?subject=Información%20al%20cliente" target="_blank">info@sumaq.pe</a>
                                              </li>
                                              <li>
                                                   <div class="boxSocial d-flex justify-content-start align-items-center">
-                                                       <a href="javascript:void(0)" target="_blank">
+                                                       <a href="https://www.facebook.com/FloresSUMAQ.pe" target="_blank">
                                                             <client-only>
                                                                  <b-icon-facebook class="icon-facebook"></b-icon-facebook>
                                                             </client-only>
                                                        </a>
-                                                       <a href="javascript:void(0)" target="_blank">
+                                                       <a href="https://www.instagram.com/sumaq.pe/" target="_blank">
                                                             <div class="boxInstagram d-flex justify-content-center flex-column align-items-center">
                                                                  <client-only>
                                                                       <b-icon-instagram class="icon-instagram"></b-icon-instagram>
                                                                  </client-only>
                                                             </div>
                                                        </a>
-                                                       <a href="javascript:void(0)" target="_blank">
+                                                       <a href="https://wa.link/i7kwid" target="_blank">
                                                             <div class="boxWhatsAppFlex d-flex justify-content-center flex-column align-items-center">
                                                                  <icon-whatsapp />
                                                             </div>
@@ -146,19 +146,19 @@
                          <ul>
                               <li>
                                    <div class="boxSocial d-flex justify-content-center align-items-center">
-                                        <a href="javascript:void(0)" target="_blank">
+                                        <a href="https://www.facebook.com/FloresSUMAQ.pe" target="_blank">
                                              <client-only>
                                                   <b-icon-facebook class="icon-facebook"></b-icon-facebook>
                                              </client-only>
                                         </a>
-                                        <a href="javascript:void(0)" target="_blank">
+                                        <a href="https://www.instagram.com/sumaq.pe/" target="_blank">
                                              <div class="boxInstagram d-flex justify-content-center flex-column align-items-center">
                                                   <client-only>
                                                        <b-icon-instagram class="icon-instagram"></b-icon-instagram>
                                                   </client-only>
                                              </div>
                                         </a>
-                                        <a href="javascript:void(0)" target="_blank">
+                                        <a href="https://wa.link/i7kwid" target="_blank">
                                              <div class="boxWhatsAppFlex d-flex justify-content-center flex-column align-items-center">
                                                   <icon-whatsapp />
                                              </div>
@@ -169,7 +169,7 @@
                                    <div class="boxInfoTienda d-flex flex-column justify-content-center align-items-center">
                                    <h2>INFORMACIÓN DE LA TIENDA</h2>
                               
-                                   <a href="https://wa.link/7rz9o8" target="_blank">(+51)  985757450</a>
+                                   <a href="https://wa.link/i7kwid" target="_blank">(+51)  985 757 450</a>
                               
                                    <a href="mailto:hola@info@sumaq.pe?subject=Información%20al%20cliente" target="_blank">info@sumaq.pe</a>
                                    </div>

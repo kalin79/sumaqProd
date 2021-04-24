@@ -96,7 +96,7 @@
                                         <h2>Atención al cliente</h2>
                                         <p>Atendemos vía WhatsApp , Chat y Llamada: <br>Lunes a Sábado: 7:00 am - 5:00 pm</p>
                                         <div class="boxComunication d-flex justify-content-between align-items-center">
-                                             <a href="https://wa.link/7rz9o8" target="_blank">
+                                             <a href="https://wa.link/i7kwid" target="_blank">
                                                   <div class="d-flex justify-content-start align-items-center">
                                                        <img src="@/assets/images/wha.png" />
                                                        <p>(+51) 985 757 450</p>
@@ -333,6 +333,7 @@
           .boxFlor
                position: absolute
                z-index: 1
+               display: none
                &.flor2
                     top: 5px
                     right: 10px

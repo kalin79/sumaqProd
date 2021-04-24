@@ -1,18 +1,20 @@
 <template>
      <div>
-          <header-category />
+          <banner />
+          <filtro />
           <products-category />
      </div>
 </template>
 <script>
-
-import HeaderCategory from '@/components/Category/Header'
+import Banner from '@/components/Banner/Categorias'
+import Filtro from '@/components/Category/Filtro'
 import ProductsCategory from '@/components/Category/ListProducts'
-
+     
 export default {
      components: {
-          HeaderCategory,
-          ProductsCategory
+          Filtro,
+          ProductsCategory,
+          Banner
      }
 }
 </script>

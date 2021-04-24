@@ -175,86 +175,83 @@
           width: 100%
           border-radius: 5px
           overflow: hidden
-          box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.1), 0 0px 5px 0 rgba(0, 0, 0, 0.2)
-          // transition: .5 ease all
+          box-shadow: none
           height: 100%
           &.CardBoxBanner
                height: 300px
                display: block
                @media screen and (min-width: 992px)
-                    height: 290px
+                    height: 320px
                @media screen and (min-width: 1200px)
-                    height: 350px
+                    height: 400px
+               @media screen and (min-width: 1400px)
+                    height: 452px
                .cardImage
                     height: 100%
-               &:hover
-                    .cardImage
-                         picture
-                              &:first-child
-                                   opacity: 1
           &:hover
-               // transform: scale(1.1)
                .cardImage
+                    picture
+                         img
+                              transform: scale(1.25)
                     .CartText
                          bottom: 0
-                    picture
-                         &:first-child
-                              opacity: 0
-                         &:nth-of-type(2)
-                              opacity: 1
           .cardDetail
                text-decoration: none
+               padding: 0 0 0 1.5rem
+               display: inline-block
                .cardTitle
-                    padding: .75rem 0 0
+                    padding: 1rem 0 0
                     h2
-                         @include font-libre(1.15rem,1.15rem,1.15rem,.75rem,$Oswald,300,$gray)
-                         text-align: center
+                         @include font-libre(.875rem,.875rem,.75rem,.75rem,$Montserrat,600,$grayDark9)
+                         text-align: left
                .cardPriceOld
                     padding: .15rem 0 0rem 0
                     margin: auto
                     text-align: center
-                    h3
-                         @include font-libre(.85rem,.85rem,.85rem,.65rem,$Oswald,500,$pink)
-                         text-align: center
-                         position: relative
-                         display: inline-block
-                         &:before
-                              content: ''
-                              width: 100%
-                              height: 1px
-                              background: $pink
-                              position: absolute
-                              top: 50%
-                              left: 0
-                              transform: translateY(-50%) 
+                    h5
+                         text-align: left
+                         &.card-price-old
+                              @include font-libre(.625rem,.6rem,.6rem,.75rem,$Montserrat,600,$grayLight3)
+                              // line-height: 1em
+                              span
+                                   position: relative
+                                   display: inline-block
+                                   &:before,
+                                   &:after
+                                        content: ''
+                                        position: absolute
+                                        top: 50%
+                                        transform: translateY(-50%)
+                                        width: 50%
+                                        left: 0
+                                        right: auto 
+                                        background: $grayLight3
+                                        height: 1px
+                                   &:after
+                                        right: 0
+                                        left: auto
                .cardPrice
-                    padding: 0.15rem 0 .75rem 0
+                    padding: 0.15rem 0 .15rem 0
                     h3
-                         @include font-libre(1.5rem,1.5rem,1.5rem,1rem,$Oswald,500,$gray)
-                         text-align: center
+                         @include font-libre(1.5rem,1.5rem,1.15rem,1rem,$Playfair,400,$blackLight)
+                         text-align: left
           .cardImage
                height: 310px
                overflow: hidden
                position: relative
                width: 100%
                @media screen and (min-width: 992px)
-                    height: 290px
+                    height: 320px
                @media screen and (min-width: 1200px)
-                    height: 350px
+                    height: 400px
+               @media screen and (min-width: 1400px)
+                    height: 450px
                picture
-                    position: absolute
-                    top: 0
-                    left: 0
-                    height: 100%
-                    width: 100%
-                    transition: .5s ease all
-                    opacity: 0
-                    &:first-child
-                         opacity: 1
                     img
                          width: 100%
                          height: 100%
                          object-fit: cover
+                         transition: .5s ease-out transform 
                .CartText
                     position: absolute
                     bottom: 0%
@@ -264,13 +261,24 @@
                     box-sizing: border-box
                     padding: .5rem 1rem
                     text-transform: uppercase
-                    background: rgba($pink,.75)
+                    background: rgba(white,1)
                     transition: .5s ease bottom
                     text-decoration: none
+                    cursor: pointer
                     @media screen and (min-width: 992px)
                          bottom: -100%
                     p
-                         @include font-libre(.85rem,.85rem,1.5rem,.65rem,$Oswald,500,white)
+                         background: $greenLight3
+                         text-align: center
+                         border: 2px solid rgba($greenLight, .75)
+                         @include font-libre(.85rem,.85rem,.75rem,.7rem,$Oswald,500,white)
+                         line-height: 2.35rem
+                         border-radius: 20px
+                         transition: .5s ease all
+                         cursor: pointer
+                         &:hover
+                              background: $pinkLight
+                              border: 2px solid rgba($pink, .25)
 
 
      

@@ -4,7 +4,7 @@
                <div class="row ContentHeaderUp">
                     <div class="col-2 col-xl-2 col-xxl-2"> 
                          <div class="d-flex justify-content-start align-items-center" >
-                              <p>Llámanos: (51) 988.988.923</p>
+                              <p>Llámanos: (51) 985 757 450</p>
                          </div>
                     </div>
                     <div class="col-3 col-xl-3 col-xxl-2">
@@ -14,19 +14,19 @@
                     </div>
                     <div class="col-7 col-xl-7 col-xxl-8">
                          <div class="boxSocial d-flex justify-content-end align-items-center">
-                              <a href="javascript:void(0)" target="_blank">
+                              <a href="https://www.facebook.com/FloresSUMAQ.pe" target="_blank">
                                    <client-only>
                                         <b-icon-facebook class="icon-facebook"></b-icon-facebook>
                                    </client-only>
                               </a>
-                              <a href="javascript:void(0)" target="_blank">
+                              <a href="https://www.instagram.com/sumaq.pe/" target="_blank">
                                    <div class="boxInstagram d-flex justify-content-center flex-column align-items-center">
                                         <client-only>
                                              <b-icon-instagram class="icon-instagram"></b-icon-instagram>
                                         </client-only>
                                    </div>
                               </a>
-                              <a href="javascript:void(0)" target="_blank">
+                              <a href="https://wa.link/i7kwid" target="_blank">
                                    <div class="boxWhatsAppFlex d-flex justify-content-center flex-column align-items-center">
                                         <icon-whatsapp />
                                    </div>
