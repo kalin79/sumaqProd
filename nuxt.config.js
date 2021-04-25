@@ -53,7 +53,7 @@ export default {
     { src: '@/plugins/icon-boostrap-vue', ssr: false },
     { src: '@/plugins/vue-carousel', ssr: false },
     {
-      src: './plugins/vue-gtag.js',
+      src: '@/plugins/vue-gtag.js',
       mode: 'client'
     }
   ],
