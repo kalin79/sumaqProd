@@ -52,6 +52,10 @@ export default {
   plugins: [
     { src: '@/plugins/icon-boostrap-vue', ssr: false },
     { src: '@/plugins/vue-carousel', ssr: false },
+    {
+      src: './plugins/vue-gtag.js',
+      mode: 'client'
+    }
   ],
   /*
   ** Nuxt.js dev-modules
