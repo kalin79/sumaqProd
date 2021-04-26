@@ -253,7 +253,7 @@ export default {
 </script>
 <style lang="sass">
      .boxListProducts
-          padding-bottom: 8rem
+          padding-bottom: 5rem
           position: relative 
           @media screen and (min-width: 992px)
                padding-bottom: 5rem
@@ -261,6 +261,9 @@ export default {
                padding-bottom: 8rem
           .boxVector
                position: absolute
+               display: none
+               @media screen and (min-width: 992px)
+                    display: block
                &.pos3
                     bottom: 0
                     right: 0

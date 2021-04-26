@@ -166,6 +166,11 @@ export default {
                          &.separateP
                               margin: 0 .5rem
                     .itemBeneficio
+                         &:first-child,
+                         &:last-child
+                              display: none
+                              @media screen and (min-width: 992px)
+                                   display: block
                          figure
                               margin: 0 .75rem 0 0
                               img

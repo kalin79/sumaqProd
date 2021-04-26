@@ -28,7 +28,7 @@ export default {
                // border: 1px solid red
                width: 60%
                margin: auto
-               padding: 1rem 0 1.75rem
+               padding: .35rem 0 .25rem
                @media screen and (min-width: 992px)
                     padding: .75rem 0 1.75rem
                     width: 60%
