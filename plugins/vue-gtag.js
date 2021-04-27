@@ -10,10 +10,6 @@ Vue.use(VueGtag, {
   }
 });
 
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
-
 
 
 // import Vue from 'vue';

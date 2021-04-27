@@ -18,10 +18,14 @@ export default {
           position: relative
           z-index: 100
           p
-               @include font-libre(0.75rem,.85rem,0.75rem,0.5rem,$Montserrat,300,white)
+               @include font-libre(0.75rem,.85rem,0.75rem,0.75rem,$Montserrat,300,white)
+               width: 90%
+               text-align: center
+               @media screen and (min-width: 992px)
+                    width: auto 
                a
                     text-decoration: none
-                    @include font-libre(0.75rem,.85rem,0.75rem,0.5rem,$Montserrat,300,white)
+                    @include font-libre(0.75rem,.85rem,0.75rem,0.75rem,$Montserrat,300,white)
 
 
 </style>

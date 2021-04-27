@@ -5,22 +5,23 @@
                <div class="d-flex justify-content-between align-items-end boxBanner">
                     <h3><span>Postres</span></h3>
                     <h2>Tienda de Postres</h2>
-                    <div class="Boxbreadcrumb d-flex justify-content-start align-items-start">
-                         <nuxt-link to="/">
-                              <p class="brown">Home</p> 
-                         </nuxt-link>
-                         <p class="separateP brown">></p>
-                         <nuxt-link to="/postres">
-                              <p class="brown">Tienda de Postres</p> 
-                         </nuxt-link>
-                         <p class="separateP brown">></p>
-                         <nuxt-link to="/postres">
-                              <p class="brown">Helados</p> 
-                         </nuxt-link>
-                         <p class="separateP brown">></p>
-                         
-                         <p class="brown">Caja de 12 helados</p> 
-                        
+                    <div class="Boxbreadcrumb">
+                         <div class="d-flex justify-content-start align-items-start">
+                              <nuxt-link to="/">
+                                   <p class="brown">Home</p> 
+                              </nuxt-link>
+                              <p class="separateP brown">></p>
+                              <nuxt-link to="/postres">
+                                   <p class="brown">Tienda de Postres</p> 
+                              </nuxt-link>
+                              <p class="separateP brown">></p>
+                              <nuxt-link to="/postres">
+                                   <p class="brown">Helados</p> 
+                              </nuxt-link>
+                              <p class="separateP brown">></p>
+                              
+                              <p class="brown">Caja de 12 helados</p> 
+                         </div>
                     </div>
                </div>
           </div> 
@@ -33,23 +34,23 @@
           z-index: 10
           overflow: hidden
           .boxBanner
-                    height: 8rem
+                    height: 6rem
                     position: relative
-                    padding: 0 0 0 4rem
+                    padding: 0 0 0 2rem
                     @media screen and (min-width: 992px)
                          height: 9rem
                          padding: 0 2rem 0 4rem
                     @media screen and (min-width: 1200px)
-                         height: 10rem
+                         height: 12rem
                          padding: 0 0 0 4rem
                     @media screen and (min-width: 1400px)
-                         height: 10rem
+                         height: 12rem
                          padding: 0 0 0 4rem
                     h3
                          position: absolute
                          bottom: -.75rem
                          left: 0rem
-                         @include font-libre(16.25rem,14.25rem,9rem,7.5rem,$Playfair,500,$brownLight)
+                         @include font-libre(14.25rem,13.25rem,9rem,6.5rem,$Playfair,500,$brownLight)
                          line-height: .85em
                          font-style: italic
                          text-align: center
@@ -65,6 +66,9 @@
                          line-height: 2em
                     .Boxbreadcrumb
                          padding: 0 0 .725em 0
+                         display: none
+                         @media screen and (min-width: 992px)
+                              display: block
                          p,
                          a
                               @include font-libre(.875rem,.8rem,.785rem,.7rem,$Montserrat,500,white)

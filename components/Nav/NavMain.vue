@@ -336,10 +336,10 @@ export default {
                                    top: 2.7rem
                               @media screen and (min-width: 1200px)
                                    left: -10.85rem
-                                   top: 2.7rem
+                                   top: 2.55rem
                               @media screen and (min-width: 1400px)
                                    left: -12.75rem
-                                   top: 2.7rem
+                                   top: 2.55rem
                               &.active
                                    display: block
                               .boxItemsNoBorder
