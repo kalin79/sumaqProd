@@ -113,7 +113,7 @@
                                         <img src="@/assets/images/arrow2Prev.png" alt="">
                                    </picture>
                               </a>
-                              <nuxt-link to="/" >
+                              <nuxt-link to="/" class="btn-large">
                                    <span>PLANTAs</span>
                               </nuxt-link>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
@@ -125,12 +125,8 @@
                     </li>
                     <li>
                          <div class="d-flex align-items-center justify-content-start">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,0)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2Prev.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/" >
+                              <div></div>
+                              <nuxt-link to="/" class="btn-large">
                                    <span>Flores</span>
                               </nuxt-link>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
@@ -142,12 +138,8 @@
                     </li>
                     <li>
                          <div class="d-flex align-items-center justify-content-start">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,0)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2Prev.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/" >
+                              <div></div>
+                              <nuxt-link to="/" class="btn-large">
                                    <span>Ocasiones</span>
                               </nuxt-link>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
@@ -159,12 +151,8 @@
                     </li>
                     <li>
                          <div class="d-flex align-items-center justify-content-start">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,0)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2Prev.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/" >
+                              <div></div>
+                              <nuxt-link to="/" class="btn-large">
                                    <span>Regalos</span>
                               </nuxt-link>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
@@ -176,12 +164,8 @@
                     </li>
                     <li>
                          <div class="d-flex align-items-center justify-content-start">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,0)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2Prev.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/" >
+                              <div></div>
+                              <nuxt-link to="/" class="btn-large">
                                    <span>Eventos de flores</span>
                               </nuxt-link>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
@@ -193,12 +177,8 @@
                     </li>
                     <li>
                          <div class="d-flex align-items-center justify-content-start">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,0)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2Prev.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/" >
+                              <div></div>
+                              <nuxt-link to="/" class="btn-large">
                                    <span>Postres</span>
                               </nuxt-link>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
@@ -364,20 +344,65 @@ export default {
 }
 </script>
 <style lang="sass" >
-     #nav-2
+     #nav-3
           ul
                li
                     > div
                          a
+                              border-left: 0px solid $grayDark8
+                              border-right: 0px solid $grayDark8
                               width: 10%
                               text-align: center
+                              @media screen and (min-width: 540px)
+                                   width: 6%
+                              @media screen and (min-width: 768px)
+                                   width: 8%
                               @media screen and (min-width: 992px)
-                                   width: 3%
-                              &:nth-child(2)
+                                   width: 5.5%
+                              &:last-child
+                                   width: 90%
+                                   text-align: right
+                                   border-left: 0px solid $grayDark8
+                                   border-right: 0px solid $grayDark8
+                                   box-sizing: border-box
+                                   
+     #nav-2
+          ul
+               li
+                    > div
+                         > div
+                              width: 10%
+                              border-left: 0px solid $grayDark8
+                              border-right: 0px solid $grayDark8
+                              @media screen and (min-width: 540px)
+                                   width: 6%
+                              @media screen and (min-width: 768px)
+                                   width: 8%
+                              @media screen and (min-width: 992px)
+                                   width: 5.5%
+                         a
+                              border-left: 0px solid $grayDark8
+                              border-right: 0px solid $grayDark8
+                              width: 10%
+                              text-align: center
+                              @media screen and (min-width: 540px)
+                                   width: 6%
+                              @media screen and (min-width: 768px)
+                                   width: 8%
+                              @media screen and (min-width: 992px)
+                                   width: 5.5%
+                              &.btn-large
                                    width: 80%
                                    text-align: left
-                                   @media screen and (min-width: 992px)
+                                   border-left: 0px solid $grayDark8
+                                   border-right: 0px solid $grayDark8
+                                   box-sizing: border-box
+                                   padding-left: 1rem
+                                   @media screen and (min-width: 768px)
                                         width: 94%
+                                        padding-left: 0rem
+                                   @media screen and (min-width: 992px)
+                                        width: 94.5%
      .boxMovilMainNav
           position: fixed
           top: -100vh
