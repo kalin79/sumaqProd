@@ -34,7 +34,7 @@
           z-index: 10
           overflow: hidden
           .boxBanner
-                    height: 6rem
+                    height: 6.5rem
                     position: relative
                     padding: 0 0 0 2rem
                     @media screen and (min-width: 992px)

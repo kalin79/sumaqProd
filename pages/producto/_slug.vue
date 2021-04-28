@@ -601,8 +601,8 @@ export default {
 }
 </script>
 <style lang="sass">
-     $anchoContent : 100%
-     $anchoContent2 : 100%
+     $anchoContent : 95%
+     $anchoContent2 : 95%
      @media screen and (min-width: 992px)
           $anchoContent : 85%
           $anchoContent2 : 80%
@@ -809,9 +809,16 @@ export default {
                @media screen and (min-width: 992px)
                     padding: 0 0 0 1.5rem
           .titleHorario
+               padding: .75rem 0
                h2
-                    @include font-libre(1rem,.95rem,.85rem,.75rem,$Montserrat,600,$brown)
-                    line-height: 3em
+                    @include font-libre(1rem,.95rem,.95rem,.9rem,$Montserrat,600,$brown)
+                    line-height: 1.5em
+                    @media screen and (min-width:992px)
+                         line-height: 2em
+                    @media screen and (min-width:1200px)
+                         line-height: 3em
+                    @media screen and (min-width:1400px)
+                         line-height: 3em
           .boxAddButton
                padding: 0 0 3.5rem
                @media screen and (min-width: 992px)
@@ -923,7 +930,7 @@ export default {
                          h3,
                          h2
                               margin: 0
-                              @include font-libre(0.75rem,0.75rem,0.75rem,.75rem,$Montserrat,600,$grayDark14)
+                              @include font-libre(0.95rem,0.85rem,.75rem,1rem,$Montserrat,600,$grayDark14)
                          h2
                               font-weight: 900
                     .boxPicture
@@ -1085,7 +1092,7 @@ export default {
                                         margin-right: .5rem
                                    
                               span
-                                   @include font-libre(0.875rem,0.8rem,0.785rem,.75rem,$Montserrat,600,black)
+                                   @include font-libre(0.875rem,0.85rem,0.85rem,.85rem,$Montserrat,600,black)
                
           .boxInfoHeader
                padding: 0rem 0 0
@@ -1097,22 +1104,22 @@ export default {
                     padding-bottom: 1rem
                     p
                          margin: 0
-                         @include font-libre(1.025rem,1,.935,.8rem,$Montserrat,500,$grayDark10)
+                         @include font-libre(1.025rem,1,.935,1rem,$Montserrat,500,$grayDark10)
                          line-height: 1.45em
 
                .boxTitle
                     h1
-                         @include font-libre(2.25rem,1.975rem,1.75rem,1rem,$Playfair,400,$blackLight) 
+                         @include font-libre(2.25rem,1.975rem,1.9rem,1.75rem,$Playfair,400,$blackLight) 
                     h2
-                         @include font-libre(1.05rem,1,.935,.8rem,$Montserrat,600,$blue)
+                         @include font-libre(1.05rem,1,.935,1rem,$Montserrat,600,$blue)
                          line-height: 1.75em
                .boxPrice
                     .boxPrice-online
                          h2
-                              @include font-libre(2.25rem,1.975rem,1.75rem,1rem,$Playfair,400,$blackLight)  
+                              @include font-libre(2.25rem,1.975rem,1.75rem,1.5rem,$Playfair,400,$blackLight)  
                     .boxPrice-old
                          h2
-                              @include font-libre(1rem,.9,.935,.8rem,$Montserrat,500,$grayLight3)
+                              @include font-libre(1rem,.9,.935,1rem,$Montserrat,500,$grayLight3)
                               line-height: 2.5em
                               span
                                    position: relative
