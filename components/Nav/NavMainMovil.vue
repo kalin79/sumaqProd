@@ -370,10 +370,12 @@ export default {
                     > div
                          a
                               width: 10%
+                              text-align: center
                               @media screen and (min-width: 992px)
                                    width: 3%
                               &:nth-child(2)
                                    width: 80%
+                                   text-align: left
                                    @media screen and (min-width: 992px)
                                         width: 94%
      .boxMovilMainNav
@@ -491,6 +493,9 @@ export default {
                li
                     border-bottom: 1px solid $grayDark8
                     padding: 0 15px
+                    &:first-child
+                         a
+                              padding-top: 1rem 
                     picture
                          &.arrow,
                          &.arrow2
