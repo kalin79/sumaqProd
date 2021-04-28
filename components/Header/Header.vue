@@ -146,6 +146,7 @@ export default {
           padding: .75rem 0 .95rem
           background: white
           display: none
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0px 10px 0 rgba(0, 0, 0, 0.2)
           @media screen and (min-width: 1200px)
                display: block
           .boxMoney

@@ -107,15 +107,17 @@
           <div class="container-fluid-nav" id="nav-2">
                <ul class="txtUppercase">
                     <li>
-                         <div class="d-flex align-items-center justify-content-start">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,0)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2Prev.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/" class="btn-large">
-                                   <span>PLANTAs</span>
-                              </nuxt-link>
+                         <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center justify-content-start">
+                                   <a href="javascript:void(0)" v-on:click="gotoMenu(2,0)">
+                                        <picture class="arrow">
+                                             <img src="@/assets/images/arrow2Prev.png" alt="">
+                                        </picture>
+                                   </a>
+                                   <nuxt-link to="/" class="btn-large">
+                                        <span>PLANTAs</span>
+                                   </nuxt-link>
+                              </div>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
                                    <picture class="arrow">
                                         <img src="@/assets/images/arrow2.png" alt="">
@@ -124,11 +126,13 @@
                          </div>
                     </li>
                     <li>
-                         <div class="d-flex align-items-center justify-content-start">
-                              <div></div>
-                              <nuxt-link to="/" class="btn-large">
-                                   <span>Flores</span>
-                              </nuxt-link>
+                         <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center justify-content-start">
+                                   <div></div>
+                                   <nuxt-link to="/" class="btn-large">
+                                        <span>Flores</span>
+                                   </nuxt-link>
+                              </div>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
                                    <picture class="arrow">
                                         <img src="@/assets/images/arrow2.png" alt="">
@@ -137,11 +141,13 @@
                          </div>
                     </li>
                     <li>
-                         <div class="d-flex align-items-center justify-content-start">
-                              <div></div>
-                              <nuxt-link to="/" class="btn-large">
-                                   <span>Ocasiones</span>
-                              </nuxt-link>
+                         <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center justify-content-start">
+                                   <div></div>
+                                   <nuxt-link to="/" class="btn-large">
+                                        <span>Ocasiones</span>
+                                   </nuxt-link>
+                              </div>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
                                    <picture class="arrow">
                                         <img src="@/assets/images/arrow2.png" alt="">
@@ -150,11 +156,13 @@
                          </div>
                     </li>
                     <li>
-                         <div class="d-flex align-items-center justify-content-start">
-                              <div></div>
-                              <nuxt-link to="/" class="btn-large">
-                                   <span>Regalos</span>
-                              </nuxt-link>
+                         <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center justify-content-start">
+                                   <div></div>
+                                   <nuxt-link to="/" class="btn-large">
+                                        <span>Regalos</span>
+                                   </nuxt-link>
+                              </div>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
                                    <picture class="arrow">
                                         <img src="@/assets/images/arrow2.png" alt="">
@@ -163,11 +171,13 @@
                          </div>
                     </li>
                     <li>
-                         <div class="d-flex align-items-center justify-content-start">
-                              <div></div>
-                              <nuxt-link to="/" class="btn-large">
-                                   <span>Eventos de flores</span>
-                              </nuxt-link>
+                         <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center justify-content-start">
+                                   <div></div>
+                                   <nuxt-link to="/" class="btn-large">
+                                        <span>Eventos de flores</span>
+                                   </nuxt-link>
+                              </div>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
                                    <picture class="arrow">
                                         <img src="@/assets/images/arrow2.png" alt="">
@@ -176,11 +186,13 @@
                          </div>
                     </li>
                     <li>
-                         <div class="d-flex align-items-center justify-content-start">
-                              <div></div>
-                              <nuxt-link to="/" class="btn-large">
-                                   <span>Postres</span>
-                              </nuxt-link>
+                         <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center justify-content-start">
+                                   <div></div>
+                                   <nuxt-link to="/" class="btn-large">
+                                        <span>Postres</span>
+                                   </nuxt-link>
+                              </div>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
                                    <picture class="arrow">
                                         <img src="@/assets/images/arrow2.png" alt="">
@@ -344,23 +356,23 @@ export default {
 }
 </script>
 <style lang="sass" >
+     #nav-1
+          ul
+               li
+                    padding-left: 1rem
+                    padding-right: 1rem
      #nav-3
           ul
                li
                     > div
                          a
-                              border-left: 0px solid $grayDark8
-                              border-right: 0px solid $grayDark8
-                              width: 10%
-                              text-align: center
-                              @media screen and (min-width: 540px)
-                                   width: 6%
-                              @media screen and (min-width: 768px)
-                                   width: 8%
-                              @media screen and (min-width: 992px)
-                                   width: 5.5%
+                              &:first-child
+                                   border-left: 0px solid $grayDark8
+                                   border-right: 1px solid $grayDark8
+                                   width: 3.5rem
+                                   text-align: center
                               &:last-child
-                                   width: 90%
+                                   padding-right: 1rem 
                                    text-align: right
                                    border-left: 0px solid $grayDark8
                                    border-right: 0px solid $grayDark8
@@ -369,40 +381,38 @@ export default {
      #nav-2
           ul
                li
+                    &:first-child
+                         > div
+                              > div
+                                   a
+                                        &:nth-child(2)
+                                             padding-left: .75rem 
+                                        &:first-child
+                                             width: 3.5rem
+                                             padding-left: 0
+                                             text-align: center
+                                             border-left: 1px solid $grayDark8
+                                             border-right: 1px solid $grayDark8
+                              > a
+                                   width: 3.5rem
+                                   border-left: 0px solid $grayDark8
+                                   border-right: 1px solid $grayDark8
+                                   text-align: center
+                              
                     > div
                          > div
-                              width: 10%
+                              > div
+                                   width: 3.5rem
+                                   border-left: 1px solid $grayDark8
+                                   border-right: 1px solid $grayDark8
+                              a 
+                                   padding-left: .75rem 
+                         > a
+                              width: 3.5rem
                               border-left: 0px solid $grayDark8
-                              border-right: 0px solid $grayDark8
-                              @media screen and (min-width: 540px)
-                                   width: 6%
-                              @media screen and (min-width: 768px)
-                                   width: 8%
-                              @media screen and (min-width: 992px)
-                                   width: 5.5%
-                         a
-                              border-left: 0px solid $grayDark8
-                              border-right: 0px solid $grayDark8
-                              width: 10%
+                              border-right: 1px solid $grayDark8
                               text-align: center
-                              @media screen and (min-width: 540px)
-                                   width: 6%
-                              @media screen and (min-width: 768px)
-                                   width: 8%
-                              @media screen and (min-width: 992px)
-                                   width: 5.5%
-                              &.btn-large
-                                   width: 80%
-                                   text-align: left
-                                   border-left: 0px solid $grayDark8
-                                   border-right: 0px solid $grayDark8
-                                   box-sizing: border-box
-                                   padding-left: 1rem
-                                   @media screen and (min-width: 768px)
-                                        width: 94%
-                                        padding-left: 0rem
-                                   @media screen and (min-width: 992px)
-                                        width: 94.5%
+                                   
      .boxMovilMainNav
           position: fixed
           top: -100vh
@@ -436,7 +446,7 @@ export default {
           span
                @include font-libre(2.25rem,2.25rem,1rem,1rem,$Montserrat,500,$brown)
           .boxTypeMoney
-               padding: 1rem 15px
+               padding: 1rem 1rem
                .boxMoney
                     position: relative 
                     p
@@ -517,7 +527,7 @@ export default {
                               text-transform: uppercase
                li
                     border-bottom: 1px solid $grayDark8
-                    padding: 0 15px
+                    padding: 0 0px
                     &:first-child
                          a
                               padding-top: 1rem 
