@@ -122,8 +122,10 @@
           border-top: 0px solid $grayDark4
           position: relative
           z-index: 90
+          padding-bottom: 1.5rem 
           @media screen and (min-width: 992px)
                border-top: 1px solid $grayDark4
+               padding-bottom: 0rem 
           .container-fluid
                position: relative
                .boxFlor
