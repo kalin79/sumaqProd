@@ -48,7 +48,7 @@
                                    <div class="boxCircle">
                                         <p>2</p>
                                    </div>
-                                   <a href="javascript:void(0)" class="menuNav d-flex align-items-center flex-column justify-content-between">
+                                   <a href="javascript:void(0)" v-on:click="viewMenuNav" class="menuNav d-flex align-items-center flex-column justify-content-between">
                                         <div class="line"></div>
                                         <div class="line"></div>
                                         <div class="line"></div>
@@ -59,15 +59,18 @@
                     </div>
                </div>
           </div>
+          <nav-main-movil />
      </div>
 </template>
 <script>
 import NavMain from '@/components/Nav/NavMain'
+import NavMainMovil from '@/components/Nav/NavMainMovil'
 import IconUser from '@/components/Svg/IconUser'
 import IconCart from '@/components/Svg/IconCart'
 export default {
      components: {
           NavMain,
+          NavMainMovil,
           IconUser,
           IconCart,
      },
@@ -77,24 +80,27 @@ export default {
           }
      },
      mounted(){
-          this.animationCheckMoney()
      },
      methods : {
-          animationCheckMoney(){
-               $('#switch').on('click',function(){
-                    console.log($(this).is(':checked'))
-                    if( $(this).is(':checked') ){
-
-                    }
-               })
-          }
+         viewMenuNav() {
+             const boxMovilMainNav = $('.boxMovilMainNav')
+             if (boxMovilMainNav.hasClass('active')){
+                  boxMovilMainNav.removeClass('active')
+             }else{
+                  boxMovilMainNav.addClass('active')
+             }
+             
+         }
      }
 }
 </script>
 <style lang="sass">
      .HeaderMainMovil
           display: block
+          background: white
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0px 10px 0 rgba(0, 0, 0, 0.2)
+          position: relative
+          z-index: 10
           @media screen and (min-width: 1200px)
                display: none
           .container-fluid
@@ -111,6 +117,7 @@ export default {
                .boxHeaderMovil
                     padding-top: 1rem 
                     padding-bottom: .5rem
+                    position: relative
                .boxLogo
                     img
                          width: 150px

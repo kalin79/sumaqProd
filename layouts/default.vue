@@ -32,10 +32,10 @@ export default {
 </script>
 <style lang="sass">
      .__navMain
-          position: absolute
+          position: fixed
           top: 0
           left: 0
           width: 100%
-          z-index: 300
+          z-index: 500
           background: white
 </style>
