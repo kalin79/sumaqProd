@@ -95,17 +95,17 @@
                                    <div class="boxDetail">
                                         <h2>Atención al cliente</h2>
                                         <p>Atendemos vía WhatsApp , Chat y Llamada: <br>Lunes a Sábado: 7:00 am - 5:00 pm</p>
-                                        <div class="boxComunication d-flex justify-content-between align-items-center">
+                                        <div class="boxComunication d-flex flex-xl-row flex-column justify-content-start justify-content-xl-between align-items-start align-items-xl-center">
                                              <a href="https://wa.link/i7kwid" target="_blank">
                                                   <div class="d-flex justify-content-start align-items-center">
                                                        <img src="@/assets/images/wha.png" />
                                                        <p>(+51) 985 757 450</p>
                                                   </div>
                                              </a>
-                                             <a href="mailto:hola@sumaq.pe?subject=Atención%20al%20cliente" target="_blank">
+                                             <a href="mailto:quieroflores@floreriasumaq.pe?subject=Atención%20al%20cliente" target="_blank">
                                                   <div class="d-flex justify-content-start align-items-center">
                                                        <img src="@/assets/images/email.png" />
-                                                       <p>hola@sumaq.pe</p>
+                                                       <p>quieroflores@floreriasumaq.pe</p>
                                                   </div>
                                              </a>
                                         </div>
@@ -290,6 +290,10 @@
                          padding-top: 1rem
                          a
                               text-decoration: none
+                              &:last-child
+                                   margin-top: 1rem
+                                   @media screen and (min-width: 1200px)
+                                        margin-top: 0
                               p
                                    transition: .5s ease color
                                    margin-bottom: 0
@@ -317,9 +321,9 @@
                     .boxInfo
                          padding-left: 6rem
                          @media screen and (min-width: 992px)
-                              padding-left: 1.5rem
+                              padding-left: 5rem
                          @media screen and (min-width: 1200px)
-                              padding-left: 6rem
+                              padding-left: 4rem
 
                .boxLine
                     // flex-grow: 0

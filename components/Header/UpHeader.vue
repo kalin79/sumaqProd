@@ -49,6 +49,8 @@ export default {
      .HeaderUp
           background-color: $greenLight3
           display: none
+          position: relative
+          z-index: 2
           @media screen and (min-width: 1200px)
                display: block
           .ContentHeaderUp

@@ -315,13 +315,13 @@ export default {
           }
      },
      mounted() {
-          this.accordionFooter()
+          // this.accordionFooter()
      },
      methods : {
-          accordionFooter (id){
+          accordionFooter(id){
                const element = '.accordionDetail-'+id
                const elmentAll = '.accordionDetail'
-               console.log(id)
+               // console.log(id)
                if (this.anterior != id){
                     $('.accordionDetail-'+id).removeClass('active')
                }

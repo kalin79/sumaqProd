@@ -1,5 +1,5 @@
 <template>
-     <div>
+     <div class="shadowHeaderMain">
           <div class="HeaderMain">
                <div class="container-fluid container-fluid-xxl ">
                     <div class="row">
@@ -14,13 +14,19 @@
                          <div class="col-4 col-xl-3 boxShoppingCart">
                               <div class="d-flex flex-row align-items-end justify-content-end fullHeight">
                                    <icon-user />
-                                   <icon-cart />
-                                   <p>(0)</p>
+                                   <a href="javascript:void(0)" v-on:click="viewPreviewShopping">
+                                        <icon-cart />
+                                   </a>
+                                   <p>({{ totalProducts }})</p>
                                    <div class="boxMoney d-flex flex-row align-items-center justify-content-start">
                                         <p>Soles</p>
-                                        <div class="switch">
-                                             <input id="switch" class="switch__input" name="switch" type="checkbox">
+                                        <div class="switch" v-if="getTypeCurrencySymbol===1">
+                                             <input id="switch" class="switch__input" name="switch" type="checkbox" @click="changeMoney">
                                              <label class="switch__label" for="switch"></label>
+                                        </div>
+                                        <div class="switch" v-else>
+                                             <input id="switch2" class="switch__input" name="switch" type="checkbox" checked @click="changeMoney">
+                                             <label class="switch__label" for="switch2"></label>
                                         </div>
                                         <p>Dolares</p>
                                    </div>
@@ -44,9 +50,12 @@
                                         </client-only>
                                    </a>
                                    <icon-user />
-                                   <icon-cart />
+                                   <a href="javascript:void(0)" v-on:click="viewPreviewShopping">
+                                        <icon-cart />
+                                   </a>
+                                   
                                    <div class="boxCircle">
-                                        <p>2</p>
+                                        <p>{{ totalProducts }}</p>
                                    </div>
                                    <a href="javascript:void(0)" v-on:click="viewMenuNav" class="menuNav d-flex align-items-center flex-column justify-content-between">
                                         <div class="line"></div>
@@ -63,6 +72,7 @@
      </div>
 </template>
 <script>
+import { mapMutations, mapState, mapGetters } from 'vuex'
 import NavMain from '@/components/Nav/NavMain'
 import NavMainMovil from '@/components/Nav/NavMainMovil'
 import IconUser from '@/components/Svg/IconUser'
@@ -81,20 +91,43 @@ export default {
      },
      mounted(){
      },
+     computed: {
+          ...mapGetters('shopping/cart/', ['totalProducts']),
+          ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
+          
+     },
      methods : {
-         viewMenuNav() {
-             const boxMovilMainNav = $('.boxMovilMainNav')
-             if (boxMovilMainNav.hasClass('active')){
-                  boxMovilMainNav.removeClass('active')
-             }else{
-                  boxMovilMainNav.addClass('active')
-             }
+          changeMoney(e){
+               if (this.getTypeCurrencySymbol === 1){
+                    // dolares
+                    this.$store.commit('shopping/cart/setMoneySymbol', {currencySymbol: 'USD', typeCurrencySymbol: 2})
+               }else{
+                    // soles
+                    this.$store.commit('shopping/cart/setMoneySymbol', {currencySymbol: 'S./', typeCurrencySymbol: 1})
+                    
+                    
+               }
+          },
+          viewPreviewShopping(){
+               var boxPopUp = $('.boxPopUp')
+               boxPopUp.fadeIn('slow')
+          },
+          viewMenuNav() {
+               const boxMovilMainNav = $('.boxMovilMainNav')
+               if (boxMovilMainNav.hasClass('active')){
+                    boxMovilMainNav.removeClass('active')
+               }else{
+                    boxMovilMainNav.addClass('active')
+               }
              
-         }
+          }
      }
 }
 </script>
 <style lang="sass">
+     .shadowHeaderMain
+          position: relative
+          z-index: 1
      .HeaderMainMovil
           display: block
           background: white

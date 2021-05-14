@@ -9,6 +9,7 @@
           <restriccion-bebida />
           <footer-main />
           <footer-buttom />
+          <shopping-cart-popup />
      </div>
 </template>
 <script>
@@ -18,6 +19,7 @@ import FooterMain from '@/components/Footer/Footer'
 import FooterButtom from '@/components/Footer/FooterButtom'
 import RestriccionBebida from '@/components/Footer/RestriccionBebida'
 import Suscripcion from '@/components/Home/Suscripcion'
+import shoppingCartPopup from '@/components/Popup/shoppingCartPopup'
 
 export default {
      components: {
@@ -27,6 +29,7 @@ export default {
           FooterButtom,
           RestriccionBebida,
           Suscripcion,
+          shoppingCartPopup,
      }
 }
 </script>

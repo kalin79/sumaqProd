@@ -51,9 +51,13 @@
                          <div class="boxMoney">
                               <div class="d-flex flex-row align-items-center justify-content-start">
                                    <p>Soles</p>
-                                   <div class="switch">
-                                        <input id="switch" class="switch__input" name="switch" type="checkbox">
-                                        <label class="switch__label" for="switch"></label>
+                                   <div class="switch" v-if="getTypeCurrencySymbol===1">
+                                        <input id="switch3" class="switch__input" name="switch" type="checkbox"  @click="changeMoney">
+                                        <label class="switch__label" for="switch3"></label>
+                                   </div>
+                                   <div class="switch" v-else>
+                                        <input id="switch4" class="switch__input" name="switch" type="checkbox" checked @click="changeMoney">
+                                        <label class="switch__label" for="switch4"></label>
                                    </div>
                                    <p>Dolares</p>
                               </div>
@@ -295,6 +299,7 @@
 </template>
 <script>
 import IconWhatsapp from '@/components/Svg/IconWhatsApp'
+import { mapMutations, mapState, mapGetters } from 'vuex'
 /*
     Traemos la libreria de manera local en donde lo vamos a trabajar
 */
@@ -312,8 +317,23 @@ export default {
      },
      mounted () {
      },
-     methods : {
+     computed: {
+          ...mapGetters('shopping/cart/', ['totalProducts']),
+          ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
           
+     },
+     methods : {
+          changeMoney(e){
+               if (this.getTypeCurrencySymbol === 1){
+                    // dolares
+                    this.$store.commit('shopping/cart/setMoneySymbol', {currencySymbol: 'USD', typeCurrencySymbol: 2})
+               }else{
+                    // soles
+                    this.$store.commit('shopping/cart/setMoneySymbol', {currencySymbol: 'S./', typeCurrencySymbol: 1})
+                    
+                    
+               }
+          },
           gotoMenu(id,direction){
                const nav1 = $("#nav-1")
                const nav2 = $("#nav-2")

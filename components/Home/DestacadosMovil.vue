@@ -51,14 +51,14 @@
                                              </picture>
                                              <div class="cardDetail">
                                                   <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                       <nuxt-link to="/">
+                                                       <a href="javascript:void(0)" v-on:click="addCart({id: 1, precio: 45.00, name:'Ramo Ana Lucia', photo: 'oca1.jpg', description: '12 rosas seleccionadas de color naranja.',cantidad: 1})">
                                                             <div class="d-flex justify-content-start align-items-center">
                                                                  <client-only>
                                                                  <b-icon-cart3></b-icon-cart3>
                                                                  </client-only>
                                                                  <span>Añadir al Carrito</span>
                                                             </div>
-                                                       </nuxt-link>
+                                                       </a>
                                                   </div>
                                                   <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
                                                   <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
@@ -77,14 +77,14 @@
                                                        </picture>
                                                        <div class="cardDetail">
                                                             <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                                 <nuxt-link to="/">
+                                                                 <a href="javascript:void(0)" v-on:click="addCart({id: 2, precio: 145.00, name:'Peluche Unicornio', description: 'Peluche de felpa de color blanco.', photo: 'oca2.jpg', cantidad: 1})">
                                                                       <div class="d-flex justify-content-start align-items-center">
                                                                            <client-only>
                                                                            <b-icon-cart3></b-icon-cart3>
                                                                            </client-only>
                                                                            <span>Añadir al Carrito</span>
                                                                       </div>
-                                                                 </nuxt-link>
+                                                                 </a>
                                                             </div>
                                                             <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
                                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
@@ -103,14 +103,14 @@
                                                        </picture>
                                                        <div class="cardDetail">
                                                             <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                                 <nuxt-link to="/">
+                                                                 <a href="javascript:void(0)"  v-on:click="addCart({id: 3, precio: 45.00, name:'Osito', description: 'kalin lin lin',photo: 'oca3.jpg', cantidad: 1})">
                                                                       <div class="d-flex justify-content-start align-items-center">
                                                                            <client-only>
                                                                            <b-icon-cart3></b-icon-cart3>
                                                                            </client-only>
                                                                            <span>Añadir al Carrito</span>
                                                                       </div>
-                                                                 </nuxt-link>
+                                                                 </a>
                                                             </div>
                                                             <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
                                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
@@ -132,14 +132,14 @@
                                                   </picture>
                                                   <div class="cardDetail">
                                                        <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                            <nuxt-link to="/">
+                                                            <a href="javascript:void(0)"  v-on:click="addCart({id: 4, precio: 23.90, name:'Chocolates Riqui', description: 'Muchos regalos ok ... o nada',photo: 'oca4.jpg', cantidad: 1})">
                                                                  <div class="d-flex justify-content-start align-items-center">
                                                                       <client-only>
                                                                       <b-icon-cart3></b-icon-cart3>
                                                                       </client-only>
                                                                       <span>Añadir al Carrito</span>
                                                                  </div>
-                                                            </nuxt-link>
+                                                            </a>
                                                        </div>
                                                        <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
                                                        <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
@@ -158,14 +158,14 @@
                                                   </picture>
                                                   <div class="cardDetail">
                                                        <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                            <nuxt-link to="/">
+                                                            <a href="javascript:void(0)" v-on:click="addCart({id: 5, precio: 16.50, name:'Flores Grises', description: 'Para que te alegres un poco',photo: 'oca5.jpg', cantidad: 1})">
                                                                  <div class="d-flex justify-content-start align-items-center">
                                                                       <client-only>
                                                                       <b-icon-cart3></b-icon-cart3>
                                                                       </client-only>
                                                                       <span>Añadir al Carrito</span>
                                                                  </div>
-                                                            </nuxt-link>
+                                                            </a>
                                                        </div>
                                                        <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
                                                        <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
@@ -184,29 +184,35 @@
      </div>
 </template>
 <script>
-     export default {
-          data() {
-               return {
-                    selected: null,
-                    options: [
-                         { value: null, text: '- Selecciona Ocasión -' },
-                         { value: 'a', text: 'Amor / Aniversario' },
-                         { value: 'b', text: 'Condolencias' },
-                         { value: 'c', text: 'Cumpleaños' },
-                         { value: 'c', text: 'Gracias' },
-                         { value: 'c', text: 'Nacimiento' },
-                    ]
-               }
-          },
-          methods: {
-               addBlur: function(event){
-                    console.log(event.target.parentElement)
-               },
-               removeBlur: function(event){
-                    console.log(event)
-               }
+import { mapMutations, mapState, mapGetters } from 'vuex'
+export default {
+     data() {
+          return {
+               selected: null,
+               options: [
+                    { value: null, text: '- Selecciona Ocasión -' },
+                    { value: 'a', text: 'Amor / Aniversario' },
+                    { value: 'b', text: 'Condolencias' },
+                    { value: 'c', text: 'Cumpleaños' },
+                    { value: 'c', text: 'Gracias' },
+                    { value: 'c', text: 'Nacimiento' },
+               ]
           }
+     },
+     methods: {
+          addBlur: function(event){
+               console.log(event.target.parentElement)
+          },
+          removeBlur: function(event){
+               console.log(event)
+          },
+          async addCart(objData){
+               var boxPopUp = $('.boxPopUp')
+               this.$store.commit('shopping/cart/setdataCart', objData)
+               boxPopUp.fadeIn('slow')
+          },
      }
+}
 </script>
 <style lang="sass">
      .destacadosHomeM

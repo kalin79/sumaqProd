@@ -281,7 +281,582 @@
                               border: 2px solid rgba($pink, .25)
 
 
-     
+@mixin tableCart()
+     .boxBody
+          padding-top: .95rem
+          @media screen and (min-width: 992px)
+               padding-top: .95rem
+          @media screen and (min-width: 1200px)
+               padding-top: 1.5rem
+          @media screen and (min-width: 1400px)
+               padding-top: 1.75rem
+          .boxScroll
+               height: 396px
+               overflow: scroll
+               @media screen and (min-width: 992px)
+                    height: 270px
+                    overflow: scroll
+               @media screen and (min-width: 1400px)
+                    height: 408px
+          table
+               thead
+                    th
+                         padding: .75rem .35rem
+                         border-bottom: 1px solid #dee2e6
+                         text-align: center
+                         @media screen and (min-width: 992px)
+                              padding: .75rem
+                         &:last-child
+                              padding-right: 4rem
+               tr
+                    @include font-libre(0.75rem,0.75rem, 0.75rem,0.65rem,$Montserrat,600,$grayDark17)
+               tbody
+                    td
+                         padding: 1rem .75rem .75rem .75rem
+                         @media screen and (min-width: 992px)
+                              padding: 1rem .25rem .75rem .25rem
+                         @media screen and (min-width: 1400px)
+                              padding: 2rem .25rem .75rem .25rem
+                         &.verticalCenter
+                              padding-top: 2.15rem
+                              @media screen and (min-width: 992px)
+                                   padding-top: 2.15rem
+                         &:last-child
+                              padding-right: 4rem
+                         .boxCantidadProducto
+                              width: 100%
+                              border: 1px solid $brown
+                              height: 30px
+                              border-radius: 0px
+                              overflow: hidden
+                              position: relative
+                              top: -.5rem
+                              @media screen and (min-width: 992px)
+                                   border-radius: 30px
+                              > div
+                                   height: 100%
+                                   div
+                                        flex: 1
+                                        padding: 0 .25rem
+                                        p
+                                             @include font-libre(1.063rem,1.063rem, 1.063rem,1rem,$Montserrat,500,$brown)
+                                             text-align: center
+                                   a
+                                        border: 0px solid red
+                                        height: 100%
+                                        flex: 1
+                                        text-decoration: none
+                                        p
+                                             @include font-libre(1.563rem,1.563rem, 1.563rem,1rem,$Montserrat,500,$brown)
+                                             text-align: center
+                                             padding-left: .25rem
+                                             padding-right: .25rem
+                                        &.btnMenos
+                                             border-right: 1px solid $brown
+                                        &.btnMas
+                                             border-left: 1px solid $brown
+                                             
+                                   
+                         h3
+                              @include font-libre(0.875rem,0.875rem, 0.875rem,0.875rem,$Montserrat,500,$grayDark17)
+                         .descriptionTable
+                              padding-left: .5rem
+                              display: none
+                              @media screen and (min-width: 992px)
+                                   display: block
+                                   width: 190px
+                              @media screen and (min-width: 1200px)
+                                   width: auto
+                         picture
+                              &.imgProduct
+                                   width: 50px
+                                   height: 59px
+                                   border-radius: 10px
+                                   display: block
+                                   overflow: hidden
+                                   border: 1px solid $brown
+                                   @media screen and (min-width: 992px)
+                                        width: 70px
+                                        height: 83px
+                                   @media screen and (min-width: 1400px)
+                                        width: 114px
+                                        height: 135px
+                                   img
+                                        width: 100%
+                                        object-fit: cover
+                                        height: 100%
+                         a
+                              &.delete
+                                   margin-top: 20px
+                                   display: inline-block
+                                   @media screen and (min-width: 992px)
+                                        margin-top: 33px
+                                   @media screen and (min-width: 1400px)
+                                        margin-top: 50px
+                                   picture
+                                        img
+                                             width: 14px
+                                             @media screen and (min-width: 992px)
+                                                  width: 18px    
+                                             @media screen and (min-width: 1400px)  
+                                                  width: 29px   
+                         p
+                              @include font-libre(0.75rem,0.75rem, 0.75rem,0.65rem,$Montserrat,500,$grayDark17)
     
+@mixin tableDivCart()
+     .boxBody
+          padding-top: .95rem
+          @media screen and (min-width: 992px)
+               padding-top: .95rem
+          @media screen and (min-width: 1200px)
+               padding-top: 1.5rem
+          @media screen and (min-width: 1400px)
+               padding-top: 1.75rem
+          .boxScroll
+               height: 264px
+               border: 0px solid red
+               overflow: scroll
+               margin-top: 1rem
+               @media screen and (min-width: 992px)
+                    height: 268px
+                    overflow: scroll
+               @media screen and (min-width: 1400px)
+                    height: 373px
+          .boxTable
+               .boxHeaderTable
+                    > div
+                         border: 1px solid $blancoHuno2
+                         background: $blancoHuno
+                         border-radius: 10px
+                         overflow: hidden
+                         div  
+                              &:first-child
+                                   width: 7%
+                              &:last-child
+                                   width: 100% 
+                                   div 
+                                        &:nth-child(1)
+                                             width: 40%
+                                             @media screen and (min-width: 992px)
+                                                  width: 45%
+                                        &:nth-child(2)
+                                             width: 20%
+                                             @media screen and (min-width: 992px)
+                                                  width: 15%
+                                        &:nth-child(3)
+                                             width: 20%
+                                        &:last-child
+                                             width: 20%
+                         text-align: center
+                         @include font-libre(0.75rem,0.75rem, 0.75rem,0.65rem,$Montserrat,600,$grayDark17)
+                         padding: .85rem 0rem 
+                              
+               .boxBodyTable
+                    > div
+                         border: 1px solid $blancoHuno2
+                         background: $blancoHuno
+                         border-radius: 10px
+                         overflow: hidden
+                         padding: 1rem 0rem 
+                         margin-bottom: .75rem
+                         @media screen and (min-width: 992px)
+                              margin-bottom: 1rem
+                         > div
+                              border: 0px solid red
+                              width: 100%
+                              &.boxDeleted
+                                   width: 7%
+                                   margin: auto
+                                   text-align: center
+                              > div
+                                   width: 40%
+                                   @media screen and (min-width: 992px)
+                                        width: 45%
+                                   &:nth-child(2)
+                                        width: 20%
+                                        @media screen and (min-width: 992px)
+                                             width: 15%
+                                   &:nth-child(3)
+                                        width: 20%
+                                   &:last-child
+                                        width: 20%
+                              h3
+                                   @include font-libre(0.875rem,0.875rem, 1rem,0.8rem,$Montserrat,600,$grayDark17)
+                              p
+                                   @include font-libre(0.75rem,0.75rem, 0.85rem,0.65rem,$Montserrat,500,$grayDark17)
+                                   &.textVertical
+                                        margin-top: .35rem
+                              picture
+                                   &.imgProduct
+                                        width: 50px
+                                        height: 80px
+                                        border-radius: 10px
+                                        display: block
+                                        overflow: hidden
+                                        border: 1px solid $brown
+                                        margin-right: .25rem
+                                        @media screen and (min-width: 992px)
+                                             width: 70px
+                                             height: 83px
+                                             margin-right: .75rem
+                                        @media screen and (min-width: 1400px)
+                                             width: 114px
+                                             height: 135px
+                                        img
+                                             width: 100%
+                                             object-fit: cover
+                                             height: 100%
+                              
+                              
+                              .boxCantidadProducto
+                                   width: 100%
+                                   border: 1px solid $brown
+                                   height: 30px
+                                   border-radius: 0px
+                                   overflow: hidden
+                                   position: relative
+                                   top: 0rem
+                                   @media screen and (min-width: 992px)
+                                        border-radius: 30px
+                                   > div
+                                        height: 100%
+                                        div
+                                             flex: 1
+                                             padding: 0 .25rem
+                                             p
+                                                  @include font-libre(1.063rem,1.063rem, 1.063rem,1rem,$Montserrat,500,$brown)
+                                                  text-align: center
+                                        a
+                                             border: 0px solid red
+                                             height: 100%
+                                             flex: 1
+                                             text-decoration: none
+                                             p
+                                                  @include font-libre(1.563rem,1.563rem, 1.563rem,1rem,$Montserrat,500,$brown)
+                                                  text-align: center
+                                                  padding-left: .25rem
+                                                  padding-right: .25rem
+                                             &.btnMenos
+                                                  border-right: 1px solid $brown
+                                             &.btnMas
+                                                  border-left: 1px solid $brown
+                         a
+                              &.delete
+                                   picture
+                                        img
+                                             width: 14px
+                                             @media screen and (min-width: 992px)
+                                                  width: 24px    
+                                             @media screen and (min-width: 1400px)  
+                                                  width: 29px  
 
-     
+@mixin inputFormPago()
+     .error-input
+          @include font-libre(0.65rem,0.65rem, 0.65rem,0.65rem,$Montserrat,500,$pink)
+          padding-left: .5rem
+          padding-top: .25rem
+     textarea
+          border-radius: 30px
+          background-color: $grayDark19 
+          border: 1px solid $grayDark20
+          @include font-libre(0.75rem,0.75rem, 0.75rem,0.75rem,$Montserrat,500,$grayDark18)
+          padding-left: 1.25rem
+          padding-right: 2.5rem
+          padding-top: .85rem
+          &:focus,
+          &:hover
+               background-color: $grayDark19 
+               border: 1px solid $grayDark20
+               outline: none
+               box-shadow: none
+     select
+          border-radius: 30px
+          height: 51px
+          background-color: $grayDark19
+          border: 1px solid $grayDark20
+          @include font-libre(0.75rem,0.75rem, 0.75rem,0.75rem,$Montserrat,500,$grayDark18)
+          padding-left: 1.25rem
+          padding-right: 2.5rem
+          &.is-invalid
+               box-shadow: 0 0 0 0.1rem rgba($pink, 0.15)
+               border-color: $pink
+          &.is-valid
+               border-color: $greenLight3
+               &:focus 
+                    box-shadow: none
+          &:focus,
+          &:hover
+               outline: none
+               box-shadow: none
+               border: 1px solid $grayDark20
+     input[type="text"]
+          border-radius: 30px
+          height: 51px
+          background-color: $grayDark19
+          border: 1px solid $grayDark20
+          @include font-libre(0.75rem,0.75rem, 0.75rem,0.75rem,$Montserrat,500,$grayDark18)
+          padding-left: 1.25rem
+          padding-right: 2.5rem  
+          &.is-invalid
+               box-shadow: 0 0 0 0.1rem rgba($pink, 0.15)
+               border-color: $pink
+          &.is-valid
+               border-color: $greenLight3
+          &:focus,
+          &:hover
+               outline: none
+               box-shadow: none
+               &.is-invalid
+                    box-shadow: 0 0 0 0.1rem rgba($pink, 0.15)
+                    border-color: $pink
+               // box-shadow: 0 0 0 0.1rem rgba($blackLight, 0.15)
+               // border-color: $grayDark20
+               // color: $grayDark18
+
+@mixin accordion($colorBackground, $colorBorder, $colorText)
+     .accordion
+          h2
+               @include font-libre(1rem,1rem,.9rem,.9rem,$Montserrat,600,$pinkLight2)
+               line-height: 2.5em
+               strong
+                    font-weight: 700
+          p
+               @include font-libre(1rem,1rem,.9rem,.85rem,$Montserrat,400,$grayDark16)
+               line-height: 1.75em
+               margin: 0 0 1rem 0 
+               &.bold
+                    font-weight: 700
+               strong
+                    font-weight: 600
+          ul
+               margin: 0 0 1rem 1.15rem
+               padding: 0
+               list-style: none
+               ul
+                    margin: 0 0 0 1.75rem
+
+               li
+                    @include font-libre(1rem,1rem,.9rem,.85rem,$Montserrat,400,$grayDark16)
+                    line-height: 1.75em
+                    margin: 0
+                    &:before
+                         content: "\2022"
+                         color: $pinkLight2
+                         font-weight: bold
+                         display: inline-block
+                         width: 1rem
+                         position: relative
+                         top: 0rem
+                         font-size: 1.25rem
+                         margin-left: -1.07rem
+          &.active
+               display: block
+          .card 
+               border: 0
+               border-radius: 0
+               &:not(:last-of-type)
+                    margin-bottom: .75rem
+               .card-header
+                    background: $colorBackground
+                    border: 1px solid $colorBorder
+                    margin-bottom: 0
+                    border-radius: 10px
+                    overflow: hidden
+                    .btn-info
+                         background: $colorBackground
+                         border-color: $colorBorder
+                         border: 0
+                         color: $colorText
+                         text-align: left
+                         &:focus,
+                         &:hover
+                              outline: none
+                              box-shadow: none
+          
+@mixin cbxDateHora()
+     .tabHorarios
+          height: 0
+          overflow: hidden
+          // &.active
+          //      display: block
+          .b-calendar-header
+               display: none !important
+          .tabs
+               border: 1px solid $orange 
+               border-top: 0
+               border-bottom-left-radius: 10px
+               border-bottom-right-radius: 10px
+               width: $anchoContent2
+               .tab-content
+                    padding: .75rem 0 .85rem
+                    min-height: 150px
+                    @media screen and (min-width: 992px)
+                         padding: 1.25rem 0 2.5rem
+                    .form-check
+                         padding: 0
+                         .custom-control
+                              padding-left: 0
+                         &.disabled
+                              label,
+                              label:hover
+                                   background: rgba($grayDark3,.1 )
+                         label 
+                              display: inline-block
+                              cursor: pointer
+                              position: relative
+                              border-radius: 5px
+                              transition: all .3s ease
+                              @include font-libre(0.875rem,0.8rem,0.785rem,.75rem,$Montserrat,600,$blue)
+                              padding: 9px 15px 5px 40px
+                              &:hover 
+                                   background: rgba($pinkLight2, .1)
+                              &:before 
+                                   content: ""
+                                   display: inline-block
+                                   width: 17px
+                                   height: 17px
+                                   position: absolute
+                                   left: 15px
+                                   top: 9px
+                                   border-radius: 50%
+                                   background: none
+                                   border: 3px solid $grayDark13
+                         input[type="radio"]
+                              display: none
+                              &:checked + label:before 
+                                   border: 3px solid $pinkLight2
+                              &:checked + label 
+                                   // padding: 5px 15px
+                                   border-radius: 2px
+                    > section
+                         display: none
+                         width: 100%
+                         border: 0px solid red
+                         margin: auto
+                         text-align: center
+                         @media screen and (minwidth: 992px)
+                              height: 70%
+                         &.active
+                              display: block
+               .tabHeader
+                    > div
+                         padding: .85rem 0
+
+                         div
+                              width: 35%
+                              padding: .5rem 0
+                              border: 1px solid $grayDark4
+                              background: $blancoHuno
+                              cursor: pointer
+                              
+                              img 
+                                   width: 22px
+                                   margin-right: .5rem
+                              span
+                                   @include font-libre(0.875rem,0.8rem,0.785rem,.75rem,$Montserrat,600,$blue)
+                              &:first-child
+                                   border-top-left-radius: 20px
+                                   border-bottom-left-radius: 20px
+                                   border-right: 0
+                              &:last-child
+                                   border-top-right-radius: 20px
+                                   border-bottom-right-radius: 20px
+                              &.active
+                                   background: $grayDark12
+     .selectHorario
+          .cbxHorario
+               border: 1px solid $grayDark4
+               background: $grayLight
+               padding: 1rem .5rem 1rem .5rem
+               width: $anchoContent2
+               border-radius: 40px
+               box-sizing: border-box
+               cursor: pointer
+               position: relative
+               @media screen and (min-width: 992px)
+                    padding: 1rem .5rem 1rem 1.5rem 
+               &.active
+                    border-radius: 40px 40px 0px 0
+                    border: 1px solid $orange
+                    border-bottom: 1px solid $grayDark4
+                    .arrowIcon
+                         opacity: 0
+                    .arrowIcon-active
+                         opacity: 1
+                    span
+                         color: $blue
+                    .lineSeparate
+                         background: $blue
+               .lineSeparate
+                    width: .75rem
+                    background: $grayDark11
+                    height: 2px
+                    margin: 0 .25rem 
+                    @media screen and (min-width: 992px)
+                         width: .75rem
+                         margin: 0 1rem 
+               img
+                    &.arrowIcon-active
+                         opacity: 0
+                    &.arrowIcon
+                         position: absolute
+                         top: 50%
+                         transform: translateY(-50%)
+                         right: 1rem
+                    &.imgIcon
+                         width: 14px
+                         margin-right: .5rem
+                         @media screen and (min-width: 992px)
+                              width: 22px
+                    
+               span
+                    @include font-libre(0.875rem,0.85rem,0.85rem,.75rem,$Montserrat,600,black)
+@mixin boxSwicth()
+     .switch
+          position: relative
+          margin: 0 .35rem
+          &__input
+               position: absolute
+               cursor: pointer
+               top: 0
+               right: 0
+               left: 0
+               bottom: 0
+               width: 100%
+               height: 100%
+               margin: 0
+               opacity: 0
+               z-index: 1
+               &:checked + .switch__label
+                    background-color: $greenLight3
+                    &::before
+                         left: calc(100% - 22px)
+                         border-color: white
+                         background-color: white
+                         content: "" 
+          &__label
+               display: block
+               position: relative
+               width: 50px
+               height: 23px
+               background-color: $brownLight2
+               border-radius: 25px
+               transition: 0.4s
+               margin-bottom: 0.15rem
+               &::before
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    position: absolute
+                    top: 1px
+                    right: auto
+                    left: 1px
+                    bottom: 0
+                    width: 21px
+                    height: 21px
+                    border-radius: 100%
+                    border: 2px white solid
+                    background-color: white
+                    color: white
+                    transition: 0.4s
+                    content: ""

@@ -55,7 +55,9 @@ export default {
     {
       src: '@/plugins/vue-gtag.js',
       mode: 'client'
-    }
+    },
+    { src: '@/plugins/vue-persistedstate.js', ssr: false },
+    { src: '@/plugins/validate.js'},
   ],
   /*
   ** Nuxt.js dev-modules

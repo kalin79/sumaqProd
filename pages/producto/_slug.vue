@@ -66,71 +66,21 @@
                                              <p>Una caja de 12 Brownies de chocolate, cada brownie es de 60 grs. de puro bizcocho, bañado con fudge y frutos secos, </p>
                                         </div>
                                    </div>
-                                   <div class="boxInfoBody">
+                                   <!-- <div class="boxInfoBody">
                                         <div class="titleHorario">
                                              <h2>1. Selecciona Fecha y Horario de entrega</h2>
                                         </div>
-                                        <div class="boxHorario">
-                                             <div class="selectHorario">
-                                                  <div class="cbxHorario d-flex justify-content-start align-items-center" v-on:click="timeDelivery">
-                                                       <div class="d-flex justify-content-start align-items-center">
-                                                            <img src="@/assets/images/horario.png" class="imgIcon" />
-                                                            <span v-if="CalendarValue!=null">{{ CalendarValue }}</span>
-                                                            <span v-else>Fecha</span>
-                                                       </div>
-                                                       <div class="lineSeparate"></div>
-                                                       <div class="d-flex justify-content-start align-items-center">
-                                                            <img src="@/assets/images/hora.png" class="imgIcon"/>
-                                                            <span v-if="selectedDeliveryTime!=null">{{ selectedDeliveryTime }}</span>
-                                                            <span v-else>Hora</span>
-                                                       </div>
-                                                       <img src="@/assets/images/arrowCbx2.png" class="arrowIcon">
-                                                       <img src="@/assets/images/arrowCbx2-active.png" class="arrowIcon arrowIcon-active">
-                                                  </div>
-                                             </div>
-                                             <div class="tabHorarios">
-                                                  <div class="tabs">
-                                                       <!-- tab-title -->
-                                                       <div class="tabHeader">
-                                                            <div class="d-flex justify-content-center align-items-center">
-                                                                 <div class="d-flex justify-content-center align-items-center active" v-on:click="viewDeliveryTab(1)" id="tabDelivery-1">
-                                                                      <img src="@/assets/images/horario.png" class="" />
-                                                                      <span>Fecha</span>
-                                                                 </div>
-                                                                 <div class="d-flex justify-content-center align-items-center" v-on:click="viewDeliveryTab(2)" id="tabDelivery-2">
-                                                                      <img src="@/assets/images/hora.png" class="" />
-                                                                      <span>Horarios</span>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-                                                       <!-- tab-content -->
-                                                       <div class="tab-content d-flex justify-content-center">
-                                                            <section id="tab-item-1" class="active">
-                                                                 <!-- <client-side> -->
-                                                                 <b-calendar v-model="CalendarValue" :min="minDate.toISOString()" :date-disabled-fn="dateDisabled" locale="es-Es"></b-calendar>
-                                                                 <!-- </client-side> -->
-                                                            </section>
-                                                            <section id="tab-item-2" >
-                                                                 <div class="contentItem">
-                                                                      <div class="form-check" v-for="(item, index) in DeliveryTimes" :key="index" v-bind:class="{'disabled' : item.notEnabled === 'disabled'}">
-                                                                           <b-form-radio v-model="selectedDeliveryTime" :value="item.value" :disabled="item.notEnabled">{{ item.value }}</b-form-radio>
-                                                                      </div>
-                                                                 </div>
-                                                            </section>
-                                                       </div>
-                                                  </div>
-                                             </div>
-                                        </div>
+                                        
                                         <div class="boxCargoDelivery">
                                              <div class="d-flex justify-content-start align-items-center">
                                                   <img src="@/assets/images/iconCardo.png" alt="Cargo" />
                                                   <p>Cargo por delivery S/ 20.00</p>
                                              </div>
                                         </div>
-                                   </div>
+                                   </div> -->
                                    <div class="boxComplementos">
                                         <div class="titleHorario">
-                                             <h2>2. Agregale un complemento a tu pedido (opcional)</h2>
+                                             <h2>1. Agregale un complemento a tu pedido (opcional)</h2>
                                         </div>
                                         <div class="galleryComplemento">
                                              
@@ -237,7 +187,7 @@
                                    </div>
                                    <div class="boxAddButton">
                                         <div class="titleHorario">
-                                             <h2>3. Agregar a tu carrito</h2>
+                                             <h2>2. Agregar a tu carrito</h2>
                                         </div>
                                         <div class="d-flex justify-content-center flex-lg-row flex-column align-items-center">
                                              <nuxt-link to="/">
@@ -448,37 +398,12 @@ export default {
           Banner
      },
      data() {
-          const now = new Date()
-          const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-          let todayPicker = new Date(today)
-          // console.log(todayPicker.getMonth())
-          todayPicker.setMonth(todayPicker.getMonth())
           return {
                price: null,
                pauseOnHover: true,
                autoPlaying: true,
                internalAutoPlaying: true,
-               selectedDeliveryTime: null,
-               CalendarValue: null,
-               CalendarOnContext: null,
                selectComplement: [],
-               minDate: today,
-               DeliveryTimes: [
-                    {
-                         id: '1',
-                         value: '09:00 am - 12:00 pm',
-                         notEnabled: 'disabled'
-                    },
-                    {
-                         id: '2',
-                         value: '13:00 am - 15:00 pm' 
-                    },
-                    {
-                         id: '3',
-                         value: '18:00 am - 21:00 pm'
-                         
-                    }
-               ],
                tl: null,
                slides: [
                     { image: require('@/assets/images/gal1.jpg') },
@@ -525,78 +450,7 @@ export default {
                     tabItem.addClass('active')
                },100)
           },
-          viewDeliveryTab(id){
-               const tabDelivery = $(`#tabDelivery-${id}`) 
-               // console.log(`#tabDelivery-${id}`)
-               const tabItem = $(`#tab-item-${id}`)
-               const allHeader = $(".tabHeader > div div")
-               const allTabContent = $(".tab-content section")
-               allHeader.removeClass('active')
-               allTabContent.removeClass('active')
-               setTimeout(function(){
-                    tabDelivery.addClass('active')
-                    tabItem.addClass('active')
-               },100)
-               
-          },
-          setActiveSection(cbxHorario){
-               cbxHorario.removeClass('active')
-          },
-          timeDelivery(event){
-               const cbxHorario = $('.cbxHorario')
-               const tabHorarios = $('.tabHorarios')
-               let tlDeliveryOpen = gsap.timeline()
-               let tlDeliveryClose = gsap.timeline({ onComplete: this.setActiveSection,  onCompleteParams: [cbxHorario] })
-               if (!cbxHorario.hasClass( "active")){
-                    cbxHorario.addClass('active')
-                    tlDeliveryOpen
-                         .set(tabHorarios,{css : {height: 0}})
-                         .to(tabHorarios, {duration: .5, css: {height: 'auto'}})
-
-               }else{
-                    tlDeliveryClose
-                         .to(tabHorarios, {duration: .5, css: {height: 0}})
-               }
-          },
-          dateDisabled(ymd, date) {
-               // Disable weekends (Sunday = `0`, Saturday = `6`) and
-               // disable days that fall on the 13th of the month
-               const weekday = date.getDay()
-               const day = date.getDate()
-               // Return `true` if the date should be disabled
-               // return weekday === 0 || weekday === 6 || day === 13
-               return weekday === 0
-          },
-          reverseFunction: function(){
-               $('.cardHorario ul').removeClass('active')
-          },
-          viewHorarios: function(event) {
-               const boxUl = $(event.target.parentElement).siblings()
-               if (!boxUl.hasClass('active')){
-                    $('.cardHorario ul').removeClass('active')
-                    boxUl.addClass('active')
-                    this.tl = gsap.timeline({
-                              onReverseComplete: this.reverseFunction,
-                              paused: false
-                    })
-                    this.tl
-                         .fromTo(
-                              boxUl.find('li'),{
-                                   opacity: 0,
-                                   y: -20,
-                              },
-                              {
-                                   opacity: 1,
-                                   stagger: .25,
-                                   y: 0,
-                                   duration: .25,
-                                   ease: 'power1.out',
-                              }
-                         )
-               }else{
-                    this.tl.reverse()
-               }
-          }
+          
      }, 
 }
 </script>
@@ -957,142 +811,7 @@ export default {
                     p
                          @include font-libre(0.875rem,0.8rem,0.785rem,.75rem,$Montserrat,500,$grayDark14)
                
-               .tabHorarios
-                    height: 0
-                    overflow: hidden
-                    // &.active
-                    //      display: block
-                    .b-calendar-header
-                         display: none !important
-                    .tabs
-                         border: 1px solid $orange 
-                         border-top: 0
-                         border-bottom-left-radius: 10px
-                         border-bottom-right-radius: 10px
-                         width: $anchoContent2
-                         .tab-content
-                              padding: .75rem 0 .85rem
-                              min-height: 150px
-                              @media screen and (min-width: 992px)
-                                   padding: 1.25rem 0 2.5rem
-                              .form-check
-                                   padding: 0
-                                   .custom-control
-                                        padding-left: 0
-                                   &.disabled
-                                        label,
-                                        label:hover
-                                             background: rgba($grayDark3,.1 )
-                                   label 
-                                        display: inline-block
-                                        cursor: pointer
-                                        position: relative
-                                        border-radius: 5px
-                                        transition: all .3s ease
-                                        @include font-libre(0.875rem,0.8rem,0.785rem,.75rem,$Montserrat,600,$blue)
-                                        padding: 9px 15px 5px 40px
-                                        &:hover 
-                                             background: rgba($pinkLight2, .1)
-                                        &:before 
-                                             content: ""
-                                             display: inline-block
-                                             width: 17px
-                                             height: 17px
-                                             position: absolute
-                                             left: 15px
-                                             top: 9px
-                                             border-radius: 50%
-                                             background: none
-                                             border: 3px solid $grayDark13
-                                   input[type="radio"]
-                                        display: none
-                                        &:checked + label:before 
-                                             border: 3px solid $pinkLight2
-                                        &:checked + label 
-                                             // padding: 5px 15px
-                                             border-radius: 2px
-                              > section
-                                   display: none
-                                   width: 100%
-                                   border: 0px solid red
-                                   margin: auto
-                                   text-align: center
-                                   @media screen and (minwidth: 992px)
-                                        height: 70%
-                                   &.active
-                                        display: block
-                         .tabHeader
-                              > div
-                                   padding: .85rem 0
-
-                                   div
-                                        width: 35%
-                                        padding: .5rem 0
-                                        border: 1px solid $grayDark4
-                                        background: $blancoHuno
-                                        cursor: pointer
-                                        
-                                        img 
-                                             width: 22px
-                                             margin-right: .5rem
-                                        span
-                                             @include font-libre(0.875rem,0.8rem,0.785rem,.75rem,$Montserrat,600,$blue)
-                                        &:first-child
-                                             border-top-left-radius: 20px
-                                             border-bottom-left-radius: 20px
-                                             border-right: 0
-                                        &:last-child
-                                             border-top-right-radius: 20px
-                                             border-bottom-right-radius: 20px
-                                        &.active
-                                             background: $grayDark12
-
-               .boxHorario
-                    width: $anchoContent
-                    padding: .75rem 0 0
-                    // @media screen and (min-width: 992px)
-                    //      padding: 0
-                    .selectHorario
-                         .cbxHorario
-                              border: 1px solid $grayDark4
-                              background: $grayLight
-                              padding: 1rem .5rem 1rem 2.5rem
-                              width: $anchoContent2
-                              border-radius: 40px
-                              box-sizing: border-box
-                              cursor: pointer
-                              position: relative
-                              &.active
-                                   border-radius: 40px 40px 0px 0
-                                   border: 1px solid $orange
-                                   border-bottom: 1px solid $grayDark4
-                                   .arrowIcon
-                                        opacity: 0
-                                   .arrowIcon-active
-                                        opacity: 1
-                                   span
-                                        color: $blue
-                                   .lineSeparate
-                                        background: $blue
-                              .lineSeparate
-                                   width: .75rem
-                                   background: $grayDark11
-                                   height: 2px
-                                   margin: 0 1rem 
-                              img
-                                   &.arrowIcon-active
-                                        opacity: 0
-                                   &.arrowIcon
-                                        position: absolute
-                                        top: 50%
-                                        transform: translateY(-50%)
-                                        right: 1rem
-                                   &.imgIcon
-                                        width: 22px
-                                        margin-right: .5rem
-                                   
-                              span
-                                   @include font-libre(0.875rem,0.85rem,0.85rem,.85rem,$Montserrat,600,black)
+               
                
           .boxInfoHeader
                padding: 0rem 0 0
