@@ -22,6 +22,7 @@
     "jquery": "^3.5.1",
     "node-sass": "^5.0.0",
     "nuxt": "^2.2.0",
+    "nuxt-google-maps-module": "^1.6.0",
     "resolve-url": "^0.2.1",
     "sass-loader": "^10.1.1",
     "vee-validate": "^3.4.5",

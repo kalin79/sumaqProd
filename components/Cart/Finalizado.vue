@@ -1,0 +1,352 @@
+<template>
+     <div class="boxProcessFinal">
+          <div class="container-fluid container-fluid-xxl ">
+               <div class="boxHeader">
+                    <div class="boxIcon">
+                         <client-only>
+                              <b-icon-check-circle-fill></b-icon-check-circle-fill>
+                         </client-only>
+                    </div>
+                    <div class="boxTitle">
+                         <h3>Hey Carlos,</h3>
+                         <h1>¡Gracias por hacernos cómplices de tu felicidad!</h1>
+                    </div>
+               </div>
+               <div class="boxDetail">
+                    <div class="row">
+                         <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                              <div class="boxBorder">
+                                   <div class="boxContent mb-3">
+                                        <div class="boxRow pb-3">
+                                             <p>
+                                                  Número de orden: <span class="BoldLarge">001-88276651</span>
+                                             </p>
+                                        </div>
+                                   </div>
+                                   <div class="boxContent ">
+                                        <div class="boxRow pb-5 notLine">
+                                             <p class="description">
+                                                  Enviamos un correo electrónico a <span class="bold">cespinoza@gmail.com</span> con la confirmación  y el recibo de su pedido. Si el correo electrónico no ha llegado en dos minutos, verifique su carpeta de correo no deseado para ver si el correo electrónico se envió allí.
+                                             </p>
+                                        </div>
+                                   </div>
+                                   <div class="boxContent ">
+                                        <div class="boxRow pb-5 notLine">
+                                             <div class="boxTitle">
+                                                  <h2>Detalles del Delivery</h2>
+                                             </div>
+                                             <div class="boxItems">
+                                                  <h3>Delivery hecho por:</h3>
+                                                  <p class="description">
+                                                       Sr. Carlos Espinoza Galarza
+                                                  </p>
+                                                  <p class="description">
+                                                       Celular: 987 654 324
+                                                  </p>
+                                             </div>
+
+                                             <div class="boxItems">
+                                                  <h3>Dirección del delivery:</h3>
+                                                  <p class="description">
+                                                       Jr. Augusto Aguirre 3045 - Alt. Cdra. 30
+                                                  </p>
+                                                  <p class="description">
+                                                       Av. José Granda . Los Olivos LIM - PER
+                                                  </p>
+                                             </div>
+
+                                             <div class="boxItems mb0">
+                                                  <h3>Fecha y hora:</h3>
+                                                  <p class="description">
+                                                       23 Mayo, 2021 - 09:00 am - 15:00 p.m.
+                                                  </p>
+                                             </div>
+                                             
+                                        </div>
+                                   </div>
+                                   <div class="boxContent ">
+                                        <div class="boxRow notLine">
+                                             <div class="boxTitle">
+                                                  <h2>Información de Pago</h2>
+                                             </div>
+                                             <div class="boxItems">
+                                                  <h3>Tarjeta de crédito/débito:</h3>
+                                                  <p class="description">
+                                                       Número: **** **** **** 3245
+                                                  </p>
+                                                  <!-- <p class="description">
+                                                       Fecha de expiración: 10/23
+                                                  </p> -->
+                                                  <p class="description">
+                                                       Monto: S/ 190.00 soles
+                                                  </p>
+                                             </div>
+
+                                             <div class="boxItems">
+                                                  <h3>Envío de factura o boleta:</h3>
+                                                  <p class="description">
+                                                       Sr. Carlos Espinoza Galarza
+                                                  </p>
+                                                  <p class="description">
+                                                       Jr. Augusto Aguirre 3045 - Alt. Av. José Granda Los Olivos
+                                                  </p>
+                                                  <p class="description">
+                                                       LIM - PER.
+                                                  </p>
+                                                  <p class="description">
+                                                       Correo electrónico: cespinoza@gmail.com
+                                                  </p>
+                                                  <p class="description">
+                                                       Teléfono: 987 654 324
+                                                  </p>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-12 col-lg-6">
+                              <div class="boxBorder">
+                                   <div class="boxContent mb-3">
+                                        <div class="boxRow pb-1 notLine">
+                                             <div class="boxTitle">
+                                                  <h3>Resumen del pedido</h3>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="boxResult">
+                                        <div class="boxListProduct">
+                                             <div class="boxCard mb-3 d-flex justify-content-between align-items-start" v-for="(item, index) in dataCart.order" :key="index">
+                                                  <div class="d-flex justify-content-start align-items-start">
+                                                       <div class="boxPicture">
+                                                            <picture>
+                                                                 <img :src="require(`@/assets/images/${item.photo}`)" alt="ocacion">
+                                                            </picture>
+                                                            <div class="boxCantidad">
+                                                                 <p>{{ item.cantidad }}</p>
+                                                            </div>
+                                                       </div>
+                                                       <div class="boxDetail">
+                                                            <h2>{{ item.name }}</h2>
+                                                            <p> {{ item.description }}</p>
+                                                       </div>
+                                                  </div>
+                                                  <div class="boxPrice">
+                                                       <p>{{ getCurrencySymbol }} {{ getPrice(item.precio) }}</p>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="boxCostos">
+                                             <div class="rowCosto">
+                                                  <div class="mb-2 d-flex justify-content-between align-items-start">
+                                                       <h3>Subtotal</h3>
+                                                       <h3>{{ getCurrencySymbol }} {{ dameSubMontoTotal }}</h3>
+                                                  </div>
+                                                  <div class="pb-4 d-flex justify-content-between align-items-start">
+                                                       <h3>Costo por Delivery</h3>
+                                                       <h3>{{ getCurrencySymbol }} 30</h3>
+                                                  </div>
+                                             </div>
+                                             <div class="rowCosto mt-3">
+                                                  <div class="d-flex justify-content-between align-items-start">
+                                                       <div>
+                                                            <h3>Total</h3>
+                                                            <p>Incluye impuestos</p>
+                                                       </div>
+                                                       
+                                                       <h3 class="boldPrice">{{ getCurrencySymbol }} {{ dameTotal }}</h3>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          
+     </div>
+</template>
+<script>
+import { mapMutations, mapState, mapGetters } from 'vuex'
+import {gsap} from "gsap/dist/gsap"
+import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import CSSRulePlugin from "gsap/dist/CSSRulePlugin";
+gsap.registerPlugin(ScrollToPlugin)
+gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(CSSRulePlugin)
+gsap.core.globals("ScrollTrigger", ScrollTrigger)
+export default {
+     computed: {
+          ...mapGetters('shopping/cart/', ['subMontoTotal']),
+          ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
+          ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
+          ...mapGetters('shopping/cart/', ['getExchangeRate']),
+          ...mapState(
+               { dataCart: state => state.shopping.cart.dataCart},
+          ),
+          dameTipoComprobante(){
+               if (this.selectTipoComprobante)
+                    return 'R.U.C.'
+               else
+                    return 'D.N.I'
+          },
+          dameNombreComprobante(){
+               if (this.selectTipoComprobante)
+                    return 'Razón Social'
+               else
+                    return 'Nombre completo'
+          },
+          dameTotal(){
+               let igv = 0.18
+               let total = this.subMontoTotal + this.subMontoTotal*igv + this.priceDelivery
+               if (this.getTypeCurrencySymbol === 1)
+                    return total.toFixed(2)
+               else
+                    return (total * this.getExchangeRate).toFixed(2)
+          },
+          
+          dameSubMontoTotal(){
+               if (this.getTypeCurrencySymbol === 1)
+                    return this.subMontoTotal.toFixed(2)
+               else
+                    return (this.subMontoTotal * this.getExchangeRate).toFixed(2)
+          },
+     },
+     methods: {
+           getPrice(price){
+               if (this.getTypeCurrencySymbol === 1)
+                    return price.toFixed(2)
+               else 
+                    return (price*this.getExchangeRate).toFixed(2)
+          },
+     },
+}
+</script>
+<style lang="sass">
+     .boxProcessFinal
+          padding-bottom: 5rem
+          .boxResult
+               .boxCostos
+                    border-radius: 20px
+                    border: 1px solid $blancoHuno2
+                    background: $blancoHuno
+                    overflow: hidden
+                    padding: 1.35rem 1.75rem
+                    .rowCosto
+                         &:first-child
+                              border-bottom: 1px solid $blancoHuno2
+                         p
+                              @include font-libre(0.75rem,0.75rem, 0.75rem,0.75rem,$Montserrat,500,$grayDark18)
+                         h3
+                              @include font-libre(0.875rem,0.875rem, 0.875rem,0.875rem,$Montserrat,600,$grayDark18)
+                              &.boldPrice
+                                   @include font-libre(1.375rem,1.375rem, 1.375rem,1.15rem,$Montserrat,600,$grayDark18)
+               .boxListProduct
+                    .boxCard
+                         border-radius: 20px
+                         border: 1px solid $blancoHuno2
+                         background: $blancoHuno
+                         overflow: hidden
+                         padding: 1rem 1rem
+                         @media screen and (min-width: 992px)
+                              padding: 1.35rem 1.75rem
+                         .boxPrice
+                              p
+                                   @include font-libre(0.875rem,0.875rem, 0.875rem,0.75rem,$Montserrat,600,$grayDark18)
+                         .boxDetail
+                              padding: 0 0 0 .85rem
+                              width: 120px
+                              @media screen and (min-width: 992px)
+                                   padding: 0 0 0 1.5rem
+                                   width: auto
+                              h2
+                                   @include font-libre(0.875rem,0.875rem, 0.875rem,0.75rem,$Montserrat,600,$grayDark18)
+                              p
+                                   @include font-libre(0.75rem,0.75rem, 0.75rem,0.7rem,$Montserrat,600,$grayDark18)
+                         .boxPicture
+                              position: relative
+                              width: 60px
+                              height: 80px
+                              @media screen and (min-width: 992px)
+                                   width: 111px
+                                   height: 136px
+                              .boxCantidad
+                                   position: absolute
+                                   width: 21px
+                                   height: 21px
+                                   border-radius: 50%
+                                   background: $greenLight3
+                                   border: 1px solid $greenLight5
+                                   top: -0.5rem
+                                   right: -0.5rem
+                                   p
+                                        @include font-libre(0.75rem,0.75rem, 0.75rem,0.75rem,$Montserrat,600,white)
+                                        text-align: center
+                              picture
+                                   width: 100%
+                                   height: 100%
+                                   overflow: hidden
+                                   border-radius: 10px
+                                   display: block
+                                   border: 2px solid $brown
+                                   img
+                                        width: 100%
+                                        height: 100%
+                                        object-fit: cover
+          .boxDetail
+               .boxBorder
+                    border-radius: 10px
+                    overflow: hidden
+                    padding: 1.5rem 1.85rem
+                    border: 1px solid $blancoHuno2
+                    .boxContent
+                         .boxRow
+                              border-bottom: 1px solid $blancoHuno2
+                              &.notLine
+                                   border: 0
+                              .boxTitle
+                                   border-bottom: 1px solid $blancoHuno2
+                                   padding-bottom: .5rem
+                                   margin-bottom: 1rem
+                                   h2
+                                        @include font-libre(1.375rem,1.375rem,1.375rem,1.375rem,$Montserrat,400,$grayDark18)
+                              .boxItems
+                                   padding-left: 1rem
+                                   margin-bottom: 1.5rem
+                                   &.mb0
+                                        margin-bottom: 0
+                                   h3
+                                        @include font-libre(0.875rem,0.875rem,0.875rem,0.875rem,$Montserrat,600,$grayDark18)
+                                        line-height: 1.5em
+
+                              p
+                                   @include font-libre(0.875rem,0.875rem,0.875rem,0.875rem,$Montserrat,600,$grayDark18)
+                                   &.description
+                                        @include font-libre(0.75rem,0.75rem,0.75rem,0.75rem,$Montserrat,500,$grayDark18)
+                                   span
+                                        &.bold
+                                             font-weight: 600
+                                        &.BoldLarge
+                                             @include font-libre(1.5rem,1.5rem,1.5rem,1.15rem,$Montserrat,600,$grayDark10)
+
+
+          .boxHeader
+               padding: 1.75rem 0 2rem
+               @media screen and (min-width: 992px)
+                    padding: 3.5rem 0 3rem
+               .boxTitle
+                    h1
+                         @include font-libre(2rem,2rem,1.75rem,1rem,$Montserrat,500,$grayDark18)
+                         text-align: center
+                    h3
+                         @include font-libre(1.375rem,1.375rem,1.15rem,.85rem,$Montserrat,600,$grayDark18)
+                         text-align: center
+
+               .boxIcon
+                    margin: 0 auto 1rem
+                    text-align: center
+                    svg
+                         fill: $greenLight7
+                         font-size: 2.85rem
+</style>

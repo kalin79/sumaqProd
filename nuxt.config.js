@@ -79,6 +79,10 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
+    ['nuxt-google-maps-module', {
+      /* module options */
+      key: 'AIzaSyCEaGvnx5jch4RwsxwZn9D0CWUssPEyaMg', // Default
+    }],
   ],
   /*
   ** Axios module configuration

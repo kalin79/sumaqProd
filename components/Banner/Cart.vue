@@ -81,9 +81,6 @@ export default {
                               bottom: 0
                               left: 0 
                               transition: .5s ease width
-                         &:hover
-                              &::before
-                                   width:
           .separate
                width: 100%
                height: 73px
