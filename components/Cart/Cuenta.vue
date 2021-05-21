@@ -80,7 +80,8 @@
                               <div class="d-flex">
                                    <div class="colflex">
                                         <h2>Productos:</h2>
-                                        <p>Impuesto incluido. Los gastos de envío se calculan en la pantalla de pagos.</p>
+                                        <!-- <p>No esta incluido el impuesto.</p> <p>Los gastos de envío se calculan en la pantalla de pagos.</p> -->
+                                        <p>Los gastos de envío se calculan en la pantalla de pagos.</p>
                                    </div>
                                    <div class="colflex">
                                         <h2>{{ getCurrencySymbol }} {{ dameSubMontoTotal }}</h2>
@@ -89,12 +90,20 @@
                          </div>
                     </div>
                </div>
+               <div class="boxAlerts" v-if="boolAlert">
+                    <b-alert show variant="danger">
+                         <client-only>
+                              <b-icon-exclamation-circle-fill></b-icon-exclamation-circle-fill>
+                         </client-only>
+                         Debe seleccionar fecha y hora
+                    </b-alert>
+               </div>
                <div class="boxButton">
                     <div class="d-flex justify-content-center flex-column align-items-center">
-                         <button type="button">
+                         <button type="button" @click="goCheckout()">
                               <p>FINALIZAR PEDIDO</p>
                          </button>
-                         <button type="button">
+                         <button type="button" @click="goHome()">
                               <p>SEGUIR COMPRANDO</p>
                          </button>
                     </div>
@@ -127,6 +136,7 @@ export default {
                CalendarValue: null,
                CalendarOnContext: null,
                minDate: today,
+               boolAlert: false,
                DeliveryTimes: [
                     {
                          id: '1',
@@ -154,10 +164,30 @@ export default {
                if (this.getTypeCurrencySymbol === 1)
                     return this.subMontoTotal.toFixed(2)
                else
-                    return (this.subMontoTotal * this.getExchangeRate).toFixed(2)
+                    return (this.subMontoTotal / this.getExchangeRate).toFixed(2)
           },
      },
      methods : {
+          async goCheckout(){
+               let expreg = /^(?!\s*$).+/
+               if ((this.selectedDeliveryTime != null) && (this.CalendarValue != null) ){
+                    if ((expreg.test(this.selectedDeliveryTime)) && (this.CalendarValue != null) ){
+                         this.boolAlert = false
+                         this.$store.commit('shopping/cart/setFecha', this.CalendarValue)
+                         this.$store.commit('shopping/cart/setHora', this.selectedDeliveryTime)
+                         this.$router.push('/cart/pago')
+                    }else{
+                         console.log('error')
+                         this.boolAlert = true
+                    }
+               }else{
+                    console.log('error')
+                    this.boolAlert = true
+               }
+          },
+          goHome(){
+               this.$router.push('/home')
+          }, 
           viewDeliveryTab(id){
                const tabDelivery = $(`#tabDelivery-${id}`) 
                // console.log(`#tabDelivery-${id}`)
@@ -246,7 +276,10 @@ $anchoContent2: 100%
           margin-top: 1.5rem
      @media screen and (min-width: 1400px)
           margin-top: 1.72rem
-
+     .boxAlerts
+          padding: .5rem 1.75rem .5rem 1rem
+          svg
+               fill: #dc3545
      .boxButton
           padding: 0 0 1.5rem
           button

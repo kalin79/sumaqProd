@@ -9,9 +9,26 @@
 import BannerCart from '@/components/Banner/Cart'
 import CartResumen from '@/components/Cart/Resumen'
 export default {
+     middleware: ['datageneral'],
      components: {
           BannerCart,
           CartResumen
+     },
+     async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
+          // console.log(params.category)
+          try {
+               res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
+               // console.log(res2)
+               if ((res.code === 200) && (res.status === 1)){
+                    store.commit('menu/setMenuMain', res.data)
+               }else{
+                    console.log('error await')
+               }
+          }catch (error) {
+               console.log(error)
+          }finally{
+               console.log('fin')
+          }
      },
      head () {
           return {

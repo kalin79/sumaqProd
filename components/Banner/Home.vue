@@ -15,35 +15,46 @@
                     :mouse-drag="true"
                     :touchDrag="true"
                     >
-                         <slide>
-                              <nuxt-link to="/">
+                         <slide v-for="(items, index) in getSliderHome" :key="index">
+                              <nuxt-link to="/" v-if="items.link!=''">
                                    <div class="boxImages">
                                         <picture>
                                              <source
-                                                  srcset="@/assets/images/banner-V1-1920.jpg"
+                                                  :srcset="items.image"
                                                   media="(min-width:992px)" 
                                              >
-                                             <img src="@/assets/images/bannerMovil.jpg" alt="">
+                                             <img :src="items.imagemobile" alt="">
                                         </picture>
                                    </div>
                               </nuxt-link>
+                              <div class="boxImages" v-else>
+                                   <picture>
+                                        <source
+                                             :srcset="items.image"
+                                             media="(min-width:992px)" 
+                                        >
+                                        <img :src="items.imagemobile" alt="">
+                                   </picture>
+                              </div>
                          </slide>
                     </carousel>
                </client-only>
           </div>
-          
+          <!-- {{ banners.data.slider }} -->
      </div>
 </template>
 <script>
+import { mapMutations, mapState, mapGetters } from 'vuex'
 export default {
      data() {
           return {
                
           }
      },
-     mounted() {
-               
+     computed: {
+          ...mapGetters('generaldata/', ['getSliderHome']),
      },
+     mounted() {},
 }
 </script>
 <style lang="sass">

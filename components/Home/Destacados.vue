@@ -34,153 +34,164 @@
                                         <div class="boxSearch">
                                              <p>¿Tienes una ocasión especial?</p>
                                              <div class="select">
-                                                  <b-form-select v-model="selected" :options="options"></b-form-select>
+                                                  <select v-model="selected" class="custom-select" @change="viewMostrarOcasion()">
+                                                       <option v-for="(ocacion, index) in options" :key="index" v-bind:value="ocacion">
+                                                            {{ ocacion.title }}
+                                                       </option>
+                                                  </select>
                                              </div>
                                         </div>
                                    </div>
                               </div>
                          </div>
                          <div class="separate"></div>
-                         <div class="boxListOcaciones">
-                              <div>
-                                   <div class="animationCard">
-                                        <div class="cardOcacion">
-                                             <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
-                                                  <img src="@/assets/images/ojos.png" class="imgEye">
-                                             </nuxt-link>
-                                             <picture>
-                                                  <img src="@/assets/images/oca1.jpg" alt="oca1" class="img1">
-                                             </picture>
-                                             <div class="cardDetail">
-                                                  <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                       <a href="javascript:void(0)" v-on:click="addCart({id: 1, precio: 45.00, name:'Ramo Ana Lucia', photo: 'oca1.jpg', description: '12 rosas seleccionadas de color naranja.',cantidad: 1})">
-                                                            <div class="d-flex justify-content-start align-items-center">
-                                                                 <client-only>
-                                                                 <b-icon-cart3></b-icon-cart3>
-                                                                 </client-only>
-                                                                 <span>Añadir al Carrito</span>
-                                                            </div>
-                                                       </a>
-                                                  </div>
-                                                  <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
-                                                  <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div>
-                                   <div class="d-flex">
-                                        <div>
-                                             <div class="animationCard">
-                                                  <div class="cardOcacion">
-                                                       <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
-                                                            <img src="@/assets/images/ojos.png" class="imgEye">
-                                                       </nuxt-link>
-                                                       <picture>
-                                                            <img src="@/assets/images/oca2.jpg" alt="oca1" class="img2">
-                                                       </picture>
-                                                       <div class="cardDetail">
-                                                            <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                                 <a href="javascript:void(0)" v-on:click="addCart({id: 2, precio: 145.00, name:'Peluche Unicornio', description: 'Peluche de felpa de color blanco.', photo: 'oca2.jpg', cantidad: 1})">
-                                                                      <div class="d-flex justify-content-start align-items-center">
-                                                                           <client-only>
-                                                                           <b-icon-cart3></b-icon-cart3>
-                                                                           </client-only>
-                                                                           <span>Añadir al Carrito</span>
-                                                                      </div>
-                                                                 </a>
-                                                            </div>
-                                                            <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
-                                                            <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
+                         <div class="boxListOcaciones" v-if="listOcaciones != null">
+                              <!-- <div v-if="listOcaciones.length > 0"> -->
+                                   <div>
+                                        <div class="animationCard">
+                                             <div class="cardOcacion">
+                                                  <nuxt-link :to="`${listOcaciones[0].link}`" class="boxEye d-flex justify-content-center align-items-center">
+                                                       <img src="@/assets/images/ojos.png" class="imgEye">
+                                                  </nuxt-link>
+                                                  <picture>
+                                                       <img :src="listOcaciones[0].image" :alt="listOcaciones[0].title" class="img1">
+                                                  </picture>
+                                                  <div class="cardDetail">
+                                                       <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                            <a href="javascript:void(0)" v-on:click="addCart({id: listOcaciones[0].id, precio: listOcaciones[0].price, name: listOcaciones[0].title, photo: listOcaciones[0].image, description: listOcaciones[0].description_small,cantidad: 1})">
+                                                                 <div class="d-flex justify-content-start align-items-center">
+                                                                      <client-only>
+                                                                      <b-icon-cart3></b-icon-cart3>
+                                                                      </client-only>
+                                                                      <span>Añadir al Carrito</span>
+                                                                 </div>
+                                                            </a>
                                                        </div>
-                                                  </div>
-                                             </div>
-                                        </div>
-                                        <div>
-                                             <div class="animationCard">
-                                                  <div class="cardOcacion">
-                                                       <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
-                                                            <img src="@/assets/images/ojos.png" class="imgEye">
-                                                       </nuxt-link>
-                                                       <picture>
-                                                            <img src="@/assets/images/oca3.jpg" alt="oca1" class="img2">
-                                                       </picture>
-                                                       <div class="cardDetail">
-                                                            <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                                 <a href="javascript:void(0)"  v-on:click="addCart({id: 3, precio: 45.00, name:'Osito', description: 'kalin lin lin',photo: 'oca3.jpg', cantidad: 1})">
-                                                                      <div class="d-flex justify-content-start align-items-center">
-                                                                           <client-only>
-                                                                           <b-icon-cart3></b-icon-cart3>
-                                                                           </client-only>
-                                                                           <span>Añadir al Carrito</span>
-                                                                      </div>
-                                                                 </a>
-                                                            </div>
-                                                            <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
-                                                            <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
-                                                       </div>
+                                                       <h5>{{ listOcaciones[0].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price) }}</h5>
+                                                       <h5 class="card-price-old" v-if="listOcaciones[0].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price_old) }}</span></h5>
+                                                       <h5 v-else class="card-price-old blanco">Antes</h5>
                                                   </div>
                                              </div>
                                         </div>
                                    </div>
-                                   <div class="d-flex">
-                                        <div>
-                                             <div class="animationCard">
-                                                  <div class="cardOcacion">
-                                                       <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
-                                                            <img src="@/assets/images/ojos.png" class="imgEye">
-                                                       </nuxt-link>
-                                                       <picture>
-                                                            <img src="@/assets/images/oca4.jpg" alt="oca1" class="img3">
-                                                       </picture>
-                                                       <div class="cardDetail">
-                                                            <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                                 <a href="javascript:void(0)"  v-on:click="addCart({id: 4, precio: 23.90, name:'Chocolates Riqui', description: 'Muchos regalos ok ... o nada',photo: 'oca4.jpg', cantidad: 1})">
-                                                                      <div class="d-flex justify-content-start align-items-center">
-                                                                           <client-only>
-                                                                           <b-icon-cart3></b-icon-cart3>
-                                                                           </client-only>
-                                                                           <span>Añadir al Carrito</span>
-                                                                      </div>
-                                                                 </a>
+                                   <div>
+                                        <div class="d-flex">
+                                             <div>
+                                                  <div class="animationCard">
+                                                       <div class="cardOcacion">
+                                                            <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                                 <img src="@/assets/images/ojos.png" class="imgEye">
+                                                            </nuxt-link>
+                                                            <picture>
+                                                                 <img :src="listOcaciones[1].image" :alt="listOcaciones[1].title" class="img2">
+                                                            </picture>
+                                                            <div class="cardDetail">
+                                                                 <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                                      <a href="javascript:void(0)" v-on:click="addCart({id: listOcaciones[1].id, precio: listOcaciones[1].price, name: listOcaciones[1].title, photo: listOcaciones[1].image, description: listOcaciones[1].description_small,cantidad: 1})">
+                                                                           <div class="d-flex justify-content-start align-items-center">
+                                                                                <client-only>
+                                                                                <b-icon-cart3></b-icon-cart3>
+                                                                                </client-only>
+                                                                                <span>Añadir al Carrito</span>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                                 <h5>{{ listOcaciones[1].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price) }}</h5>
+                                                                 <h5 class="card-price-old" v-if="listOcaciones[1].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price_old) }}</span></h5>
+                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
                                                             </div>
-                                                            <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
-                                                            <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div>
+                                                  <div class="animationCard">
+                                                       <div class="cardOcacion">
+                                                            <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                                 <img src="@/assets/images/ojos.png" class="imgEye">
+                                                            </nuxt-link>
+                                                            <picture>
+                                                                 <img :src="listOcaciones[2].image" :alt="listOcaciones[2].title" class="img2">
+                                                            </picture>
+                                                            <div class="cardDetail">
+                                                                 <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                                      <a href="javascript:void(0)"  v-on:click="addCart({id: listOcaciones[2].id, precio: listOcaciones[2].price, name: listOcaciones[2].title, photo: listOcaciones[2].image, description: listOcaciones[2].description_small,cantidad: 1})">
+                                                                           <div class="d-flex justify-content-start align-items-center">
+                                                                                <client-only>
+                                                                                <b-icon-cart3></b-icon-cart3>
+                                                                                </client-only>
+                                                                                <span>Añadir al Carrito</span>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                                 <h5>{{ listOcaciones[2].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price) }}</h5>
+                                                                 <h5 class="card-price-old" v-if="listOcaciones[2].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price_old) }}</span></h5>
+                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                            </div>
                                                        </div>
                                                   </div>
                                              </div>
                                         </div>
-                                        <div>
-                                             <div class="animationCard">
-                                                  <div class="cardOcacion">
-                                                       <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
-                                                            <img src="@/assets/images/ojos.png" class="imgEye">
-                                                       </nuxt-link>
-                                                       <picture>
-                                                            <img src="@/assets/images/oca5.jpg" alt="oca1" class="img3">
-                                                       </picture>
-                                                       <div class="cardDetail">
-                                                            <div class="cardShopping d-flex justify-content-center align-items-center">
-                                                                 <a href="javascript:void(0)" v-on:click="addCart({id: 5, precio: 16.50, name:'Flores Grises', description: 'Para que te alegres un poco',photo: 'oca5.jpg', cantidad: 1})">
-                                                                      <div class="d-flex justify-content-start align-items-center">
-                                                                           <client-only>
-                                                                           <b-icon-cart3></b-icon-cart3>
-                                                                           </client-only>
-                                                                           <span>Añadir al Carrito</span>
-                                                                      </div>
-                                                                 </a>
+                                        <div class="d-flex">
+                                             <div>
+                                                  <div class="animationCard">
+                                                       <div class="cardOcacion">
+                                                            <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                                 <img src="@/assets/images/ojos.png" class="imgEye">
+                                                            </nuxt-link>
+                                                            <picture>
+                                                                 <img :src="listOcaciones[3].image" :alt="listOcaciones[3].title" class="img3">
+                                                            </picture>
+                                                            <div class="cardDetail">
+                                                                 <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                                      <a href="javascript:void(0)"  v-on:click="addCart({id: listOcaciones[3].id, precio: listOcaciones[3].price, name: listOcaciones[3].title, photo: listOcaciones[3].image, description: listOcaciones[3].description_small,cantidad: 1})">
+                                                                           <div class="d-flex justify-content-start align-items-center">
+                                                                                <client-only>
+                                                                                <b-icon-cart3></b-icon-cart3>
+                                                                                </client-only>
+                                                                                <span>Añadir al Carrito</span>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                                 <h5>{{ listOcaciones[3].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price) }}</h5>
+                                                                 <h5 class="card-price-old" v-if="listOcaciones[3].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price_old) }}</span></h5>
+                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
                                                             </div>
-                                                            <h5>Ramo Ana Lucia<br>S/ 45.00</h5>
-                                                            <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div>
+                                                  <div class="animationCard">
+                                                       <div class="cardOcacion">
+                                                            <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                                 <img src="@/assets/images/ojos.png" class="imgEye">
+                                                            </nuxt-link>
+                                                            <picture>
+                                                                 <img :src="listOcaciones[4].image" :alt="listOcaciones[4].title" class="img3">
+                                                            </picture>
+                                                            <div class="cardDetail">
+                                                                 <div class="cardShopping d-flex justify-content-center align-items-center">
+                                                                      <a href="javascript:void(0)" v-on:click="addCart({id: listOcaciones[4].id, precio: listOcaciones[4].price, name: listOcaciones[4].title, photo: listOcaciones[4].image, description: listOcaciones[4].description_small,cantidad: 1})">
+                                                                           <div class="d-flex justify-content-start align-items-center">
+                                                                                <client-only>
+                                                                                <b-icon-cart3></b-icon-cart3>
+                                                                                </client-only>
+                                                                                <span>Añadir al Carrito</span>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                                 <h5>{{ listOcaciones[4].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price) }}</h5>
+                                                                 <h5 class="card-price-old" v-if="listOcaciones[4].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price_old) }}</span></h5>
+                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                            </div>
                                                        </div>
                                                   </div>
                                              </div>
                                         </div>
                                    </div>
-                              </div>
+                              <!-- </div> -->
                          </div>
                          <div class="boxButtonTienda d-flex justify-content-center align-items-center">
-                              <button>Ver tienda</button>
+                              <button @click="irTiendaOcasion()">Ver tienda</button>
                          </div>
                     </div>
                </div>
@@ -193,20 +204,49 @@
           data() {
                return {
                     selected: null,
-                    options: [
-                         { value: null, text: '- Selecciona Ocasión -' },
-                         { value: 'a', text: 'Amor / Aniversario' },
-                         { value: 'b', text: 'Condolencias' },
-                         { value: 'c', text: 'Cumpleaños' },
-                         { value: 'c', text: 'Gracias' },
-                         { value: 'c', text: 'Nacimiento' },
-                    ]
+                    options: null,
+                    listOcaciones: null,
                }
           },
+          mounted() {
+               this.options = this.getTiendaOcasion
+               this.selected = this.getTiendaOcasion[0]
+               this.viewMostrarOcasion()
+          },
           computed: {
-               // ...mapGetters('shopping/cart/', ['totalProducts']),
+               ...mapGetters('generaldata/', ['getTiendaOcasion']),
+               ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
+               ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
+               ...mapGetters('shopping/cart/', ['getExchangeRate']),
           },
           methods: {
+               irTiendaOcasion(){
+                    this.$router.push(`tienda${this.selected.link}`)
+               },
+               getPrice(price){
+                    if (this.getTypeCurrencySymbol === 1)
+                         return price.toFixed(2)
+                    else 
+                         return (price / this.getExchangeRate).toFixed(2)
+               },
+               async viewMostrarOcasion(){
+                    let id = this.selected.id
+                    try{
+                         let sendSolicitud = await this.$axios.$get(`/special_occasion/${id}`)
+                         if ((sendSolicitud.code === 200) && (sendSolicitud.status === 1)){
+                              if (sendSolicitud.data.product_special_occasion.length > 0){
+                                   this.listOcaciones = sendSolicitud.data.product_special_occasion
+                              }else
+                                   this.listOcaciones = null
+                         }else{
+                              console.log('error')
+                         }
+                    }catch (error) {
+                         console.log(error)
+                    }finally {
+                         console.log('final')
+                    }
+               },
                addBlur(event){
                     console.log(event.target.parentElement)
                },
@@ -215,6 +255,7 @@
                },
                async addCart(objData){
                     var boxPopUp = $('.boxPopUp')
+                    // console.log(objData)
                     this.$store.commit('shopping/cart/setdataCart', objData)
                     boxPopUp.fadeIn('slow')
                } 
@@ -228,6 +269,8 @@
           background-position: 0 0
           position: relative
           z-index: 50
+          .blanco
+               color: white !important
           &:after
                content: ''
                position: absolute

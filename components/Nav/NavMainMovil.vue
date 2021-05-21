@@ -2,47 +2,32 @@
      <div class="boxMovilMainNav">
           <div class="container-fluid-nav" id="nav-1" >
                <ul class="txtUppercase">
-                    <li>
-                         <nuxt-link to="/">
-                              <span>PRINCIPAL</span>
-                         </nuxt-link>
-                    </li>
-                    <li class="daySpecial">
-                         <nuxt-link to="/">
+                    <li v-for="(items, index) in getMenuMain" :key="index">
+                         <div v-if="items.special_date === 1" class="daySpecial">
+                              <nuxt-link :to="`/fecha-especial${items.link}`">
                                    <div class="d-flex align-items-center justify-content-start">
                                         <picture class="arrow">
-                                             <img src="@/assets/images/corazon2.png" alt="DÍA DE LA MADRE" class="iconcorazon">
+                                             <img :src="'https://admin.floreriasumaq.pe/images/menus/'+items.icon" :alt="items.name" class="iconcorazon">
                                         </picture>
-                                        <span>DÍA DE LA MADRE</span>
+                                        <span>{{ items.name }}</span>
                                    </div>
-                         </nuxt-link> 
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <nuxt-link to="/">
-                                   <span>TIENDA</span>
                               </nuxt-link>
+                         </div>
+                         <div v-else-if="items.name === 'Tienda' " class="d-flex align-items-center justify-content-between">
+                              <a href="javascript:void(0)" class="w80" v-on:click="gotoMenu(1,0)">
+                                   <span>TIENDA</span>
+                              </a>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(1,0)">
                                    <picture class="arrow">
                                         <img src="@/assets/images/arrow2.png" alt="">
                                    </picture>
                               </a>
                          </div>
-                    </li>
-                    <li>
-                         <nuxt-link to="/">
-                              <span>SUSCRIPCIÓN FLORAL</span>
-                         </nuxt-link>
-                    </li>
-                    <li>
-                         <nuxt-link to="/">
-                              <span>PLAN NOVIAS</span>
-                         </nuxt-link>
-                    </li>
-                    <li>
-                         <nuxt-link to="/">
-                              <span>PLAN IT</span>
-                         </nuxt-link>
+                         <div v-else>
+                              <nuxt-link :to="`${items.link}`">
+                                   <span>{{ items.name }}</span>
+                              </nuxt-link>
+                         </div>
                     </li>
                </ul>
                <div class="boxTypeMoney">
@@ -110,94 +95,23 @@
           </div>
           <div class="container-fluid-nav" id="nav-2">
                <ul class="txtUppercase">
-                    <li>
+                    <li v-for="(tienda, index) in getTiendas" :key="index">
                          <div class="d-flex align-items-center justify-content-between">
                               <div class="d-flex align-items-center justify-content-start">
-                                   <a href="javascript:void(0)" v-on:click="gotoMenu(2,0)">
+                                   <a href="javascript:void(0)" v-on:click="gotoMenu(2,0,'')" v-if="index === 0">
                                         <picture class="arrow">
                                              <img src="@/assets/images/arrow2Prev.png" alt="">
                                         </picture>
                                    </a>
-                                   <nuxt-link to="/" class="btn-large">
-                                        <span>PLANTAs</span>
+                                   <div v-else></div>
+                                   <a href="javascript:void(0)" v-on:click="gotoMenu(2,1,tienda)" class="btn-large" v-if="tienda.sub_categorias.length > 0">
+                                        <span>{{ tienda.title }}</span>
+                                   </a>
+                                   <nuxt-link :to="`/tienda${tienda.link}`" v-else>
+                                        <span>{{ tienda.title }}</span>
                                    </nuxt-link>
                               </div>
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <div class="d-flex align-items-center justify-content-start">
-                                   <div></div>
-                                   <nuxt-link to="/" class="btn-large">
-                                        <span>Flores</span>
-                                   </nuxt-link>
-                              </div>
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <div class="d-flex align-items-center justify-content-start">
-                                   <div></div>
-                                   <nuxt-link to="/" class="btn-large">
-                                        <span>Ocasiones</span>
-                                   </nuxt-link>
-                              </div>
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <div class="d-flex align-items-center justify-content-start">
-                                   <div></div>
-                                   <nuxt-link to="/" class="btn-large">
-                                        <span>Regalos</span>
-                                   </nuxt-link>
-                              </div>
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <div class="d-flex align-items-center justify-content-start">
-                                   <div></div>
-                                   <nuxt-link to="/" class="btn-large">
-                                        <span>Eventos de flores</span>
-                                   </nuxt-link>
-                              </div>
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
-                                   <picture class="arrow">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <div class="d-flex align-items-center justify-content-start">
-                                   <div></div>
-                                   <nuxt-link to="/" class="btn-large">
-                                        <span>Postres</span>
-                                   </nuxt-link>
-                              </div>
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,1)">
+                              <a href="javascript:void(0)" v-on:click="gotoMenu(2,1,tienda)" v-if="tienda.sub_categorias.length > 0">
                                    <picture class="arrow">
                                         <img src="@/assets/images/arrow2.png" alt="">
                                    </picture>
@@ -208,91 +122,19 @@
           </div>
           <div class="container-fluid-nav" id="nav-3">
                <ul class="txtUppercase">
-                    <li>
+                    <li v-for="(tienda, index) in arrTiendas" :key="index">
                          <div class="d-flex align-items-center justify-content-between">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(3,1)">
+                              <a href="javascript:void(0)" v-on:click="gotoMenu(3,1,'')" v-if="index===0">
                                    <picture class="arrow2 arrow3">
                                         <img src="@/assets/images/arrow2.png" alt="">
                                    </picture>
                               </a>
-                              <nuxt-link to="/">
-                                   <span>Anturios</span>
+                              <div v-else></div>
+                              <nuxt-link :to="`/tienda${tienda.link}`">
+                                   <span>{{ tienda.title }}</span>
                               </nuxt-link>
                          </div>
                     </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(3,1)">
-                                   <picture class="arrow2 arrow3">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/">
-                                   <span>kokedamas</span>
-                              </nuxt-link>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(3,1)">
-                                   <picture class="arrow2 arrow3">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/">
-                                   <span>Orquideas</span>
-                              </nuxt-link>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(3,1)">
-                                   <picture class="arrow2 arrow3">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/">
-                                   <span>PLantas de Exterior</span>
-                              </nuxt-link>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(3,1)">
-                                   <picture class="arrow2 arrow3">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/">
-                                   <span>PLantas de Interior</span>
-                              </nuxt-link>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(3,1)">
-                                   <picture class="arrow2 arrow3">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/">
-                                   <span>Suculentas</span>
-                              </nuxt-link>
-                         </div>
-                    </li>
-                    <li>
-                         <div class="d-flex align-items-center justify-content-between">
-                              <a href="javascript:void(0)" v-on:click="gotoMenu(3,1)">
-                                   <picture class="arrow2 arrow3">
-                                        <img src="@/assets/images/arrow2.png" alt="">
-                                   </picture>
-                              </a>
-                              <nuxt-link to="/">
-                                   <span>Ver todas las Plantas</span>
-                              </nuxt-link>
-                         </div>
-                    </li>
-                    
                </ul>
           </div>
      </div>
@@ -315,11 +157,18 @@ export default {
      components: {
           IconWhatsapp
      },
+     data(){
+          return {
+               arrTiendas: null
+          }
+     },
      mounted () {
      },
      computed: {
           ...mapGetters('shopping/cart/', ['totalProducts']),
           ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
+          ...mapGetters('menu/', ['getMenuMain']),
+          ...mapGetters('generaldata/', ['getTiendas']),
           
      },
      methods : {
@@ -334,11 +183,14 @@ export default {
                     
                }
           },
-          gotoMenu(id,direction){
+          gotoMenu(id,direction,arr){
                const nav1 = $("#nav-1")
                const nav2 = $("#nav-2")
                const nav3 = $("#nav-3")
                let tlNav = gsap.timeline()
+               console.log(id)
+               console.log(direction)
+               console.log(arr)
                if ( id === 1 ) {
                     if (direction === 0){
                          tlNav
@@ -350,6 +202,8 @@ export default {
                }
                if ( id === 2 ) {
                     if (direction === 1){
+                         this.arrTiendas = arr.sub_categorias
+                         console.log(this.arrTiendas)
                          tlNav
                               .set(nav3, {x: "100%"})
                               .to(nav2,{ duration: 1, x: "-100%", ease:Power4.easeInOut})
@@ -376,6 +230,8 @@ export default {
 }
 </script>
 <style lang="sass" >
+     .w80
+          width: 80% !important
      #nav-1
           ul
                li
@@ -385,6 +241,8 @@ export default {
           ul
                li
                     > div
+                         .blanco
+                              border: 0px solid red
                          a
                               &:first-child
                                    border-left: 0px solid $grayDark8
@@ -548,6 +406,8 @@ export default {
                li
                     border-bottom: 1px solid $grayDark8
                     padding: 0 0px
+                    
+
                     &:first-child
                          a
                               padding-top: 1rem 
@@ -562,7 +422,7 @@ export default {
                          &.arrow3
                               img
                                    transform: scaleX(-1)
-                    &.daySpecial
+                    > .daySpecial
                          span
                               padding-top: .5rem
                               color: $pinkLight2

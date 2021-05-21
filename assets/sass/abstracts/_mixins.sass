@@ -41,9 +41,9 @@
           @media screen and (min-width: 992px)
                margin: 0 .35rem
           @media screen and (min-width: 1200px)
-               margin: 0 .65rem
+               margin: 0rem
           @media screen and (min-width: 1400px)
-               margin: 0 1rem
+               margin: 0rem
           .icon-chevron-down
                position: absolute
                bottom: -14px
@@ -204,6 +204,7 @@
                     h2
                          @include font-libre(.875rem,.875rem,.75rem,.75rem,$Montserrat,600,$grayDark9)
                          text-align: left
+                         text-transform: uppercase
                .cardPriceOld
                     padding: .15rem 0 0rem 0
                     margin: auto
@@ -297,7 +298,7 @@
                     height: 270px
                     overflow: scroll
                @media screen and (min-width: 1400px)
-                    height: 408px
+                    height: 320px
           table
                thead
                     th
@@ -309,7 +310,7 @@
                          &:last-child
                               padding-right: 4rem
                tr
-                    @include font-libre(0.75rem,0.75rem, 0.75rem,0.65rem,$Montserrat,600,$grayDark17)
+                    @include font-libre(0.75rem,0.75rem, 0.75rem,0.5rem,$Montserrat,600,$grayDark17)
                tbody
                     td
                          padding: 1rem .75rem .75rem .75rem
@@ -317,12 +318,34 @@
                               padding: 1rem .25rem .75rem .25rem
                          @media screen and (min-width: 1400px)
                               padding: 2rem .25rem .75rem .25rem
+                        
                          &.verticalCenter
                               padding-top: 2.15rem
                               @media screen and (min-width: 992px)
                                    padding-top: 2.15rem
+                         &:nth-child(2)
+                              p
+                                   @media screen and (min-width: 1200px)
+                                        width: 280px
+                         &:nth-child(3)
+                              p
+                                   width: 60px
+                                   @media screen and (min-width: 992px)
+                                        width: auto
+                                   
                          &:last-child
                               padding-right: 4rem
+                              @media screen and (min-width: 992px)
+                                   padding-left: 1.5rem
+                              @media screen and (min-width: 1200px)
+                                   padding-left: .9rem
+                              p
+                                   width: 60px
+                                   @media screen and (min-width: 992px)
+                                        width: auto
+                                   @media screen and (min-width: 1200px)
+                                        width: 80px
+
                          .boxCantidadProducto
                               width: 100%
                               border: 1px solid $brown
@@ -369,8 +392,8 @@
                                    width: auto
                          picture
                               &.imgProduct
-                                   width: 50px
-                                   height: 59px
+                                   width: 40px
+                                   height: 50px
                                    border-radius: 10px
                                    display: block
                                    overflow: hidden
@@ -378,9 +401,9 @@
                                    @media screen and (min-width: 992px)
                                         width: 70px
                                         height: 83px
-                                   @media screen and (min-width: 1400px)
-                                        width: 114px
-                                        height: 135px
+                                   // @media screen and (min-width: 1400px)
+                                   //      width: 114px
+                                   //      height: 135px
                                    img
                                         width: 100%
                                         object-fit: cover
@@ -391,15 +414,15 @@
                                    display: inline-block
                                    @media screen and (min-width: 992px)
                                         margin-top: 33px
-                                   @media screen and (min-width: 1400px)
-                                        margin-top: 50px
+                                   // @media screen and (min-width: 1400px)
+                                   //      margin-top: 50px
                                    picture
                                         img
                                              width: 14px
                                              @media screen and (min-width: 992px)
                                                   width: 18px    
-                                             @media screen and (min-width: 1400px)  
-                                                  width: 29px   
+                                             // @media screen and (min-width: 1400px)  
+                                             //      width: 29px   
                          p
                               @include font-libre(0.75rem,0.75rem, 0.75rem,0.65rem,$Montserrat,500,$grayDark17)
     

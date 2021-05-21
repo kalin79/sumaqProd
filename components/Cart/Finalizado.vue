@@ -203,22 +203,22 @@ export default {
                if (this.getTypeCurrencySymbol === 1)
                     return total.toFixed(2)
                else
-                    return (total * this.getExchangeRate).toFixed(2)
+                    return (total / this.getExchangeRate).toFixed(2)
           },
           
           dameSubMontoTotal(){
                if (this.getTypeCurrencySymbol === 1)
                     return this.subMontoTotal.toFixed(2)
                else
-                    return (this.subMontoTotal * this.getExchangeRate).toFixed(2)
+                    return (this.subMontoTotal / this.getExchangeRate).toFixed(2)
           },
      },
      methods: {
-           getPrice(price){
+          getPrice(price){
                if (this.getTypeCurrencySymbol === 1)
                     return price.toFixed(2)
                else 
-                    return (price*this.getExchangeRate).toFixed(2)
+                    return (price / this.getExchangeRate).toFixed(2)
           },
      },
 }

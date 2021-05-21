@@ -21,6 +21,7 @@
      </div>
 </template>
 <script>
+
 import BannerHome from '@/components/Banner/Home'
 import Categorias from '@/components/Home/CategoriasCarrusel'
 import Destacados from '@/components/Home/Destacados'
@@ -41,6 +42,7 @@ gsap.core.globals("ScrollTrigger", ScrollTrigger)
 
 
 export default {
+     middleware: ['datageneral'],
      components: {
           BannerHome,
           Destacados,
@@ -49,6 +51,24 @@ export default {
           Beneficios,
           Planes,
           Blog,
+     },
+     async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
+          try {
+               res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
+               // console.log(res)
+               if ((res.code === 200) && (res.status === 1)){
+                    store.commit('menu/setMenuMain', res.data)
+               }else{
+                    console.log('error await')
+               }
+          }catch (error) {
+               console.log(error)
+          }
+     },
+     data(){
+          return {
+               
+          }
      },
      head () {
           return {
@@ -83,6 +103,19 @@ export default {
      },
      mounted () {
           //this.animationScrollDown()
+          // try {
+          //      return this.$axios.get('home')
+          //      .then(res => {
+          //           console.log(res)
+          //           return {
+          //                data: res
+          //           }
+          //      }) 
+          // }catch(e){
+          //      console.log(e)
+          // }finally{
+          //      console.log('fin')
+          // }
      },
      methods : {
          animationScrollDown(){

@@ -31,14 +31,12 @@
                                                             <div class="d-flex justify-content-start align-items-start">
                                                                  <div class="boxPicture">
                                                                       <picture class="imgProduct">
-                                                                           <img :src="require(`@/assets/images/${item.photo}`)" alt="ocacion">
+                                                                           <img :src="item.photo" alt="ocacion">
                                                                       </picture>
                                                                  </div>
                                                                  <div class="descriptionTable">
                                                                       <h3>{{ item.name }}</h3>
-                                                                      <p>
-                                                                           {{ item.description }}
-                                                                      </p>
+                                                                      <p v-html="item.description"></p>
                                                                  </div>
                                                             </div>
                                                             <div class="d-flex justify-content-center align-items-start">
@@ -105,13 +103,13 @@ export default {
                if (this.getTypeCurrencySymbol === 1)
                     return price.toFixed(2)
                else 
-                    return (price*this.getExchangeRate).toFixed(2)
+                    return (price / this.getExchangeRate).toFixed(2)
           },
           montoTotal(monto, cantidad){
                if (this.getTypeCurrencySymbol === 1)
                     return (monto*cantidad).toFixed(2)
                else
-                    return ((monto*cantidad)*this.getExchangeRate).toFixed(2)
+                    return ((monto*cantidad) / this.getExchangeRate).toFixed(2)
           },
           closePreviewShopping(){
                var boxPopUp = $('.boxPopUp')

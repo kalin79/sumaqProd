@@ -168,7 +168,7 @@
                                                   <div class="d-flex justify-content-start align-items-start">
                                                        <div class="boxPicture">
                                                             <picture>
-                                                                 <img :src="require(`@/assets/images/${item.photo}`)" alt="ocacion">
+                                                                 <img :src="item.photo" alt="ocacion">
                                                             </picture>
                                                             <div class="boxCantidad">
                                                                  <p>{{ item.cantidad }}</p>
@@ -190,9 +190,13 @@
                                                        <h3>Subtotal</h3>
                                                        <h3>{{ getCurrencySymbol }} {{ dameSubMontoTotal }}</h3>
                                                   </div>
+                                                  <!-- <div class="mb-2 d-flex justify-content-between align-items-start">
+                                                       <h3>Impuesto (18%)</h3>
+                                                       <h3>{{ getCurrencySymbol }} {{ getImpuesto }}</h3>
+                                                  </div> -->
                                                   <div class="pb-4 d-flex justify-content-between align-items-start">
                                                        <h3>Costo por Delivery</h3>
-                                                       <h3>{{ getCurrencySymbol }} 30</h3>
+                                                       <h3>{{ getCurrencySymbol }} {{ getPrice(dataCart.cargoDelivery) }}</h3>
                                                   </div>
                                              </div>
                                              <div class="rowCosto mt-3">
@@ -226,6 +230,12 @@ gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(CSSRulePlugin)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
 export default {
+     data(){
+          return{
+               impuesto: 0,
+               igv: 0.18,
+          }
+     },
      computed: {
           ...mapGetters('shopping/cart/', ['subMontoTotal']),
           ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
@@ -247,27 +257,37 @@ export default {
                     return 'Nombre completo'
           },
           dameTotal(){
-               let igv = 0.18
-               let total = this.subMontoTotal + this.subMontoTotal*igv + this.priceDelivery
+               // let total = this.subMontoTotal + this.subMontoTotal * this.igv + this.dataCart.cargoDelivery
+               let total = this.subMontoTotal + this.dataCart.cargoDelivery
                if (this.getTypeCurrencySymbol === 1)
                     return total.toFixed(2)
                else
-                    return (total * this.getExchangeRate).toFixed(2)
+                    return (total / this.getExchangeRate).toFixed(2)
           },
           
           dameSubMontoTotal(){
                if (this.getTypeCurrencySymbol === 1)
                     return this.subMontoTotal.toFixed(2)
                else
-                    return (this.subMontoTotal * this.getExchangeRate).toFixed(2)
+                    return (this.subMontoTotal / this.getExchangeRate).toFixed(2)
+          },
+          getImpuesto(){
+               let impuesto =  0
+               if (this.getTypeCurrencySymbol === 1){
+                    impuesto =  this.subMontoTotal * this.igv
+                    return impuesto.toFixed(2)
+               }else{
+                    impuesto =  (this.subMontoTotal / this.getExchangeRate)  * this.igv
+                    return impuesto.toFixed(2)
+               }
           },
      },
      methods: {
-           getPrice(price){
+          getPrice(price){
                if (this.getTypeCurrencySymbol === 1)
                     return price.toFixed(2)
                else 
-                    return (price*this.getExchangeRate).toFixed(2)
+                    return (price / this.getExchangeRate).toFixed(2)
           },
      },
 }

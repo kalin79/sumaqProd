@@ -34,77 +34,17 @@
                          :mouse-drag="true"
                          :touchDrag="true"
                          >
-                              <slide>
-                                   <nuxt-link to="/">
+                              <slide v-for="(tienda, index) in getTiendas" :key="index">
+                                   <nuxt-link :to="`/tienda${tienda.link}`">
                                         <div class="cardCarrsuel">
                                              <picture>
-                                                  <img src="@/assets/images/cat1.jpg" alt="Categoria" />
+                                                  <img :src="tienda.poster" :alt="tienda.title" />
                                              </picture>
                                              <div class="cardTitle">
-                                                  <h2>Flores</h2>
+                                                  <h2>{{ tienda.title }}</h2>
                                              </div>
                                              <div class="cardDescription">
-                                                  <p>Anturios, Girasoles, Margaritas</p>
-                                             </div>
-                                        </div>
-                                   </nuxt-link>
-                              </slide>
-                              <slide>
-                                   <nuxt-link to="/">
-                                        <div class="cardCarrsuel">
-                                             <picture>
-                                                  <img src="@/assets/images/cat2.jpg" alt="Categoria" />
-                                             </picture>
-                                             <div class="cardTitle">
-                                                  <h2>Postres</h2>
-                                             </div>
-                                             <div class="cardDescription">
-                                                  <p>Brownies, Tortas, Helados</p>
-                                             </div>
-                                        </div>
-                                   </nuxt-link>
-                              </slide>
-                              <slide>
-                                   <nuxt-link to="/">
-                                        <div class="cardCarrsuel">
-                                             <picture>
-                                                  <img src="@/assets/images/cat3.jpg" alt="Categoria" />
-                                             </picture>
-                                             <div class="cardTitle">
-                                                  <h2>Regalos</h2>
-                                             </div>
-                                             <div class="cardDescription">
-                                                  <p>Peluches, Cerámiscas, Globos</p>
-                                             </div>
-                                        </div>
-                                   </nuxt-link>
-                              </slide>
-                              <slide>
-                                   <nuxt-link to="/">
-                                        <div class="cardCarrsuel">
-                                             <picture>
-                                                  <img src="@/assets/images/cat4.jpg" alt="Categoria" />
-                                             </picture>
-                                             <div class="cardTitle">
-                                                  <h2>Eventos Florales</h2>
-                                             </div>
-                                             <div class="cardDescription">
-                                                  <p>Novios, Corporativos, Quinceañeros</p>
-                                             </div>
-                                        </div>
-                                   </nuxt-link>
-                              </slide>
-                              <slide>
-                                   <nuxt-link to="/">
-                                        <div class="cardCarrsuel">
-                                             <picture>
-                                                  <img src="@/assets/images/cat5.jpg" alt="Categoria" />
-                                             </picture>
-                                             <div class="cardTitle">
-                                                  <h2>Plantas</h2>
-                                             </div>
-                                             <div class="cardDescription">
-                                                  <p>Anturios, Kokedamas, Orquídeas</p>
+                                                  <p>{{ tienda.title }}</p>
                                              </div>
                                         </div>
                                    </nuxt-link>
@@ -116,11 +56,14 @@
      </div>
 </template>
 <script>
-
+import { mapMutations, mapState, mapGetters } from 'vuex'
 export default {
      mounted() {
           // $('.VueCarousel-navigation button').attr('value','asd')
                // this.slides.push({image: 'https://d3e3r3101xvs9k.cloudfront.net/ProductOriginalPhotos/8_Rosas_y_Mini_rosas_en_Jarron_principal11.jpg'})
+     },
+     computed: {
+          ...mapGetters('generaldata/', ['getTiendas']),
      },
 }
 </script>

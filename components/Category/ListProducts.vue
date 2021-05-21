@@ -23,99 +23,31 @@
           <div class="container-fluid container-fluid-xxl">
                <div class="boxProducts">
                     <div class="d-flex align-items-stretch justify-content-start flex-wrap">
-                         <div class="box-item-product">
+                         <div class="box-item-product" v-for="(product, index) in getProducts" :key="index">
                               <div class="cardBox">
                                    <div class="cardImage">
                                         <picture>
-                                             <img src="~/assets/images/producto1.jpg" alt="">
+                                             <img :src="product.image" :alt="product.title">
                                         </picture>
-                                        <nuxt-link to="/" class="CartText">
+                                        <a href="javascript:void(0)" class="CartText" v-on:click="addCart({id: product.id, precio: product.price, name: product.title, photo: product.image, description: product.title,cantidad: 1})">
                                              <p>Agregar al carrito</p>
-                                        </nuxt-link>
+                                        </a>
                                    </div>
                                    <div class="cardDetail">
                                         <div class="cardTitle">
-                                             <h2>TORTAS</h2>
+                                             <h2>{{ getDataCategoryNivel1.title }}</h2>
                                         </div>
                                         <div class="cardPrice">
-                                             <h3>Eclairs<br> S./ 123.90</h3>
+                                             <h3>{{ product.title }}<br> {{ getCurrencySymbol }} {{ getPrice(product.price) }}</h3>
                                         </div>
                                         <div class="cardPriceOld">
-                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
+                                             <h5 class="card-price-old" v-if="product.price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(product.price) }}</span></h5>
+                                             <h5 v-else class="card-price-old blanco">Antes</h5>
                                         </div>
                                    </div>
                               </div>
                          </div>
-                         <div class="box-item-product">
-                              <div class="cardBox">
-                                   <div class="cardImage">
-                                        <picture>
-                                             <img src="~/assets/images/producto2.jpg" alt="">
-                                        </picture>
-                                        <nuxt-link to="/" class="CartText">
-                                             <p>Agregar al carrito</p>
-                                        </nuxt-link>
-                                   </div>
-                                   <div class="cardDetail">
-                                        <div class="cardTitle">
-                                             <h2>TORTAS</h2>
-                                        </div>
-                                        <div class="cardPrice">
-                                             <h3>Eclairs<br> S./ 123.90</h3>
-                                        </div>
-                                        <div class="cardPriceOld">
-                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="box-item-product">
-                              <div class="cardBox">
-                                   <div class="cardImage">
-                                        <picture>
-                                             <img src="~/assets/images/producto3.jpg" alt="">
-                                        </picture>
-                                        <nuxt-link to="/" class="CartText">
-                                             <p>Agregar al carrito</p>
-                                        </nuxt-link>
-                                   </div>
-                                   <div class="cardDetail">
-                                        <div class="cardTitle">
-                                             <h2>TORTAS</h2>
-                                        </div>
-                                        <div class="cardPrice">
-                                             <h3>Eclairs<br> S./ 123.90</h3>
-                                        </div>
-                                        <div class="cardPriceOld">
-                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="box-item-product">
-                              <div class="cardBox">
-                                   <div class="cardImage">
-                                        <picture>
-                                             <img src="~/assets/images/producto4.jpg" alt="">
-                                        </picture>
-                                        <nuxt-link to="/" class="CartText">
-                                             <p>Agregar al carrito</p>
-                                        </nuxt-link>
-                                   </div>
-                                   <div class="cardDetail">
-                                        <div class="cardTitle">
-                                             <h2>TORTAS</h2>
-                                        </div>
-                                        <div class="cardPrice">
-                                             <h3>Eclairs<br> S./ 123.90</h3>
-                                        </div>
-                                        <div class="cardPriceOld">
-                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="box-item-product doble ">
+                         <!-- <div class="box-item-product doble ">
                               <nuxt-link to="/" class="cardBox CardBoxBanner">
                                    <div class="cardImage ">
                                         <picture>
@@ -123,116 +55,24 @@
                                         </picture>
                                    </div>
                               </nuxt-link>
-                         </div>
-                         <div class="box-item-product">
-                              <div class="cardBox">
-                                   <div class="cardImage">
-                                        <picture>
-                                             <img src="~/assets/images/producto5.jpg" alt="">
-                                        </picture>
-                                        <nuxt-link to="/" class="CartText">
-                                             <p>Agregar al carrito</p>
-                                        </nuxt-link>
-                                   </div>
-                                   <div class="cardDetail">
-                                        <div class="cardTitle">
-                                             <h2>TORTAS</h2>
-                                        </div>
-                                        <div class="cardPrice">
-                                             <h3>Eclairs<br> S./ 123.90</h3>
-                                        </div>
-                                        <div class="cardPriceOld">
-                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="box-item-product">
-                              <div class="cardBox">
-                                   <div class="cardImage">
-                                        <picture>
-                                             <img src="~/assets/images/producto6.jpg" alt="">
-                                        </picture>
-                                        <nuxt-link to="/" class="CartText">
-                                             <p>Agregar al carrito</p>
-                                        </nuxt-link>
-                                   </div>
-                                   <div class="cardDetail">
-                                        <div class="cardTitle">
-                                             <h2>TORTAS</h2>
-                                        </div>
-                                        <div class="cardPrice">
-                                             <h3>Eclairs<br> S./ 123.90</h3>
-                                        </div>
-                                        <div class="cardPriceOld">
-                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="box-item-product">
-                              <div class="cardBox">
-                                   <div class="cardImage">
-                                        <picture>
-                                             <img src="~/assets/images/producto7.jpg" alt="">
-                                        </picture>
-                                        <nuxt-link to="/" class="CartText">
-                                             <p>Agregar al carrito</p>
-                                        </nuxt-link>
-                                   </div>
-                                   <div class="cardDetail">
-                                        <div class="cardTitle">
-                                             <h2>TORTAS</h2>
-                                        </div>
-                                        <div class="cardPrice">
-                                             <h3>Eclairs<br> S./ 123.90</h3>
-                                        </div>
-                                        <div class="cardPriceOld">
-                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         <div class="box-item-product">
-                              <div class="cardBox">
-                                   <div class="cardImage">
-                                        <picture>
-                                             <img src="~/assets/images/producto8.jpg" alt="">
-                                        </picture>
-                                        <nuxt-link to="/" class="CartText">
-                                             <p>Agregar al carrito</p>
-                                        </nuxt-link>
-                                   </div>
-                                   <div class="cardDetail">
-                                        <div class="cardTitle">
-                                             <h2>TORTAS</h2>
-                                        </div>
-                                        <div class="cardPrice">
-                                             <h3>Eclairs<br> S./ 123.90</h3>
-                                        </div>
-                                        <div class="cardPriceOld">
-                                             <h5 class="card-price-old">Antes: <span>S/ 99.00</span></h5>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
+                         </div> -->
                     </div>
                </div>
                <div class="boxPagination">
                     <div class="d-flex justify-content-center align-items-center">
-                         <a href="javascript:void(0)">
+                         <a href="javascript:void(0)" @click="prevPage()" v-bind:class="getPagination.current_page === 1 ? 'disabled': ''">
                               <client-only>
                               <b-icon-chevron-left></b-icon-chevron-left>
                               </client-only>
                          </a>
                          <div class="boxNumberPage">
                               <div class="d-flex justify-content-between align-items-center">
-                                   <div>2</div>
+                                   <div>{{ getPagination.current_page }}</div>
                                    <div>de</div>
-                                   <div>23</div>
+                                   <div>{{ getPagination.last_page }}</div>
                               </div>
                          </div>
-                         <a href="javascript:void(0)">
+                         <a href="javascript:void(0)" @click="nextPage()" v-bind:class="getPagination.current_page === getPagination.last_page ? 'disabled': ''">
                               <client-only>
                               <b-icon-chevron-right></b-icon-chevron-right>
                               </client-only>
@@ -243,11 +83,44 @@
      </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
+     props: ['getProducts'],
      data() {
           return {
                price: null 
           }
+     },
+     computed: {
+          ...mapGetters('generaldata/', ['getTiendaOcasion']),
+          ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
+          ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
+          ...mapGetters('shopping/cart/', ['getExchangeRate']),
+          ...mapGetters('products/', ['getPagination']),
+          ...mapGetters('products/', ['getDataCategoryNivel1']),
+     },
+     methods: {
+          // ...mapActions('products/',['updateProducts']),
+          prevPage(){
+               this.$store.commit('products/setUpdateCurrentPage', (this.getPagination.current_page - 1)) 
+               this.$store.dispatch('products/updateProducts')
+          },
+          nextPage(){
+              this.$store.commit('products/setUpdateCurrentPage', (this.getPagination.current_page + 1))
+              this.$store.dispatch('products/updateProducts')
+          },
+          getPrice(price){
+               if (this.getTypeCurrencySymbol === 1)
+                    return price.toFixed(2)
+               else 
+                    return (price / this.getExchangeRate).toFixed(2)
+          },
+          async addCart(objData){
+               var boxPopUp = $('.boxPopUp')
+               // console.log(objData)
+               this.$store.commit('shopping/cart/setdataCart', objData)
+               boxPopUp.fadeIn('slow')
+          } 
      }
 }
 </script>
@@ -259,6 +132,8 @@ export default {
                padding-bottom: 5rem
           @media screen and (min-width: 1200px)
                padding-bottom: 8rem
+          .blanco
+               color: white !important
           .boxVector
                position: absolute
                display: none
@@ -394,6 +269,10 @@ export default {
                          border-radius: 50%
                          position: relative
                          transition: .5s ease background
+                         &.disabled
+                              pointer-events: none
+                              cursor: default
+                              opacity: 0.6
                          &:hover
                               background: $pinkLight
                          svg

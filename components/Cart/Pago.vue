@@ -21,9 +21,23 @@
                                              </div>
                                              <div class="row mb-3 mt-3">
                                                   <div class="col">
-                                                       <ValidationProvider tag="div" vid="email" rules="required|email" name="correo electrónico" v-slot="{ errors, validated }" >
+                                                       <ValidationProvider tag="div" vid="contactoNombre" rules="required" name="Nombre Completo" v-slot="{ errors, validated }" >
                                                             <b-form-input
-                                                                 v-model="form.email"
+                                                                 v-model="form.contactoNombre"
+                                                                 autocomplete="off"
+                                                                 type="text"
+                                                                 :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
+                                                                 placeholder="Nombre Completo"
+                                                            ></b-form-input>
+                                                            <div class="error-input">{{ errors[0] }}</div>
+                                                       </ValidationProvider>
+                                                  </div>
+                                             </div>
+                                             <div class="row mb-3 mt-3" id="BoxHourAndDay">
+                                                  <div class="col">
+                                                       <ValidationProvider tag="div" vid="contactoEmail" rules="required|email" name="correo electrónico" v-slot="{ errors, validated }" >
+                                                            <b-form-input
+                                                                 v-model="form.contactoEmail"
                                                                  autocomplete="off"
                                                                  type="text"
                                                                  :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
@@ -33,11 +47,11 @@
                                                        </ValidationProvider>
                                                   </div>
                                              </div>
-                                             <div class="row mb-3 mt-3">
+                                             <div class="row mb-3 mt-3" >
                                                   <div class="col">
-                                                       <ValidationProvider tag="div" vid="celular" rules="required" name="celular" v-slot="{ errors, validated }" >
+                                                       <ValidationProvider tag="div" vid="contactoCelular" rules="required" name="celular" v-slot="{ errors, validated }" >
                                                             <b-form-input
-                                                                 v-model="form.celular"
+                                                                 v-model="form.contactoCelular"
                                                                  autocomplete="off"
                                                                  type="text"
                                                                  :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
@@ -47,7 +61,7 @@
                                                        </ValidationProvider>
                                                   </div>
                                              </div>
-                                             <div class="row mb-3 mt-3">
+                                             <div class="row mb-3 mt-3" >
                                                   <div class="col">
                                                        <div class="boxTitle">
                                                             <h2>Fecha y hora de envío:</h2>
@@ -57,13 +71,13 @@
                                                                  <div class="cbxHorario d-flex justify-content-center align-items-center" v-on:click="timeDelivery">
                                                                       <div class="d-flex justify-content-start align-items-center">
                                                                            <img src="@/assets/images/horario.png" class="imgIcon" />
-                                                                           <span v-if="CalendarValue!=null">{{ CalendarValue }}</span>
+                                                                           <span v-if="dataCart.fecha !=null">{{ dataCart.fecha }}</span>
                                                                            <span v-else>Fecha</span>
                                                                       </div>
                                                                       <div class="lineSeparate"></div>
                                                                       <div class="d-flex justify-content-start align-items-center">
                                                                            <img src="@/assets/images/hora.png" class="imgIcon"/>
-                                                                           <span v-if="selectedDeliveryTime!=null">{{ selectedDeliveryTime }}</span>
+                                                                           <span v-if="dataCart.hora !=null">{{ dataCart.hora }}</span>
                                                                            <span v-else>Hora</span>
                                                                       </div>
                                                                       <img src="@/assets/images/arrowCbx2.png" class="arrowIcon">
@@ -89,13 +103,15 @@
                                                                       <div class="tab-content d-flex justify-content-center">
                                                                            <section id="tab-item-1" class="active">
                                                                                 <!-- <client-side> -->
-                                                                                <b-calendar v-model="CalendarValue" :min="minDate.toISOString()" :date-disabled-fn="dateDisabled" locale="es-Es"></b-calendar>
+                                                                                <b-calendar v-model="CalendarValue" @selected="setDaySelect()" :min="minDate.toISOString()" :date-disabled-fn="dateDisabled" locale="es-Es"></b-calendar>
                                                                                 <!-- </client-side> -->
                                                                            </section>
                                                                            <section id="tab-item-2" >
                                                                                 <div class="contentItem">
-                                                                                     <div class="form-check" v-for="(item, index) in DeliveryTimes" :key="index" v-bind:class="{'disabled' : item.notEnabled === 'disabled'}">
+                                                                                     <div v-for="(item, index) in DeliveryTimes" :key="index">
+                                                                                     <div class="form-check" @change="setHourSelect(item)" v-bind:class="{'disabled' : item.notEnabled === 'disabled'}">
                                                                                           <b-form-radio v-model="selectedDeliveryTime" :value="item.value" :disabled="item.notEnabled">{{ item.value }}</b-form-radio>
+                                                                                     </div>
                                                                                      </div>
                                                                                 </div>
                                                                            </section>
@@ -116,9 +132,9 @@
                                                                       <b-card-body>
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col-12 col-lg-6">
-                                                                                     <ValidationProvider tag="div" vid="nombre" rules="required" name="nombre" v-slot="{ errors, validated }" >
+                                                                                     <ValidationProvider tag="div" vid="recepcionaNombres" rules="required" name="nombre" v-slot="{ errors, validated }" >
                                                                                           <b-form-input
-                                                                                               v-model="form.nombres"
+                                                                                               v-model="form.recepcionaNombres"
                                                                                                autocomplete="off"
                                                                                                type="text"
                                                                                                :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
@@ -128,9 +144,9 @@
                                                                                      </ValidationProvider>
                                                                                 </div>
                                                                                 <div class="col-12 col-lg-6 mt-3 mt-lg-0">
-                                                                                     <ValidationProvider tag="div" vid="apellidos" rules="required" name="apellidos" v-slot="{ errors, validated }" >
+                                                                                     <ValidationProvider tag="div" vid="recepcionaApellidos" rules="required" name="apellidos" v-slot="{ errors, validated }" >
                                                                                           <b-form-input
-                                                                                               v-model="form.apellidos"
+                                                                                               v-model="form.recepcionaApellidos"
                                                                                                autocomplete="off"
                                                                                                type="text"
                                                                                                :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
@@ -143,16 +159,16 @@
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col-12 col-lg-6">
                                                                                      <b-form-input
-                                                                                          v-model="form.dni"
+                                                                                          v-model="form.recepcionaDni"
                                                                                           autocomplete="off"
                                                                                           type="text"
                                                                                           placeholder="DNI (opcional)"
                                                                                      ></b-form-input>
                                                                                 </div>
                                                                                 <div class="col-12 col-lg-6 mt-3 mt-lg-0">
-                                                                                     <ValidationProvider tag="div" vid="celularEnvio" rules="required" name="celular" v-slot="{ errors, validated }" >
+                                                                                     <ValidationProvider tag="div" vid="recepcionaCelular" rules="required" name="celular" v-slot="{ errors, validated }" >
                                                                                           <b-form-input
-                                                                                               v-model="form.celularEnvio"
+                                                                                               v-model="form.recepcionaCelular"
                                                                                                autocomplete="off"
                                                                                                type="text"
                                                                                                :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
@@ -164,10 +180,10 @@
                                                                            </div>
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
-                                                                                     <ValidationProvider tag="div" vid="direccion" rules="required" name="direccion" v-slot="{ errors, validated }" >
+                                                                                     <ValidationProvider tag="div" vid="recepcionaDireccion" rules="required" name="direccion" v-slot="{ errors, validated }" >
                                                                                           <b-form-input
                                                                                                id= "location"
-                                                                                               v-model="form.direccion"
+                                                                                               v-model="form.recepcionaDireccion"
                                                                                                autocomplete="off"
                                                                                                type="text"
                                                                                                :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
@@ -177,29 +193,12 @@
                                                                                           ></b-form-input>
                                                                                           <div class="error-input">{{ errors[0] }}</div>
                                                                                      </ValidationProvider>
-                                                                                     <!-- <div>
-                                                                                          <input id= "location" type= "text" class="form-control" placeholder= "Escribe tu direccion" v-model="city" @input="autoComplete()" v-on:keyup.enter="onKeyUpEnterCompleteSearch()"  />
-                                                                                     </div> -->
                                                                                 </div>
                                                                            </div>
-                                                                           <!-- <div class="row mb-3 mt-3">
-                                                                                <div class="col">
-                                                                                     
-                                                                                     <ValidationProvider tag="div" vid="direccion" rules="required" name="direccion" v-slot="{ errors, validated }" >
-                                                                                          <b-form-input
-                                                                                               
-                                                                                               type="text"
-                                                                                               :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
-                                                                                               placeholder="Dirección"
-                                                                                          ></b-form-input>
-                                                                                          <div class="error-input">{{ errors[0] }}</div>
-                                                                                     </ValidationProvider>
-                                                                                </div>
-                                                                           </div> -->
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
                                                                                      <b-form-input
-                                                                                          v-model="form.referencia"
+                                                                                          v-model="form.recepcionaReferencia"
                                                                                           autocomplete="off"
                                                                                           type="text"
                                                                                           placeholder="Referencia (opcional)"
@@ -210,7 +209,7 @@
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
                                                                                      <b-form-input
-                                                                                          v-model="form.postalCodeMaps"
+                                                                                          v-model="form.recepcionaPostalCodeMaps"
                                                                                           autocomplete="off"
                                                                                           type="text"
                                                                                           placeholder="Codido Postal (opcional)"
@@ -246,13 +245,11 @@
                                                                            </div>
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
-                                                                                     <ValidationProvider tag="div" vid="distrito" rules="required" name="distrito" v-slot="{ errors, validated }" >
-                                                                                          <b-form-select 
-                                                                                               :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
-                                                                                               v-model="selectDistrito" :options="distritos" @change="costoDelivery">
-                                                                                          </b-form-select>
-                                                                                          <div class="error-input">{{ errors[0] }}</div>
-                                                                                     </ValidationProvider>
+                                                                                     <select v-model="selectDistrito" class="custom-select" @change="costoDelivery()">
+                                                                                          <option v-for="(objDistritos, index) in distritos" :key="index" v-bind:value="objDistritos">
+                                                                                               {{ getInfoDistrito(objDistritos.text,objDistritos.precio) }}
+                                                                                          </option>
+                                                                                     </select>
                                                                                 </div>
                                                                            </div>
                                                                            
@@ -263,7 +260,7 @@
                                                                  <b-card-header header-tag="header" class="p-2" role="tab">
                                                                       <b-button block v-b-toggle.accordion-2 variant="info">Dedicatoria</b-button>
                                                                  </b-card-header>
-                                                                 <b-collapse id="accordion-2"  accordion="my-accordion" role="tabpanel">
+                                                                 <b-collapse id="accordion-2"  accordion="my-accordion2" role="tabpanel">
                                                                       <b-card-body>
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
@@ -349,15 +346,16 @@
                                                                  <b-card-header header-tag="header" class="p-2" role="tab">
                                                                       <b-button block v-b-toggle.accordion-3 variant="info">Comprobante de pago</b-button>
                                                                  </b-card-header>
-                                                                 <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+                                                                 <b-collapse id="accordion-3" accordion="my-accordion3" role="tabpanel">
                                                                       <b-card-body>
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
-                                                                                     <ValidationProvider tag="div" vid="tipoComprobante" rules="required" name="tipoComprobante" v-slot="{ errors, validated }" >
-                                                                                          <b-form-select 
-                                                                                               :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
-                                                                                               v-model="selectTipoComprobante" :options="tiposComprobantes">
-                                                                                          </b-form-select>
+                                                                                     <ValidationProvider tag="div" vid="comprobanteSelectTipo" rules="required" name="tipoComprobante" v-slot="{ errors, validated }" >
+                                                                                          <select v-model="comprobanteSelectTipo" class="custom-select">
+                                                                                               <option v-for="(objComprobantes, index) in tiposComprobantes" :key="index" v-bind:value="objComprobantes" :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)">
+                                                                                                    {{ objComprobantes.text }}
+                                                                                               </option>
+                                                                                          </select>
                                                                                           <div class="error-input">{{ errors[0] }}</div>
                                                                                      </ValidationProvider>
                                                                                 </div>
@@ -365,9 +363,9 @@
                                                                            <div class="boxDatosComprobant">
                                                                                 <div class="row mb-3 mt-3">
                                                                                      <div class="col">
-                                                                                          <ValidationProvider tag="div" vid="rucComprobante" rules="required" name="RUC" v-slot="{ errors, validated }" >
+                                                                                          <ValidationProvider tag="div" vid="comprobanteRuc" rules="required" name="DNI o RUC" v-slot="{ errors, validated }" >
                                                                                                <b-form-input
-                                                                                                    v-model="form.rucComprobante"
+                                                                                                    v-model="form.comprobanteRuc"
                                                                                                     autocomplete="off"
                                                                                                     type="text"
                                                                                                     :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
@@ -379,9 +377,9 @@
                                                                                 </div>
                                                                                 <div class="row mb-3 mt-3">
                                                                                      <div class="col">
-                                                                                          <ValidationProvider tag="div" vid="razonSocialComprobante" rules="required" name="Nombres" v-slot="{ errors, validated }" >
+                                                                                          <ValidationProvider tag="div" vid="comprobanteRazonSocial" rules="required" name="Nombres" v-slot="{ errors, validated }" >
                                                                                                <b-form-input
-                                                                                                    v-model="form.razonSocialComprobante"
+                                                                                                    v-model="form.comprobanteRazonSocial"
                                                                                                     autocomplete="off"
                                                                                                     type="text"
                                                                                                     :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
@@ -395,7 +393,7 @@
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
                                                                                      <b-form-input
-                                                                                          v-model="form.emailComprobante"
+                                                                                          v-model="form.comprobanteEmail"
                                                                                           autocomplete="off"
                                                                                           type="text"
                                                                                           placeholder="Correo Electrónico (opcional)"
@@ -405,7 +403,7 @@
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
                                                                                      <b-form-input
-                                                                                          v-model="form.telefonoComprobante"
+                                                                                          v-model="form.comprobanteTelefono"
                                                                                           autocomplete="off"
                                                                                           type="text"
                                                                                           placeholder="Teléfono (opcional)"
@@ -415,7 +413,7 @@
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
                                                                                      <b-form-input
-                                                                                          v-model="form.direccionComprobante"
+                                                                                          v-model="form.comprobanteDireccion"
                                                                                           autocomplete="off"
                                                                                           type="text"
                                                                                           
@@ -439,7 +437,7 @@
                                                   <div class="d-flex justify-content-start align-items-start">
                                                        <div class="boxPicture">
                                                             <picture>
-                                                                 <img :src="require(`@/assets/images/${item.photo}`)" alt="ocacion">
+                                                                 <img :src="item.photo" alt="ocacion">
                                                             </picture>
                                                             <div class="boxCantidad">
                                                                  <p>{{ item.cantidad }}</p>
@@ -447,7 +445,7 @@
                                                        </div>
                                                        <div class="boxDetail">
                                                             <h2>{{ item.name }}</h2>
-                                                            <p> {{ item.description }}</p>
+                                                            <p v-html="item.description"></p>
                                                        </div>
                                                   </div>
                                                   <div class="boxPrice">
@@ -487,7 +485,7 @@
                                                        <div>
                                                             <h3>Transferencia bancaria</h3>
                                                             <p>
-                                                                 Al hacer click en el boton “VALIDAR TU PEDIDO” serás direccionado a la página de agradecimiento en la cual apareceran nuestros numeros cuenta en BCP, BBVA y Scotiabank para que puedas realizar tu pago.
+                                                                 Al hacer click en el boton “REALIZAR PEDIDO” serás direccionado a la página de agradecimiento en la cual apareceran nuestros numeros cuenta en BCP, BBVA y Scotiabank para que puedas realizar tu pago.
                                                             </p>
                                                        </div>
                                                   </div>
@@ -565,16 +563,11 @@
                                         </div>
                                    </div>
                               </div>
-                              
                          </div>
                     </div>
                     
                </b-form>
           </ValidationObserver>
-          
-          
-         
-          
      </div>
 </template>
 <script>
@@ -602,6 +595,7 @@ export default {
           // console.log(todayPicker.getMonth())
           todayPicker.setMonth(todayPicker.getMonth())
           return {
+               typeUser: 1, // 1 => visitante && 2 => registrado en el sistema
                city: null,
                form: {},
                selectedDeliveryTime: null,
@@ -621,10 +615,10 @@ export default {
                     {value: 'Mensaje 31', text: 'Mensaje 3', contentext: 'Hola Mensaje 3'},
                     {value: 'Mensaje 4', text: 'Mensaje 4', contentext: 'Hola Mensaje 4'},
                ],
-               selectTipoComprobante: false,
+               comprobanteSelectTipo: { value: 1, text: 'Boleta' },
                tiposComprobantes: [
-                    { value: false, text: 'Boleta' },
-                    { value: true, text: 'Factura' },
+                    { value: 1, text: 'Boleta' },
+                    { value: 2, text: 'Factura' },
                ],
                selectDepartamento: 'Lima',
                departamentos: [
@@ -642,7 +636,7 @@ export default {
                   { value: 'Barranca',text: 'Barranca' },  
                   { value: 'Cajatambo', text: 'Cajatambo' },  
                ],
-               selectDistrito: null,
+               selectDistrito: { value: null, text: 'Selecciona Distrito', precio: 0  },
                priceDelivery: 0,
                distritos: [
                   { value: null, text: 'Selecciona Distrito', precio: 0  },  
@@ -672,11 +666,7 @@ export default {
                ],
           }
      },
-     updated(){
-          // this.autoComplete();
-     },
-     mounted(){
-     },
+     
      computed: {
           ...mapGetters('shopping/cart/', ['subMontoTotal']),
           ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
@@ -686,66 +676,146 @@ export default {
                { dataCart: state => state.shopping.cart.dataCart},
           ),
           dameTipoComprobante(){
-               if (this.selectTipoComprobante)
+               // console.log(this.comprobanteSelectTipo)
+               if (this.comprobanteSelectTipo.value === 2)
                     return 'R.U.C.'
                else
                     return 'D.N.I'
           },
           dameNombreComprobante(){
-               if (this.selectTipoComprobante)
+               if (this.comprobanteSelectTipo.value === 2)
                     return 'Razón Social'
                else
                     return 'Nombre completo'
           },
           dameTotal(){
                let igv = 0.18
-               let total = this.subMontoTotal + this.subMontoTotal*igv + this.priceDelivery
+               // let total = this.subMontoTotal + this.subMontoTotal*igv + this.priceDelivery
+               let total = this.subMontoTotal + this.priceDelivery
                if (this.getTypeCurrencySymbol === 1)
                     return total.toFixed(2)
                else
-                    return (total * this.getExchangeRate).toFixed(2)
+                    return (total / this.getExchangeRate).toFixed(2)
           },
           damePriceDelivery(){
                if (this.getTypeCurrencySymbol === 1)
                     return this.priceDelivery.toFixed(2)
                else
-                    return (this.priceDelivery * this.getExchangeRate).toFixed(2)
+                    return (this.priceDelivery / this.getExchangeRate).toFixed(2)
           },
           dameSubMontoTotal(){
                if (this.getTypeCurrencySymbol === 1)
                     return this.subMontoTotal.toFixed(2)
                else
-                    return (this.subMontoTotal * this.getExchangeRate).toFixed(2)
+                    return (this.subMontoTotal / this.getExchangeRate).toFixed(2)
           },
      },
      methods: {
+          setHourSelect(data){
+               this.$store.commit('shopping/cart/setHora', data.value)
+               gsap.to(window, {duration: .5, scrollTo:"#BoxHourAndDay"});
+          },
+          setDaySelect(){
+               this.$store.commit('shopping/cart/setFecha', this.CalendarValue)
+               gsap.to(window, {duration: .5, scrollTo:"#BoxHourAndDay"});
+          },
+          getInfoDistrito(name, precio){
+               if (precio > 0){
+                    
+                    return `${name}, precio por delivery: ${this.getCurrencySymbol} ${this.getPrice(precio)}`
+               }else
+                    return `${name}`
+          },
           costoDelivery(){
-               let _value = this.selectDistrito
-               let _this = this
-               this.distritos.every(function(data, index){
-                    // console.log(data.value)
-                    // console.log(_value)
-                    if (data.value === _value){
-                         _this.priceDelivery = data.precio
-                         return false
-                    }else{
-                         return true
-                    }
-               })
+               // console.log(this.selectDistrito)
+               if (this.selectDistrito.precio > 0){
+                    this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.precio)
+                    this.priceDelivery = this.selectDistrito.precio
+               }
           },
           getPrice(price){
                if (this.getTypeCurrencySymbol === 1)
                     return price.toFixed(2)
                else 
-                    return (price*this.getExchangeRate).toFixed(2)
+                    return (price / this.getExchangeRate).toFixed(2)
           },
           async onSubmit() {
                const isValid = await this.$refs.observer.validate();
                // console.log(isValid)
+               if ( this.boolTerminos === false ) {
+                    $('.boxAlerts').addClass('active')
+                    return false
+               }
                if (!isValid) {
                     $('.boxAlerts').addClass('active')
                }else{
-                    console.log('pasa')
+                    $('.boxAlerts').removeClass('active')
+                    // this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.precio)
+                    let formData = new FormData()
+                    console.log(this.form)
+                    console.log(this.selectDistrito)
+                    console.log(this.comprobanteSelectTipo)
+                    console.log(this.selectActiveMensaje)
+                    console.log(this.selectContentextPredeterminado)
+                    console.log(this.boolTerminos) // false => no acepto || true acepto
+                    console.log(this.paymentType) // 1 => transferencia bancaria || 2 => pago online
+                    console.log('firma?',this.selectActiveFirma)
+                    console.log(this.dataCart.fecha)
+                    console.log(this.dataCart.hora)
+                    console.log(this.dataCart.cargoDelivery)
+                    console.log(this.dataCart.order)
+                    console.log('Simbolo de la moneda',this.getCurrencySymbol)
+                    console.log('Tipo de moneda ( 1 = sol, 2 = dolar) ',this.getTypeCurrencySymbol)
+                    console.log('Cambio del Dolar',this.getExchangeRate)
+                    console.log('Monto Total' , this.dameTotal)
+
+
+                    // Tipo de Usuario tipoUser: 1 => visitante , tipoUser: 2 => registrado en el sistema
+                    formData.append("submitTC", this.typeUser)
+                    // Acepta T&C 
+                    formData.append("submitTC", this.boolTerminos) // false => no acepto || true acepto
+                    // Tipo de Medio de Pago
+                    formData.append("submitTC", this.paymentType) // 1 => transferencia bancaria || 2 => pago online
+                    // Datos de Productos
+                    formData.append("productoObjListado", this.dataCart.order) // [ { cantidad: 1, description: 'sss', id: 1, name: 'My Classic Love', photo: 'https://admin.floreriasumaq.pe/images/products/1/1-1621218681-60a1d5799edc2-pc.jpg', precio: 145} ]
+                    formData.append("productoTipoMonenda", this.getTypeCurrencySymbol) // ( 1 = sol, 2 = dolar)
+                    formData.append("productoSimboloMoneda", this.getCurrencySymbol)
+                    formData.append("productoCambioDolar", this.getExchangeRate)
+                    // Datos del Comprobante
+                    formData.append("comprobanteObjTipo", this.comprobanteSelectTipo) // { text: 'Factura' , value: '2' }
+                    formData.append("comprobanteDireccion", this.form.comprobanteDireccion)
+                    formData.append("comprobanteEmail", this.form.comprobanteEmail)
+                    formData.append("comprobanteRazonSocial", this.form.comprobanteRazonSocial)
+                    formData.append("comprobanteRuc", this.form.comprobanteRuc)
+                    formData.append("comprobanteTelefono", this.form.comprobanteTelefono)
+                    // Datos del usuario logueo o visitante
+                    formData.append("contactoCelular", this.form.contactoCelular)
+                    formData.append("contactoEmail", this.form.contactoEmail)
+                    formData.append("contactoNombre", this.form.contactoNombre)
+                    // Datos de la dedicatoria
+                    formData.append("dedicatoriaActivarFirma", this.selectActiveFirma)
+                    formData.append("dedicatoriaFirma", this.form.firma)
+                    formData.append("dedicatoriaActivarMensaje", this.selectActiveMensaje) // true = si | false = no
+                    formData.append("dedicatoriaMensaje", this.selectContentextPredeterminado) // true = si | false = no
+                    formData.append("firma", this.form.firma)
+                    // Datos de quien recibe o recepciona el pedido
+                    formData.append("recepcionaNombres", this.form.recepcionaNombres)
+                    formData.append("recepcionaApellidos", this.form.recepcionaApellidos)
+                    formData.append("recepcionaCelular", this.form.recepcionaCelular)
+                    formData.append("recepcionaDireccion", this.form.recepcionaDireccion)
+                    formData.append("recepcionaDni", this.form.recepcionaDni)
+                    formData.append("recepcionaPostalCodeMaps", this.form.recepcionaPostalCodeMaps)
+                    formData.append("recepcionaProvinciaMaps", this.form.recepcionaProvinciaMaps)
+                    formData.append("recepcionaReferencia", this.form.recepcionaReferencia)
+                    formData.append("recepcionaObjDistrito", this.selectDistrito) // { precio: 50.99, text: 'San Miguel', value: 'San Miguel' }
+
+                    if ( this.paymentType === '1' ){
+                         // enviamos a una transferencia Bancaria
+                         this.$router.push('/cart/finalizado-transferencia')
+                    }else{
+                         // utilizando pasarela de pago
+                         console.log('mercado de pago')
+                    }
                }
           },
           async mostrarDedicatoria(){
@@ -786,7 +856,7 @@ export default {
                          let ac = place.address_components; //return details of place 
                          // console.log("ac", ac)
                          if (ac == undefined) {
-                              this.form.postalCodeMaps = ''
+                              this.form.recepcionaPostalCodeMaps = ''
                               return
                          };
                          
@@ -805,7 +875,7 @@ export default {
                                    // return;
                               }
                               if (ac[i].types.includes("administrative_area_level_2")) {
-                                   this.form.provinciaMaps = ac[i].long_name;
+                                   this.form.recepcionaProvinciaMaps = ac[i].long_name;
                                    // return;
                               }
                               if (ac[i].types.includes("postal_code")) {
@@ -814,8 +884,8 @@ export default {
                                    // return;
                               }
                          }
-                         this.form.direccion = `${_direccion} ${_street_number}, ${_distrito}`
-                         this.form.postalCodeMaps = _codePostal
+                         this.form.recepcionaDireccion = `${_direccion} ${_street_number}, ${_distrito}`
+                         this.form.recepcionaPostalCodeMaps = _codePostal
                          // console.log(_codePostal)
                     }
                );
@@ -868,7 +938,7 @@ export default {
                                              // return;
                                         }
                                         if (arr[i].types.includes("administrative_area_level_2")) {
-                                             this.form.provinciaMaps = arr[i].long_name;
+                                             this.form.recepcionaProvinciaMaps = arr[i].long_name;
                                              // return;
                                         }
                                         if (arr[i].types.includes("postal_code")) {
@@ -876,7 +946,7 @@ export default {
                                              // return;
                                         }
                                    }
-                                   this.form.direccion = `${_direccion} ${_street_number}, ${_distrito}`
+                                   this.form.recepcionaDireccion = `${_direccion} ${_street_number}, ${_distrito}`
                                    this.form.postalCodeMaps = _codePostal
                               }
                          })
@@ -1070,6 +1140,10 @@ export default {
                                    @include font-libre(0.875rem,0.875rem, 0.875rem,0.875rem,$Montserrat,600,$grayDark18)
                          .boxDetail
                               padding: 0 0 0 1.5rem
+                              @media screen and (min-width: 992px)
+                                   width: 280px
+                              @media screen and (min-width: 1200px)
+                                   width: 300px
                               h2
                                    @include font-libre(0.875rem,0.875rem, 0.875rem,0.875rem,$Montserrat,600,$grayDark18)
                               p

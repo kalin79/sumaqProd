@@ -9,7 +9,7 @@
                                         <img src="@/assets/images/icon-corazon.png" alt="">
                                    </figure>
                                    <p>
-                                        Mostrando 8<br> productos de 46
+                                        Mostrando {{ viewTotalProducts }}<br> productos de {{ getPagination.total }}
                                    </p>
                               </div>
                          </div>
@@ -20,23 +20,37 @@
                                    </p>
                                    <div class="boxSearch">
                                         <div class="select">
-                                             <b-form-select v-model="selected" :options="options"></b-form-select>
+                                             <select v-model="selectOption" class="custom-select" @change="golistProductCategory()">
+                                                  <option v-for="(objDataSelect, index) in getSubCategories" :key="index" v-bind:value="objDataSelect">
+                                                       {{ objDataSelect.title }}
+                                                  </option>
+                                             </select>
                                         </div>
                                    </div>
                               </div>
                          </div>
+                         <!-- {{ getDataCategoryNivel1.sub_categorias }} -->
                          <div class="itemBeneficio">
-                              <div class="d-flex justify-content-start align-items-start">
+                              <div class="d-flex justify-content-start align-items-start" v-if="getDataCategoryNivel1.sub_categorias.length === 0">
                                    <nuxt-link to="/">
                                         <p class="brown">Home</p> 
                                    </nuxt-link>
                                    <p class="separateP brown">></p>
-                                   <nuxt-link to="/postres">
-                                        <p class="brown">Tienda de Postres</p> 
+                                   <nuxt-link :to="`/tienda${getDataCategoryNivel1.link}`">
+                                        <p class="brown">Tienda de {{ getDataCategoryNivel1.title }}</p> 
+                                   </nuxt-link>
+                              </div>
+                              <div class="d-flex justify-content-start align-items-start" v-else>
+                                   <nuxt-link to="/">
+                                        <p class="brown">Home</p> 
                                    </nuxt-link>
                                    <p class="separateP brown">></p>
-                                   <nuxt-link to="/postres">
-                                        <p class="brown">Helados</p> 
+                                   <nuxt-link :to="`/tienda${getDataCategoryNivel1.link}`">
+                                        <p class="brown">Tienda de {{ getDataCategoryNivel1.title }}</p> 
+                                   </nuxt-link>
+                                   <p class="separateP brown">></p>
+                                   <nuxt-link :to="`/tienda${getDataCategoryNivel1.sub_categorias[0].link}`">
+                                        <p class="brown">{{ getDataCategoryNivel1.sub_categorias[0].title }}</p> 
                                    </nuxt-link>
                               </div>
                          </div>
@@ -46,17 +60,37 @@
      </div>
 </template>
 <script>
+import { mapMutations, mapState, mapGetters } from 'vuex'
 export default {
      data() {
           return {
-               selected: null,
-               options: [
-                    { value: null, text: '- Todos -' },
-                    { value: 'a', text: 'Brownies' },
-                    { value: 'b', text: 'Chocolates' },
-                    { value: 'c', text: 'Helados' },
-                    { value: 'c', text: 'Tortas' },
-               ]
+               selectOption: {"id": null, "title": "Selecciona", slug:'', "link": '', description:''}
+          }
+     },
+     created() {
+          if ( this.getDataCategoryNivel1.sub_categorias.length > 0)
+               this.selectOption = this.getDataCategoryNivel1.sub_categorias[0]
+     },
+     computed: {
+          ...mapGetters('products/', ['getPagination']),
+          ...mapGetters('products/', ['getTypeNivelCategory']),
+          ...mapGetters('products/', ['getDataCategoryNivel1']),
+          ...mapGetters('products/', ['getSubCategories']),
+
+          viewTotalProducts(){
+               if (this.getPagination.current_page === this.getPagination.last_page)
+                    return this.getPagination.total
+               else
+                    return (this.getPagination.per_page * this.getPagination.current_page)
+          }
+     },
+     methods: {
+          golistProductCategory(){
+               if (this.selectOption.link != '')
+                    this.$router.push(`/tienda${this.selectOption.link}`)
+               else{
+                    this.$router.push(`/tienda${this.getDataCategoryNivel1.link}`)
+               }
           }
      },
 }

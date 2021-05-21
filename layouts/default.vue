@@ -22,6 +22,7 @@ import Suscripcion from '@/components/Home/Suscripcion'
 import shoppingCartPopup from '@/components/Popup/shoppingCartPopup'
 
 export default {
+     
      components: {
           HeaderMain,
           HeaderUp,
@@ -30,7 +31,8 @@ export default {
           RestriccionBebida,
           Suscripcion,
           shoppingCartPopup,
-     }
+     },
+     
 }
 </script>
 <style lang="sass">

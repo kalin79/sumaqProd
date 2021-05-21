@@ -2,13 +2,12 @@ export const state = () => ({
     dataCart: {
         order: [],
         cargoDelivery: 0,
-        dedicatoria: '',
-        firma: '',
         fecha: '',
         hora: '',
         currencySymbol: 'S./',
         typeCurrencySymbol: 1,
-        exchangeRate: 3.55 
+        exchangeRate: 3.55,
+        salesCode: 0,
      }
  })
  
@@ -57,7 +56,7 @@ export const state = () => ({
             }
 
         })
-        console.log(state.dataCart.order)
+        // console.log(state.dataCart.order)
         if (boolProduct){
             // state.dataCart.order.push(payload) agrega al final del array
             state.dataCart.order.unshift(payload)
@@ -65,7 +64,19 @@ export const state = () => ({
     },
     removeCart(state,index){
         state.dataCart.order.splice(index,1)
-    }
+    },
+    setFecha(state,payload){
+        state.dataCart.fecha = payload
+    },
+    setHora(state,payload){
+        state.dataCart.hora = payload
+    },
+    setCargoDelivery(state,payload){
+        state.dataCart.cargoDelivery = payload
+    },
+    setSalesCode(state,payload){
+        state.dataCart.salesCode = payload
+    },
  }
  
  export const getters = {
@@ -94,5 +105,17 @@ export const state = () => ({
         });
 
         return monto
-    }
+    },
+    getFecha(state,payload){
+        return state.dataCart.fecha
+    },
+    getHora(state,payload){
+        return state.dataCart.hora
+    },
+    getCargoDelivery(state){
+        return state.dataCart.cargoDelivery
+    },
+    getSalesCode(state){
+        return state.dataCart.salesCode
+    },
  }

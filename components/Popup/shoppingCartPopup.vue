@@ -41,13 +41,11 @@
                                                        <td>
                                                             <div class="d-flex">
                                                                  <picture class="imgProduct">
-                                                                      <img :src="require(`@/assets/images/${item.photo}`)" alt="ocacion">
+                                                                      <img :src="item.photo" :alt="item.name">
                                                                  </picture>
                                                                  <div class="descriptionTable">
                                                                       <h3>{{ item.name }}</h3>
-                                                                      <p>
-                                                                           {{ item.description }}
-                                                                      </p>
+                                                                      <p v-html="item.description"></p>
                                                                  </div>
                                                                  
                                                             </div>
@@ -71,10 +69,10 @@
                                    </div>
                               </div>
                               <div class="boxFooter">
-                                   <div class="d-flex flex-column flex-xl-column flex-lg-row justify-content-center align-items-center">
-                                        <nuxt-link to="/" class="boxButtonShopping">
+                                   <div class="d-flex flex-column  flex-lg-row justify-content-center align-items-center">
+                                        <button  type="button" class="boxButtonShopping" @click="goShopping()">
                                              CONTINUAR
-                                        </nuxt-link>
+                                        </button>
                                         <button  type="button" class="boxButtonShopping blanco" v-on:click="closePreviewShopping">
                                              SEGUIR COMPRANDO
                                         </button>
@@ -103,6 +101,11 @@ export default {
           ),
      },
      methods: {
+          goShopping(){
+               var boxPopUp = $('.boxPopUp')
+               boxPopUp.fadeOut('slow')
+               this.$router.push('/cart/informacion')
+          },
           lessProduct(objData){
                this.$store.commit('shopping/cart/setLessProduct', objData)
           },
@@ -115,15 +118,15 @@ export default {
           getPrecio(price){
                // console.log(this.getTypeCurrencySymbol)
                if (this.getTypeCurrencySymbol === 1)
-                    return price
+                    return price.toFixed(2)
                else 
-                    return (price*this.getExchangeRate).toFixed(2)
+                    return (price / this.getExchangeRate).toFixed(2)
           },
           montoTotal(monto, cantidad){
                if (this.getTypeCurrencySymbol === 1)
                     return (monto*cantidad).toFixed(2)
                else
-                    return ((monto*cantidad)*this.getExchangeRate).toFixed(2)
+                    return ((monto*cantidad) / this.getExchangeRate).toFixed(2)
           },
           closePreviewShopping(){
                var boxPopUp = $('.boxPopUp')
@@ -160,12 +163,9 @@ export default {
                     @media screen and (min-width: 992px)
                          line-height: 4em
                          width: 240px
-                    @media screen and (min-width: 1200px)
-                         line-height: 4em
-                         width: 320px
-                    @media screen and (min-width: 1200px)
-                         line-height: 4em
-                         width: 390px
+                    // @media screen and (min-width: 1200px)
+                    //      line-height: 4em
+                    //      width: 320px
                     &.blanco
                          background: white
                          border: 1px solid $greenLight3
@@ -175,9 +175,9 @@ export default {
                          @media screen and (min-width: 992px)
                               margin-top: 0rem
                               margin-left: 1rem
-                         @media screen and (min-width: 1200px)
-                              margin-top: 1rem
-                              margin-left: 0rem
+                         // @media screen and (min-width: 1200px)
+                         //      margin-top: 1rem
+                         //      margin-left: 0rem
                     // &:hover
                     //      background: $pinkLight
           .contentPopUp

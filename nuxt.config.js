@@ -1,3 +1,6 @@
+const https = require('https');
+const axios = require('axios');
+
 import webpack from 'webpack'
 
 export default {
@@ -30,8 +33,8 @@ export default {
         rel: 'stylesheet', 
         href: "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       },
-      
-    ]
+    ],
+    
   },
   /*
   ** Customize the progress-bar color
@@ -89,6 +92,9 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'https://admin.floreriasumaq.pe/api/v1/',
+    proxyHeaders: false,
+    credentials: false
   },
   /*
   ** Build configuration
