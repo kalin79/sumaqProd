@@ -6,6 +6,7 @@
      </div>
 </template>
 <script>
+import { mapMutations, mapState, mapGetters } from 'vuex'
 import BannerCartFinal from '@/components/Banner/CartFinal'
 import FinalizadoBancaria from '@/components/Cart/FinalizadoBancaria'
 export default {
@@ -44,9 +45,7 @@ export default {
                ]
           }
      },
-     mounted () {
-
-     },
+     
 }
 </script>
 <style lang="sass">

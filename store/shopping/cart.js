@@ -7,15 +7,15 @@ export const state = () => ({
         currencySymbol: 'S./',
         typeCurrencySymbol: 1,
         exchangeRate: 3.55,
-        salesCode: 0,
+        salesCode: '',
      }
  })
  
  export const mutations = {
-     setMoneySymbol(state, payload){
+    setMoneySymbol(state, payload){
         state.dataCart.currencySymbol = payload.currencySymbol
         state.dataCart.typeCurrencySymbol = payload.typeCurrencySymbol
-     },
+    },
     async setMoreProduct(state, payload){
         var boolProduct = true;
         state.dataCart.order.every(function(data, index){

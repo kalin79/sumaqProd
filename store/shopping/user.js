@@ -1,18 +1,30 @@
 export const state = () => ({
      dataUserCart: {
-          email: '',
-          celular: ''
+            form: null,
+            typeVoucher: null,
+            paymentType: 0
      }
  })
  
  export const mutations = {
-     // setVeterinaryName(state, payload){
-     //     state.dataPets.veterinary_name = payload
-     // },
+    setForm(state, payload){
+        state.dataUserCart.form = payload
+    },
+    setPaymentType(state, payload){
+        state.dataUserCart.paymentType = payload
+    },
+    setTypeVoucher(state, payload){
+        state.dataUserCart.typeVoucher = payload
+    },
  }
- 
  export const getters = {
-     // totalPets(state){
-     //     return state.dataPets.pets.length
-     // }
+    getForm(state){
+        return state.dataUserCart.form
+    },
+    getPaymentType(state, payload){
+        return state.dataUserCart.paymentType
+    },
+    getTypeVoucher(state){
+        return state.dataUserCart.typeVoucher
+    },
  }

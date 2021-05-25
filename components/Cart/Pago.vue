@@ -750,7 +750,9 @@ export default {
                     $('.boxAlerts').addClass('active')
                }else{
                     $('.boxAlerts').removeClass('active')
-                    // this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.precio)
+                    this.$store.commit('shopping/user/setForm', this.form)
+                    this.$store.commit('shopping/user/setTypeVoucher', this.comprobanteSelectTipo)
+                    this.$store.commit('shopping/user/setPaymentType', this.paymentType)
                     let formData = new FormData()
                     console.log(this.form)
                     console.log(this.selectDistrito)

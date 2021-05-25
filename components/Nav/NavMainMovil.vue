@@ -7,7 +7,7 @@
                               <nuxt-link :to="`/fecha-especial${items.link}`">
                                    <div class="d-flex align-items-center justify-content-start">
                                         <picture class="arrow">
-                                             <img :src="'https://admin.floreriasumaq.pe/images/menus/'+items.icon" :alt="items.name" class="iconcorazon">
+                                             <img :src="items.icon" :alt="items.name" class="iconcorazon">
                                         </picture>
                                         <span>{{ items.name }}</span>
                                    </div>
@@ -95,7 +95,7 @@
           </div>
           <div class="container-fluid-nav" id="nav-2">
                <ul class="txtUppercase">
-                    <li v-for="(tienda, index) in getTiendas" :key="index">
+                    <li v-for="(tienda, index) in getMenuTiendaMain" :key="index">
                          <div class="d-flex align-items-center justify-content-between">
                               <div class="d-flex align-items-center justify-content-start">
                                    <a href="javascript:void(0)" v-on:click="gotoMenu(2,0,'')" v-if="index === 0">
@@ -168,7 +168,7 @@ export default {
           ...mapGetters('shopping/cart/', ['totalProducts']),
           ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
           ...mapGetters('menu/', ['getMenuMain']),
-          ...mapGetters('generaldata/', ['getTiendas']),
+          ...mapGetters('menu/', ['getMenuTiendaMain']),
           
      },
      methods : {

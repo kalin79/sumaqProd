@@ -16,7 +16,6 @@ import Filtro from '@/components/Category/Filtro'
 import ProductsCategory from '@/components/Category/ListProducts'
 
 export default {
-     middleware: ['datageneral'],
      components: {
           Filtro,
           ProductsCategory,
@@ -28,7 +27,7 @@ export default {
           
      },
      async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
-          store.commit('products/setTypeNivelCategory', 1)
+          
           // console.log(params.category)
           try {
                res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/list-products?categoria_slug=${params.category}`)
@@ -45,16 +44,20 @@ export default {
           }catch (error) {
                console.log(error)
           }finally{
+               // console.log('final 1')
                try {
                     let res2 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
-                    // console.log(res2)
+                    // console.log(res.data)
                     if ((res2.code === 200) && (res2.status === 1)){
-                         store.commit('menu/setMenuMain', res2.data)
+                         store.commit('menu/setMenuMain', res2.data.menu)
+                         store.commit('menu/setMenuTiendaMain', res2.data.categories)
                     }else{
                          console.log('error await')
                     }
                }catch (error) {
                     console.log(error)
+               }finally{
+                    // console.log('final 2')
                }
           }
 

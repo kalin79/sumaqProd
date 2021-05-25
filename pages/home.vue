@@ -55,9 +55,10 @@ export default {
      async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
           try {
                res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
-               // console.log(res)
+               // console.log(res.data)
                if ((res.code === 200) && (res.status === 1)){
-                    store.commit('menu/setMenuMain', res.data)
+                    store.commit('menu/setMenuMain', res.data.menu)
+                    store.commit('menu/setMenuTiendaMain', res.data.categories)
                }else{
                     console.log('error await')
                }

@@ -4,7 +4,7 @@
                <li v-for="(items, index) in getMenuMain" :key="index" >
                     <div v-if="items.special_date === 1" class="daySpecial">
                          <nuxt-link :to="`/fecha-especial${items.link}`" class="d-flex flex-column align-items-center">
-                              <img :src="'https://admin.floreriasumaq.pe/images/menus/'+items.icon" :alt="items.name">
+                              <img :src="items.icon" :alt="items.name">
                               <span>{{ items.name }}</span>
                          </nuxt-link>
                     </div>
@@ -19,7 +19,7 @@
                          <div class="contentNavTienda">
                               <div>
                                    <div class="d-flex flex-row align-items-stretch justify-content-start flex-wrap">
-                                        <div class="itemsNav" v-for="(tienda, index) in getTiendas" :key="index">
+                                        <div class="itemsNav" v-for="(tienda, index) in getMenuTiendaMain" :key="index">
                                              <div class="boxTitle d-flex flex-row align-items-center justify-content-start">
                                                   <img :src="tienda.icon" :alt="tienda.title">
                                                   <h3>{{ tienda.title }}</h3>
@@ -87,7 +87,7 @@ export default {
      },
      computed: {
           ...mapGetters('menu/', ['getMenuMain']),
-          ...mapGetters('generaldata/', ['getTiendas']),
+          ...mapGetters('menu/', ['getMenuTiendaMain']),
      },
      
 
