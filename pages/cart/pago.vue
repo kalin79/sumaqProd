@@ -1,7 +1,7 @@
 <template>
      <div>
           <banner-cart />
-          <pago-cart />
+          <pago-cart :distritos="distritos" :DeliveryTimes="DeliveryTimes" />
      </div>
 </template>
 <script>
@@ -45,6 +45,62 @@ export default {
      },
      mounted () {
 
+     },
+     async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
+          // console.log(11)
+          let distritos = []
+          let DeliveryTimes = []
+          try {
+               res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/payment`)
+               // console.log(res.data)
+               if ((res.code === 200) && (res.status === 1)){
+                    distritos = res.data.districs
+               }else{
+                    console.log('error await')
+               }
+          }catch (error) {
+               console.log(error)
+          }
+
+          let nowDay = new Date()
+          let valDay = nowDay.getDay()
+          let res2
+          try {
+               res2 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/schedule`)
+               res2.every(function(data, index){
+                    console.log(data.day)
+                    console.log(valDay)
+                    if (data.day === valDay){
+                         DeliveryTimes = data.schedule
+                         return false
+                    }else{
+                         return true
+                    }
+
+               })
+          }catch (error) {
+               console.log(error)
+          }
+
+
+          let res3
+          try {
+               res3 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
+               // console.log(res.data)
+               if ((res3.code === 200) && (res3.status === 1)){
+                    store.commit('menu/setMenuMain', res3.data.menu)
+                    store.commit('menu/setMenuTiendaMain', res3.data.categories)
+               }else{
+                    console.log('error await')
+               }
+          }catch (error) {
+               console.log(error)
+          }
+
+          return {
+               distritos,
+               DeliveryTimes
+          }
      },
 }
 </script>

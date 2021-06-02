@@ -69,7 +69,7 @@ export const state = () => ({
         state.dataCart.fecha = payload
     },
     setHora(state,payload){
-        state.dataCart.hora = payload
+        state.dataCart.hora = `${payload.start_time} - ${payload.end_time}`
     },
     setCargoDelivery(state,payload){
         state.dataCart.cargoDelivery = payload
@@ -77,9 +77,22 @@ export const state = () => ({
     setSalesCode(state,payload){
         state.dataCart.salesCode = payload
     },
+    setRest(state){
+        console.log('entro')
+        state.dataCart.order = []
+        state.dataCart.cargoDelivery = 0
+        state.dataCart.fecha = ''
+        state.dataCart.hora = ''
+        state.dataCart.currencySymbol = 'S./'
+        state.dataCart.typeCurrencySymbol = 1
+        state.dataCart.salesCode = ''
+    },
  }
  
  export const getters = {
+    getDataCart(state){
+        return state.dataCart
+    },
     getExchangeRate(state){
         // console.log(state.dataCart.exchangeRate)
         return state.dataCart.exchangeRate

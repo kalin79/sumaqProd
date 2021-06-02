@@ -1,6 +1,6 @@
 <template>
      <div class="boxProcessFinal">
-          <!-- {{ dataPayment.length }} -->
+          <!-- {{ getForm }} -->
           <!-- {{ dataPayment[0].getForm.contactoNombre }} -->
           <div class="container-fluid container-fluid-xxl " v-if="getForm">
                <div class="boxHeader">
@@ -239,7 +239,7 @@
      </div>
 </template>
 <script>
-import { mapMutations, mapState, mapGetters } from 'vuex'
+// import { mapMutations, mapState, mapGetters } from 'vuex'
 import {gsap} from "gsap/dist/gsap"
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
@@ -249,35 +249,43 @@ gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(CSSRulePlugin)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
 export default {
+     props: ['dataPayment'],
      data(){
           return{
                igv: 0.18,
-               dataPayment: [], 
+               subMontoTotal: 0,
+               getCurrencySymbol: '',
+               getTypeCurrencySymbol: '',
+               getExchangeRate: 0,
+               getForm: null,
+               getPaymentType: 0 ,
+               getTypeVoucher: null,
+               dataCart: {}
           }
      },
+     mounted() {
+          // console.log('mounted')
+          this.subMontoTotal = this.dataPayment[1].subMontoTotal
+          this.getCurrencySymbol = this.dataPayment[2].getCurrencySymbol
+          this.getTypeCurrencySymbol = this.dataPayment[3].getTypeCurrencySymbol
+          this.getExchangeRate = this.dataPayment[4].getExchangeRate
+          this.getForm = this.dataPayment[0].getForm
+          this.getPaymentType = this.dataPayment[5].getPaymentType
+          this.getTypeVoucher = this.dataPayment[6].getTypeVoucher
+          this.dataCart = this.dataPayment[7].dataCart
+          // console.log(this.dataPayment[0])
+     },
      computed: {
-          ...mapGetters('shopping/cart/', ['subMontoTotal']),
-          ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
-          ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
-          ...mapGetters('shopping/cart/', ['getExchangeRate']),
-          ...mapGetters('shopping/user/', ['getForm']),
-          ...mapGetters('shopping/user/', ['getPaymentType']),
-          ...mapGetters('shopping/user/', ['getTypeVoucher']),
-          ...mapState(
-               { dataCart: state => state.shopping.cart.dataCart},
-          ),
-          dameTipoComprobante(){
-               if (this.selectTipoComprobante)
-                    return 'R.U.C.'
-               else
-                    return 'D.N.I'
-          },
-          dameNombreComprobante(){
-               if (this.selectTipoComprobante)
-                    return 'Razón Social'
-               else
-                    return 'Nombre completo'
-          },
+          // ...mapGetters('shopping/cart/', ['subMontoTotal']),
+          // ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
+          // ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
+          // ...mapGetters('shopping/cart/', ['getExchangeRate']),
+          // ...mapGetters('shopping/user/', ['getForm']),
+          // ...mapGetters('shopping/user/', ['getPaymentType']),
+          // ...mapGetters('shopping/user/', ['getTypeVoucher']),
+          // ...mapState(
+          //      { dataCart: state => state.shopping.cart.dataCart},
+          // ),
           dameTotal(){
                // let total = this.subMontoTotal + this.subMontoTotal * this.igv + this.dataCart.cargoDelivery
                let total = this.subMontoTotal + this.dataCart.cargoDelivery
@@ -303,17 +311,6 @@ export default {
                     return impuesto.toFixed(2)
                }
           },
-     },
-     async mounted(){
-          
-          this.dataPayment.push({'getForm': this.getForm})
-          this.dataPayment.push({'subMontoTotal': this.subMontoTotal})
-          this.dataPayment.push({'getCurrencySymbol': this.getCurrencySymbol})
-          this.dataPayment.push({'getTypeCurrencySymbol': this.getTypeCurrencySymbol})
-          this.dataPayment.push({'getExchangeRate': this.getExchangeRate})
-          this.dataPayment.push({'getPaymentType': this.getPaymentType})
-          this.dataPayment.push({'getTypeVoucher': this.getTypeVoucher})
-          // this.loadPage = true
      },
      methods: {
           getPrice(price){

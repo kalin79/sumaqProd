@@ -1,7 +1,7 @@
 <template>
      <div>
-          <banner-cart-final />
-          <finalizado-bancaria />
+          <banner-cart-final /> 
+          <finalizado-bancaria  :dataPayment = "dataPayment"/>
 
      </div>
 </template>
@@ -10,9 +10,54 @@ import { mapMutations, mapState, mapGetters } from 'vuex'
 import BannerCartFinal from '@/components/Banner/CartFinal'
 import FinalizadoBancaria from '@/components/Cart/FinalizadoBancaria'
 export default {
+     
      components: {
           BannerCartFinal,
           FinalizadoBancaria
+     },
+     computed: {
+          
+     },
+     mounted() {
+          // console.log('mounted')
+          
+     },
+     async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
+          // console.log('asyncData')
+          let dataPayment = []
+          dataPayment.push({'getForm': store.getters['shopping/user/getForm']})
+          dataPayment.push({'subMontoTotal': store.getters['shopping/cart/subMontoTotal']})
+          dataPayment.push({'getCurrencySymbol': store.getters['shopping/cart/getCurrencySymbol']})
+          dataPayment.push({'getTypeCurrencySymbol': store.getters['shopping/cart/getTypeCurrencySymbol']})
+          dataPayment.push({'getExchangeRate': store.getters['shopping/cart/getExchangeRate']})
+          dataPayment.push({'getPaymentType': store.getters['shopping/user/getPaymentType']})
+          dataPayment.push({'getTypeVoucher': store.getters['shopping/user/getTypeVoucher']})
+          dataPayment.push({'dataCart': store.getters['shopping/cart/getDataCart']})
+
+          // console.log(dataPayment)
+          setTimeout(function(){
+               //  Reseteamos
+               // console.log('setTimeout')
+               store.commit('shopping/compra/setRest')
+               store.commit('shopping/user/setRest')
+               store.commit('shopping/cart/setRest')
+          }, 15000)
+          try {
+               res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
+               // console.log(res.data)
+               if ((res.code === 200) && (res.status === 1)){
+                    store.commit('menu/setMenuMain', res.data.menu)
+                    store.commit('menu/setMenuTiendaMain', res.data.categories)
+               }else{
+                    console.log('error await')
+               }
+          }catch (error) {
+               console.log(error)
+          }
+
+          return {
+               dataPayment,
+          }
      },
      head () {
           return {

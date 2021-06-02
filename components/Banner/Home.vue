@@ -81,9 +81,9 @@ export default {
                @media screen and (min-width: 992px)
                     height: 73px
                @media screen and (min-width: 1200px)
-                    height: 133px
+                    height: 130px
                @media screen and (min-width: 1400px)
-                    height: 136px
+                    height: 130px
           
 
 

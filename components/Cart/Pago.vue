@@ -107,10 +107,11 @@
                                                                                 <!-- </client-side> -->
                                                                            </section>
                                                                            <section id="tab-item-2" >
+                                                                                <!-- {{ DeliveryTimes }}  -->
                                                                                 <div class="contentItem">
                                                                                      <div v-for="(item, index) in DeliveryTimes" :key="index">
                                                                                      <div class="form-check" @change="setHourSelect(item)" v-bind:class="{'disabled' : item.notEnabled === 'disabled'}">
-                                                                                          <b-form-radio v-model="selectedDeliveryTime" :value="item.value" :disabled="item.notEnabled">{{ item.value }}</b-form-radio>
+                                                                                          <b-form-radio v-model="selectedDeliveryTime" :value="item" :disabled="item.notEnabled">{{ item.start_time }} - {{ item.end_time }}</b-form-radio>
                                                                                      </div>
                                                                                      </div>
                                                                                 </div>
@@ -246,8 +247,9 @@
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
                                                                                      <select v-model="selectDistrito" class="custom-select" @change="costoDelivery()">
+                                                                                          <option value=''>Seleccione Distrito</option>
                                                                                           <option v-for="(objDistritos, index) in distritos" :key="index" v-bind:value="objDistritos">
-                                                                                               {{ getInfoDistrito(objDistritos.text,objDistritos.precio) }}
+                                                                                               {{ getInfoDistrito(objDistritos.description,objDistritos.costo) }}
                                                                                           </option>
                                                                                      </select>
                                                                                 </div>
@@ -529,6 +531,9 @@
                                         <div class="boxButtom">
                                              <b-button type="submit" class="btn-submit"><p>REALIZAR PEDIDO</p></b-button>
                                         </div>
+                                        <div class="boxButton">
+                                             <b-button type="button" class="tokenizer-container"></b-button>
+                                        </div>
                                         <div class="boxAlerts">
                                              <div class="alert alert-danger" role="alert">
                                                   <client-only>
@@ -585,6 +590,7 @@ gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(CSSRulePlugin)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
 export default {
+     props: ['distritos','DeliveryTimes'],
      components: {
           // CartCuenta,
      },
@@ -622,51 +628,58 @@ export default {
                ],
                selectDepartamento: 'Lima',
                departamentos: [
-                    { value: null, text: 'Selecciona Departamento' },
                     { value: 'Lima', text: 'Lima' },
-                    { value: 'Arequipa', text: 'Arequipa' },
-                    { value: 'Junin', text: 'Junin' },
-                    { value: 'Cuzco', text: 'Cuzco' },
                ],
                selectProvincia: 'Lima',
                provincias: [
-                  { value: null, text: 'Selecciona Provincia' },  
-                  { value: 'Lima', text: 'Lima' },  
-                  { value: 'Huaral',text: 'Huaral' },  
-                  { value: 'Barranca',text: 'Barranca' },  
-                  { value: 'Cajatambo', text: 'Cajatambo' },  
+                  { value: 'Lima', text: 'Lima' },
                ],
-               selectDistrito: { value: null, text: 'Selecciona Distrito', precio: 0  },
+               selectDistrito: '',
                priceDelivery: 0,
-               distritos: [
-                  { value: null, text: 'Selecciona Distrito', precio: 0  },  
-                  { value: 'Cercado de Lima', precio: 10.00 ,text: 'Cercado de Lima' },  
-                  { value: 'Barranco', precio: 15.34, text: 'Barranco' },  
-                  { value: 'Breña', precio: 20.99, text: 'Breña' },  
-                  { value: 'Jesús María', precio: 10.99, text: 'Jesús María' },  
-                  { value: 'Lince', precio: 12.99, text: 'Lince' },  
-                  { value: 'Magdalena del Mar', precio: 30.99, text: 'Magdalena del Mar' },  
-                  { value: 'San Miguel', precio: 50.99, text: 'San Miguel' },  
-               ],
-               DeliveryTimes: [
-                    {
-                         id: '1',
-                         value: '09:00 am - 12:00 pm',
-                         notEnabled: 'disabled'
-                    },
-                    {
-                         id: '2',
-                         value: '13:00 am - 15:00 pm' 
-                    },
-                    {
-                         id: '3',
-                         value: '18:00 am - 21:00 pm'
+               // distritos: [
+               //    { value: null, text: 'Selecciona Distrito', precio: 0  },  
+               //    { value: 'Cercado de Lima', precio: 10.00 ,text: 'Cercado de Lima' },  
+               //    { value: 'Barranco', precio: 15.34, text: 'Barranco' },  
+               //    { value: 'Breña', precio: 20.99, text: 'Breña' },  
+               //    { value: 'Jesús María', precio: 10.99, text: 'Jesús María' },  
+               //    { value: 'Lince', precio: 12.99, text: 'Lince' },  
+               //    { value: 'Magdalena del Mar', precio: 30.99, text: 'Magdalena del Mar' },  
+               //    { value: 'San Miguel', precio: 50.99, text: 'San Miguel' },  
+               // ],
+               // DeliveryTimes: [
+               //      {
+               //           id: '1',
+               //           value: '09:00 am - 12:00 pm',
+               //           notEnabled: 'disabled'
+               //      },
+               //      {
+               //           id: '2',
+               //           value: '13:00 am - 15:00 pm' 
+               //      },
+               //      {
+               //           id: '3',
+               //           value: '18:00 am - 21:00 pm'
                          
-                    }
-               ],
+               //      }
+               // ],
           }
      },
-     
+     mounted() {
+          // Agrega credenciales de SDK 
+          const mp = new MercadoPago('PUBLIC_KEY', {locale: 'es-AR'});
+
+          // Inicializa el Web Tokenize Checkout
+          mp.checkout({
+               tokenizer: {
+                    totalAmount: 4000,
+                    backUrl: 'https://www.mi-sitio.com/procesar-pago'
+               },
+               render: {
+                    container: '.tokenizer-container', // Indica dónde se mostrará el botón
+                    label: 'Pagar' // Cambia el texto del botón de pago (opcional)
+               }
+          });
+     },
      computed: {
           ...mapGetters('shopping/cart/', ['subMontoTotal']),
           ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
@@ -712,7 +725,7 @@ export default {
      },
      methods: {
           setHourSelect(data){
-               this.$store.commit('shopping/cart/setHora', data.value)
+               this.$store.commit('shopping/cart/setHora', data)
                gsap.to(window, {duration: .5, scrollTo:"#BoxHourAndDay"});
           },
           setDaySelect(){
@@ -771,24 +784,29 @@ export default {
                     console.log('Cambio del Dolar',this.getExchangeRate)
                     console.log('Monto Total' , this.dameTotal)
 
+                    // chicos de programacion.
 
                     // Tipo de Usuario tipoUser: 1 => visitante , tipoUser: 2 => registrado en el sistema
-                    formData.append("submitTC", this.typeUser)
+                    formData.append("typeUser", this.typeUser)
                     // Acepta T&C 
-                    formData.append("submitTC", this.boolTerminos) // false => no acepto || true acepto
+                    formData.append("boolTerminos", this.boolTerminos) // false => no acepto || true acepto
                     // Tipo de Medio de Pago
-                    formData.append("submitTC", this.paymentType) // 1 => transferencia bancaria || 2 => pago online
+                    formData.append("paymentType", this.paymentType) // id => transferencia bancaria || id => pago online
                     // Datos de Productos
                     formData.append("productoObjListado", this.dataCart.order) // [ { cantidad: 1, description: 'sss', id: 1, name: 'My Classic Love', photo: 'https://admin.floreriasumaq.pe/images/products/1/1-1621218681-60a1d5799edc2-pc.jpg', precio: 145} ]
                     formData.append("productoTipoMonenda", this.getTypeCurrencySymbol) // ( 1 = sol, 2 = dolar)
-                    formData.append("productoSimboloMoneda", this.getCurrencySymbol)
-                    formData.append("productoCambioDolar", this.getExchangeRate)
+                    formData.append("productoSimboloMoneda", this.getCurrencySymbol) // S./ , USD
+                    formData.append("montoTotal", this.dameTotal) 
+                    formData.append("cargoDelivery", this.dataCart.cargoDelivery) 
+                    
+                    // tipo de cambio
+                    formData.append("getExchangeRate", this.getExchangeRate) // 3.55
                     // Datos del Comprobante
-                    formData.append("comprobanteObjTipo", this.comprobanteSelectTipo) // { text: 'Factura' , value: '2' }
+                    formData.append("comprobanteObjTipo", this.comprobanteSelectTipo) // { text: 'Boleta' , value: '1' }
                     formData.append("comprobanteDireccion", this.form.comprobanteDireccion)
                     formData.append("comprobanteEmail", this.form.comprobanteEmail)
-                    formData.append("comprobanteRazonSocial", this.form.comprobanteRazonSocial)
-                    formData.append("comprobanteRuc", this.form.comprobanteRuc)
+                    formData.append("comprobanteRazonSocial", this.form.comprobanteRazonSocial) // Carlos Espinoza
+                    formData.append("comprobanteRuc", this.form.comprobanteRuc) // 40609717
                     formData.append("comprobanteTelefono", this.form.comprobanteTelefono)
                     // Datos del usuario logueo o visitante
                     formData.append("contactoCelular", this.form.contactoCelular)
@@ -799,7 +817,7 @@ export default {
                     formData.append("dedicatoriaFirma", this.form.firma)
                     formData.append("dedicatoriaActivarMensaje", this.selectActiveMensaje) // true = si | false = no
                     formData.append("dedicatoriaMensaje", this.selectContentextPredeterminado) // true = si | false = no
-                    formData.append("firma", this.form.firma)
+                    // formData.append("firma", this.form.firma)
                     // Datos de quien recibe o recepciona el pedido
                     formData.append("recepcionaNombres", this.form.recepcionaNombres)
                     formData.append("recepcionaApellidos", this.form.recepcionaApellidos)
@@ -809,8 +827,9 @@ export default {
                     formData.append("recepcionaPostalCodeMaps", this.form.recepcionaPostalCodeMaps)
                     formData.append("recepcionaProvinciaMaps", this.form.recepcionaProvinciaMaps)
                     formData.append("recepcionaReferencia", this.form.recepcionaReferencia)
-                    formData.append("recepcionaObjDistrito", this.selectDistrito) // { precio: 50.99, text: 'San Miguel', value: 'San Miguel' }
-
+                    formData.append("recepcionaObjDistrito", this.selectDistrito) // { costo: 50.99, description: 'San Miguel', id: 150132}
+                    formData.append("recepcionaFecha", this.dataCart.fecha) 
+                    formData.append("recepcionaHora", this.dataCart.hora) 
                     if ( this.paymentType === '1' ){
                          // enviamos a una transferencia Bancaria
                          this.$router.push('/cart/finalizado-transferencia')
@@ -1075,7 +1094,7 @@ export default {
                          display: block
                .boxButtom
                     background: $blancoHuno
-                    padding: 1.35rem 0rem 2rem
+                    padding: 1.35rem 1rem 2rem
                     button
                          border: 1px solid $greenLight3
                          padding: 0rem 1.95rem

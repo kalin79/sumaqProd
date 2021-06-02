@@ -23,7 +23,7 @@
                <div class="boxCarrusel">
                     <client-only>
                          <carousel
-                         :perPageCustom="[[300, 1], [992,3], [1200,5]]" 
+                         :perPageCustom="[[300, 1], [992,3], [1200,4], [1400,5]]" 
                          :autoplay="true" 
                          :autoplayTimeout=5000
                          :paginationPadding=10
@@ -37,9 +37,9 @@
                               <slide v-for="(tienda, index) in getTiendas" :key="index">
                                    <nuxt-link :to="`/tienda${tienda.link}`">
                                         <div class="cardCarrsuel">
-                                             <picture>
+                                             <div class="imageScale">
                                                   <img :src="tienda.poster" :alt="tienda.title" />
-                                             </picture>
+                                             </div>
                                              <div class="cardTitle">
                                                   <h2>{{ tienda.title }}</h2>
                                              </div>
@@ -106,27 +106,28 @@ export default {
                               @include font-libre(1.5rem,1.45rem, 1.25rem,1.15rem,$Montserrat,500,$brown)
                     .cardCarrsuel
                          padding: 1rem
-                         border: 0px solid red
                          @media screen and (min-width: 1400px)
                               padding: 1rem .5rem
                          &:hover
                               .cardTitle
                                    h2
                                         text-decoration: underline
-                              picture
+                              .imageScale
                                    img
                                         transform: scale(1.5)
+                                        -webkit-transform:scale(1.5)
                                    &:after
                                         border: .65rem solid rgba(white,0.35)
-                         picture
+                         .imageScale
                               display: block
                               overflow: hidden
                               width: 12.25rem
                               height: 12.25rem
                               border-radius: 50%
                               position: relative 
-                              border: 2px solid $greenLight3
+                              border: 0px solid $greenLight3
                               margin: auto
+                              clip-path: content-box
                               @media screen and (min-width: 992px)
                                    width: 14.375rem
                                    height: 14.375rem
@@ -136,10 +137,30 @@ export default {
                               @media screen and (min-width: 1400px)
                                    width: 15rem
                                    height: 15rem
+                              &:before
+                                   content: ''
+                                   position: absolute
+                                   width: 16.25px
+                                   height: 16.25px
+                                   z-index: 5
+                                   border: 2px solid $greenLight3
+                                   top: -.0rem
+                                   left: -.0rem
+                                   border-radius: 50%
+                                   @media screen and (min-width: 992px)
+                                        width: 14.375rem
+                                        height: 14.375rem
+                                   @media screen and (min-width: 1200px)
+                                        width: 13.125rem
+                                        height: 13.125rem
+                                   @media screen and (min-width: 1400px)
+                                        width: 15rem
+                                        height: 15rem
                               &:after
                                    content: ''
-                                   top: -.10rem
-                                   left: -.10rem
+                                   z-index: 3
+                                   top: -.0rem
+                                   left: -.0rem
                                    width: 16.25px
                                    height: 16.25px
                                    border: 0rem solid rgba(white,1)

@@ -29,6 +29,19 @@ export default {
           }finally{
                console.log('fin')
           }
+          let res3
+          try {
+               res3 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
+               // console.log(res.data)
+               if ((res3.code === 200) && (res3.status === 1)){
+                    store.commit('menu/setMenuMain', res3.data.menu)
+                    store.commit('menu/setMenuTiendaMain', res3.data.categories)
+               }else{
+                    console.log('error await')
+               }
+          }catch (error) {
+               console.log(error)
+          }
      },
      head () {
           return {

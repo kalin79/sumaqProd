@@ -16,6 +16,11 @@ export const state = () => ({
     setTypeVoucher(state, payload){
         state.dataUserCart.typeVoucher = payload
     },
+    setRest(state){
+        // state.dataUserCart.form = null
+        state.dataUserCart.typeVoucher = null
+        state.dataUserCart.paymentType = 0
+    },
  }
  export const getters = {
     getForm(state){

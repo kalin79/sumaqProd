@@ -1,5 +1,5 @@
 <template>
-     <div>
+     <div class="overflowX">
           <div class="fixedWhatsApp">
                <a href="https://wa.link/i7kwid" target="_blank" >
                     <img src="@/assets/images/atencion.png" alt="Comunicate con nosotros por WhatsApp">
