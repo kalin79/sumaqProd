@@ -26,9 +26,9 @@
                     <div class="d-flex align-items-stretch justify-content-start flex-wrap">
                          <div class="box-item-product" v-for="(product, index) in getProducts" :key="index">
                               <div class="cardBox">
-                                   <div class="cardImage" v-on:click="irProducto(product)">
+                                   <div class="cardImage">
                                         <picture>
-                                             <img :src="product.image" :alt="product.title">
+                                             <img :src="product.image" :alt="product.title" v-on:click="irProducto(product)">
                                         </picture>
                                         <a href="javascript:void(0)" class="CartText" v-on:click="addCart({id: product.id, precio: product.price, name: product.title, photo: product.image, description: product.title,cantidad: 1})">
                                              <p>Agregar al carrito</p>
@@ -288,6 +288,8 @@ export default {
                               font-size: 1rem 
           .boxProducts
                padding: 3rem 0 1rem
+               .cardImage 
+                    cursor: pointer
                .box-item-product
                     flex: 0 0 50% 
                     max-width: 50%
