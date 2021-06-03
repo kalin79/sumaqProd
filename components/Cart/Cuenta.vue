@@ -24,7 +24,7 @@
                                         <div class="lineSeparate"></div>
                                         <div class="d-flex justify-content-start align-items-center">
                                              <img src="@/assets/images/hora.png" class="imgIcon"/>
-                                             <span v-if="selectedDeliveryTime!=null">{{ selectedDeliveryTime }}</span>
+                                             <span v-if="selectedDeliveryTime!=null">{{ selectedDeliveryTime.start_time }} - {{ selectedDeliveryTime.end_time }}</span>
                                              <span v-else>Hora</span>
                                         </div>
                                         <img src="@/assets/images/arrowCbx2.png" class="arrowIcon">
@@ -55,8 +55,13 @@
                                              </section>
                                              <section id="tab-item-2" >
                                                   <div class="contentItem">
-                                                       <div class="form-check" v-for="(item, index) in DeliveryTimes" :key="index" v-bind:class="{'disabled' : item.notEnabled === 'disabled'}">
+                                                       <!-- <div class="form-check" v-for="(item, index) in DeliveryTimes" :key="index" v-bind:class="{'disabled' : item.notEnabled === 'disabled'}">
                                                             <b-form-radio v-model="selectedDeliveryTime" :value="item.value" :disabled="item.notEnabled">{{ item.value }}</b-form-radio>
+                                                       </div> -->
+                                                       <div v-for="(item, index) in DeliveryTimes" :key="index">
+                                                            <div class="form-check" @change="setHourSelect(item)"  v-bind:class="{'disabled' : item.notEnabled === 'disabled'}">
+                                                                 <b-form-radio v-model="selectedDeliveryTime" :value="item" :disabled="item.notEnabled">{{ item.start_time }} - {{ item.end_time }}</b-form-radio>
+                                                            </div>
                                                        </div>
                                                   </div>
                                              </section>
@@ -125,6 +130,7 @@ gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(CSSRulePlugin)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
 export default {
+     props: ['DeliveryTimes'],
      data(){
           const now = new Date()
           const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
@@ -137,22 +143,22 @@ export default {
                CalendarOnContext: null,
                minDate: today,
                boolAlert: false,
-               DeliveryTimes: [
-                    {
-                         id: '1',
-                         value: '09:00 am - 12:00 pm',
-                         notEnabled: 'disabled'
-                    },
-                    {
-                         id: '2',
-                         value: '13:00 am - 15:00 pm' 
-                    },
-                    {
-                         id: '3',
-                         value: '18:00 am - 21:00 pm'
+               // DeliveryTimes: [
+               //      {
+               //           id: '1',
+               //           value: '09:00 am - 12:00 pm',
+               //           notEnabled: 'disabled'
+               //      },
+               //      {
+               //           id: '2',
+               //           value: '13:00 am - 15:00 pm' 
+               //      },
+               //      {
+               //           id: '3',
+               //           value: '18:00 am - 21:00 pm'
                          
-                    }
-               ],
+               //      }
+               // ],
           }
      },
      computed: {
@@ -161,13 +167,14 @@ export default {
           ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
           ...mapGetters('shopping/cart/', ['getExchangeRate']),
           dameSubMontoTotal(){
-               if (this.getTypeCurrencySymbol === 1)
-                    return this.subMontoTotal.toFixed(2)
-               else
-                    return (this.subMontoTotal / this.getExchangeRate).toFixed(2)
+               return this.subMontoTotal
           },
      },
      methods : {
+          setHourSelect(data){
+               this.$store.commit('shopping/cart/setHora', data)
+               gsap.to(window, {duration: .5, scrollTo:"#BoxHourAndDay"});
+          },
           async goCheckout(){
                let expreg = /^(?!\s*$).+/
                if ((this.selectedDeliveryTime != null) && (this.CalendarValue != null) ){

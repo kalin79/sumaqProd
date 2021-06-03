@@ -18,7 +18,7 @@
                                         <icon-cart />
                                    </a>
                                    <p>({{ totalProducts }})</p>
-                                   <div class="boxMoney d-flex flex-row align-items-center justify-content-start">
+                                   <div class="boxMoney d-flex flex-row align-items-center justify-content-start" v-if="1==2">
                                         <p>Soles</p>
                                         <div class="switch" v-if="getTypeCurrencySymbol===1">
                                              <input id="switch" class="switch__input" name="switch" type="checkbox" @click="changeMoney">

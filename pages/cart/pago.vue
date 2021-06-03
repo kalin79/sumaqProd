@@ -44,12 +44,13 @@ export default {
           }
      },
      mounted () {
-
      },
      async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
           // console.log(11)
           let distritos = []
           let DeliveryTimes = []
+          
+          
           try {
                res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/payment`)
                // console.log(res.data)
@@ -68,8 +69,8 @@ export default {
           try {
                res2 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/schedule`)
                res2.every(function(data, index){
-                    console.log(data.day)
-                    console.log(valDay)
+                    // console.log(data.day)
+                    // console.log(valDay)
                     if (data.day === valDay){
                          DeliveryTimes = data.schedule
                          return false

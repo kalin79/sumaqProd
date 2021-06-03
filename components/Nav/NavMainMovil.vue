@@ -30,7 +30,7 @@
                          </div>
                     </li>
                </ul>
-               <div class="boxTypeMoney">
+               <div class="boxTypeMoney" v-if="1==2">
                     <div class="d-flex flex-row align-items-center justify-content-between">
                          <div><span>TIPO DE MONEDA</span></div>
                          <div class="boxMoney">

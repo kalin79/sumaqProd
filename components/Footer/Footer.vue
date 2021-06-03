@@ -70,14 +70,14 @@
                                    <div class="boxDetail">
                                         <h2>POLÍTICAS</h2>
                                         <ul>
-                                             <li>
+                                             <!-- <li>
                                                   <nuxt-link to="/">Horarios de atención</nuxt-link>
+                                             </li> -->
+                                             <li>
+                                                  <nuxt-link to="/politicas/terminos-condiciones">Términos y condiciones</nuxt-link>
                                              </li>
                                              <li>
-                                                  <nuxt-link to="/">Términos y condiciones</nuxt-link>
-                                             </li>
-                                             <li>
-                                                  <nuxt-link to="/">Políticas de entrega <br>y devolución</nuxt-link>
+                                                  <nuxt-link to="/politicas/politicas-entrega-devolucion">Políticas de entrega <br>y devolución</nuxt-link>
                                              </li>
                                              <li>
                                                   <nuxt-link to="/">Políticas de privacidad</nuxt-link>
@@ -102,7 +102,7 @@
                                                   <nuxt-link to="/">Estado del pedido</nuxt-link>
                                              </li>
                                              <li>
-                                                  <nuxt-link to="/">Cobertura</nuxt-link>
+                                                  <nuxt-link to="/mi-pedido/cobertura">Cobertura</nuxt-link>
                                              </li>
                                         </ul>
                                    </div>
@@ -214,14 +214,14 @@
                                    </button>
                                    <div class="accordionDetail accordionDetail-2">
                                         <ul>
-                                             <li>
+                                             <!-- <li>
                                                   <nuxt-link to="/">Horarios de atención</nuxt-link>
+                                             </li> -->
+                                             <li>
+                                                  <nuxt-link to="/politicas/terminos-condiciones">Términos y condiciones</nuxt-link>
                                              </li>
                                              <li>
-                                                  <nuxt-link to="/">Términos y condiciones</nuxt-link>
-                                             </li>
-                                             <li>
-                                                  <nuxt-link to="/">Políticas de entrega y devolución</nuxt-link>
+                                                  <nuxt-link to="/politicas/politicas-entrega-devolucion">Políticas de entrega y devolución</nuxt-link>
                                              </li>
                                              <li>
                                                   <nuxt-link to="/">Políticas de privacidad</nuxt-link>
@@ -252,7 +252,7 @@
                                                   <nuxt-link to="/">Estado del pedido</nuxt-link>
                                              </li>
                                              <li>
-                                                  <nuxt-link to="/">Cobertura</nuxt-link>
+                                                  <nuxt-link to="/mi-pedido/cobertura">Cobertura</nuxt-link>
                                              </li>
                                         </ul>
                                    </div>

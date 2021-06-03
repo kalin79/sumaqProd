@@ -1,32 +1,38 @@
 <template>
-     <div class="BannerProduct">
+     <div class="BannerProduct" v-if="breadcrumb">
           <div class="separate"></div>
           <div class="container-fluid container-fluid-xxl">
                <div class="d-flex justify-content-between align-items-end boxBanner">
                     <h3><span>Postres</span></h3>
                     <h2>Tienda de Postres</h2>
+                    
                     <div class="Boxbreadcrumb">
                          <div class="d-flex justify-content-start align-items-start">
                               <nuxt-link to="/">
                                    <p class="brown">Home</p> 
                               </nuxt-link>
                               <p class="separateP brown">></p>
-                              <nuxt-link to="/postres">
-                                   <p class="brown">Tienda de Postres</p> 
+                              <nuxt-link :to="`/tienda${breadcrumb.category.link}`">
+                                   <p class="brown">Tienda de {{ breadcrumb.category.title }}</p> 
                               </nuxt-link>
-                              <p class="separateP brown">></p>
-                              <nuxt-link to="/postres">
-                                   <p class="brown">Helados</p> 
+                              <p class="separateP brown" v-if="breadcrumb.subcategory.title">></p>
+                              <nuxt-link :to="`/tienda${breadcrumb.subcategory.link}`" v-if="breadcrumb.subcategory.title">
+                                   <p class="brown">{{ breadcrumb.subcategory.title }}</p> 
                               </nuxt-link>
                               <p class="separateP brown">></p>
                               
-                              <p class="brown">Caja de 12 helados</p> 
+                              <p class="brown">{{ breadcrumb.product_breadcrumb.title_large }}</p> 
                          </div>
                     </div>
                </div>
           </div> 
      </div>
 </template>
+<script>
+export default {
+     props: ['breadcrumb']
+}
+</script>
 <style lang="sass">
      .BannerProduct
           background: $brown

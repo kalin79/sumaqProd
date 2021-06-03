@@ -459,7 +459,7 @@
                                              <div class="rowCosto">
                                                   <div class="mb-2 d-flex justify-content-between align-items-start">
                                                        <h3>Subtotal</h3>
-                                                       <h3>{{ getCurrencySymbol }} {{ dameSubMontoTotal }}</h3>
+                                                       <h3>{{ getCurrencySymbol }} {{ subMontoTotal }}</h3>
                                                   </div>
                                                   <div class="pb-4 d-flex justify-content-between align-items-start">
                                                        <h3>Costo por Delivery</h3>
@@ -474,7 +474,7 @@
                                                             <p>Incluye impuestos</p>
                                                        </div>
                                                        
-                                                       <h3 class="boldPrice">{{ getCurrencySymbol }} {{ dameTotal }}</h3>
+                                                       <h3 class="boldPrice">{{ getCurrencySymbol }} {{ dameMontoTotal }}</h3>
                                                   </div>
                                              </div>
                                         </div>
@@ -531,9 +531,7 @@
                                         <div class="boxButtom">
                                              <b-button type="submit" class="btn-submit"><p>REALIZAR PEDIDO</p></b-button>
                                         </div>
-                                        <div class="boxButton">
-                                             <b-button type="button" class="tokenizer-container"></b-button>
-                                        </div>
+                                        
                                         <div class="boxAlerts">
                                              <div class="alert alert-danger" role="alert">
                                                   <client-only>
@@ -665,23 +663,10 @@ export default {
           }
      },
      mounted() {
-          // Agrega credenciales de SDK 
-          const mp = new MercadoPago('PUBLIC_KEY', {locale: 'es-AR'});
-
-          // Inicializa el Web Tokenize Checkout
-          mp.checkout({
-               tokenizer: {
-                    totalAmount: 4000,
-                    backUrl: 'https://www.mi-sitio.com/procesar-pago'
-               },
-               render: {
-                    container: '.tokenizer-container', // Indica dónde se mostrará el botón
-                    label: 'Pagar' // Cambia el texto del botón de pago (opcional)
-               }
-          });
      },
      computed: {
           ...mapGetters('shopping/cart/', ['subMontoTotal']),
+          ...mapGetters('shopping/cart/', ['getMontoTotal']),
           ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
           ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
           ...mapGetters('shopping/cart/', ['getExchangeRate']),
@@ -701,26 +686,17 @@ export default {
                else
                     return 'Nombre completo'
           },
-          dameTotal(){
-               let igv = 0.18
-               // let total = this.subMontoTotal + this.subMontoTotal*igv + this.priceDelivery
-               let total = this.subMontoTotal + this.priceDelivery
-               if (this.getTypeCurrencySymbol === 1)
-                    return total.toFixed(2)
-               else
-                    return (total / this.getExchangeRate).toFixed(2)
-          },
           damePriceDelivery(){
                if (this.getTypeCurrencySymbol === 1)
                     return this.priceDelivery.toFixed(2)
                else
                     return (this.priceDelivery / this.getExchangeRate).toFixed(2)
           },
-          dameSubMontoTotal(){
-               if (this.getTypeCurrencySymbol === 1)
-                    return this.subMontoTotal.toFixed(2)
-               else
-                    return (this.subMontoTotal / this.getExchangeRate).toFixed(2)
+          // dameSubMontoTotal(){
+          //      return this.subMontoTotal
+          // },
+          dameMontoTotal(){
+               return this.getMontoTotal
           },
      },
      methods: {
@@ -741,9 +717,9 @@ export default {
           },
           costoDelivery(){
                // console.log(this.selectDistrito)
-               if (this.selectDistrito.precio > 0){
-                    this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.precio)
-                    this.priceDelivery = this.selectDistrito.precio
+               if (this.selectDistrito.costo > 0){
+                    this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
+                    this.priceDelivery = this.selectDistrito.costo
                }
           },
           getPrice(price){
@@ -782,7 +758,8 @@ export default {
                     console.log('Simbolo de la moneda',this.getCurrencySymbol)
                     console.log('Tipo de moneda ( 1 = sol, 2 = dolar) ',this.getTypeCurrencySymbol)
                     console.log('Cambio del Dolar',this.getExchangeRate)
-                    console.log('Monto Total' , this.dameTotal)
+                    console.log('Monto Total' , this.getMontoTotal)
+                    console.log('Monto SubTotal' , this.subMontoTotal)
 
                     // chicos de programacion.
 
@@ -796,7 +773,8 @@ export default {
                     formData.append("productoObjListado", this.dataCart.order) // [ { cantidad: 1, description: 'sss', id: 1, name: 'My Classic Love', photo: 'https://admin.floreriasumaq.pe/images/products/1/1-1621218681-60a1d5799edc2-pc.jpg', precio: 145} ]
                     formData.append("productoTipoMonenda", this.getTypeCurrencySymbol) // ( 1 = sol, 2 = dolar)
                     formData.append("productoSimboloMoneda", this.getCurrencySymbol) // S./ , USD
-                    formData.append("montoTotal", this.dameTotal) 
+                    formData.append("montoTotal", this.dameTotal)
+                    formData.append("montoSubTotal", this.subMontoTotal)
                     formData.append("cargoDelivery", this.dataCart.cargoDelivery) 
                     
                     // tipo de cambio
@@ -834,6 +812,8 @@ export default {
                          // enviamos a una transferencia Bancaria
                          this.$router.push('/cart/finalizado-transferencia')
                     }else{
+                         // Ayax 
+                         this.$router.push('/pago-online/mercado-pago')
                          // utilizando pasarela de pago
                          console.log('mercado de pago')
                     }
@@ -1162,7 +1142,7 @@ export default {
                          .boxDetail
                               padding: 0 0 0 1.5rem
                               @media screen and (min-width: 992px)
-                                   width: 280px
+                                   width: 270px
                               @media screen and (min-width: 1200px)
                                    width: 300px
                               h2

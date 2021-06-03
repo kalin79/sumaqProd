@@ -67,9 +67,11 @@
                                                                  </div>
                                                             </a>
                                                        </div>
-                                                       <h5>{{ listOcaciones[0].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price) }}</h5>
-                                                       <h5 class="card-price-old" v-if="listOcaciones[0].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price_old) }}</span></h5>
-                                                       <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                       <div class="detailClick" v-on:click="irProducto(listOcaciones[0])">
+                                                            <h5>{{ listOcaciones[0].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price) }}</h5>
+                                                            <h5 class="card-price-old" v-if="listOcaciones[0].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price_old) }}</span></h5>
+                                                            <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                       </div>
                                                   </div>
                                              </div>
                                         </div>
@@ -79,7 +81,7 @@
                                              <div>
                                                   <div class="animationCard">
                                                        <div class="cardOcacion">
-                                                            <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                            <nuxt-link :to="`${listOcaciones[1].link}`" class="boxEye d-flex justify-content-center align-items-center">
                                                                  <img src="@/assets/images/ojos.png" class="imgEye">
                                                             </nuxt-link>
                                                             <picture>
@@ -96,9 +98,11 @@
                                                                            </div>
                                                                       </a>
                                                                  </div>
-                                                                 <h5>{{ listOcaciones[1].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price) }}</h5>
-                                                                 <h5 class="card-price-old" v-if="listOcaciones[1].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price_old) }}</span></h5>
-                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                                 <div class="detailClick" v-on:click="irProducto(listOcaciones[1])">
+                                                                      <h5>{{ listOcaciones[1].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price) }}</h5>
+                                                                      <h5 class="card-price-old" v-if="listOcaciones[1].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price_old) }}</span></h5>
+                                                                      <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -106,7 +110,7 @@
                                              <div>
                                                   <div class="animationCard">
                                                        <div class="cardOcacion">
-                                                            <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                            <nuxt-link :to="`${listOcaciones[2].link}`" class="boxEye d-flex justify-content-center align-items-center">
                                                                  <img src="@/assets/images/ojos.png" class="imgEye">
                                                             </nuxt-link>
                                                             <picture>
@@ -123,9 +127,11 @@
                                                                            </div>
                                                                       </a>
                                                                  </div>
-                                                                 <h5>{{ listOcaciones[2].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price) }}</h5>
-                                                                 <h5 class="card-price-old" v-if="listOcaciones[2].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price_old) }}</span></h5>
-                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                                 <div class="detailClick" v-on:click="irProducto(listOcaciones[2])">
+                                                                      <h5>{{ listOcaciones[2].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price) }}</h5>
+                                                                      <h5 class="card-price-old" v-if="listOcaciones[2].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price_old) }}</span></h5>
+                                                                      <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -135,7 +141,7 @@
                                              <div>
                                                   <div class="animationCard">
                                                        <div class="cardOcacion">
-                                                            <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                            <nuxt-link :to="`${listOcaciones[3].link}`" class="boxEye d-flex justify-content-center align-items-center">
                                                                  <img src="@/assets/images/ojos.png" class="imgEye">
                                                             </nuxt-link>
                                                             <picture>
@@ -152,9 +158,11 @@
                                                                            </div>
                                                                       </a>
                                                                  </div>
-                                                                 <h5>{{ listOcaciones[3].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price) }}</h5>
-                                                                 <h5 class="card-price-old" v-if="listOcaciones[3].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price_old) }}</span></h5>
-                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                                 <div class="detailClick" v-on:click="irProducto(listOcaciones[3])">
+                                                                      <h5>{{ listOcaciones[3].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price) }}</h5>
+                                                                      <h5 class="card-price-old" v-if="listOcaciones[3].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price_old) }}</span></h5>
+                                                                      <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -162,13 +170,13 @@
                                              <div>
                                                   <div class="animationCard">
                                                        <div class="cardOcacion">
-                                                            <nuxt-link to="/" class="boxEye d-flex justify-content-center align-items-center">
+                                                            <nuxt-link :to="`${listOcaciones[4].link}`" class="boxEye d-flex justify-content-center align-items-center">
                                                                  <img src="@/assets/images/ojos.png" class="imgEye">
                                                             </nuxt-link>
                                                             <picture>
                                                                  <img :src="listOcaciones[4].image" :alt="listOcaciones[4].title" class="img3">
                                                             </picture>
-                                                            <div class="cardDetail">
+                                                            <div class="cardDetail" >
                                                                  <div class="cardShopping d-flex justify-content-center align-items-center">
                                                                       <a href="javascript:void(0)" v-on:click="addCart({id: listOcaciones[4].id, precio: listOcaciones[4].price, name: listOcaciones[4].title, photo: listOcaciones[4].image, description: listOcaciones[4].description_small,cantidad: 1})">
                                                                            <div class="d-flex justify-content-start align-items-center">
@@ -179,9 +187,11 @@
                                                                            </div>
                                                                       </a>
                                                                  </div>
-                                                                 <h5>{{ listOcaciones[4].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price) }}</h5>
-                                                                 <h5 class="card-price-old" v-if="listOcaciones[4].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price_old) }}</span></h5>
-                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                                 <div class="detailClick" v-on:click="irProducto(listOcaciones[4])">
+                                                                      <h5>{{ listOcaciones[4].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price) }}</h5>
+                                                                      <h5 class="card-price-old" v-if="listOcaciones[4].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price_old) }}</span></h5>
+                                                                      <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -220,6 +230,10 @@
                ...mapGetters('shopping/cart/', ['getExchangeRate']),
           },
           methods: {
+               irProducto(product){
+                    console.log(product)
+                    this.$router.push(`${product.link}`)
+               },
                irTiendaOcasion(){
                     this.$router.push(`tienda${this.selected.link}`)
                },
@@ -269,6 +283,8 @@
           background-position: 0 0
           position: relative
           z-index: 50
+          .animationSection
+               overflow: hidden
           .blanco
                color: white !important
           &:after
@@ -604,6 +620,10 @@
                               background: white
                               position: relative
                               z-index: 10
+                              .detailClick
+                                   cursor: pointer
+                                   position: relative
+                                   z-index: 5
                               &::after
                                    content: ''
                                    position: absolute
@@ -660,6 +680,7 @@
                               h5
                                    @include font-libre(1.25rem,1.25rem,1rem,1rem,$Playfair,400,$blackLight)
                                    text-align: left
+                                   
                                    &.card-price-old
                                         @include font-libre(.625rem,.6rem,.6rem,.75rem,$Montserrat,600,black)
                                         span

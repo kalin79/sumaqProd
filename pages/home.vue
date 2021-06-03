@@ -15,8 +15,8 @@
           <div class="_destacado_movil">
                <destacados-m />
           </div>
-          <planes />
-          <blog />
+          <!-- <planes /> -->
+          <!-- <blog /> -->
           
      </div>
 </template>

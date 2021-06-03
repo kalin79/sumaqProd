@@ -1,88 +1,84 @@
 <template>
      <div class="boxProductDetail">
-          <banner />
-          <div class="container-fluid container-fluid-xxl">
+          
+          <banner :breadcrumb="breadcrumb" />
+          <div class="container-fluid container-fluid-xxl" v-if="product">
                <div class="contentDetail">
                     <div class="row">
                          <div class="col-12 col-lg-5">
-                              <div class="galleryProducts">
+                              <div class="galleryProducts" v-if="product.gallery.length > 0">
+                                   <client-only> 
+                                             <carousel
+                                             :perPageCustom="[[300, 1]]" 
+                                             :autoplay="false" 
+                                             :autoplayTimeout=5000
+                                             :paginationPadding=10
+                                             :minSwipeDistance=8
+                                             :navigationEnabled="true"
+                                             :paginationEnabled="false"
+                                             :loop="false"
+                                             :mouse-drag="true"
+                                             :touchDrag="true"
+                                             >
+                                                  <slide v-for="(slide, index) in product.gallery" :key="index">
+                                                       <div class="boxImages">
+                                                            <img :src="slide" alt="">
+                                                       </div>
+                                                  </slide>
+                                             </carousel>
+                                    </client-only>
                                    
-                                   <vueper-slides
-                                        ref="vueperslides1"
-                                        :autoplay="true"
-                                        :duration=5000
-                                        :pause-on-hover="pauseOnHover"
-                                        @autoplay-pause="internalAutoPlaying = false"
-                                        @autoplay-resume="internalAutoPlaying = true"
-                                        :bullets="false"
-                                        @slide="$refs.vueperslides2.goToSlide($event.currentSlide.index, { emit: false })"
-                                        >
-                                        <vueper-slide
-                                             v-for="(slide, i) in slides"
-                                             :key="i"
-                                             :image="slide.image"
-                                             :video="slide.video">
-                                        </vueper-slide>
-                                   </vueper-slides>
                               
                               </div>
-                              <div class="boxThumbnails">
-                                   <vueper-slides
-                                        class="no-shadow thumbnails"
-                                        ref="vueperslides2"
-                                        @slide="$refs.vueperslides1.goToSlide($event.currentSlide.index, { emit: false })"
-                                        :visible-slides="slides.length"
-                                        fixed-height="75px"
-                                        :bullets="false"
-                                        :touchable="false"
-                                        :gap="2.5"
-                                        :arrows="false">
-                                        <vueper-slide
-                                             v-for="(slide, i) in slides"
-                                             :key="i"
-                                             :image="slide.image"
-                                             @click.native="$refs.vueperslides2.goToSlide(i)">
-                                        </vueper-slide>
-                                   </vueper-slides>
-                                   
+                              <div class="boxThumbnails" v-if="product.gallery.length > 0">
+                                   <client-only> 
+                                             <carousel
+                                             :perPageCustom="[[300, 3]]" 
+                                             :autoplay="false" 
+                                             :autoplayTimeout=5000
+                                             :paginationPadding=10
+                                             :minSwipeDistance=8
+                                             :navigationEnabled="true"
+                                             :paginationEnabled="false"
+                                             :loop="false"
+                                             :mouse-drag="true"
+                                             :touchDrag="true"
+                                             >
+                                                  <slide v-for="(slide, index) in product.gallery" :key="index">
+                                                       <div class="boxImages2">
+                                                            <img :src="slide" alt="">
+                                                       </div>
+                                                  </slide>
+                                             </carousel>
+                                   </client-only>
                               </div>
                          </div>
                          <div class="col-12 col-lg-7">
                               <div class="ContentProduct">
                                    <div class="boxInfoHeader">
                                         <div class="boxTitle">
-                                             <h1>Caja de 12 Brownies</h1>
-                                             <h2>SKU 21G87H</h2>
+                                             <h1>{{ product.title_large }}</h1>
+                                             <h2 v-if="product.code">{{ product.code }}</h2>
                                         </div>
                                         <div class="boxPrice">
                                              <div class="boxPrice-online">
-                                                  <h2>S./ 139.50</h2>
+                                                  <h2>S./ {{ dameprecioProducto(product.price) }}</h2>
                                              </div>
-                                             <div class="boxPrice-old">
-                                                  <h2>Antes: <span>S/ 199.00</span></h2>
+                                             <div class="boxPrice-old" v-if="product.old > 0">
+                                                  <h2>Antes: <span>S/ {{ dameprecioProducto(product.old) }}</span></h2>
                                              </div>
                                         </div>
                                         <div class="boxDescriptionShort">
-                                             <p>Una caja de 12 Brownies de chocolate, cada brownie es de 60 grs. de puro bizcocho, bañado con fudge y frutos secos, </p>
+                                             <client-only>
+                                                  <div v-html="product.description_small"></div>
+                                             </client-only>
                                         </div>
                                    </div>
-                                   <!-- <div class="boxInfoBody">
-                                        <div class="titleHorario">
-                                             <h2>1. Selecciona Fecha y Horario de entrega</h2>
-                                        </div>
-                                        
-                                        <div class="boxCargoDelivery">
-                                             <div class="d-flex justify-content-start align-items-center">
-                                                  <img src="@/assets/images/iconCardo.png" alt="Cargo" />
-                                                  <p>Cargo por delivery S/ 20.00</p>
-                                             </div>
-                                        </div>
-                                   </div> -->
-                                   <div class="boxComplementos">
+                                   <div class="boxComplementos" v-if="complementary_products.length > 0">
                                         <div class="titleHorario">
                                              <h2>1. Agregale un complemento a tu pedido (opcional)</h2>
                                         </div>
-                                        <div class="galleryComplemento">
+                                        <div class="galleryComplemento" v-if="complementary_products">
                                              
                                              <client-only>
                                                   
@@ -99,83 +95,23 @@
                                                   :touchDrag="true"
                                                   >
                                                        
-                                                       <slide>
+                                                       <slide v-for="(complement, index) in complementary_products" :key="index">
                                                             <div class="boxContentComplemento">
                                                                  <div class="custom-chekbox">
                                                                       <b-form-checkbox
                                                                            v-model="selectComplement"
-                                                                           value="{ text: 'cola', id: '1' }"
+                                                                           :value="complement"
                                                                       >
                                                                       </b-form-checkbox>
                                                                  </div>
                                                                  <div class="boxPicture">
                                                                       <picture>
-                                                                           <img src="@/assets/images/comple1.jpg" alt="complemento">
+                                                                           <img :src="complement.image" :alt="complement.title_large">
                                                                       </picture>
                                                                  </div>
                                                                  <div class="boxDetail">
-                                                                      <h3>Caja de bombones Sublime</h3>
-                                                                      <h2>S/ 39.00</h2>
-                                                                 </div>
-                                                            </div>
-                                                       </slide>
-                                                       <slide>
-                                                            <div class="boxContentComplemento">
-                                                                 <div class="custom-chekbox">
-                                                                      <b-form-checkbox
-                                                                           v-model="selectComplement"
-                                                                           value="{ text: 'cola2', id: '2' }"
-                                                                      >
-                                                                      </b-form-checkbox>
-                                                                 </div>
-                                                                 <div class="boxPicture">
-                                                                      <picture>
-                                                                           <img src="@/assets/images/comple2.jpg" alt="complemento">
-                                                                      </picture>
-                                                                 </div>
-                                                                 <div class="boxDetail">
-                                                                      <h3>Peluche amigos de Pikachu</h3>
-                                                                      <h2>S/ 49.00</h2>
-                                                                 </div>
-                                                            </div>
-                                                       </slide>
-                                                       <slide>
-                                                            <div class="boxContentComplemento">
-                                                                 <div class="custom-chekbox">
-                                                                      <b-form-checkbox
-                                                                           v-model="selectComplement"
-                                                                           value="{ text: 'cola3', id: '3' }"
-                                                                      >
-                                                                      </b-form-checkbox>
-                                                                 </div>
-                                                                 <div class="boxPicture">
-                                                                      <picture>
-                                                                           <img src="@/assets/images/comple3.jpg" alt="complemento">
-                                                                      </picture>
-                                                                 </div>
-                                                                 <div class="boxDetail">
-                                                                      <h3>Peluche amigos de Pikachu</h3>
-                                                                      <h2>S/ 49.00</h2>
-                                                                 </div>
-                                                            </div>
-                                                       </slide>
-                                                       <slide>
-                                                            <div class="boxContentComplemento">
-                                                                 <div class="custom-chekbox">
-                                                                      <b-form-checkbox
-                                                                           v-model="selectComplement"
-                                                                           value="{ text: 'cola4', id: '4' }"
-                                                                      >
-                                                                      </b-form-checkbox>
-                                                                 </div>
-                                                                 <div class="boxPicture">
-                                                                      <picture>
-                                                                           <img src="@/assets/images/comple4.jpg" alt="complemento">
-                                                                      </picture>
-                                                                 </div>
-                                                                 <div class="boxDetail">
-                                                                      <h3>Peluche amigos de Pikachu</h3>
-                                                                      <h2>S/ 49.00</h2>
+                                                                      <h3>{{ complement.title_large }}</h3>
+                                                                      <h2>S/ {{ dameprecioProducto(complement.price) }}</h2>
                                                                  </div>
                                                             </div>
                                                        </slide>
@@ -187,25 +123,26 @@
                                    </div>
                                    <div class="boxAddButton">
                                         <div class="titleHorario">
-                                             <h2>2. Agregar a tu carrito</h2>
+                                             <h2 v-if="complementary_products.length > 0">2. Agregar a tu carrito</h2>
+                                             <h2 v-else>1. Agregar a tu carrito</h2>
                                         </div>
                                         <div class="d-flex justify-content-center flex-lg-row flex-column align-items-center">
-                                             <nuxt-link to="/">
+                                             <a href="javascript:void(0)" v-on:click="addCart({id: product.id, precio: product.price, name: product.title_large, photo: product.image, description: product.description_small,cantidad: 1})">
                                                   <div class="d-flex justify-content-center align-items-center">
                                                        <picture>
                                                             <img src="@/assets/images/shop.png" alt="AddCar">
                                                        </picture>
-                                                       <p>AGREGAR (S/ 159.00)</p>
+                                                       <p>AGREGAR (S/ {{ dameprecioProducto(product.price) }})</p>
                                                   </div>
-                                             </nuxt-link>
-                                             <button>
+                                             </a>
+                                             <button v-on:click="addCartChekcout({id: product.id, precio: product.price, name: product.title_large, photo: product.image, description: product.description_small,cantidad: 1})">
                                                   <p>AGREGAR Y SEGUIR COMPRANDO</p>
                                              </button>
                                         </div>
                                    </div>
                               </div>
                          </div>
-                         <div class="col-12">
+                         <div class="col-12 mt-4">
                               <div class="boxTabDetail">
                                    <div class="tabHeader">
                                         <div class="d-flex justify-content-start flex-column flex-lg-row align-items-center">
@@ -216,63 +153,59 @@
                                    </div>
                                    <div class="tabConent">
                                         <section id="tabConent-1" class="active">
-                                             <h4>Caja de 12 Brownies</h4>
-                                             <p>¡Hazle el día a alguien especial con el Chocolate sin azucar de la marca Turin O quedatelos para guardar en tu alacena y deleitarte una vez al día.</p>
+                                             <h4>{{ product.title_large }}</h4>
+                                             <client-only>
+                                             <div v-html="product.description"></div>
+                                             </client-only>
                                         </section>
                                         <section id="tabConent-2" >
-                                             <h4>Caja de 12 Brownies</h4>
-                                             <p>Para envíos el <strong>MISMO DÍA</strong>:</p>
+                                             <h4>{{ product.title_large }}</h4>
+                                             <p><strong>Los rangos de entrega</strong>:</p>
                                              <ul>
-                                             <li>Es necesario haber colocado el pedido antes de las 2:30 PM (horario de centro) del mismo día</li>
+                                                  <li>07:00 am – 10:00 am <strong>Reparto único de productos con el nombre "DESAYUNO" </strong>en caso seleccione un producto que no pertenezca a esa categoría se programara para el horario siguiente.</li>
+                                                  <li>11:00 am – 03:00 pm Reparto de todos los productos que hayan sido comprados con al menos un día de anticipación.</li>
+                                                  <li>03:00 pm – 07:00 pm Reparto de pedidos tomados el mismo día.</li>
                                              </ul>
-                                             <h4><strong>Horarios de Entrega</strong></h4>
-                                             <ul>
-                                             <li>Lunes a Viernes
-                                             <ul>
-                                             <li>Comienzan a las 8:00AM y nuestra última entrega es a las 7:00PM (Horario del Centro)</li>
-                                             </ul></li>
-                                             <li>Sábados y Domingos
-                                             <ul>
-                                             <li>Comienzan a las 9:00AM y nuestra última ruta sale a la 7:00PM (Horario del Centro). </li>
-                                             </ul></li>
-                                             </ul>
-                                             <h3><strong>Día de las Madres y San Valentín</strong></h3>
-                                             <ul>
-                                             <li>El horario de entrega es entre 7:00 AM y 7:00 PM</li>
-                                             <li>Por la carga de volumen no hay entregas con horario especial. </li>
-                                             </ul>
-                                             <h3><strong>Reprogramaciones</strong></h3>
-                                             <ul>
-                                             <li>Sabemos lo importante que es esta fecha, es por esto que nos comprometemos a entregar en el díaa y horario seleccionado.</li>
-                                             <li>Si no se encuentra el destinatario, intentaremos comunicarnos para resolver la situación.</li>
-                                             <li>En caso de no tener respuesta, entregaremos tu pedido con alguien cercano: vecino, compañero de trabajo o recepción.</li>
-                                             <li>Si nadie puede recibir el arreglo, se te notificará para reprogramar el envío.</li>
-                                             </ul>
-                                             <p>Recuerda: todas las notificaciones de tu pedido llegarán a tu correo electrónico registrado.</p>
+                                             <p>Para fechas especiales como San Valentín, Día de la Madre, Día de la Mujer, Día del Padre, Día Niño, Fiestas patrias y Navidad únicamente se aceptarán pedidos de la categoría que lleve el nombre correspondiente a la campaña en curso.</p>
+                                             
                                         </section>
                                         <section id="tabConent-3" >
-                                             <h4><strong>Políticas de Sustitución de Flores</strong></h4>
-                                             <p>En EnviaFlores nos esforzamos por elaborar los arreglos lo más parecido posible a las fotografías y descripciones del producto, sin embargo, como cada arreglo es único y elaborado a mano, puede llegar a tener ligeras variaciones. En algunos casos, los floristas pueden hacer ligeros cambios siempre y cuando el arreglo final sea de igual o mayor valor. Las rosas o flores primarias del arreglo nunca serán sustituidas sin tu autorización.</p>
-                                             <p>La variedad, color, tamaño y forma de la flor varía de acuerdo con la localidad, así como el jarrón y color del listón.</p>
-                                             <p>Si por alguna razón no podemos cumplir con algún producto adicional como peluches, globos o chocolates, nos comunicaremos contigo de forma inmediata para sugerirte algún producto o bien para realizar el reembolso por el monto que corresponda a dicho producto.</p>
-                                             <h4><strong>Políticas de Sustitución de Globos</strong></h4>
-                                             <p>Los Globos son productos perecederos; el clima y el ambiente exterior influyen en su durabilidad por lo cual se recomienda mantenerlos en un lugar seco, fresco y techado. Estos productos son susceptibles a romperse o desinflarse dependiendo del uso y cuidad que se les de. Para evitar que se rompan, se recomienda manejarlos con cuidado, no apretarlos, no acercarlos a objetos punzantes o cortantes, no exponerlos al sol directo, no colocarlos en interiores de autos por mucho tiempo o someterlos a cambios de clima bruscos.</p>
-                                             <p>Los globos inflados con helio expuestos a altas temperaturas y/o cambios climáticos sufren variaciones debido al comportamiento de las moléculas de helio; de calor a frío el globo puede lucir desinflado y de frío a calor el globo tienda a inflarse. </p>
-                                             <p>Los modelos de globos varían constantemente, por lo cuál únicamente podemos garantizar que el globo será entregado tal como aparece en la descripción del producto, es decir será un globo con la ocasión señalada y medida apropiada. El diseño, colores y frases varían según disponibilidad. En caso de no contar con algún globo, se sustituirá con otros(s) de valor equivalente. </p>
-                                             <p>Los globos tienen una duración aproximada de 48 horas. </p>
-                                             <h4><strong>Política de Sustitución de Peluches</strong></h4>
-                                             <p>El modelo del peluche puede variar de acuerdo a la disponibilidad. Se aplicará una devolución por el monto pagado por el peluche si se llegara a entregar en malas condiciones como puede ser roto o sucio.</p>
-                                             <p>En EnviaFlores nos comprometemos a que tu arreglo luzca hermoso y nos aseguramos de que sea elaborado con productos de la más alta calidad.</p>
+                                             <h4><strong>Cambios y devoluciones</strong></h4>
+                                             <p>Aceptamos cambios con un plazo mínimo de 2 días de anticipación. 
+                                                  Para cambios de fecha, dirección, detalles o tipo de producto comunicarse al +51985757450 o 
+                                                  al mail <a href="mailto:logistica@floreriasumaq.pe">logistica@floreriasumaq.pe</a> con el asunto <strong>"REALIZAR CAMBIO URGENTE"</strong></p>
+                                             <p>En caso no se pueda realizar la entrega debido a que no se encontró a ninguna persona con capacidad de recibir el regalo se procederá de la siguiente forma.</p>
+                                             <p>El pedido regresará a nuestra base de repartos en San Miguel donde podrá ser recogido en el transcurso del día.</p>
+                                             <p>En caso de no poder recoger el pedido de nuestra base podrá solicitar una reprogramación para el mismo día dependiendo de la disponibilidad. Este nuevo envío tendrá un costo de s/.15 a s/.45 soles (variará según distrito).</p>
+                                             <p>Es posible realizar la reprogramación para otra fecha con un costo por reprogramación y costo de envío según distrito. Esto se debe a que nuestros productos en su mayoría son perecibles es por ello que deberán ser preparados nuevamente para envío.</p>
+                                             <p>No se aceptan devoluciones de nuestros pedidos bajo ningún contexto.</p>
+                                             <h4><strong>COSTO DE ENVÍO</strong></h4>
+                                             <h4><strong>Lima</strong></h4>
+                                             <ul>
+                                                  <li>Zona 1: Pueblo Libre, San Isidro, San Miguel, Magdalena, Jesús María, Lince Breña, Lima s/9</li>
+                                                  <li>Zona 2: La Molina, La Victoria, San Luis, Miraflores, Barranco, Surco, San Borja, Surquillo s/13</li>
+                                                  <li>Zona 3: Chorrillos, Ate, Rimac, San Juan de Miraflores, Santa Anita s/17</li>
+                                                  <li>Zona 4: El Agustino, Bellavista, Callao, Carmen de la Legua, La Perla s/25</li>
+                                                  <li>Zona 5: San Juan de Lurigancho, Santa Clara, Villa El Salvador, La Punta s/30</li>
+                                                  <li>Zona 6: Independencia, Los Olivos, Lurigancho/Chosica, San Martín de Porres, Villa María del Triunfo s/35</li>
+                                                  <li>Zona 7: Carabayllo, Cieneguilla, Comas, Pachacamac, Puente Piedra, Ventanilla, Huaycán s/50</li>
+                                                  <li>Zona 8: Chosica, Lurín, Santa Rosa, Mi Perú, Santa Eulalia s/70</li>
+                                                  <li>Zona 9: Chaclacayo, Arica, Pulpos, Punta Hermosa s/80</li>
+                                             </ul>
+                                             <h4><strong>Provincias</strong></h4>
+                                             <ul>
+                                                  <li>El envío se realizará a la base de Olva de la ciudad s/40</li>
+                                             </ul>
                                         </section>
                                    </div>
                               </div>
                          </div>
-                         <div class="col-12">
+                         <div class="col-12" v-if="related_products.length > 0">
                               <div class="boxProductosRelaciones">
                                    <div class="boxTitle">
                                         <h2>También te pueden interesar</h2>
                                    </div>
-                                   <div class="boxCarrusel">
+                                   <div class="boxCarrusel" >
                                         <client-only>
                                                   
                                                   <carousel
@@ -288,80 +221,24 @@
                                                   :touchDrag="true"
                                                   >
                                                        
-                                                       <slide>
+                                                       <slide v-for="(relateds, index) in related_products" :key="index">
                                                             <div class="boxRelacioinadosCarrusel">
-                                                                 <nuxt-link to="/">
+                                                                 <nuxt-link :to="`/${relateds.link}`">
                                                                       <div class="boxPicture">
                                                                            <picture>
-                                                                                <img src="@/assets/images/producto5.jpg" alt="complemento">
+                                                                                <img :src="relateds.image" :alt="relateds.title_large">
                                                                            </picture>
                                                                       </div>
                                                                       <div class="boxDetail">
-                                                                           <h4>POSTRES</h4>
-                                                                           <h3>Caja de bombones Sublime</h3>
-                                                                           <h2>S/ 39.00</h2>
-                                                                           <h5>Antes <span>S./29.00</span></h5>
+                                                                           <h4>{{ relateds.category }}</h4>
+                                                                           <h3>{{ relateds.title_large  }}</h3>
+                                                                           <h2>S/ {{ relateds.price }} </h2>
+                                                                           <h5 v-if="relateds.price_old > 0">Antes <span>S./{{ relateds.price_old }}</span></h5>
                                                                       </div>
                                                                  </nuxt-link>
                                                             </div>
                                                        </slide>
-                                                       <slide>
-                                                            <div class="boxRelacioinadosCarrusel">
-                                                                 
-                                                                 <nuxt-link to="/">
-                                                                      <div class="boxPicture">
-                                                                           <picture>
-                                                                                <img src="@/assets/images/producto2.jpg" alt="complemento">
-                                                                           </picture>
-                                                                      </div>
-                                                                      <div class="boxDetail">
-                                                                           <h4>POSTRES</h4>
-                                                                           <h3>Caja de bombones Sublime</h3>
-                                                                           <h2>S/ 39.00</h2>
-                                                                           <h5>Antes <span>S./29.00</span></h5>
-                                                                      </div>
-                                                                 </nuxt-link>
-
-                                                            </div>
-                                                       </slide>
-                                                       <slide>
-                                                            <div class="boxRelacioinadosCarrusel">
-                                                                 
-                                                                 <nuxt-link to="/">
-                                                                      <div class="boxPicture">
-                                                                           <picture>
-                                                                                <img src="@/assets/images/producto4.jpg" alt="complemento">
-                                                                           </picture>
-                                                                      </div>
-                                                                      <div class="boxDetail">
-                                                                           <h4>POSTRES</h4>
-                                                                           <h3>Caja de bombones Sublime</h3>
-                                                                           <h2>S/ 39.00</h2>
-                                                                           <h5>Antes <span>S./29.00</span></h5>
-                                                                      </div>
-                                                                 </nuxt-link>
-
-                                                            </div>
-                                                       </slide>
-                                                       <slide>
-                                                            <div class="boxRelacioinadosCarrusel">
-                                                                 
-                                                                 <nuxt-link to="/">
-                                                                      <div class="boxPicture">
-                                                                           <picture>
-                                                                                <img src="@/assets/images/producto8.jpg" alt="complemento">
-                                                                           </picture>
-                                                                      </div>
-                                                                      <div class="boxDetail">
-                                                                           <h4>POSTRES</h4>
-                                                                           <h3>Caja de bombones Sublime</h3>
-                                                                           <h2>S/ 39.00</h2>
-                                                                           <h5>Antes <span>S./29.00</span></h5>
-                                                                      </div>
-                                                                 </nuxt-link>
-
-                                                            </div>
-                                                       </slide>
+                                                       
                                                   </carousel>
                                                   
                                              </client-only>
@@ -386,48 +263,82 @@ gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(CSSRulePlugin)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
 
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
+// import { VueperSlides, VueperSlide } from 'vueperslides'
+// import 'vueperslides/dist/vueperslides.css'
 
 import Banner from '@/components/Banner/Productos'
 
 export default {
      components: {
-          VueperSlides, 
-          VueperSlide,
+          // VueperSlides, 
+          // VueperSlide,
           Banner
+     },
+     async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
+          
+          // console.log(params.slug)
+          let breadcrumb = ''
+          let product = ''
+          let related_products = ''
+          let complementary_products = ''
+          try {
+               res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/producto/${params.slug}`)
+               
+               if ((res.code === 200) && (res.status === 1)){
+                    breadcrumb = res.data.breadcrumb
+                    product = res.data.product
+                    related_products = res.data.related_products
+                    complementary_products = res.data.complementary_products
+                    
+               }else{
+                    console.log('error await')
+               }
+          }catch (error) {
+               console.log(error)
+          }finally{
+               // console.log('final 1')
+               try {
+                    let res2 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
+                    // console.log(res.data)
+                    if ((res2.code === 200) && (res2.status === 1)){
+                         store.commit('menu/setMenuMain', res2.data.menu)
+                         store.commit('menu/setMenuTiendaMain', res2.data.categories)
+                    }else{
+                         console.log('error await')
+                    }
+               }catch (error) {
+                    console.log(error)
+               }finally{
+                    // console.log('final 2')
+               }
+          }
+
+          return {
+               breadcrumb,
+               product,
+               related_products,
+               complementary_products,
+          }
+
+          
      },
      data() {
           return {
                price: null,
-               pauseOnHover: true,
-               autoPlaying: true,
-               internalAutoPlaying: true,
                selectComplement: [],
                tl: null,
-               slides: [
-                    { image: require('@/assets/images/gal1.jpg') },
-                    { image: require('@/assets/images/gal2.jpg') },
-                    { image: require('@/assets/images/gal3.jpg') },
-                    // {
-                    //      title: 'Aurora Borealis',
-                    //      content: 'This Youtube video has params in the URL and extra attributes on the iframe.',
-                    //      image: 'https://i.ytimg.com/vi_webp/ehJg_OlcjpE/maxresdefault.webp',
-                    //      video: {
-                    //           url: 'https://www.youtube.com/embed/ehJg_OlcjpE?rel=0&showinfo=0&controls=1&fs=0&modestbranding=1&color=white&iv_load_policy=3&autohide=1&enablejsapi=1',
-                    //           props: {
-                    //           allow: 'accelerometer; encrypted-media; gyroscope; picture-in-picture'
-                    //           }
-                    //      }
-                    // },
-               ]
           }
      },
      mounted() {
-          
+          this.titleHead = this.product.title_large
           // console.log(this.DeliveryTimes[0].value)
           // console.log(this.min)
                // this.slides.push({image: 'https://d3e3r3101xvs9k.cloudfront.net/ProductOriginalPhotos/8_Rosas_y_Mini_rosas_en_Jarron_principal11.jpg'})
+     },
+     data(){
+          return{
+              titleHead: '' 
+          }
      },
      // computed: {
      //      navigationNext: function() { 
@@ -437,7 +348,52 @@ export default {
      //           return `<div class="arrowPrev"></div>` 
      //      },
      // },
+     head () {
+          return {
+               title: this.titleHead,
+               meta: [
+               { hid: 'subject', name: 'subject', content: `Sumaq - ${this.titleHead}` },
+               { hid: 'description', name: 'description', content: '' }, 
+               // Google +
+               { hid: 'name-google', content: `Sumaq - ${this.titleHead}` }, 
+               { hid: 'description-google', content: '' }, 
+               { hid: 'image-google', content: '' }, 
+               // Twitter Card data
+               { hid: 'twitter:card', name: 'twitter:card', content: 'summary' }, 
+               { hid: 'twitter:site', name: 'twitter:site', content: '@publisher_handle' }, 
+               { hid: 'twitter:title', name: 'twitter:title', content: `Sumaq - ${this.titleHead}` }, 
+               { hid: 'twitter:description', name: 'twitter:description', content: '' }, 
+               { hid: 'twitter:creator', name: 'twitter:creator', content: '@author_handle' }, 
+               { hid: 'twitter:image', name: 'twitter:image', content: '' }, 
+               // Open Graph data
+               { hid: 'og:title',name: 'og:title', content: '' }, 
+               { hid: 'og:type', name: 'og:type', content: 'article' }, 
+               { hid: 'og:url', name: 'og:url', content: '' }, 
+               { hid: 'og:image', name: 'og:image', content: '' }, 
+               { hid: 'og:description', name: 'og:description', content: '' }, 
+               { hid: 'og:site_name', name: 'og:site_name', content: '' }, 
+               { hid: 'article:published_time', name: 'article:published_time', content: '2020-06-33T05:59:00+01:00' }, 
+               { hid: 'article:modified_time', name: 'article:modified_time', content: '2020-12-33T05:59:00+01:00' }, 
+               { hid: 'article:section', name: 'article:section', content: 'Article Section' }, 
+               { hid: 'article:tag', name: 'article:tag', content: 'Article Tag' }, 
+               ]
+          }
+     },
      methods : {
+          async addCartChekcout(objData){
+               // console.log(objData)
+               this.$store.commit('shopping/cart/setdataCart', objData)
+               this.$router.push('/cart/informacion')
+          },
+          async addCart(objData){
+               var boxPopUp = $('.boxPopUp')
+               // console.log(objData)
+               this.$store.commit('shopping/cart/setdataCart', objData)
+               boxPopUp.fadeIn('slow')
+          },
+          dameprecioProducto(price){
+               return price.toFixed(2)
+          },
           viewDeliveryCotentTab(id){
                const tabDelivery = $(`#tabHeader-${id}`)
                const tabItem = $(`#tabConent-${id}`)
@@ -854,44 +810,65 @@ export default {
           .boxThumbnails
                width: 100%
                margin-top: .85rem
-               .thumbnails
-                    max-width: 250px
-                    // height: 100px !important
-                    .vueperslides__track-inner
-                         flex-direction: row
-                    .vueperslide
-                         box-sizing: border-box
-                         border: 0px solid #fff
-                         transition: 0.3s ease-in-out
-                         opacity: 0.7
-                         cursor: pointer
-                         // width: 30% !important
-                         // height: 75px !important
-                         margin-bottom: .5rem
-                         border-radius: 5px
-                         overflow: hidden
-                    .vueperslide--active
-                         box-shadow: 0 0 6px rgba($pink, 0.3)
-                         opacity: 1
-                         border-color: $pink
-
-          .boxThumbnails
-               .vueperslides--fixed-height
-                         &.vueperslides--bullets-outside
-                              margin-bottom: 1.5rem
-          .galleryProducts
-               width: 100%
-               
-               .vueperslides__inner
-                    height: 400px
-                    @media screen and (min-width: 992px)
-                         height: 450px
-                    @media screen and (min-width: 1200px)
-                         height: 500px
-                    @media screen and (min-width: 1400px)
-                         height: 500px
-                    .vueperslides__parallax-wrapper
+               height: 80px
+               margin-bottom: 1rem
+               .VueCarousel,
+               .VueCarousel-inner,
+               .VueCarousel-slide
+                    height: 100% !important
+               .boxImages2
+                    margin: 0 .25rem
+                    overflow: hidden
+                    border-radius: 10px
+                    height: 100%
+                    img
+                         width: 100%
                          height: 100%
+                         object-fit: cover
+
+     
+          .galleryProducts
+               height: 450px
+               @media screen and (min-width: 992px)
+                    height: 450px
+               @media screen and (min-width: 1200px)
+                    height: 500px
+               @media screen and (min-width: 1400px)
+                    height: 500px
+               .VueCarousel,
+               .VueCarousel-inner,
+               .VueCarousel-slide
+                    height: 100% !important
+               .boxImages
+                    height: 100% 
+                    img
+                         width: 100%
+                         height: 100%
+                         object-fit: cover
+               .VueCarousel-navigation-button
+                    font-size: 0
+                    height: 68px
+                    width: 30px
+                    &:focus,
+                    &:hover 
+                         outline: transparent 
+               .VueCarousel-navigation-button::before
+                    content: ""
+                    position: absolute
+                    top: 0
+                    height: 100px
+                    width: 52px
+               .VueCarousel-navigation-next::before
+                    background: url('@/assets/images/nextWhite.png')
+                    background-repeat: no-repeat
+                    background-position: 0
+                    right: 1.86rem
+               .VueCarousel-navigation-prev::before
+                    background: url('@/assets/images/prevWhite.png')
+                    background-repeat: no-repeat
+                    background-position: 0
+                    left: 1.86rem
+                         
                
 
 </style>

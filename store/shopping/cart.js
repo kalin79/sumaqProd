@@ -112,12 +112,32 @@ export const state = () => ({
         return _cantidad
     },
     subMontoTotal(state){
-        var monto = 0
+        let monto = 0
+        let typeCurrencySymbol = state.dataCart.typeCurrencySymbol
+        let exchangeRate = state.dataCart.exchangeRate
         state.dataCart.order.forEach(function(data) {
-            monto = monto + (data.precio * data.cantidad)
+            if (typeCurrencySymbol === 1){
+                monto = monto + (data.precio * data.cantidad)
+            }else{
+                monto = monto + ((data.precio / exchangeRate) * data.cantidad)
+            }
         });
-
-        return monto
+        return monto.toFixed(2)
+    },
+    getMontoTotal(state){
+        let monto = 0
+        let typeCurrencySymbol = state.dataCart.typeCurrencySymbol
+        let exchangeRate = state.dataCart.exchangeRate
+        let cargoDelivery = state.dataCart.cargoDelivery
+        // console.log(cargoDelivery)
+        state.dataCart.order.forEach(function(data) {
+            if (typeCurrencySymbol === 1){
+                monto = monto + (data.precio * data.cantidad)
+            }else{
+                monto = monto + ((data.precio / exchangeRate) * data.cantidad)
+            }
+        });
+        return (monto + cargoDelivery).toFixed(2)
     },
     getFecha(state,payload){
         return state.dataCart.fecha

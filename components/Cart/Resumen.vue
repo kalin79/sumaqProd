@@ -62,7 +62,7 @@
                          <cart-informacion />
                     </div>
                     <div class="col-12 col-lg-5">
-                         <cart-cuenta />
+                         <cart-cuenta :DeliveryTimes="DeliveryTimes"/>
                     </div>
                </div>
           </div>
@@ -73,6 +73,7 @@ import { mapMutations, mapState, mapGetters } from 'vuex'
 import CartInformacion from '@/components/Cart/Informacion'
 import CartCuenta from '@/components/Cart/Cuenta'
 export default {
+     props: ['DeliveryTimes'],
      data(){
           return {
           }

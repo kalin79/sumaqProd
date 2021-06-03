@@ -36,7 +36,7 @@ export default {
     ],
     script: [
       {
-        src: "https://sdk.mercadopago.com/js/v2",
+        src: "https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js",
       },
     ],
     

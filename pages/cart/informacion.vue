@@ -1,7 +1,7 @@
 <template>
      <div>
           <banner-cart />
-          <cart-resumen />
+          <cart-resumen :DeliveryTimes = "DeliveryTimes"/>
 
      </div>
 </template>
@@ -16,11 +16,14 @@ export default {
      },
      async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
           // console.log(params.category)
+          let DeliveryTimes = []
           try {
                res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
-               // console.log(res2)
+               // console.log(res)
                if ((res.code === 200) && (res.status === 1)){
-                    store.commit('menu/setMenuMain', res.data)
+                    // console.log(res.data)
+                    store.commit('menu/setMenuMain', res.data.menu)
+                    store.commit('menu/setMenuTiendaMain', res.data.categories)
                }else{
                     console.log('error await')
                }
@@ -29,18 +32,28 @@ export default {
           }finally{
                console.log('fin')
           }
-          let res3
+          let nowDay = new Date()
+          let valDay = nowDay.getDay()
+          let res2
           try {
-               res3 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
-               // console.log(res.data)
-               if ((res3.code === 200) && (res3.status === 1)){
-                    store.commit('menu/setMenuMain', res3.data.menu)
-                    store.commit('menu/setMenuTiendaMain', res3.data.categories)
-               }else{
-                    console.log('error await')
-               }
+               res2 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/schedule`)
+               res2.every(function(data, index){
+                    // console.log(data.day)
+                    // console.log(valDay)
+                    if (data.day === valDay){
+                         DeliveryTimes = data.schedule
+                         return false
+                    }else{
+                         return true
+                    }
+
+               })
           }catch (error) {
                console.log(error)
+          }
+
+          return {
+               DeliveryTimes
           }
      },
      head () {

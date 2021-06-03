@@ -64,9 +64,11 @@
                                                             </div>
                                                        </a>
                                                   </div>
-                                                  <h5>{{ listOcaciones[0].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price) }}</h5>
-                                                  <h5 class="card-price-old" v-if="listOcaciones[0].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price_old) }}</span></h5>
-                                                  <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                  <div class="boxClickProduct" v-on:click="irProducto(listOcaciones[0])">
+                                                       <h5>{{ listOcaciones[0].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price) }}</h5>
+                                                       <h5 class="card-price-old" v-if="listOcaciones[0].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[0].price_old) }}</span></h5>
+                                                       <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                  </div>
                                              </div>
                                         </div>
                                    </div>
@@ -91,9 +93,11 @@
                                                                       </div>
                                                                  </a>
                                                             </div>
-                                                            <h5>{{ listOcaciones[1].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price) }}</h5>
-                                                            <h5 class="card-price-old" v-if="listOcaciones[1].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price_old) }}</span></h5>
-                                                            <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                            <div class="boxClickProduct" v-on:click="irProducto(listOcaciones[1])">
+                                                                 <h5>{{ listOcaciones[1].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price) }}</h5>
+                                                                 <h5 class="card-price-old" v-if="listOcaciones[1].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[1].price_old) }}</span></h5>
+                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                            </div>
                                                        </div>
                                                   </div>
                                              </div>
@@ -118,9 +122,11 @@
                                                                       </div>
                                                                  </a>
                                                             </div>
-                                                            <h5>{{ listOcaciones[2].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price) }}</h5>
-                                                            <h5 class="card-price-old" v-if="listOcaciones[2].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price_old) }}</span></h5>
-                                                            <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                            <div class="boxClickProduct" v-on:click="irProducto(listOcaciones[2])">
+                                                                 <h5>{{ listOcaciones[2].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price) }}</h5>
+                                                                 <h5 class="card-price-old" v-if="listOcaciones[2].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[2].price_old) }}</span></h5>
+                                                                 <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                            </div>
                                                        </div>
                                                   </div>
                                              </div>
@@ -148,9 +154,11 @@
                                                                  </div>
                                                             </a>
                                                        </div>
-                                                       <h5>{{ listOcaciones[3].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price) }}</h5>
-                                                       <h5 class="card-price-old" v-if="listOcaciones[3].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price_old) }}</span></h5>
-                                                       <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                       <div class="boxClickProduct" v-on:click="irProducto(listOcaciones[3])">
+                                                            <h5>{{ listOcaciones[3].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price) }}</h5>
+                                                            <h5 class="card-price-old" v-if="listOcaciones[3].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[3].price_old) }}</span></h5>
+                                                            <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                       </div>
                                                   </div>
                                              </div>
                                         </div>
@@ -175,9 +183,11 @@
                                                                  </div>
                                                             </a>
                                                        </div>
-                                                       <h5>{{ listOcaciones[4].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price) }}</h5>
-                                                       <h5 class="card-price-old" v-if="listOcaciones[4].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price_old) }}</span></h5>
-                                                       <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                       <div class="boxClickProduct" v-on:click="irProducto(listOcaciones[4])">
+                                                            <h5>{{ listOcaciones[4].title }}<br>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price) }}</h5>
+                                                            <h5 class="card-price-old" v-if="listOcaciones[4].price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(listOcaciones[4].price_old) }}</span></h5>
+                                                            <h5 v-else class="card-price-old blanco">Antes</h5>
+                                                       </div>
                                                   </div>
                                              </div>
                                         </div>
@@ -214,6 +224,9 @@ export default {
      ...mapGetters('shopping/cart/', ['getExchangeRate']),
 },
      methods: {
+          irProducto(product){
+               this.$router.push(`/${product.link}`)
+          },
           irTiendaOcasion(){
                this.$router.push(`tienda${this.selected.link}`)
           },
@@ -412,6 +425,10 @@ export default {
                z-index: 30
                margin-top: 2rem
                background: white
+               .boxClickProduct
+                    position: relative
+                    z-index: 10
+                    cursor: pointer
                .w50
                     width: 50%
                > div

@@ -35,9 +35,6 @@
                                         </a>
                                    </div>
                                    <div class="cardDetail" v-on:click="irProducto(product)">
-                                        <div class="cardTitle">
-                                             <h2>{{ getDataCategoryNivel1.title }}</h2>
-                                        </div>
                                         <div class="cardPrice">
                                              <h3>{{ product.title }}<br> {{ getCurrencySymbol }} {{ getPrice(product.price) }}</h3>
                                         </div>
@@ -48,38 +45,10 @@
                                    </div>
                               </div>
                          </div>
-                         <!-- <div class="box-item-product doble ">
-                              <nuxt-link to="/" class="cardBox CardBoxBanner">
-                                   <div class="cardImage ">
-                                        <picture>
-                                             <img src="~/assets/images/BannerPublicidad.jpg" alt="">
-                                        </picture>
-                                   </div>
-                              </nuxt-link>
-                         </div> -->
+                        
                     </div>
                </div>
-               <div class="boxPagination">
-                    <div class="d-flex justify-content-center align-items-center">
-                         <a href="javascript:void(0)" @click="prevPage()" v-bind:class="getPagination.current_page === 1 ? 'disabled': ''">
-                              <client-only>
-                              <b-icon-chevron-left></b-icon-chevron-left>
-                              </client-only>
-                         </a>
-                         <div class="boxNumberPage">
-                              <div class="d-flex justify-content-between align-items-center">
-                                   <div>{{ getPagination.current_page }}</div>
-                                   <div>de</div>
-                                   <div>{{ getPagination.last_page }}</div>
-                              </div>
-                         </div>
-                         <a href="javascript:void(0)" @click="nextPage()" v-bind:class="getPagination.current_page === getPagination.last_page ? 'disabled': ''">
-                              <client-only>
-                              <b-icon-chevron-right></b-icon-chevron-right>
-                              </client-only>
-                         </a>
-                    </div>
-               </div>
+               
           </div>
      </div>
 </template>
@@ -93,25 +62,16 @@ export default {
           }
      },
      computed: {
-          ...mapGetters('generaldata/', ['getTiendaOcasion']),
+          // ...mapGetters('generaldata/', ['getTiendaOcasion']),
           ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
           ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
           ...mapGetters('shopping/cart/', ['getExchangeRate']),
-          ...mapGetters('products/', ['getPagination']),
-          ...mapGetters('products/', ['getDataCategoryNivel1']),
+          // ...mapGetters('products/', ['getPagination']),
+          // ...mapGetters('products/', ['getDataCategoryNivel1']),
      },
      methods: {
-          // ...mapActions('products/',['updateProducts']),
           irProducto(product){
-               this.$router.push(`/${product.link}`)
-          },
-          prevPage(){
-               this.$store.commit('products/setUpdateCurrentPage', (this.getPagination.current_page - 1)) 
-               this.$store.dispatch('products/updateProducts')
-          },
-          nextPage(){
-              this.$store.commit('products/setUpdateCurrentPage', (this.getPagination.current_page + 1))
-              this.$store.dispatch('products/updateProducts')
+               this.$router.push(`/producto${product.link}`)
           },
           getPrice(price){
                if (this.getTypeCurrencySymbol === 1)
@@ -288,12 +248,17 @@ export default {
                               font-size: 1rem 
           .boxProducts
                padding: 3rem 0 1rem
+               .cardDetail,
+               .cardImage
+                    cursor: pointer
                .box-item-product
                     flex: 0 0 50% 
                     max-width: 50%
                     margin: 0 0rem 2.5rem
                     padding: 0 .5rem
                     text-decoration: none
+                    position: relative
+                    z-index: 10
                     @include cardProduct
                     @media screen and (min-width: 992px)
                          flex: 0 0 25% 
