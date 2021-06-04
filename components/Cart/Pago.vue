@@ -809,10 +809,17 @@ export default {
                     formData.append("recepcionaFecha", this.dataCart.fecha) 
                     formData.append("recepcionaHora", this.dataCart.hora) 
                     console.log(formData)
-                    let ruta = '/order/'
+                    let ruta = '/order'
                     try{
                          // this.$axios.defaults.headers.common['Access-Control-Allow-Origin',"*"]
-                         let sendContact = await this.$axios.post(ruta,{ credentials: false, 'id' : 2})
+                         let sendContact = await this.$axios.post(ruta,{'id' : 2},{
+                              headers: {
+                                   'Access-Control-Allow-Origin': '*',
+                                   'Content-Type': 'application/json',
+                              },
+                              withCredentials: false,
+                              credentials: 'same-origin',
+                         })
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)
