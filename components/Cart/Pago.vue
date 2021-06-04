@@ -814,11 +814,9 @@ export default {
                          // this.$axios.defaults.headers.common['Access-Control-Allow-Origin',"*"]
                          let sendContact = await this.$axios.post(ruta,{'id' : 2},{
                               headers: {
-                                   'Access-Control-Allow-Origin': '*',
-                                   'Content-Type': 'application/json',
+                                   'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS',
+                                   'Access-Control-Allow-Origin': 'https://floreriasumaq.pe'
                               },
-                              withCredentials: false,
-                              credentials: 'same-origin',
                          })
                          console.log(sendContact)
                     }catch (error) {
