@@ -741,7 +741,7 @@ export default {
                     this.$store.commit('shopping/user/setForm', this.form)
                     this.$store.commit('shopping/user/setTypeVoucher', this.comprobanteSelectTipo)
                     this.$store.commit('shopping/user/setPaymentType', this.paymentType)
-                    this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
+                    
                     let formData = new FormData()
                     console.log(this.form)
                     console.log(this.selectDistrito)
@@ -811,21 +811,25 @@ export default {
                     console.log(formData)
                     try{
                          let sendContact = await this.$axios.$post('order/',formData)
-                         console.log(sendContact)
+                         if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
+                              this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
+                              this.$store.commit('shopping/cart/setSalesCode', sendSolicitud.data.order_no)
+                              this.$store.commit('shopping/cart/setSalesCode', sendSolicitud.data.order_id)
+                              if ( this.paymentType === '1' ){
+                                   // enviamos a una transferencia Bancaria
+                                   this.$router.push('/cart/finalizado-transferencia')
+                              }else{
+                                   this.$router.push('/pago-online/mercado-pago')
+                              }
+                         }else{
+                              console.log('error')
+                         }
                     }catch (error) {
                          console.log(error)
                     } finally {
                          console.log('final')
                     }
-                    // if ( this.paymentType === '1' ){
-                    //      // enviamos a una transferencia Bancaria
-                    //      this.$router.push('/cart/finalizado-transferencia')
-                    // }else{
-                    //      // Ayax 
-                    //      this.$router.push('/pago-online/mercado-pago')
-                    //      // utilizando pasarela de pago
-                    //      console.log('mercado de pago')
-                    // }
+                    
                }
           },
           async mostrarDedicatoria(){

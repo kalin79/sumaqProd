@@ -8,6 +8,7 @@ export const state = () => ({
         typeCurrencySymbol: 1,
         exchangeRate: 3.55,
         salesCode: '',
+        idSalesCode: '',
      }
  })
  
@@ -76,6 +77,9 @@ export const state = () => ({
     },
     setSalesCode(state,payload){
         state.dataCart.salesCode = payload
+    },
+    setIdSalesCode(state,payload){
+        state.dataCart.idSalesCode = payload
     },
     setRest(state){
         console.log('entro')
@@ -150,5 +154,8 @@ export const state = () => ({
     },
     getSalesCode(state){
         return state.dataCart.salesCode
+    },
+    getIdSalesCode(state){
+        return state.dataCart.idSalesCode
     },
  }
