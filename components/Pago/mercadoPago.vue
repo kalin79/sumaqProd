@@ -94,6 +94,7 @@
                                    <input type="hidden" name="paymentMethodId" class="form-control" id="paymentMethodId" />
                                    <input type="hidden" name="description" class="form-control" id="description" />
                                    <input type="text" name="codigoProducto" class="form-control" id="codigoProducto" v-model="getSalesCode" />
+                                   <input type="text" name="idProducto" class="form-control" id="idProducto" v-model="getIdSalesCode" />
                                   
                                    <div class="boxButtom">
                                         <button type="submit"><p>Pagar</p></button>
@@ -121,6 +122,7 @@ export default {
           ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
           ...mapGetters('shopping/cart/', ['getExchangeRate']),
           ...mapGetters('shopping/cart/', ['getSalesCode']),
+          ...mapGetters('shopping/cart/', ['getIdSalesCode']),
           
           ...mapState(
                { dataCart: state => state.shopping.cart.dataCart},
@@ -155,10 +157,9 @@ export default {
                     card.setAttribute('value', response.id);
                     form.appendChild(card);
                     this.doSubmit=true;
-                    console.log(form)
-                    let ruta = 'process_payment/{sale}'
+                    console.log(_this.getIdSalesCode)
                     try{
-                         let sendContact = await _this.$axios.$post(ruta,form)
+                         let sendContact = await _this.$axios.$post(`process_payment/${_this.getIdSalesCode}`,form)
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)
