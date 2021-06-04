@@ -158,7 +158,7 @@ export default {
                     console.log(form)
                     let ruta = '/process_payment/{sale}'
                     try{
-                         let sendContact = await _this.$axios.post(ruta,form)
+                         let sendContact = await _this.$axios.$post(ruta,form)
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)
