@@ -99,7 +99,7 @@ export default {
   axios: {
     baseURL: 'https://admin.floreriasumaq.pe/api/v1/',
     proxyHeaders: false,
-    credentials: false
+    credentials: false,
   },
   /*
   ** Build configuration
