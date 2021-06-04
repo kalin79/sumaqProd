@@ -810,7 +810,7 @@ export default {
                     formData.append("recepcionaHora", this.dataCart.hora) 
                     console.log(formData)
                     try{
-                         let sendContact = await this.$axios.$post('order/',formData)
+                         let sendSolicitud = await this.$axios.$post('order/',formData)
                          if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
                               this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
                               this.$store.commit('shopping/cart/setSalesCode', sendSolicitud.data.order_no)
