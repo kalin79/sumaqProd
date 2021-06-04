@@ -809,9 +809,8 @@ export default {
                     formData.append("recepcionaFecha", this.dataCart.fecha) 
                     formData.append("recepcionaHora", this.dataCart.hora) 
                     console.log(formData)
-                    let ruta = 'order/'
                     try{
-                         let sendContact = await this.$axios.post(ruta,{'id' : 2})
+                         let sendContact = await this.$axios.post('/order/',{'id' : 2})
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)
