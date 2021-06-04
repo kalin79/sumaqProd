@@ -814,7 +814,7 @@ export default {
                          if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
                               this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
                               this.$store.commit('shopping/cart/setSalesCode', sendSolicitud.data.order_no)
-                              this.$store.commit('shopping/cart/setSalesCode', sendSolicitud.data.order_id)
+                              this.$store.commit('shopping/cart/setIdSalesCode', sendSolicitud.data.order_id)
                               if ( this.paymentType === '1' ){
                                    // enviamos a una transferencia Bancaria
                                    this.$router.push('/cart/finalizado-transferencia')
