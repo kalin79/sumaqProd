@@ -811,13 +811,9 @@ export default {
                     console.log(formData)
                     let ruta = '/order'
                     try{
-                         // this.$axios.defaults.headers.common['Access-Control-Allow-Origin',"*"]
-                         let sendContact = await this.$axios.post(ruta,{'id' : 2},{
-                              headers: {
-                                   'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS',
-                                   'Access-Control-Allow-Origin': 'https://floreriasumaq.pe'
-                              },
-                         })
+                         this.$axios.defaults.headers.common['Access-Control-Allow-Methods',"GET, PUT, POST, DELETE, HEAD, OPTIONS"]
+                         this.$axios.defaults.headers.common['Access-Control-Allow-Origin',"*"]
+                         let sendContact = await this.$axios.post(ruta,{'id' : 2})
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)
