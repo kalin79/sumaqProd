@@ -246,7 +246,8 @@
                async viewMostrarOcasion(){
                     let id = this.selected.id
                     try{
-                         let sendSolicitud = await this.$axios.$get(`/special_occasion/${id}`)
+                         let sendSolicitud = await this.$axios.$get(`special_occasion/${id}`)
+                         // console.log(sendSolicitud)
                          if ((sendSolicitud.code === 200) && (sendSolicitud.status === 1)){
                               if (sendSolicitud.data.product_special_occasion.length > 0){
                                    this.listOcaciones = sendSolicitud.data.product_special_occasion
