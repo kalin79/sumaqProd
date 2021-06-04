@@ -812,6 +812,7 @@ export default {
                     let ruta = '/order'
                     try{
                          let sendContact = await this.$axios.post(ruta,formData)
+                         this.$axios.defaults.headers.common['Content-Type',"application/json"]
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)
