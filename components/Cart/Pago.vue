@@ -811,9 +811,8 @@ export default {
                     console.log(formData)
                     let ruta = '/order'
                     try{
-                         this.$axios.defaults.headers.common['Content-Type',"application/json"]
                          this.$axios.defaults.headers.common['Access-Control-Allow-Origin',"*"]
-                         let sendContact = await this.$axios.post(ruta,formData)
+                         let sendContact = await this.$axios.post(ruta,{id: 2})
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)
