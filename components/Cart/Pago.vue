@@ -813,6 +813,7 @@ export default {
                     try{
                          let sendContact = await this.$axios.post(ruta,formData)
                          this.$axios.defaults.headers.common['Content-Type',"application/json"]
+                         this.$axios.defaults.headers.common['Access-Control-Allow-Origin',"*"]
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)
