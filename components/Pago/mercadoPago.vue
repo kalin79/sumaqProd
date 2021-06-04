@@ -156,7 +156,7 @@ export default {
                     form.appendChild(card);
                     this.doSubmit=true;
                     console.log(form)
-                    let ruta = '/contacto/save'
+                    let ruta = '/process_payment/{sale}'
                     try{
                          let sendContact = await _this.$axios.post(ruta,form)
                          console.log(sendContact)

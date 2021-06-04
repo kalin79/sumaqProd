@@ -2,7 +2,7 @@
      <div>
           <div class="boxCartCuenta">
                <div class="borderCartCuenta">
-                    <div class="boxRow">
+                    <div class="boxRow" v-if="1==2"> 
                          <label class="title">Código de promoción</label>
                          <div class="boxRowForm">
                               <div class="d-flex boxFormAction">

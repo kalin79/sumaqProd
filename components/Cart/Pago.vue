@@ -718,7 +718,6 @@ export default {
           costoDelivery(){
                // console.log(this.selectDistrito)
                if (this.selectDistrito.costo > 0){
-                    this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
                     this.priceDelivery = this.selectDistrito.costo
                }
           },
@@ -742,6 +741,7 @@ export default {
                     this.$store.commit('shopping/user/setForm', this.form)
                     this.$store.commit('shopping/user/setTypeVoucher', this.comprobanteSelectTipo)
                     this.$store.commit('shopping/user/setPaymentType', this.paymentType)
+                    this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
                     let formData = new FormData()
                     console.log(this.form)
                     console.log(this.selectDistrito)
@@ -754,7 +754,7 @@ export default {
                     console.log(this.dataCart.fecha)
                     console.log(this.dataCart.hora)
                     console.log(this.dataCart.cargoDelivery)
-                    console.log(this.dataCart.order)
+                    console.log(JSON.parse(JSON.stringify(this.dataCart.order)))
                     console.log('Simbolo de la moneda',this.getCurrencySymbol)
                     console.log('Tipo de moneda ( 1 = sol, 2 = dolar) ',this.getTypeCurrencySymbol)
                     console.log('Cambio del Dolar',this.getExchangeRate)
@@ -770,17 +770,17 @@ export default {
                     // Tipo de Medio de Pago
                     formData.append("paymentType", this.paymentType) // id => transferencia bancaria || id => pago online
                     // Datos de Productos
-                    formData.append("productoObjListado", this.dataCart.order) // [ { cantidad: 1, description: 'sss', id: 1, name: 'My Classic Love', photo: 'https://admin.floreriasumaq.pe/images/products/1/1-1621218681-60a1d5799edc2-pc.jpg', precio: 145} ]
+                    formData.append("productoObjListado", JSON.parse(JSON.stringify(this.dataCart.order))) // [ { cantidad: 1, description: 'sss', id: 1, name: 'My Classic Love', photo: 'https://admin.floreriasumaq.pe/images/products/1/1-1621218681-60a1d5799edc2-pc.jpg', precio: 145} ]
                     formData.append("productoTipoMonenda", this.getTypeCurrencySymbol) // ( 1 = sol, 2 = dolar)
                     formData.append("productoSimboloMoneda", this.getCurrencySymbol) // S./ , USD
-                    formData.append("montoTotal", this.dameTotal)
+                    formData.append("montoTotal", this.getMontoTotal)
                     formData.append("montoSubTotal", this.subMontoTotal)
                     formData.append("cargoDelivery", this.dataCart.cargoDelivery) 
                     
                     // tipo de cambio
                     formData.append("getExchangeRate", this.getExchangeRate) // 3.55
                     // Datos del Comprobante
-                    formData.append("comprobanteObjTipo", this.comprobanteSelectTipo) // { text: 'Boleta' , value: '1' }
+                    formData.append("comprobanteObjTipo", JSON.parse(JSON.stringify(this.comprobanteSelectTipo))) // { text: 'Boleta' , value: '1' }
                     formData.append("comprobanteDireccion", this.form.comprobanteDireccion)
                     formData.append("comprobanteEmail", this.form.comprobanteEmail)
                     formData.append("comprobanteRazonSocial", this.form.comprobanteRazonSocial) // Carlos Espinoza
@@ -805,18 +805,27 @@ export default {
                     formData.append("recepcionaPostalCodeMaps", this.form.recepcionaPostalCodeMaps)
                     formData.append("recepcionaProvinciaMaps", this.form.recepcionaProvinciaMaps)
                     formData.append("recepcionaReferencia", this.form.recepcionaReferencia)
-                    formData.append("recepcionaObjDistrito", this.selectDistrito) // { costo: 50.99, description: 'San Miguel', id: 150132}
+                    formData.append("recepcionaObjDistrito", JSON.parse(JSON.stringify(this.selectDistrito))) // { costo: 50.99, description: 'San Miguel', id: 150132}
                     formData.append("recepcionaFecha", this.dataCart.fecha) 
                     formData.append("recepcionaHora", this.dataCart.hora) 
-                    if ( this.paymentType === '1' ){
-                         // enviamos a una transferencia Bancaria
-                         this.$router.push('/cart/finalizado-transferencia')
-                    }else{
-                         // Ayax 
-                         this.$router.push('/pago-online/mercado-pago')
-                         // utilizando pasarela de pago
-                         console.log('mercado de pago')
+                    let ruta = '/order'
+                    try{
+                         let sendContact = await this.$axios.post(ruta,formData)
+                         console.log(sendContact)
+                    }catch (error) {
+                         console.log(error)
+                    } finally {
+                         console.log('final')
                     }
+                    // if ( this.paymentType === '1' ){
+                    //      // enviamos a una transferencia Bancaria
+                    //      this.$router.push('/cart/finalizado-transferencia')
+                    // }else{
+                    //      // Ayax 
+                    //      this.$router.push('/pago-online/mercado-pago')
+                    //      // utilizando pasarela de pago
+                    //      console.log('mercado de pago')
+                    // }
                }
           },
           async mostrarDedicatoria(){
