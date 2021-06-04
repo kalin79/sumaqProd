@@ -770,7 +770,7 @@ export default {
                     // Tipo de Medio de Pago
                     formData.append("paymentType", this.paymentType) // id => transferencia bancaria || id => pago online
                     // Datos de Productos
-                    formData.append("productoObjListado", JSON.parse(JSON.stringify(this.dataCart.order))) // [ { cantidad: 1, description: 'sss', id: 1, name: 'My Classic Love', photo: 'https://admin.floreriasumaq.pe/images/products/1/1-1621218681-60a1d5799edc2-pc.jpg', precio: 145} ]
+                    formData.append("productoObjListado", JSON.stringify(this.dataCart.order)) // [ { cantidad: 1, description: 'sss', id: 1, name: 'My Classic Love', photo: 'https://admin.floreriasumaq.pe/images/products/1/1-1621218681-60a1d5799edc2-pc.jpg', precio: 145} ]
                     formData.append("productoTipoMonenda", this.getTypeCurrencySymbol) // ( 1 = sol, 2 = dolar)
                     formData.append("productoSimboloMoneda", this.getCurrencySymbol) // S./ , USD
                     formData.append("montoTotal", this.getMontoTotal)
@@ -780,7 +780,7 @@ export default {
                     // tipo de cambio
                     formData.append("getExchangeRate", this.getExchangeRate) // 3.55
                     // Datos del Comprobante
-                    formData.append("comprobanteObjTipo", JSON.parse(JSON.stringify(this.comprobanteSelectTipo))) // { text: 'Boleta' , value: '1' }
+                    formData.append("comprobanteObjTipo", JSON.stringify(this.comprobanteSelectTipo)) // { text: 'Boleta' , value: '1' }
                     formData.append("comprobanteDireccion", this.form.comprobanteDireccion)
                     formData.append("comprobanteEmail", this.form.comprobanteEmail)
                     formData.append("comprobanteRazonSocial", this.form.comprobanteRazonSocial) // Carlos Espinoza
@@ -805,9 +805,10 @@ export default {
                     formData.append("recepcionaPostalCodeMaps", this.form.recepcionaPostalCodeMaps)
                     formData.append("recepcionaProvinciaMaps", this.form.recepcionaProvinciaMaps)
                     formData.append("recepcionaReferencia", this.form.recepcionaReferencia)
-                    formData.append("recepcionaObjDistrito", JSON.parse(JSON.stringify(this.selectDistrito))) // { costo: 50.99, description: 'San Miguel', id: 150132}
+                    formData.append("recepcionaObjDistrito", JSON.stringify(this.selectDistrito)) // { costo: 50.99, description: 'San Miguel', id: 150132}
                     formData.append("recepcionaFecha", this.dataCart.fecha) 
                     formData.append("recepcionaHora", this.dataCart.hora) 
+                    console.log(formData)
                     let ruta = '/order'
                     try{
                          let sendContact = await this.$axios.post(ruta,formData)
