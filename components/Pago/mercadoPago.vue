@@ -171,7 +171,8 @@ export default {
                          'description' : $('#description').val(),
                          'codigoProducto' : $('#codigoProducto').val(),
                          'idProducto' : $('#idProducto').val(),
-                         'paymentForm' : response.id,
+                         'paymentMethodId' : $('#paymentMethodId').val(),
+                         'token' : response.id,
                     }
                     this.doSubmit=true;
                     console.log(dataSolicitud)
