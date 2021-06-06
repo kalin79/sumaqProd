@@ -94,7 +94,6 @@
                                    <input type="hidden" name="paymentMethodId" class="form-control" id="paymentMethodId" />
                                    <input type="hidden" name="description" class="form-control" id="description" value="producto sumaq" />
                                    <input type="text" name="codigoProducto" class="form-control" id="codigoProducto" v-model="getSalesCode" />
-                                   <input type="text" name="idProducto" class="form-control" id="idProducto" v-model="getIdSalesCode" />
                                   
                                    <div class="boxButtom">
                                         <button type="submit"><p>Pagar</p></button>
@@ -170,7 +169,6 @@ export default {
                          'transactionAmount' : $('#transactionAmount').val(),
                          'description' : $('#description').val(),
                          'codigoProducto' : $('#codigoProducto').val(),
-                         'idProducto' : $('#idProducto').val(),
                          'paymentMethodId' : $('#paymentMethodId').val(),
                          'token' : response.id,
                     }
