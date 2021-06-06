@@ -34,11 +34,11 @@
                                    <div class="row">
                                         <div class="mb-3 col-12 col-md-6" v-if="getForm">
                                              <label for="cardholderName">Titular de la tarjeta</label>
-                                             <input id="cardholderName" class="form-control" data-checkout="cardholderName" type="text" placeholder="Escriba el nombre como aparece en su tarjeta">
+                                             <input id="cardholderName" name="cardholderName" class="form-control" data-checkout="cardholderName" type="text" placeholder="Escriba el nombre como aparece en su tarjeta">
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                              <label for="cardNumber">Número de la tarjeta</label>
-                                             <input type="text" id="cardNumber" class="form-control" data-checkout="cardNumber"
+                                             <input type="text" id="cardNumber" name="cardNumber" class="form-control" data-checkout="cardNumber"
                                                   onselectstart="return false" onpaste="return false"
                                                   oncopy="return false" oncut="return false"
                                                   ondrag="return false" ondrop="return false" autocomplete=off>
@@ -51,14 +51,14 @@
                                                   <div class="row">
                                                        <div class="col-6 col-md-6">
                                                             <label for="">Mes que expira</label>
-                                                            <input type="text" class="form-control" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth"
+                                                            <input type="text" class="form-control" placeholder="MM" id="cardExpirationMonth" name="cardExpirationMonth" data-checkout="cardExpirationMonth"
                                                             onselectstart="return false" onpaste="return false"
                                                             oncopy="return false" oncut="return false"
                                                             ondrag="return false" ondrop="return false" autocomplete=off>
                                                        </div>
                                                        <div class="col-6 col-md-6">
                                                             <label for="">Año que expira</label>
-                                                            <input type="text" placeholder="YY" class="form-control" id="cardExpirationYear" data-checkout="cardExpirationYear"
+                                                            <input type="text" placeholder="YY" class="form-control" id="cardExpirationYear" name="cardExpirationYear" data-checkout="cardExpirationYear"
                                                             onselectstart="return false" onpaste="return false"
                                                             oncopy="return false" oncut="return false"
                                                             ondrag="return false" ondrop="return false" autocomplete=off>
@@ -68,7 +68,7 @@
                                              
                                              <div class="col-12 col-md-6 mb-3">
                                                   <label for="securityCode">Código de seguridad</label>
-                                                  <input id="securityCode" class="form-control" data-checkout="securityCode" type="text"
+                                                  <input id="securityCode" name="securityCode" class="form-control" data-checkout="securityCode" type="text"
                                                        onselectstart="return false" onpaste="return false"
                                                        oncopy="return false" oncut="return false"
                                                        ondrag="return false" ondrop="return false" autocomplete=off>
@@ -81,7 +81,7 @@
 
                                    <div id="issuerInput" class="mb-3 col-12 col-md-6">
                                         <label for="issuer">Banco emisor</label>
-                                        <select id="issuer" name="issuer" class="custom-select" data-checkout="issuer"></select>
+                                        <select id="issuer" name="issuer"  class="custom-select" data-checkout="issuer"></select>
                                    </div>
                                    <div class="mb-3 col-12 col-md-6">
                                         <label for="installments">Cuotas</label>
@@ -92,7 +92,7 @@
                               <div class="mb-3">
                                    <input type="text" name="transactionAmount" class="form-control" id="transactionAmount" v-model="getMontoTotal" />
                                    <input type="hidden" name="paymentMethodId" class="form-control" id="paymentMethodId" />
-                                   <input type="hidden" name="description" class="form-control" id="description" />
+                                   <input type="hidden" name="description" class="form-control" id="description" value="producto sumaq" />
                                    <input type="text" name="codigoProducto" class="form-control" id="codigoProducto" v-model="getSalesCode" />
                                    <input type="text" name="idProducto" class="form-control" id="idProducto" v-model="getIdSalesCode" />
                                   
@@ -156,10 +156,27 @@ export default {
                     card.setAttribute('type', 'hidden');
                     card.setAttribute('value', response.id);
                     form.appendChild(card);
+                    let dataSolicitud = {
+                         'email' : $('#idProducto').val(),
+                         'docType' : $('#docType').val(),
+                         'docNumber' : $('#docNumber').val(),
+                         'cardholderName' : $('#cardholderName').val(),
+                         'cardNumber' : $('#cardNumber').val(),
+                         'cardExpirationMonth' : $('#cardExpirationMonth').val(),
+                         'cardExpirationYear' : $('#cardExpirationYear').val(),
+                         'securityCode' : $('#securityCode').val(),
+                         'issuer' : $('#issuer').val(),
+                         'installments' : $('#installments').val(),
+                         'transactionAmount' : $('#transactionAmount').val(),
+                         'description' : $('#description').val(),
+                         'codigoProducto' : $('#codigoProducto').val(),
+                         'idProducto' : $('#idProducto').val(),
+                         'paymentForm' : $('#paymentForm').val(),
+                    }
                     this.doSubmit=true;
-                    console.log(_this.getIdSalesCode)
+                    console.log(dataSolicitud)
                     try{
-                         let sendContact = await _this.$axios.$post(`process_payment/${_this.getIdSalesCode}`,form)
+                         let sendContact = await _this.$axios.$post(`process_payment/${_this.getIdSalesCode}`,dataSolicitud)
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)
