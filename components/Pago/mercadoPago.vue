@@ -157,7 +157,7 @@ export default {
                     card.setAttribute('value', response.id);
                     form.appendChild(card);
                     let dataSolicitud = {
-                         'email' : $('#idProducto').val(),
+                         'email' : $('#email').val(),
                          'docType' : $('#docType').val(),
                          'docNumber' : $('#docNumber').val(),
                          'cardholderName' : $('#cardholderName').val(),
