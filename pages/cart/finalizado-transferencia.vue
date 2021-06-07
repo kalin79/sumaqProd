@@ -25,23 +25,28 @@ export default {
      async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
           // console.log('asyncData')
           let dataPayment = []
-          dataPayment.push({'getForm': store.getters['shopping/user/getForm']})
-          dataPayment.push({'subMontoTotal': store.getters['shopping/cart/subMontoTotal']})
-          dataPayment.push({'getCurrencySymbol': store.getters['shopping/cart/getCurrencySymbol']})
-          dataPayment.push({'getTypeCurrencySymbol': store.getters['shopping/cart/getTypeCurrencySymbol']})
-          dataPayment.push({'getExchangeRate': store.getters['shopping/cart/getExchangeRate']})
-          dataPayment.push({'getPaymentType': store.getters['shopping/user/getPaymentType']})
-          dataPayment.push({'getTypeVoucher': store.getters['shopping/user/getTypeVoucher']})
-          dataPayment.push({'dataCart': store.getters['shopping/cart/getDataCart']})
+          let dataBuy = store.getters['shopping/buy/getDataBuy']
+          let res2 = null
+          
+           
+          store.commit('shopping/cart/setRest')
+          
+          try{
+               res2 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/order/${dataBuy.idSalesCode}`)
+                
+               if ((res2.code === 200) && (res2.status === 1)){
+                    
+                    dataPayment.push(res2.data.sale)
+                    
 
-          // console.log(dataPayment)
-          setTimeout(function(){
-               //  Reseteamos
-               // console.log('setTimeout')
-               store.commit('shopping/compra/setRest')
-               store.commit('shopping/user/setRest')
-               store.commit('shopping/cart/setRest')
-          }, 15000)
+                    // console.log(dataPayment) 
+               }else{
+                    console.log('error order')
+               }
+          }catch (error) {
+               console.log(error)
+          }
+
           try {
                res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
                // console.log(res.data)
@@ -54,7 +59,6 @@ export default {
           }catch (error) {
                console.log(error)
           }
-
           return {
                dataPayment,
           }

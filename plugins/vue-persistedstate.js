@@ -8,6 +8,7 @@ export default ({store}) => {
         paths: [
           'shopping.user', 
           'shopping.cart', 
+          'shopping.buy', 
           // 'authentication.auth.userAuth',
         ]
     })(store)

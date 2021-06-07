@@ -1,14 +1,12 @@
 export const state = () => ({
     dataCart: {
         order: [],
-        cargoDelivery: 0,
         fecha: '',
         hora: '',
         currencySymbol: 'S./',
         typeCurrencySymbol: 1,
         exchangeRate: 3.55,
-        salesCode: '',
-        idSalesCode: '',
+        cargoDelivery: 0
      }
  })
  
@@ -63,6 +61,9 @@ export const state = () => ({
             state.dataCart.order.unshift(payload)
         }
     },
+    setCargoDelivery(state,payload){
+        state.dataCart.cargoDelivery = payload
+    },
     removeCart(state,index){
         state.dataCart.order.splice(index,1)
     },
@@ -72,24 +73,13 @@ export const state = () => ({
     setHora(state,payload){
         state.dataCart.hora = `${payload.start_time} - ${payload.end_time}`
     },
-    setCargoDelivery(state,payload){
-        state.dataCart.cargoDelivery = payload
-    },
-    setSalesCode(state,payload){
-        state.dataCart.salesCode = payload
-    },
-    setIdSalesCode(state,payload){
-        state.dataCart.idSalesCode = payload
-    },
     setRest(state){
-        console.log('entro')
         state.dataCart.order = []
-        state.dataCart.cargoDelivery = 0
         state.dataCart.fecha = ''
         state.dataCart.hora = ''
         state.dataCart.currencySymbol = 'S./'
         state.dataCart.typeCurrencySymbol = 1
-        state.dataCart.salesCode = ''
+        state.dataCart.exchangeRate = 3.55
     },
  }
  
@@ -149,13 +139,5 @@ export const state = () => ({
     getHora(state,payload){
         return state.dataCart.hora
     },
-    getCargoDelivery(state){
-        return state.dataCart.cargoDelivery
-    },
-    getSalesCode(state){
-        return state.dataCart.salesCode
-    },
-    getIdSalesCode(state){
-        return state.dataCart.idSalesCode
-    },
+    
  }

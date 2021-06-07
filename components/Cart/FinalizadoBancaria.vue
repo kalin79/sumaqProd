@@ -1,8 +1,6 @@
 <template>
      <div class="boxProcessFinal">
-          <!-- {{ getForm }} -->
-          <!-- {{ dataPayment[0].getForm.contactoNombre }} -->
-          <div class="container-fluid container-fluid-xxl " v-if="getForm">
+          <div class="container-fluid container-fluid-xxl " v-if="(dataPayment.length > 0) && (getDataBuy)">
                <div class="boxHeader">
                     <div class="boxIcon">
                          <client-only>
@@ -10,7 +8,7 @@
                          </client-only>
                     </div>
                     <div class="boxTitle">
-                         <h3>Hey {{ getForm.contactoNombre }},</h3>
+                         <h3>Hey {{ dataPayment[0].contactoNombre }},</h3>
                          <h1>¡Estamos a un paso de hacernos cómplices de tu felicidad!</h1>
                     </div>
                </div>
@@ -21,7 +19,7 @@
                                    <div class="boxContent mb-3">
                                         <div class="boxRow pb-3">
                                              <p>
-                                                  Número de orden: <span class="BoldLarge">{{ dataCart.salesCode }}</span>
+                                                  Número de orden: <span class="BoldLarge">{{ getDataBuy.salesCode }}</span>
                                              </p>
                                         </div>
                                    </div>
@@ -36,7 +34,7 @@
                                              </p>
                                              
                                              <p class="description">
-                                                  Hemos enviado un correo electrónico a <span class="bold">{{ getForm.contactoEmail }}</span> con su pedido. 
+                                                  Hemos enviado un correo electrónico a <span class="bold">{{ dataPayment[0].contactoEmail }}</span> con su pedido. 
                                                   Si el correo electrónico no ha llegado en dos minutos, verifique su carpeta de correo no deseado para ver si el correo electrónico se envió allí.
                                              </p>
                                         </div>
@@ -50,15 +48,27 @@
                                                   <div class="d-flex justify-content-between">
                                                        <h3>Banco de Crédito del Perú (BCP):</h3> 
                                                        <p class="bold">
-                                                            192-123-200-931
+                                                            193-91946527-0-77
+                                                       </p>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between">
+                                                       <h3>BCP CCI:</h3> 
+                                                       <p class="bold">
+                                                            002-193-193191946652707715
                                                        </p>
                                                   </div>
                                              </div>
                                              <div class="boxItems">
                                                   <div class="d-flex justify-content-between">
-                                                       <h3>Banco de Interbank:</h3> 
+                                                       <h3>Banco de BBVA:</h3> 
                                                        <p class="bold">
-                                                            192-123-200-931
+                                                            0011-03600200579176
+                                                       </p>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between">
+                                                       <h3>BBVA CCI:</h3> 
+                                                       <p class="bold">
+                                                            011-360-000200579176-55
                                                        </p>
                                                   </div>
                                              </div>
@@ -66,7 +76,13 @@
                                                   <div class="d-flex justify-content-between">
                                                        <h3>Banco Scotiabank:</h3> 
                                                        <p class="bold">
-                                                            192-123-200-931
+                                                            045-7410710
+                                                       </p>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between">
+                                                       <h3>Scotiabank CCI:</h3> 
+                                                       <p class="bold">
+                                                            009-231-200457410710-28
                                                        </p>
                                                   </div>
                                              </div>
@@ -80,13 +96,13 @@
                                              <div class="boxItems mb0">
                                                   <h3>Pedido realizado por:</h3>
                                                   <p class="description">
-                                                       Sr(a). {{ getForm.contactoNombre }}
+                                                       Sr(a). {{ dataPayment[0].contactoNombre }}
                                                   </p>
                                                   <p class="description">
-                                                       Correo: {{ getForm.contactoEmail }}
+                                                       Correo: {{ dataPayment[0].contactoEmail }}
                                                   </p>
                                                   <p class="description">
-                                                       Celular: {{ getForm.contactoCelular }}
+                                                       Celular: {{ dataPayment[0].contactoCelular }}
                                                   </p>
                                              </div>
                                         </div>
@@ -97,27 +113,44 @@
                                              <div class="boxItems">
                                                   <h3>Delivery hecho por:</h3>
                                                   <p class="description">
-                                                       Sr(a). {{ getForm.recepcionaNombres }} {{ getForm.recepcionaApellidos }}
+                                                       Sr(a). {{ dataPayment[0].recepcionaNombres }} {{ dataPayment[0].recepcionaApellidos }}
                                                   </p>
                                                   <p class="description">
-                                                       Celular: {{ getForm.recepcionaCelular }}
+                                                       Celular: {{ dataPayment[0].recepcionaCelular }}
                                                   </p>
                                              </div>
 
                                              <div class="boxItems">
                                                   <h3>Dirección del delivery:</h3>
                                                   <p class="description">
-                                                       {{ getForm.recepcionaDireccion }}
+                                                       {{ dataPayment[0].recepcionaDireccion }}
                                                   </p>
                                                   <p class="description">
-                                                       Referencia : {{ getForm.recepcionaReferencia }}
+                                                       Referencia : {{ dataPayment[0].recepcionaReferencia }}
+                                                  </p>
+                                                  <p class="description">
+                                                       Distrito : {{ dataPayment[0].recepcionaObjDistrito.text }}
+                                                  </p>
+                                             </div>
+
+                                             <div class="boxItems">
+                                                  <h3>Fecha y hora:</h3>
+                                                  <p class="description">
+                                                       {{ dataPayment[0].recepcionaFecha }} - {{ dataPayment[0].recepcionaHora }}
+                                                  </p>
+                                             </div>
+
+                                             <div class="boxItems">
+                                                  <h3>Dedicatoria</h3>
+                                                  <p class="description">
+                                                       {{ dataPayment[0].dedicatoriaMensaje }}
                                                   </p>
                                              </div>
 
                                              <div class="boxItems mb0">
-                                                  <h3>Fecha y hora:</h3>
+                                                  <h3>Firma</h3>
                                                   <p class="description">
-                                                       {{ dataCart.fecha }} - {{ dataCart.hora }}
+                                                       {{ dataPayment[0].dedicatoriaFirma }}
                                                   </p>
                                              </div>
                                              
@@ -131,41 +164,41 @@
                                              <div class="boxItems">
                                                   <h3>Costo Total:</h3>
                                                   <p class="description">
-                                                       Monto: {{ getCurrencySymbol }} {{ dameTotal }}
+                                                       Monto: {{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].montoTotal }}
                                                   </p>
                                              </div>
 
                                              <div class="boxItems">
-                                                  <div v-if="getTypeVoucher.value === 2">
+                                                  <div v-if="dataPayment[0].comprobanteObjTipo.value != 3">
                                                        <h3>Envío de factura:</h3>
                                                        <p class="description">
-                                                            Razon Social: {{ getForm.comprobanteRazonSocial }}
+                                                            Razon Social: {{ dataPayment[0].comprobanteRazonSocial }}
                                                        </p>
                                                        <p class="description">
-                                                            R.U.C.: {{ getForm.comprobanteRuc }}
+                                                            R.U.C.: {{ dataPayment[0].comprobanteRuc }}
                                                        </p>
                                                   </div>
                                                   <div v-else>
                                                        <h3>Envío de boleta:</h3>
                                                        <p class="description">
-                                                            Nombre: {{ getForm.comprobanteRazonSocial }}
+                                                            Nombre: {{ dataPayment[0].comprobanteRazonSocial }}
                                                        </p>
                                                        <p class="description">
-                                                            D.N.I.: {{ getForm.comprobanteRuc }}
+                                                            D.N.I.: {{ dataPayment[0].comprobanteRuc }}
                                                        </p>
                                                   </div>
                                                   
                                                   <p class="description">
-                                                       Direccion: {{ getForm.comprobanteDireccion }}
+                                                       Direccion: {{ dataPayment[0].comprobanteDireccion }}
                                                   </p>
                                                   <!-- <p class="description">
                                                        LIM - PER.
                                                   </p> -->
                                                   <p class="description">
-                                                       Correo electrónico: {{ getForm.comprobanteEmail }}
+                                                       Correo electrónico: {{ dataPayment[0].comprobanteEmail }}
                                                   </p>
                                                   <p class="description">
-                                                       Teléfono: {{ getForm.comprobanteTelefono }}
+                                                       Teléfono: {{ dataPayment[0].comprobanteTelefono }}
                                                   </p>
                                              </div>
                                         </div>
@@ -183,7 +216,7 @@
                                    </div>
                                    <div class="boxResult">
                                         <div class="boxListProduct">
-                                             <div class="boxCard mb-3 d-flex justify-content-between align-items-start" v-for="(item, index) in dataCart.order" :key="index">
+                                             <div class="boxCard mb-3 d-flex justify-content-between align-items-start" v-for="(item, index) in dataPayment[0].productoObjListado" :key="index">
                                                   <div class="d-flex justify-content-start align-items-start">
                                                        <div class="boxPicture">
                                                             <picture>
@@ -195,11 +228,12 @@
                                                        </div>
                                                        <div class="boxDetail">
                                                             <h2>{{ item.name }}</h2>
-                                                            <p v-html="item.description"></p>
+                                                            <div v-html="item.description"></div>
                                                        </div>
                                                   </div>
                                                   <div class="boxPrice">
-                                                       <p>{{ getCurrencySymbol }} {{ getPrice(item.precio) }}</p>
+                                                       
+                                                       <p>{{ dataPayment[0].productoSimboloMoneda }} {{ item.precio }}</p>
                                                   </div>
                                              </div>
                                         </div>
@@ -207,7 +241,7 @@
                                              <div class="rowCosto">
                                                   <div class="mb-2 d-flex justify-content-between align-items-start">
                                                        <h3>Subtotal</h3>
-                                                       <h3>{{ getCurrencySymbol }} {{ dameSubMontoTotal }}</h3>
+                                                       <h3>{{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].montoSubTotal }}</h3>
                                                   </div>
                                                   <!-- <div class="mb-2 d-flex justify-content-between align-items-start">
                                                        <h3>Impuesto (18%)</h3>
@@ -215,7 +249,7 @@
                                                   </div> -->
                                                   <div class="pb-4 d-flex justify-content-between align-items-start">
                                                        <h3>Costo por Delivery</h3>
-                                                       <h3>{{ getCurrencySymbol }} {{ getPrice(dataCart.cargoDelivery) }}</h3>
+                                                       <h3>{{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].recepcionaObjDistrito.precio }}</h3>
                                                   </div>
                                              </div>
                                              <div class="rowCosto mt-3">
@@ -225,7 +259,7 @@
                                                             <!-- <p>Incluye impuestos</p> -->
                                                        </div>
                                                        
-                                                       <h3 class="boldPrice">{{ getCurrencySymbol }} {{ dameTotal }}</h3>
+                                                       <h3 class="boldPrice">{{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].montoTotal }}</h3>
                                                   </div>
                                              </div>
                                         </div>
@@ -239,7 +273,7 @@
      </div>
 </template>
 <script>
-// import { mapMutations, mapState, mapGetters } from 'vuex'
+import { mapMutations, mapState, mapGetters } from 'vuex'
 import {gsap} from "gsap/dist/gsap"
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
@@ -252,73 +286,19 @@ export default {
      props: ['dataPayment'],
      data(){
           return{
-               igv: 0.18,
-               subMontoTotal: 0,
-               getCurrencySymbol: '',
-               getTypeCurrencySymbol: '',
-               getExchangeRate: 0,
-               getForm: null,
-               getPaymentType: 0 ,
-               getTypeVoucher: null,
-               dataCart: {}
+               
           }
      },
      mounted() {
-          // console.log('mounted')
-          this.subMontoTotal = this.dataPayment[1].subMontoTotal
-          this.getCurrencySymbol = this.dataPayment[2].getCurrencySymbol
-          this.getTypeCurrencySymbol = this.dataPayment[3].getTypeCurrencySymbol
-          this.getExchangeRate = this.dataPayment[4].getExchangeRate
-          this.getForm = this.dataPayment[0].getForm
-          this.getPaymentType = this.dataPayment[5].getPaymentType
-          this.getTypeVoucher = this.dataPayment[6].getTypeVoucher
-          this.dataCart = this.dataPayment[7].dataCart
-          // console.log(this.dataPayment[0])
+          
      },
      computed: {
-          // ...mapGetters('shopping/cart/', ['subMontoTotal']),
-          // ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
-          // ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
-          // ...mapGetters('shopping/cart/', ['getExchangeRate']),
-          // ...mapGetters('shopping/user/', ['getForm']),
-          // ...mapGetters('shopping/user/', ['getPaymentType']),
-          // ...mapGetters('shopping/user/', ['getTypeVoucher']),
-          // ...mapState(
-          //      { dataCart: state => state.shopping.cart.dataCart},
-          // ),
-          dameTotal(){
-               // let total = this.subMontoTotal + this.subMontoTotal * this.igv + this.dataCart.cargoDelivery
-               let total = this.subMontoTotal + this.dataCart.cargoDelivery
-               if (this.getTypeCurrencySymbol === 1)
-                    return total.toFixed(2)
-               else
-                    return (total / this.getExchangeRate).toFixed(2)
-          },
+          ...mapGetters('shopping/buy', ['getDataBuy']),
           
-          dameSubMontoTotal(){
-               if (this.getTypeCurrencySymbol === 1)
-                    return this.subMontoTotal.toFixed(2)
-               else
-                    return (this.subMontoTotal / this.getExchangeRate).toFixed(2)
-          },
-          getImpuesto(){
-               let impuesto =  0
-               if (this.getTypeCurrencySymbol === 1){
-                    impuesto =  this.subMontoTotal * this.igv
-                    return impuesto.toFixed(2)
-               }else{
-                    impuesto =  (this.subMontoTotal / this.getExchangeRate)  * this.igv
-                    return impuesto.toFixed(2)
-               }
-          },
+          
      },
      methods: {
-          getPrice(price){
-               if (this.getTypeCurrencySymbol === 1)
-                    return price.toFixed(2)
-               else 
-                    return (price / this.getExchangeRate).toFixed(2)
-          },
+          
      },
 }
 </script>
@@ -358,10 +338,10 @@ export default {
                               width: 120px
                               @media screen and (min-width: 992px)
                                    padding: 0 0 0 1.5rem
-                                   width: 225px
+                                   width: 180px
                               @media screen and (min-width: 1200px)
                                    padding: 0 0 0 1.5rem
-                                   width: 320px
+                                   width: 290px
                               h2
                                    @include font-libre(0.875rem,0.875rem, 0.875rem,0.75rem,$Montserrat,600,$grayDark18)
                               p

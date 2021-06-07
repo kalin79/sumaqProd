@@ -279,12 +279,18 @@
                                                                            <div class="boxMensajes" v-if="selectActiveMensaje">
                                                                                 <div class="row mb-3 mt-3">
                                                                                      <div class="col">
-                                                                                          <b-form-select
+                                                                                          <select v-model="selectMensajePredeterminado" class="custom-select" @change="mostrarDedicatoria()">
+                                                                                               <option value=''>Seleccione</option>
+                                                                                               <option v-for="(dedicatoria, index) in dedicatorias" :key="index" v-bind:value="dedicatoria" >
+                                                                                                    {{ dedicatoria.title }}
+                                                                                               </option>
+                                                                                          </select>
+                                                                                          <!-- <b-form-select
                                                                                                v-model="selectMensajePredeterminado" 
                                                                                                :options="mensajesPredeterminados"
                                                                                                @change="mostrarDedicatoria()"
                                                                                           >
-                                                                                          </b-form-select>
+                                                                                          </b-form-select> -->
                                                                                      </div>
                                                                                 </div>
                                                                                 <div class="row mb-3 mt-3">
@@ -354,8 +360,8 @@
                                                                                 <div class="col">
                                                                                      <ValidationProvider tag="div" vid="comprobanteSelectTipo" rules="required" name="tipoComprobante" v-slot="{ errors, validated }" >
                                                                                           <select v-model="comprobanteSelectTipo" class="custom-select">
-                                                                                               <option v-for="(objComprobantes, index) in tiposComprobantes" :key="index" v-bind:value="objComprobantes" :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)">
-                                                                                                    {{ objComprobantes.text }}
+                                                                                               <option v-for="(objComprobantes, index) in tipoComprobantes" :key="index" v-bind:value="objComprobantes" :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)">
+                                                                                                    {{ objComprobantes.name }}
                                                                                                </option>
                                                                                           </select>
                                                                                           <div class="error-input">{{ errors[0] }}</div>
@@ -478,11 +484,11 @@
                                                   </div>
                                              </div>
                                         </div>
-                                        <div class="boxPagos ">
+                                        <div class="boxPagos " >
                                              <div class="rowCard mt-3">
                                                   <div class="d-flex">
                                                        <div>
-                                                            <b-form-radio v-model="paymentType" name="some-radios" value="1"></b-form-radio>
+                                                            <b-form-radio v-model="paymentType" name="some-radios" :value="tipoMeotodosPago[0]"></b-form-radio>
                                                        </div>
                                                        <div>
                                                             <h3>Transferencia bancaria</h3>
@@ -492,10 +498,10 @@
                                                        </div>
                                                   </div>
                                              </div>
-                                             <div class="rowCard mt-3">
+                                             <div class="rowCard mt-3" v-if="1===2">
                                                   <div class="d-flex">
                                                        <div>
-                                                            <b-form-radio v-model="paymentType" name="some-radios" value="2"></b-form-radio>
+                                                            <b-form-radio v-model="paymentType" name="some-radios" :value="tipoMeotodosPago[1]"></b-form-radio>
                                                        </div>
                                                        <div>
                                                             <h3>Pagar con tarjeta de crédito o débito</h3>
@@ -521,7 +527,7 @@
                                                                  </div>
                                                             </div>
                                                             <p>
-                                                                 He leído y acepto los <a href="" target="_blank">términos y condiciones </a>de SUMAQ.pe
+                                                                 He leído y acepto los <a href="https://floreriasumaq.pe/politicas/terminos-condiciones" target="_blank">términos y condiciones </a>de SUMAQ.pe
                                                             </p>
                                                        </div>
                                                        
@@ -588,7 +594,7 @@ gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(CSSRulePlugin)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
 export default {
-     props: ['distritos','DeliveryTimes'],
+     props: ['distritos','DeliveryTimes', 'tipoMeotodosPago', 'dedicatorias','tipoComprobantes'],
      components: {
           // CartCuenta,
      },
@@ -611,19 +617,10 @@ export default {
                paymentType: null,
                boolTerminos: false,
                selectContentextPredeterminado: '',
-               selectMensajePredeterminado: null,
-               mensajesPredeterminados: [
-                    {value: null, text: 'Selecciona'},
-                    {value: 'Mensaje 1', text: 'Mensaje 1', contentext: 'Hola Mensaje 1'},
-                    {value: 'Mensaje 2', text: 'Mensaje 2', contentext: 'Hola Mensaje 2'},
-                    {value: 'Mensaje 31', text: 'Mensaje 3', contentext: 'Hola Mensaje 3'},
-                    {value: 'Mensaje 4', text: 'Mensaje 4', contentext: 'Hola Mensaje 4'},
-               ],
-               comprobanteSelectTipo: { value: 1, text: 'Boleta' },
-               tiposComprobantes: [
-                    { value: 1, text: 'Boleta' },
-                    { value: 2, text: 'Factura' },
-               ],
+               selectMensajePredeterminado: '',
+               
+               comprobanteSelectTipo: {id: 0, name: ''},
+               
                selectDepartamento: 'Lima',
                departamentos: [
                     { value: 'Lima', text: 'Lima' },
@@ -634,35 +631,13 @@ export default {
                ],
                selectDistrito: '',
                priceDelivery: 0,
-               // distritos: [
-               //    { value: null, text: 'Selecciona Distrito', precio: 0  },  
-               //    { value: 'Cercado de Lima', precio: 10.00 ,text: 'Cercado de Lima' },  
-               //    { value: 'Barranco', precio: 15.34, text: 'Barranco' },  
-               //    { value: 'Breña', precio: 20.99, text: 'Breña' },  
-               //    { value: 'Jesús María', precio: 10.99, text: 'Jesús María' },  
-               //    { value: 'Lince', precio: 12.99, text: 'Lince' },  
-               //    { value: 'Magdalena del Mar', precio: 30.99, text: 'Magdalena del Mar' },  
-               //    { value: 'San Miguel', precio: 50.99, text: 'San Miguel' },  
-               // ],
-               // DeliveryTimes: [
-               //      {
-               //           id: '1',
-               //           value: '09:00 am - 12:00 pm',
-               //           notEnabled: 'disabled'
-               //      },
-               //      {
-               //           id: '2',
-               //           value: '13:00 am - 15:00 pm' 
-               //      },
-               //      {
-               //           id: '3',
-               //           value: '18:00 am - 21:00 pm'
-                         
-               //      }
-               // ],
+               
           }
      },
      mounted() {
+          this.comprobanteSelectTipo = this.tipoComprobantes[0]
+          // console.log(this.comprobanteSelectTipo)
+          this.$store.commit('shopping/cart/setCargoDelivery', 0)
      },
      computed: {
           ...mapGetters('shopping/cart/', ['subMontoTotal']),
@@ -675,13 +650,13 @@ export default {
           ),
           dameTipoComprobante(){
                // console.log(this.comprobanteSelectTipo)
-               if (this.comprobanteSelectTipo.value === 2)
+               if (this.comprobanteSelectTipo.name === 'FACTURA')
                     return 'R.U.C.'
                else
                     return 'D.N.I'
           },
           dameNombreComprobante(){
-               if (this.comprobanteSelectTipo.value === 2)
+               if (this.comprobanteSelectTipo.name === 'FACTURA')
                     return 'Razón Social'
                else
                     return 'Nombre completo'
@@ -716,8 +691,9 @@ export default {
                     return `${name}`
           },
           costoDelivery(){
-               // console.log(this.selectDistrito)
+               
                if (this.selectDistrito.costo > 0){
+                    this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
                     this.priceDelivery = this.selectDistrito.costo
                }
           },
@@ -754,6 +730,7 @@ export default {
                     console.log(this.dataCart.fecha)
                     console.log(this.dataCart.hora)
                     console.log(this.dataCart.cargoDelivery)
+                    console.log(this.dataCart)
                     console.log(JSON.parse(JSON.stringify(this.dataCart.order)))
                     console.log('Simbolo de la moneda',this.getCurrencySymbol)
                     console.log('Tipo de moneda ( 1 = sol, 2 = dolar) ',this.getTypeCurrencySymbol)
@@ -768,14 +745,14 @@ export default {
                     // Acepta T&C 
                     formData.append("boolTerminos", this.boolTerminos) // false => no acepto || true acepto
                     // Tipo de Medio de Pago
-                    formData.append("paymentType", this.paymentType) // id => transferencia bancaria || id => pago online
+                    formData.append("paymentType", this.paymentType.id)// id => transferencia bancaria || id => pago online
                     // Datos de Productos
                     formData.append("productoObjListado", JSON.stringify(this.dataCart.order)) // [ { cantidad: 1, description: 'sss', id: 1, name: 'My Classic Love', photo: 'https://admin.floreriasumaq.pe/images/products/1/1-1621218681-60a1d5799edc2-pc.jpg', precio: 145} ]
                     formData.append("productoTipoMonenda", this.getTypeCurrencySymbol) // ( 1 = sol, 2 = dolar)
                     formData.append("productoSimboloMoneda", this.getCurrencySymbol) // S./ , USD
                     formData.append("montoTotal", this.getMontoTotal)
                     formData.append("montoSubTotal", this.subMontoTotal)
-                    formData.append("cargoDelivery", this.dataCart.cargoDelivery) 
+                    formData.append("cargoDelivery", this.selectDistrito.costo) 
                     
                     // tipo de cambio
                     formData.append("getExchangeRate", this.getExchangeRate) // 3.55
@@ -812,10 +789,12 @@ export default {
                     try{
                          let sendSolicitud = await this.$axios.$post('order/',formData)
                          if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
-                              this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
-                              this.$store.commit('shopping/cart/setSalesCode', sendSolicitud.data.order_no)
-                              this.$store.commit('shopping/cart/setIdSalesCode', sendSolicitud.data.order_id)
-                              if ( this.paymentType === '1' ){
+                              console.log(sendSolicitud)
+                              // this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
+                              // this.$store.commit('shopping/buy/setCargoDelivery', this.selectDistrito.costo)
+                              this.$store.commit('shopping/buy/setSalesCode', sendSolicitud.data.order_no)
+                              this.$store.commit('shopping/buy/setIdSalesCode', sendSolicitud.data.order_id)
+                              if ( this.paymentType.id === 1 ){
                                    // enviamos a una transferencia Bancaria
                                    this.$router.push('/cart/finalizado-transferencia')
                               }else{
@@ -833,14 +812,14 @@ export default {
                }
           },
           async mostrarDedicatoria(){
-               let _value = this.selectMensajePredeterminado
+               let _value = this.selectMensajePredeterminado.id
                let _this = this 
                // console.log(this.mensajesPredeterminados)
-               this.mensajesPredeterminados.every(function(data, index){
+               this.dedicatorias.every(function(data, index){
                     // console.log(data.value)
                     // console.log(_value)
-                    if (data.value === _value){
-                         _this.selectContentextPredeterminado = data.contentext
+                    if (data.id === _value){
+                         _this.selectContentextPredeterminado = data.description
                          return false
                     }else{
                          return true

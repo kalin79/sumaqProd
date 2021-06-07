@@ -1,7 +1,12 @@
 <template>
      <div>
           <banner-cart />
-          <pago-cart :distritos="distritos" :DeliveryTimes="DeliveryTimes" />
+          <pago-cart :distritos="distritos" 
+               :DeliveryTimes="DeliveryTimes" 
+               :tipoMeotodosPago="tipoMeotodosPago" 
+               :dedicatorias ="dedicatorias"
+               :tipoComprobantes ="tipoComprobantes"
+          />
      </div>
 </template>
 <script>
@@ -49,13 +54,17 @@ export default {
           // console.log(11)
           let distritos = []
           let DeliveryTimes = []
-          
-          
+          let tipoComprobantes = []
+          let dedicatorias = []
+          let tipoMeotodosPago = []
           try {
                res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/payment`)
                // console.log(res.data)
                if ((res.code === 200) && (res.status === 1)){
                     distritos = res.data.districs
+                    tipoMeotodosPago = res.data.payment_methods
+                    dedicatorias = res.data.dedications
+                    tipoComprobantes = res.data.payment_vouchers
                }else{
                     console.log('error await')
                }
@@ -64,7 +73,7 @@ export default {
           }
 
           let nowDay = new Date()
-          let valDay = nowDay.getDay()
+          let valDay = nowDay.getDay() + 1
           let res2
           try {
                res2 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/schedule`)
@@ -100,7 +109,10 @@ export default {
 
           return {
                distritos,
-               DeliveryTimes
+               DeliveryTimes,
+               tipoMeotodosPago,
+               dedicatorias,
+               tipoComprobantes,
           }
      },
 }

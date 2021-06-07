@@ -33,7 +33,7 @@ export default {
                console.log('fin')
           }
           let nowDay = new Date()
-          let valDay = nowDay.getDay()
+          let valDay = nowDay.getDay() + 1
           let res2
           try {
                res2 = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/schedule`)
