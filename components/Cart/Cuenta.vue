@@ -133,7 +133,7 @@ export default {
      props: ['DeliveryTimes'],
      data(){
           const now = new Date()
-          const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+          const today = new Date(now.getFullYear(), now.getMonth(), (now.getDate() + 1 ))
           let todayPicker = new Date(today)
           // console.log(todayPicker.getMonth())
           todayPicker.setMonth(todayPicker.getMonth())
