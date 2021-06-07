@@ -32,6 +32,7 @@
 <script>
 import IconWhatsapp from '@/components/Svg/IconWhatsApp'
 export default {
+     middleware: ['redirect'],
      layout: 'construccion',
      components: {
           IconWhatsapp

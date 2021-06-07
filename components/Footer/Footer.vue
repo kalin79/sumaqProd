@@ -86,7 +86,7 @@
                                                   <nuxt-link to="/">Política de cockies</nuxt-link>
                                              </li>
                                              <li>
-                                                  <nuxt-link to="/">Política de datos</nuxt-link>
+                                                  <nuxt-link to="/politicas/proteccion-de-datos">Política de protección de datos</nuxt-link>
                                              </li>
                                              <li>
                                                   <nuxt-link to="/">Libro de reclamaciones</nuxt-link>
