@@ -13,7 +13,7 @@
                                                             <h2>Información de contacto:</h2>
                                                        </div>
                                                   </div>
-                                                  <div class="col-6">
+                                                  <div class="col-6" v-if="1===2">
                                                        <div class="boxTitleLogin">
                                                             <p>¿Tienes una cuenta? <nuxt-link to="/">Iniciar sesión</nuxt-link></p>
                                                        </div>
