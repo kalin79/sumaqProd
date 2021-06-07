@@ -79,12 +79,12 @@
                                              <li>
                                                   <nuxt-link to="/politicas/politicas-entrega-devolucion">Políticas de entrega <br>y devolución</nuxt-link>
                                              </li>
-                                             <li>
+                                             <!-- <li>
                                                   <nuxt-link to="/">Políticas de privacidad</nuxt-link>
                                              </li>
                                              <li>
                                                   <nuxt-link to="/">Política de cockies</nuxt-link>
-                                             </li>
+                                             </li> -->
                                              <li>
                                                   <nuxt-link to="/politicas/proteccion-de-datos">Política de protección de datos</nuxt-link>
                                              </li>
