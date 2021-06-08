@@ -44,7 +44,7 @@
                          </div>
                          <div class="boxShoppingCart">
                               <div class="d-flex flex-row align-items-end justify-content-end">
-                                   <a href="javascript:void(0)" class="btn-search">
+                                   <a href="javascript:void(0)" class="btn-search" v-if="1===2">
                                         <client-only>
                                              <b-icon-search class="icon-search"></b-icon-search>
                                         </client-only>

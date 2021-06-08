@@ -49,7 +49,7 @@
                          </nuxt-link>
                     </div>
                </li>
-               <li>
+               <li v-if="1===2">
                     <a href="javascript:void(0)" class="btn-search">
                          <client-only>
                               <b-icon-search class="icon-search"></b-icon-search>

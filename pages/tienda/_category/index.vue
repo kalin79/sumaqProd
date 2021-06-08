@@ -1,5 +1,5 @@
 <template>
-     <div class="boxCategoryProduct">
+     <div class="boxCategoryProduct" v-if="getDataCategoryNivel1">
           <banner />
           <filtro />
           <div class="boxtitle">
@@ -25,6 +25,47 @@ export default {
           ...mapGetters('products/', ['getProducts']),
           ...mapGetters('products/', ['getDataCategoryNivel1']),
           
+     },
+     data(){
+          return{
+              titleHead: 'POLITICAS DE ENTREGA Y DEVOLUCION' ,
+              descriptionHead: 'Para fechas especiales como San Valentín, Día de la Madre, Día de la Mujer, Día del Padre, Día Niño, Fiestas patrias y Navidad  únicamente se aceptarán ...'
+          }
+     },
+     mounted() {
+          this.titleHead = `Tienda de ${this.getDataCategoryNivel1.title}`
+          this.descriptionHead = this.getDataCategoryNivel1.description
+     },
+     head () {
+          return {
+               title: `SUMAQ.pe - ${this.titleHead}`,
+               meta: [
+               { hid: 'subject', name: 'subject', content: `SUMAQ.pe - ${this.titleHead}` },
+               { hid: 'description', name: 'description', content: `${this.descriptionHead}` }, 
+               // Google +
+               { hid: 'name-google', content: `SUMAQ.pe - ${this.titleHead}` }, 
+               { hid: 'description-google', content: `${this.descriptionHead}` }, 
+               { hid: 'image-google', content: 'https://floreriasumaq.pe/facebook.jpeg' }, 
+               // Twitter Card data
+               { hid: 'twitter:card', name: 'twitter:card', content: 'summary' }, 
+               { hid: 'twitter:site', name: 'twitter:site', content: '@publisher_handle' }, 
+               { hid: 'twitter:title', name: 'twitter:title', content: `SUMAQ.pe - ${this.titleHead}` }, 
+               { hid: 'twitter:description', name: 'twitter:description', content: `${this.descriptionHead}` }, 
+               { hid: 'twitter:creator', name: 'twitter:creator', content: '@author_handle' }, 
+               { hid: 'twitter:image', name: 'twitter:image', content: 'https://floreriasumaq.pe/facebook.jpeg' }, 
+               // Open Graph data
+               { hid: 'og:title',name: 'og:title', content: `SUMAQ.pe - ${this.titleHead}` }, 
+               { hid: 'og:type', name: 'og:type', content: 'article' }, 
+               { hid: 'og:url', name: 'og:url', content: 'https://floreriasumaq.pe/'  }, 
+               { hid: 'og:image', name: 'og:image', content: 'https://floreriasumaq.pe/facebook.jpeg' }, 
+               { hid: 'og:description', name: 'og:description', content: `${this.descriptionHead}` }, 
+               { hid: 'og:site_name', name: 'og:site_name', content: 'SUMAQ.pe' }, 
+               { hid: 'article:published_time', name: 'article:published_time', content: '2020-06-33T05:59:00+01:00' }, 
+               { hid: 'article:modified_time', name: 'article:modified_time', content: '2020-12-33T05:59:00+01:00' }, 
+               { hid: 'article:section', name: 'article:section', content: 'Article Section' }, 
+               { hid: 'article:tag', name: 'article:tag', content: 'Article Tag' }, 
+               ]
+          }
      },
      async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
           

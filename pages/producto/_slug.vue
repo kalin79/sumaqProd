@@ -327,6 +327,7 @@ export default {
                price: null,
                selectComplement: [],
                tl: null,
+               titleHead: '' 
           }
      },
      mounted() {
@@ -335,43 +336,31 @@ export default {
           // console.log(this.min)
                // this.slides.push({image: 'https://d3e3r3101xvs9k.cloudfront.net/ProductOriginalPhotos/8_Rosas_y_Mini_rosas_en_Jarron_principal11.jpg'})
      },
-     data(){
-          return{
-              titleHead: '' 
-          }
-     },
-     // computed: {
-     //      navigationNext: function() { 
-     //           return `<div class="arrowNext"></div>` 
-     //      },
-     //      navigationPrev: function() { 
-     //           return `<div class="arrowPrev"></div>` 
-     //      },
-     // },
+    
      head () {
           return {
-               title: this.titleHead,
+               title: `SUMAQ.pe - ${this.titleHead}`,
                meta: [
-               { hid: 'subject', name: 'subject', content: `Sumaq - ${this.titleHead}` },
-               { hid: 'description', name: 'description', content: '' }, 
+               { hid: 'subject', name: 'subject', content: `SUMAQ.pe - ${this.titleHead}` },
+               { hid: 'description', name: 'description', content: `${this.product.description_small}` }, 
                // Google +
-               { hid: 'name-google', content: `Sumaq - ${this.titleHead}` }, 
-               { hid: 'description-google', content: '' }, 
-               { hid: 'image-google', content: '' }, 
+               { hid: 'name-google', content: `SUMAQ.pe - ${this.titleHead}` }, 
+               { hid: 'description-google', content: `${this.product.description_small}` }, 
+               { hid: 'image-google', content: 'https://floreriasumaq.pe/facebook.jpeg' }, 
                // Twitter Card data
                { hid: 'twitter:card', name: 'twitter:card', content: 'summary' }, 
                { hid: 'twitter:site', name: 'twitter:site', content: '@publisher_handle' }, 
-               { hid: 'twitter:title', name: 'twitter:title', content: `Sumaq - ${this.titleHead}` }, 
-               { hid: 'twitter:description', name: 'twitter:description', content: '' }, 
+               { hid: 'twitter:title', name: 'twitter:title', content: `SUMAQ.pe - ${this.titleHead}` }, 
+               { hid: 'twitter:description', name: 'twitter:description', content: `${this.product.description_small}` }, 
                { hid: 'twitter:creator', name: 'twitter:creator', content: '@author_handle' }, 
-               { hid: 'twitter:image', name: 'twitter:image', content: '' }, 
+               { hid: 'twitter:image', name: 'twitter:image', content: 'https://floreriasumaq.pe/facebook.jpeg' }, 
                // Open Graph data
-               { hid: 'og:title',name: 'og:title', content: '' }, 
+               { hid: 'og:title',name: 'og:title', content: `SUMAQ.pe - ${this.titleHead}` }, 
                { hid: 'og:type', name: 'og:type', content: 'article' }, 
-               { hid: 'og:url', name: 'og:url', content: '' }, 
-               { hid: 'og:image', name: 'og:image', content: '' }, 
-               { hid: 'og:description', name: 'og:description', content: '' }, 
-               { hid: 'og:site_name', name: 'og:site_name', content: '' }, 
+               { hid: 'og:url', name: 'og:url', content: 'https://floreriasumaq.pe/'  }, 
+               { hid: 'og:image', name: 'og:image', content: 'https://floreriasumaq.pe/facebook.jpeg' }, 
+               { hid: 'og:description', name: 'og:description', content: `${this.product.description_small}` }, 
+               { hid: 'og:site_name', name: 'og:site_name', content: 'SUMAQ.pe' }, 
                { hid: 'article:published_time', name: 'article:published_time', content: '2020-06-33T05:59:00+01:00' }, 
                { hid: 'article:modified_time', name: 'article:modified_time', content: '2020-12-33T05:59:00+01:00' }, 
                { hid: 'article:section', name: 'article:section', content: 'Article Section' }, 
