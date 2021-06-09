@@ -785,7 +785,7 @@ export default {
                     formData.append("recepcionaObjDistrito", JSON.stringify(this.selectDistrito)) // { costo: 50.99, description: 'San Miguel', id: 150132}
                     formData.append("recepcionaFecha", this.dataCart.fecha) 
                     formData.append("recepcionaHora", this.dataCart.hora) 
-                    console.log(formData)
+                    console.log(this.$axios)
                     try{
                          let sendSolicitud = await this.$axios.$post('order/',formData)
                          if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
