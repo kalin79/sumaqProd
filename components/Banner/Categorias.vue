@@ -1,5 +1,5 @@
 <template>
-     <div class="bannerHome">
+     <div class="bannerCategoria">
           <div class="separate"></div>
           <div class="boxMainHome">
                <client-only>
@@ -45,7 +45,7 @@ export default {
 }
 </script>
 <style lang="sass">
-     .bannerHome
+     .bannerCategoria
           position: relative
           z-index: 10
           .boxMainHome

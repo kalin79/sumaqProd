@@ -105,20 +105,7 @@ export default {
           }
      },
      mounted () {
-          //this.animationScrollDown()
-          // try {
-          //      return this.$axios.get('home')
-          //      .then(res => {
-          //           console.log(res)
-          //           return {
-          //                data: res
-          //           }
-          //      }) 
-          // }catch(e){
-          //      console.log(e)
-          // }finally{
-          //      console.log('fin')
-          // }
+          
      },
      methods : {
          animationScrollDown(){

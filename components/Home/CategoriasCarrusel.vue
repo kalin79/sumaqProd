@@ -69,7 +69,7 @@ export default {
 </script>
 <style lang="sass">
      .homeCategory
-          padding: 1.25rem 0 2rem
+          padding: 0rem 0 2rem
           @media screen and (min-width: 992px)
                padding: 1.25rem 0 2.5rem
           .boxCarrusel

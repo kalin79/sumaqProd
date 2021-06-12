@@ -15,7 +15,7 @@
                                    </div>
                               </div>
                          </div>
-                         <div class="itemBeneficio">
+                         <!-- <div class="itemBeneficio">
                               <div class="d-flex justify-content-start align-items-start">
                                    <figure class="boxImage2">
                                         <img src="@/assets/images/b2.png" />
@@ -26,7 +26,7 @@
                                         </p>
                                    </div>
                               </div>
-                         </div>
+                         </div> -->
                          <div class="itemBeneficio">
                               <div class="d-flex justify-content-start align-items-start">
                                    <figure class="boxImage3">
@@ -62,7 +62,7 @@
                     border: 1px solid $grayLight2
                     border-radius: 20px
                     box-sizing: border-box
-                    padding: 2rem .5rem
+                    padding: 1rem .5rem
                     box-shadow: 3px 5px 8px -5px rgba(black,.25)
                     z-index: 31
                     @media screen and (min-width: 992px)

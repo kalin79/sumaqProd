@@ -4,14 +4,14 @@
                <ul class="txtUppercase">
                     <li v-for="(items, index) in getMenuMain" :key="index">
                          <div v-if="items.special_date === 1" class="daySpecial">
-                              <nuxt-link :to="`/fecha-especial${items.link}`">
+                              <a href="javascript:void(0)" v-on:click="clickPage(`/fecha-especial${items.link}`)">
                                    <div class="d-flex align-items-center justify-content-start">
                                         <picture class="arrow">
                                              <img :src="items.icon" :alt="items.name" class="iconcorazon">
                                         </picture>
                                         <span>{{ items.name }}</span>
                                    </div>
-                              </nuxt-link>
+                              </a>
                          </div>
                          <div v-else-if="items.name === 'Tienda' " class="d-flex align-items-center justify-content-between">
                               <a href="javascript:void(0)" class="w80" v-on:click="gotoMenu(1,0)">
@@ -24,9 +24,9 @@
                               </a>
                          </div>
                          <div v-else>
-                              <nuxt-link :to="`${items.link}`">
+                              <a href="javascript:void(0)" v-on:click="clickPage(`${items.link}`)">
                                    <span>{{ items.name }}</span>
-                              </nuxt-link>
+                              </a>
                          </div>
                     </li>
                </ul>
@@ -107,9 +107,9 @@
                                    <a href="javascript:void(0)" v-on:click="gotoMenu(2,1,tienda)" class="btn-large" v-if="tienda.sub_categorias.length > 0">
                                         <span>{{ tienda.title }}</span>
                                    </a>
-                                   <nuxt-link :to="`/tienda${tienda.link}`" v-else>
+                                   <a href="javascript:void(0)" v-on:click="clickPage(`/tienda${tienda.link}`)" v-else>
                                         <span>{{ tienda.title }}</span>
-                                   </nuxt-link>
+                                   </a>
                               </div>
                               <a href="javascript:void(0)" v-on:click="gotoMenu(2,1,tienda)" v-if="tienda.sub_categorias.length > 0">
                                    <picture class="arrow">
@@ -130,9 +130,9 @@
                                    </picture>
                               </a>
                               <div v-else></div>
-                              <nuxt-link :to="`/tienda${tienda.link}`">
+                              <a href="javascript:void(0)" v-on:click="clickPage(`/tienda${tienda.link}`)">
                                    <span>{{ tienda.title }}</span>
-                              </nuxt-link>
+                              </a>
                          </div>
                     </li>
                </ul>
@@ -172,6 +172,17 @@ export default {
           
      },
      methods : {
+         clickPage(link){
+               console.log(link)
+               const boxMovilMainNav = $('.boxMovilMainNav')
+                    
+               if (boxMovilMainNav.hasClass('active')){
+                    boxMovilMainNav.removeClass('active')
+               }else{
+                    boxMovilMainNav.addClass('active')
+               }
+               this.$router.push(link)
+         },
           changeMoney(e){
                if (this.getTypeCurrencySymbol === 1){
                     // dolares

@@ -60,7 +60,7 @@ export default {
 <style lang="sass">
      .bannerHome
           .boxMainHome
-               height: auto
+               height: 185px
                @media screen and (min-width: 992px)
                     height: calc(100vh - 165px)
                @media screen and (min-width: 1200px)
