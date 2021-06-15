@@ -15,7 +15,7 @@
                                    </div>
                               </div>
                          </div>
-                         <!-- <div class="itemBeneficio">
+                         <div class="itemBeneficio">
                               <div class="d-flex justify-content-start align-items-start">
                                    <figure class="boxImage2">
                                         <img src="@/assets/images/b2.png" />
@@ -26,7 +26,7 @@
                                         </p>
                                    </div>
                               </div>
-                         </div> -->
+                         </div>
                          <div class="itemBeneficio">
                               <div class="d-flex justify-content-start align-items-start">
                                    <figure class="boxImage3">

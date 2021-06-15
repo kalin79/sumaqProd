@@ -7,7 +7,7 @@
           </div>
           
           <banner-home />
-          <beneficios />
+          <!-- <beneficios /> -->
           <categorias />
           <div class="_destacado_pc">
                <destacados />
@@ -27,7 +27,7 @@ import Categorias from '@/components/Home/CategoriasCarrusel'
 import Destacados from '@/components/Home/Destacados'
 import DestacadosM from '@/components/Home/DestacadosMovil'
 import Planes from '@/components/Home/Planes'
-import Beneficios from '@/components/Home/Beneficios'
+// import Beneficios from '@/components/Home/Beneficios'
 import Blog from '@/components/Home/Blog'
 
 /*
@@ -48,7 +48,7 @@ export default {
           Destacados,
           DestacadosM,
           Categorias,
-          Beneficios,
+          // Beneficios,
           Planes,
           Blog,
      },

@@ -67,6 +67,22 @@ export const state = () => ({
     removeCart(state,index){
         state.dataCart.order.splice(index,1)
     },
+    removeCartId(state,id){
+        var boolProduct = true;
+        state.dataCart.order.every(function(data, index){
+            if (data.id === id){
+                data.cantidad = data.cantidad - 1
+                if (data.cantidad === 0){
+                    state.dataCart.order.splice(index,1)
+                }
+                boolProduct = false 
+                return false
+            }else{
+                return true
+            }
+
+        })
+    },
     setFecha(state,payload){
         state.dataCart.fecha = payload
     },

@@ -101,6 +101,9 @@
                                                                       <b-form-checkbox
                                                                            v-model="selectComplement"
                                                                            :value="complement"
+                                                                           data-id="no"
+                                                                           :id="`comple-${complement.id}`"
+                                                                           @change="addCart2({id: complement.id, precio: complement.price, name: complement.title_large, photo: complement.image, description: complement.description_small,cantidad: 1})"
                                                                       >
                                                                       </b-form-checkbox>
                                                                  </div>
@@ -379,6 +382,17 @@ export default {
                // console.log(objData)
                this.$store.commit('shopping/cart/setdataCart', objData)
                boxPopUp.fadeIn('slow')
+          },
+          async addCart2(objData){
+               console.log(objData.id)
+               if ($(`#comple-${objData.id}`).data("id") === "no" ){
+                    this.$store.commit('shopping/cart/setdataCart', objData)
+                    $(`#comple-${objData.id}`).data("id","yes")
+               }else{
+                    this.$store.commit('shopping/cart/removeCartId', objData.id)
+                    $(`#comple-${objData.id}`).data("id","no")
+               }
+               console.log($(`#comple-${objData.id}`).data("id"))
           },
           dameprecioProducto(price){
                return price.toFixed(2)

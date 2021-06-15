@@ -3,8 +3,8 @@
           <div class="separate"></div>
           <div class="container-fluid container-fluid-xxl">
                <div class="d-flex justify-content-between align-items-end boxBanner">
-                    <h3><span>Postres</span></h3>
-                    <h2>Tienda de Postres</h2>
+                    <h3><span>{{ breadcrumb.category.title }}</span></h3>
+                    <h2>Tienda de {{ breadcrumb.category.title }}</h2>
                     
                     <div class="Boxbreadcrumb">
                          <div class="d-flex justify-content-start align-items-start">
