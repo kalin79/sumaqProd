@@ -50,7 +50,7 @@
                                         <div class="tab-content d-flex justify-content-center">
                                              <section id="tab-item-1" class="active">
                                                   <!-- <client-side> -->
-                                                  <b-calendar v-model="CalendarValue" :min="minDate.toISOString()" :date-disabled-fn="dateDisabled" locale="es-Es"></b-calendar>
+                                                  <b-calendar v-model="CalendarValue" :min="minDate.toISOString()"  locale="es-Es"></b-calendar>
                                                   <!-- </client-side> -->
                                              </section>
                                              <section id="tab-item-2" >
