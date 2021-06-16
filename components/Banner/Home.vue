@@ -59,22 +59,47 @@ export default {
 </script>
 <style lang="sass">
      .bannerHome
+          margin-bottom: 1.5rem
           .boxMainHome
-               height: 185px
+               height: auto
                @media screen and (min-width: 992px)
-                    height: calc(100vh - 165px)
+                    height: calc(95vh - 165px)
                @media screen and (min-width: 1200px)
-                    height: calc(100vh - 203px)
+                    height: calc(90vh - 203px)
                @media screen and (min-width: 1400px)
-                    height: calc(100vh - 205px)
+                    height: calc(90vh - 205px)
                .VueCarousel,
                .VueCarousel-inner,
                .VueCarousel-slide
-                    height: 100% !important
+                    @media screen and (min-width: 992px)
+                         height: calc(95vh - 165px)
+                    @media screen and (min-width: 1200px)
+                         height: calc(90vh - 203px)
+                    @media screen and (min-width: 1400px)
+                         height: calc(90vh - 205px)
                .boxImages
+                    height: 100%
                     img
                          width: 100%
+                         height: 100%
                          object-fit: cover
+                         position: center
+          // .boxMainHome
+          //      height: 185px
+          //      @media screen and (min-width: 992px)
+          //           height: calc(100vh - 165px)
+          //      @media screen and (min-width: 1200px)
+          //           height: calc(100vh - 203px)
+          //      @media screen and (min-width: 1400px)
+          //           height: calc(100vh - 205px)
+          //      .VueCarousel,
+          //      .VueCarousel-inner,
+          //      .VueCarousel-slide
+          //           height: 100% !important
+          //      .boxImages
+          //           img
+          //                width: 100%
+          //                object-fit: cover
           .separate
                width: 100%
                height: 73px
