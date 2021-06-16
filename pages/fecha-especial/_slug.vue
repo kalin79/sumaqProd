@@ -10,7 +10,7 @@
 </template>
 <script>
 import { mapMutations, mapState, mapGetters } from 'vuex'
-import Banner from '@/components/Banner/Categorias'
+import Banner from '@/components/Banner/Especial'
 import SpecialProducts from '@/components/Category/SpecialProducts'
 
 export default {
