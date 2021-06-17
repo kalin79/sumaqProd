@@ -15,14 +15,15 @@
                     :mouse-drag="true"
                     :touchDrag="true"
                     >
-                         <slide>
+                         <slide v-for="(banner, index) in getBanners" :key="index">
                               <div class="boxImages">
                                    <picture>
                                         <source
-                                             srcset="@/assets/images/bannerPostres.jpg"
+                                             :srcset="banner.image"
                                              media="(min-width:992px)" 
                                         >
-                                        <img src="@/assets/images/bannerMovil.jpg" alt="">
+                                        <img :src="banner.imagemobile" :alt="banner.title">
+                                        {{ banner }} {{ index }}
                                    </picture>
                               </div>
                          </slide>
@@ -33,11 +34,15 @@
      </div>
 </template>
 <script>
+import { mapMutations, mapState, mapGetters } from 'vuex'
 export default {
      data() {
           return {
                
           }
+     },
+     computed: {
+          ...mapGetters('products/', ['getBanners']),
      },
      mounted() {
                

@@ -6,6 +6,7 @@ export const state = () => ({
           dataCategoryNivel1: null,
           dataCategoryNivel2: null,
           subCategories: null,
+          banners: null
      }
  })
 
@@ -34,7 +35,10 @@ export const mutations = {
      setSubCategories(state,payload){
           state.listProducts.subCategories = payload
           state.listProducts.subCategories.push({"id": null, "title": "Selecciona", slug:'', "link": '', description:''})
-     }
+     },
+     setBanners(state,payload){
+          state.listProducts.banners = payload
+     },
 }
 export const actions = {
      async updateProducts({ commit, state }){
@@ -79,5 +83,8 @@ export const getters = {
      },
      getSubCategories(state){
           return state.listProducts.subCategories
+     },
+     getBanners(state){
+          return state.listProducts.banners
      },
 }

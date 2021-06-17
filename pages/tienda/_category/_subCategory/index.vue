@@ -81,6 +81,7 @@ export default {
                     store.commit('products/setTypeNivelCategory', 2)
                     store.commit('products/setDataCategoryNivel1', res.data_category[0])
                     store.commit('products/setSubCategories', res.sub_categories)
+                    store.commit('products/setBanners', res.banner_category)
                }else{
                     console.log('error await')
                }
