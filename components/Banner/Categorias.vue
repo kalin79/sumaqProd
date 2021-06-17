@@ -23,7 +23,6 @@
                                              media="(min-width:992px)" 
                                         >
                                         <img :src="banner.imagemobile" :alt="banner.title">
-                                        {{ banner }} {{ index }}
                                    </picture>
                               </div>
                          </slide>

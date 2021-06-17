@@ -39,9 +39,9 @@
           <div class="HeaderMainMovil">
                <div class="container-fluid">
                     <div class="boxHeaderMovil d-flex align-items-center justify-content-between">
-                         <div class="boxLogo">
+                         <nuxt-link to="/" class="boxLogo">
                               <img src="@/assets/images/logoP4.svg" alt="Sumaq">
-                         </div>
+                         </nuxt-link>
                          <div class="boxShoppingCart">
                               <div class="d-flex flex-row align-items-end justify-content-end">
                                    <a href="javascript:void(0)" class="btn-search" v-if="1===2">

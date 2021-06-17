@@ -59,7 +59,11 @@ export default {
 </script>
 <style lang="sass">
      .bannerHome
-          margin-bottom: 1.5rem
+          position: relative
+          z-index: 10
+          margin-bottom: 2.5rem
+          @media screen and (min-width: 992px)
+               margin-bottom: 0rem
           .boxMainHome
                height: auto
                @media screen and (min-width: 992px)
@@ -84,31 +88,15 @@ export default {
                          height: 100%
                          object-fit: cover
                          position: center
-          // .boxMainHome
-          //      height: 185px
-          //      @media screen and (min-width: 992px)
-          //           height: calc(100vh - 165px)
-          //      @media screen and (min-width: 1200px)
-          //           height: calc(100vh - 203px)
-          //      @media screen and (min-width: 1400px)
-          //           height: calc(100vh - 205px)
-          //      .VueCarousel,
-          //      .VueCarousel-inner,
-          //      .VueCarousel-slide
-          //           height: 100% !important
-          //      .boxImages
-          //           img
-          //                width: 100%
-          //                object-fit: cover
           .separate
                width: 100%
                height: 73px
                @media screen and (min-width: 992px)
                     height: 73px
                @media screen and (min-width: 1200px)
-                    height: 130px
+                    height: 133px
                @media screen and (min-width: 1400px)
-                    height: 130px
+                    height: 136px
           
 
 

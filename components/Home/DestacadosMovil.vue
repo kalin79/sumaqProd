@@ -47,12 +47,11 @@
                               <div class="d-flex">
                                    <div class="animationCard w50">
                                         <div class="cardOcacion">
-                                             <nuxt-link :to="`${listOcaciones[0].link}`" class="boxEye d-flex justify-content-center align-items-center">
-                                                  <img src="@/assets/images/ojos.png" class="imgEye">
+                                             <nuxt-link :to="`${listOcaciones[0].link}`" class="btnLinkImg">
+                                                  <picture>
+                                                       <img :src="listOcaciones[0].image" :alt="listOcaciones[0].title" class="img1">
+                                                  </picture>
                                              </nuxt-link>
-                                             <picture>
-                                                  <img :src="listOcaciones[0].image" :alt="listOcaciones[0].title" class="img1">
-                                             </picture>
                                              <div class="cardDetail">
                                                   <div class="cardShopping d-flex justify-content-center align-items-center">
                                                        <a href="javascript:void(0)" v-on:click="addCart({id: listOcaciones[0].id, precio: listOcaciones[0].price, name: listOcaciones[0].title, photo: listOcaciones[0].image, description: listOcaciones[0].description_small,cantidad: 1})">
@@ -76,12 +75,11 @@
                                         <div>
                                              <div class="animationCard">
                                                   <div class="cardOcacion">
-                                                       <nuxt-link :to="`${listOcaciones[1].link}`" class="boxEye d-flex justify-content-center align-items-center">
-                                                            <img src="@/assets/images/ojos.png" class="imgEye">
+                                                       <nuxt-link :to="`${listOcaciones[1].link}`" class="btnLinkImg">
+                                                            <picture>
+                                                                 <img :src="listOcaciones[1].image" :alt="listOcaciones[1].title" class="img2">
+                                                            </picture>
                                                        </nuxt-link>
-                                                       <picture>
-                                                            <img :src="listOcaciones[1].image" :alt="listOcaciones[1].title" class="img2">
-                                                       </picture>
                                                        <div class="cardDetail">
                                                             <div class="cardShopping d-flex justify-content-center align-items-center">
                                                                  <a href="javascript:void(0)" v-on:click="addCart({id: listOcaciones[1].id, precio: listOcaciones[1].price, name: listOcaciones[1].title, photo: listOcaciones[1].image, description: listOcaciones[1].description_small,cantidad: 1})">
@@ -105,12 +103,11 @@
                                         <div>
                                              <div class="animationCard">
                                                   <div class="cardOcacion">
-                                                       <nuxt-link :to="`${listOcaciones[2].link}`" class="boxEye d-flex justify-content-center align-items-center">
-                                                            <img src="@/assets/images/ojos.png" class="imgEye">
+                                                       <nuxt-link :to="`${listOcaciones[2].link}`" class="btnLinkImg">
+                                                            <picture>
+                                                                 <img :src="listOcaciones[2].image" :alt="listOcaciones[2].title" class="img2">
+                                                            </picture>
                                                        </nuxt-link>
-                                                       <picture>
-                                                            <img :src="listOcaciones[2].image" :alt="listOcaciones[2].title" class="img2">
-                                                       </picture>
                                                        <div class="cardDetail">
                                                             <div class="cardShopping d-flex justify-content-center align-items-center">
                                                                  <a href="javascript:void(0)" v-on:click="addCart({id: listOcaciones[2].id, precio: listOcaciones[2].price, name: listOcaciones[2].title, photo: listOcaciones[2].image, description: listOcaciones[2].description_small,cantidad: 1})">
@@ -137,12 +134,11 @@
                                    <div>
                                         <div class="animationCard">
                                              <div class="cardOcacion">
-                                                  <nuxt-link :to="`${listOcaciones[3].link}`" class="boxEye d-flex justify-content-center align-items-center">
-                                                       <img src="@/assets/images/ojos.png" class="imgEye">
+                                                  <nuxt-link :to="`${listOcaciones[3].link}`" class="btnLinkImg">
+                                                       <picture>
+                                                            <img :src="listOcaciones[3].image" :alt="listOcaciones[3].title" class="img3">
+                                                       </picture>
                                                   </nuxt-link>
-                                                  <picture>
-                                                       <img :src="listOcaciones[3].image" :alt="listOcaciones[3].title" class="img3">
-                                                  </picture>
                                                   <div class="cardDetail">
                                                        <div class="cardShopping d-flex justify-content-center align-items-center">
                                                             <a href="javascript:void(0)" v-on:click="addCart({id: listOcaciones[3].id, precio: listOcaciones[3].price, name: listOcaciones[3].title, photo: listOcaciones[3].image, description: listOcaciones[3].description_small,cantidad: 1})">
@@ -166,12 +162,11 @@
                                    <div>
                                         <div class="animationCard">
                                              <div class="cardOcacion">
-                                                  <nuxt-link :to="`${listOcaciones[4].link}`" class="boxEye d-flex justify-content-center align-items-center">
-                                                       <img src="@/assets/images/ojos.png" class="imgEye">
+                                                  <nuxt-link :to="`${listOcaciones[4].link}`" class="btnLinkImg">
+                                                       <picture>
+                                                            <img :src="listOcaciones[4].image" :alt="listOcaciones[4].title" class="img3">
+                                                       </picture>
                                                   </nuxt-link>
-                                                  <picture>
-                                                       <img :src="listOcaciones[4].image" :alt="listOcaciones[4].title" class="img3">
-                                                  </picture>
                                                   <div class="cardDetail">
                                                        <div class="cardShopping d-flex justify-content-center align-items-center">
                                                             <a href="javascript:void(0)" v-on:click="addCart({id: listOcaciones[4].id, precio: listOcaciones[4].price, name: listOcaciones[4].title, photo: listOcaciones[4].image, description: listOcaciones[4].description_small,cantidad: 1})">
@@ -462,6 +457,10 @@ export default {
                     .cardOcacion
                          position: relative
                          overflow: hidden
+                         .btnLinkImg
+                              display: block
+                              position: relative
+                              z-index: 3
                          &::after
                               content: ''
                               position: absolute
