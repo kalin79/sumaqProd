@@ -127,7 +127,11 @@
                                                        <div class="accordion" role="tablist">
                                                             <b-card no-body class="">
                                                                  <b-card-header header-tag="header" class="p-2" role="tab">
-                                                                      <b-button block v-b-toggle.accordion-1 variant="info">Información de envío</b-button>
+                                                                      <b-button block v-b-toggle.accordion-1 variant="info">
+                                                                           Información de envío
+                                                                           <img src="@/assets/images/arrowcart.png" class="boxArrow" />
+                                                                      </b-button>
+                                                                      
                                                                  </b-card-header>
                                                                  <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
                                                                       <b-card-body>
@@ -260,7 +264,11 @@
                                                             </b-card>
                                                             <b-card no-body class="">
                                                                  <b-card-header header-tag="header" class="p-2" role="tab">
-                                                                      <b-button block v-b-toggle.accordion-2 variant="info">Dedicatoria</b-button>
+                                                                      <b-button block v-b-toggle.accordion-2 variant="info">
+                                                                           Dedicatoria
+                                                                           <img src="@/assets/images/arrowcart.png" class="boxArrow" />
+                                                                      </b-button>
+                                                                      
                                                                  </b-card-header>
                                                                  <b-collapse id="accordion-2"  accordion="my-accordion2" role="tabpanel">
                                                                       <b-card-body>
@@ -352,7 +360,11 @@
                                                             </b-card>
                                                             <b-card no-body class="">
                                                                  <b-card-header header-tag="header" class="p-2" role="tab">
-                                                                      <b-button block v-b-toggle.accordion-3 variant="info">Comprobante de pago</b-button>
+                                                                      <b-button block v-b-toggle.accordion-3 variant="info">
+                                                                           Comprobante de pago
+                                                                           <img src="@/assets/images/arrowcart.png" class="boxArrow" />
+                                                                      </b-button>
+                                                                      
                                                                  </b-card-header>
                                                                  <b-collapse id="accordion-3" accordion="my-accordion3" role="tabpanel">
                                                                       <b-card-body>

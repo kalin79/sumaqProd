@@ -685,12 +685,18 @@
                     margin-bottom: 0
                     border-radius: 10px
                     overflow: hidden
+                    .boxArrow
+                         position: absolute
+                         top: 50%
+                         transform: translateY(-50%)
+                         right: 1rem
                     .btn-info
                          background: $colorBackground
                          border-color: $colorBorder
                          border: 0
                          color: $colorText
                          text-align: left
+                         position: relative
                          &:focus,
                          &:hover
                               outline: none
