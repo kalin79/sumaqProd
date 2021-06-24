@@ -175,7 +175,7 @@ export default {
                     this.doSubmit=true;
                     console.log(dataSolicitud)
                     console.log(this.getDataBuy.idSalesCode)
-                    return false
+                    // return false
                     try{
                          let sendContact = await _this.$axios.$post(`process_payment/${_this.getDataBuy.idSalesCode}`,dataSolicitud)
                          console.log(sendContact)
