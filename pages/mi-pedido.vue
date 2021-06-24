@@ -7,19 +7,20 @@
                               <h1>Consulta tu Pedido</h1>
                          </div>
                          <div class="boxDescription">
-                              <p>Aqui podras consultar el estado de tu pedido ingresando solamente el número de la orden.</p>
+                              <p>Aqui podras consultar el estado de tu pedido ingresando solamente el número de pedido.</p>
+                              <p>Por ej. debe colocar de la siguiente manera: <strong>0021 - 10589900</strong></p>
                          </div>
                          <ValidationObserver v-slot="{ validate }" ref="observer" >
                               <b-form @submit.prevent="validate().then(onSubmit)">
                                    <div class="row mb-3 mt-3">
                                         <div class="col-7">
-                                             <ValidationProvider tag="div" vid="numeroPedido" rules="required" name="Número Orden" v-slot="{ errors, validated }" >
+                                             <ValidationProvider tag="div" vid="numeroPedido" rules="required" name="Número de Pedido" v-slot="{ errors, validated }" >
                                                   <b-form-input
                                                        v-model="numpedido"
                                                        autocomplete="off"
                                                        type="text"
                                                        :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
-                                                       placeholder="Número Orden"
+                                                       placeholder="Número de Pedido"
                                                   ></b-form-input>
                                                   <div class="error-input">{{ errors[0] }}</div>
                                              </ValidationProvider>
@@ -34,7 +35,7 @@
                               </b-form>
                          </ValidationObserver>
                          <div class="alert alert-primary" role="alert" v-if="boolEstado">
-                              El número de la orden: {{ numpedido }} , se encuentra en {{ estadoPedido }}
+                              El número de la orden: {{ numpedido }} , {{ estadoPedido }}
                          </div>
                     </div>
                </div>
@@ -108,10 +109,32 @@ export default {
                if (isValid) {
                     try{
                          let sendSolicitud = await this.$axios.$get(`https://admin.floreriasumaq.pe/api/v1/sales-by-order-number?numero_orden=${this.numpedido}`)
-                         console.log(sendSolicitud)
-                         this.estadoPedido = 'ESPERA'
+                         if (sendSolicitud.code ===  200 && sendSolicitud.status === 1){
+                              console.log(sendSolicitud.data)
+                              if (sendSolicitud.data.sale.statusId === 3)
+                                   this.estadoPedido = 'ya ha sido ENTREGADO'
+                              else{
+                                   if (sendSolicitud.data.sale.statusId === 1)
+                                        this.estadoPedido = 'se encuentra en ESPERA'
+                                   else{
+                                        if (sendSolicitud.data.sale.statusId === 2)
+                                             this.estadoPedido = 'está en CAMINO'
+                                        else{
+                                             if (sendSolicitud.data.sale.statusId === 4)
+                                                  this.estadoPedido = 'su pedido fue rechazado RECHAZADO, para mayor detalle puede comunicarse al 985 757 450'
+                                             else{
+                                                  this.estadoPedido = 'No se ha encontrado ha encontrado, para mayor detalle puede comunicarse al 985 757 450'
+                                             }
+                                        }
+                                   }
+                              }
+                              
+                              
+                              
+                         }
+                         
                     }catch (error) {
-                         console.log(error)
+                         this.estadoPedido = 'No se ha encontrado ha encontrado, para mayor detalle puede comunicarse al 985 757 450'
                     }finally {
                          this.boolEstado = true
                     }
@@ -124,6 +147,7 @@ export default {
      .boxMiPedido
           .boxDescription
                margin-top: 1rem
+               margin-bottom: 1.5rem
                p
                     @include font-libre(1rem,1rem, .85rem,.85rem,$Montserrat,500,$grayDark18)
 

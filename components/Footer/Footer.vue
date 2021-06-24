@@ -99,7 +99,7 @@
                                         <h2>MI PEDIDO</h2>
                                         <ul>
                                              <li>
-                                                  <nuxt-link to="/">Estado del pedido</nuxt-link>
+                                                  <nuxt-link to="/mi-pedido">Estado del pedido</nuxt-link>
                                              </li>
                                              <li>
                                                   <nuxt-link to="/mi-pedido/cobertura">Cobertura</nuxt-link>
