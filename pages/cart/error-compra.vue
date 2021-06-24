@@ -1,17 +1,17 @@
 <template>
      <div>
           <banner-cart-final />
-          <error :dataPayment = "dataPayment" />
+          <error-compra :dataPayment = "dataPayment" />
 
      </div>
 </template>
 <script>
 import BannerCartFinal from '@/components/Banner/CartFinal'
-import Error from '@/components/Cart/Error'
+import Errorcompra from '@/components/Cart/ErrorCompra'
 export default {
      components: {
           BannerCartFinal,
-          Error
+          Errorcompra
      },
      data(){
           return {

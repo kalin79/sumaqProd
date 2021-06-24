@@ -186,17 +186,17 @@ export default {
                                    // console.log('paso')
                               }else{
                                    // console.log('error')
-                                   this.$router.push('/cart/error')
+                                   this.$router.push('/cart/error-compra')
                               }
                               
                          }else{
                               // console.log('error')
-                              this.$router.push('/cart/error')
+                              this.$router.push('/cart/error-compra')
                          }
                          // console.log(sendSolicitud)
                     }catch (error) {
                          console.log(error)
-                         this.$router.push('/cart/error')
+                         this.$router.push('/cart/error-compra')
                     } finally {
                          console.log('final')
                     }
