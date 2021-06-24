@@ -7,20 +7,20 @@
                               <h1>Consulta tu Pedido</h1>
                          </div>
                          <div class="boxDescription">
-                              <p>Aqui podras consultar el estado de tu pedido ingresando solamente el número de pedido.</p>
+                              <p>Aqui podras consultar el estado de tu pedido ingresando solamente el número de orden.</p>
                               <p>Por ej. debe colocar de la siguiente manera: <strong>0021 - 10589900</strong></p>
                          </div>
                          <ValidationObserver v-slot="{ validate }" ref="observer" >
                               <b-form @submit.prevent="validate().then(onSubmit)">
                                    <div class="row mb-3 mt-3">
                                         <div class="col-7">
-                                             <ValidationProvider tag="div" vid="numeroPedido" rules="required" name="Número de Pedido" v-slot="{ errors, validated }" >
+                                             <ValidationProvider tag="div" vid="numeroPedido" rules="required" name="Número Orden" v-slot="{ errors, validated }" >
                                                   <b-form-input
                                                        v-model="numpedido"
                                                        autocomplete="off"
                                                        type="text"
                                                        :state= "((errors.length == 0) && (validated === false)) ? null : ( ( errors.length === 0  ) ? true : false)"
-                                                       placeholder="Número de Pedido"
+                                                       placeholder="Número Orden"
                                                   ></b-form-input>
                                                   <div class="error-input">{{ errors[0] }}</div>
                                              </ValidationProvider>
