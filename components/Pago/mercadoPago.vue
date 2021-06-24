@@ -135,7 +135,6 @@ export default {
      },
      methods: {
           async generateCardToken(){
-               console.log(11)
                this.getCardToken()
           },
           async getCardToken(){
@@ -173,14 +172,31 @@ export default {
                          'token' : response.id,
                     }
                     this.doSubmit=true;
-                    console.log(dataSolicitud)
-                    console.log(this.getDataBuy.idSalesCode)
+                    // console.log(dataSolicitud)
+                    // console.log(this.getDataBuy.idSalesCode)
                     // return false
+                    this.$store.commit('shopping/buy/setIdSalesCode', _this.getDataBuy.idSalesCode)
                     try{
-                         let sendContact = await _this.$axios.$post(`process_payment/${_this.getDataBuy.idSalesCode}`,dataSolicitud)
-                         console.log(sendContact)
+                         let sendSolicitud = await _this.$axios.$post(`process_payment/${_this.getDataBuy.idSalesCode}`,dataSolicitud)
+                         // this.$store.commit('shopping/buy/setSalesCode', sendSolicitud.data.order_no)
+                         if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
+                              // console.log(sendSolicitud.data.order_id.status)
+                              if (sendSolicitud.data.order_id.status === 'approved' || sendSolicitud.data.order_id.status === 'in_process' ){
+                                   this.$router.push('/cart/finalizado')
+                                   // console.log('paso')
+                              }else{
+                                   // console.log('error')
+                                   this.$router.push('/cart/error')
+                              }
+                              
+                         }else{
+                              // console.log('error')
+                              this.$router.push('/cart/error')
+                         }
+                         // console.log(sendSolicitud)
                     }catch (error) {
                          console.log(error)
+                         this.$router.push('/cart/error')
                     } finally {
                          console.log('final')
                     }

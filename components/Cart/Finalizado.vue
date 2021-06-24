@@ -1,6 +1,6 @@
 <template>
      <div class="boxProcessFinal">
-          <div class="container-fluid container-fluid-xxl ">
+          <div class="container-fluid container-fluid-xxl " v-if="(dataPayment.length > 0) && (getDataBuy)">
                <div class="boxHeader">
                     <div class="boxIcon">
                          <client-only>
@@ -8,8 +8,8 @@
                          </client-only>
                     </div>
                     <div class="boxTitle">
-                         <h3>Hey Carlos,</h3>
-                         <h1>¡Gracias por hacernos cómplices de tu felicidad!</h1>
+                         <h3>Hey {{ dataPayment[0].contactoNombre }},</h3>
+                         <h1>¡Gracias por su compra, <br>esperamos que lo disfruten. <br>Los mejores deseos de SUMAQ!</h1>
                     </div>
                </div>
                <div class="boxDetail">
@@ -19,46 +19,81 @@
                                    <div class="boxContent mb-3">
                                         <div class="boxRow pb-3">
                                              <p>
-                                                  Número de orden: <span class="BoldLarge">001-88276651</span>
+                                                  Número de orden: <span class="BoldLarge">{{ getDataBuy.salesCode }}</span>
                                              </p>
                                         </div>
                                    </div>
                                    <div class="boxContent ">
                                         <div class="boxRow pb-5 notLine">
                                              <p class="description">
-                                                  Enviamos un correo electrónico a <span class="bold">cespinoza@gmail.com</span> con la confirmación  y el recibo de su pedido. Si el correo electrónico no ha llegado en dos minutos, verifique su carpeta de correo no deseado para ver si el correo electrónico se envió allí.
+                                                  Hemos enviado un correo electrónico a <span class="bold">{{ dataPayment[0].contactoEmail }}</span> con su pedido. 
+                                                  Si el correo electrónico no ha llegado en dos minutos, verifique su carpeta de correo no deseado para ver si el correo electrónico se envió allí.
                                              </p>
                                         </div>
                                    </div>
                                    <div class="boxContent ">
                                         <div class="boxRow pb-5 notLine">
                                              <div class="boxTitle">
+                                                  <h2>Información de contacto</h2>
+                                             </div>
+                                             <div class="boxItems mb0">
+                                                  <h3>Pedido realizado por:</h3>
+                                                  <p class="description">
+                                                       Sr(a). {{ dataPayment[0].contactoNombre }}
+                                                  </p>
+                                                  <p class="description">
+                                                       Correo: {{ dataPayment[0].contactoEmail }}
+                                                  </p>
+                                                  <p class="description">
+                                                       Celular: {{ dataPayment[0].contactoCelular }}
+                                                  </p>
+                                             </div>
+                                        </div>
+                                        <div class="boxRow pb-5  notLine">
+                                             <div class="boxTitle">
                                                   <h2>Detalles del Delivery</h2>
                                              </div>
                                              <div class="boxItems">
                                                   <h3>Delivery hecho por:</h3>
                                                   <p class="description">
-                                                       Sr. Carlos Espinoza Galarza
+                                                       Sr(a). {{ dataPayment[0].recepcionaNombres }} {{ dataPayment[0].recepcionaApellidos }}
                                                   </p>
                                                   <p class="description">
-                                                       Celular: 987 654 324
+                                                       Celular: {{ dataPayment[0].recepcionaCelular }}
                                                   </p>
                                              </div>
 
                                              <div class="boxItems">
                                                   <h3>Dirección del delivery:</h3>
                                                   <p class="description">
-                                                       Jr. Augusto Aguirre 3045 - Alt. Cdra. 30
+                                                       {{ dataPayment[0].recepcionaDireccion }}
                                                   </p>
                                                   <p class="description">
-                                                       Av. José Granda . Los Olivos LIM - PER
+                                                       Referencia : {{ dataPayment[0].recepcionaReferencia }}
+                                                  </p>
+                                                  <p class="description">
+                                                       Distrito : {{ dataPayment[0].recepcionaObjDistrito.text }}
+                                                  </p>
+                                             </div>
+
+                                             <div class="boxItems">
+                                                  <h3>Fecha y hora:</h3>
+                                                  <p class="description">
+                                                       {{ dataPayment[0].recepcionaFecha }} - {{ dataPayment[0].recepcionaHora }}
+                                                  </p>
+                                             </div>
+
+                                             <div class="boxItems">
+                                                  <h3>Dedicatoria</h3>
+                                                  <p class="description">
+                                                       {{ dataPayment[0].dedicatoriaMensaje }}
                                                   </p>
                                              </div>
 
                                              <div class="boxItems mb0">
-                                                  <h3>Fecha y hora:</h3>
+                                                  <h3>Firma</h3>
                                                   <p class="description">
-                                                       23 Mayo, 2021 - 09:00 am - 15:00 p.m.
+                                                       {{ dataPayment[0].dedicatoriaFirma }}
                                                   </p>
                                              </div>
                                              
@@ -70,34 +105,43 @@
                                                   <h2>Información de Pago</h2>
                                              </div>
                                              <div class="boxItems">
-                                                  <h3>Tarjeta de crédito/débito:</h3>
+                                                  <h3>Costo Total:</h3>
                                                   <p class="description">
-                                                       Número: **** **** **** 3245
-                                                  </p>
-                                                  <!-- <p class="description">
-                                                       Fecha de expiración: 10/23
-                                                  </p> -->
-                                                  <p class="description">
-                                                       Monto: S/ 190.00 soles
+                                                       Monto: {{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].montoTotal }}
                                                   </p>
                                              </div>
 
                                              <div class="boxItems">
-                                                  <h3>Envío de factura o boleta:</h3>
+                                                  <div v-if="dataPayment[0].comprobanteObjTipo.value != 3">
+                                                       <h3>Envío de factura:</h3>
+                                                       <p class="description">
+                                                            Razon Social: {{ dataPayment[0].comprobanteRazonSocial }}
+                                                       </p>
+                                                       <p class="description">
+                                                            R.U.C.: {{ dataPayment[0].comprobanteRuc }}
+                                                       </p>
+                                                  </div>
+                                                  <div v-else>
+                                                       <h3>Envío de boleta:</h3>
+                                                       <p class="description">
+                                                            Nombre: {{ dataPayment[0].comprobanteRazonSocial }}
+                                                       </p>
+                                                       <p class="description">
+                                                            D.N.I.: {{ dataPayment[0].comprobanteRuc }}
+                                                       </p>
+                                                  </div>
+                                                  
                                                   <p class="description">
-                                                       Sr. Carlos Espinoza Galarza
+                                                       Direccion: {{ dataPayment[0].comprobanteDireccion }}
                                                   </p>
-                                                  <p class="description">
-                                                       Jr. Augusto Aguirre 3045 - Alt. Av. José Granda Los Olivos
-                                                  </p>
-                                                  <p class="description">
+                                                  <!-- <p class="description">
                                                        LIM - PER.
+                                                  </p> -->
+                                                  <p class="description">
+                                                       Correo electrónico: {{ dataPayment[0].comprobanteEmail }}
                                                   </p>
                                                   <p class="description">
-                                                       Correo electrónico: cespinoza@gmail.com
-                                                  </p>
-                                                  <p class="description">
-                                                       Teléfono: 987 654 324
+                                                       Teléfono: {{ dataPayment[0].comprobanteTelefono }}
                                                   </p>
                                              </div>
                                         </div>
@@ -115,11 +159,11 @@
                                    </div>
                                    <div class="boxResult">
                                         <div class="boxListProduct">
-                                             <div class="boxCard mb-3 d-flex justify-content-between align-items-start" v-for="(item, index) in dataCart.order" :key="index">
+                                             <div class="boxCard mb-3 d-flex justify-content-between align-items-start" v-for="(item, index) in dataPayment[0].productoObjListado" :key="index">
                                                   <div class="d-flex justify-content-start align-items-start">
                                                        <div class="boxPicture">
                                                             <picture>
-                                                                 <img :src="require(`@/assets/images/${item.photo}`)" alt="ocacion">
+                                                                 <img :src="item.photo" alt="ocacion">
                                                             </picture>
                                                             <div class="boxCantidad">
                                                                  <p>{{ item.cantidad }}</p>
@@ -127,11 +171,12 @@
                                                        </div>
                                                        <div class="boxDetail">
                                                             <h2>{{ item.name }}</h2>
-                                                            <p> {{ item.description }}</p>
+                                                            <div v-html="item.description"></div>
                                                        </div>
                                                   </div>
                                                   <div class="boxPrice">
-                                                       <p>{{ getCurrencySymbol }} {{ getPrice(item.precio) }}</p>
+                                                       
+                                                       <p>{{ dataPayment[0].productoSimboloMoneda }} {{ item.precio }}</p>
                                                   </div>
                                              </div>
                                         </div>
@@ -139,21 +184,25 @@
                                              <div class="rowCosto">
                                                   <div class="mb-2 d-flex justify-content-between align-items-start">
                                                        <h3>Subtotal</h3>
-                                                       <h3>{{ getCurrencySymbol }} {{ dameSubMontoTotal }}</h3>
+                                                       <h3>{{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].montoSubTotal }}</h3>
                                                   </div>
+                                                  <!-- <div class="mb-2 d-flex justify-content-between align-items-start">
+                                                       <h3>Impuesto (18%)</h3>
+                                                       <h3>{{ getCurrencySymbol }} {{ getImpuesto }}</h3>
+                                                  </div> -->
                                                   <div class="pb-4 d-flex justify-content-between align-items-start">
                                                        <h3>Costo por Delivery</h3>
-                                                       <h3>{{ getCurrencySymbol }} 30</h3>
+                                                       <h3>{{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].recepcionaObjDistrito.precio }}</h3>
                                                   </div>
                                              </div>
                                              <div class="rowCosto mt-3">
                                                   <div class="d-flex justify-content-between align-items-start">
                                                        <div>
                                                             <h3>Total</h3>
-                                                            <p>Incluye impuestos</p>
+                                                            <!-- <p>Incluye impuestos</p> -->
                                                        </div>
                                                        
-                                                       <h3 class="boldPrice">{{ getCurrencySymbol }} {{ dameTotal }}</h3>
+                                                       <h3 class="boldPrice">{{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].montoTotal }}</h3>
                                                   </div>
                                              </div>
                                         </div>
@@ -177,49 +226,22 @@ gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(CSSRulePlugin)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
 export default {
-     computed: {
-          ...mapGetters('shopping/cart/', ['subMontoTotal']),
-          ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
-          ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
-          ...mapGetters('shopping/cart/', ['getExchangeRate']),
-          ...mapState(
-               { dataCart: state => state.shopping.cart.dataCart},
-          ),
-          dameTipoComprobante(){
-               if (this.selectTipoComprobante)
-                    return 'R.U.C.'
-               else
-                    return 'D.N.I'
-          },
-          dameNombreComprobante(){
-               if (this.selectTipoComprobante)
-                    return 'Razón Social'
-               else
-                    return 'Nombre completo'
-          },
-          dameTotal(){
-               let igv = 0.18
-               let total = this.subMontoTotal + this.subMontoTotal*igv + this.priceDelivery
-               if (this.getTypeCurrencySymbol === 1)
-                    return total.toFixed(2)
-               else
-                    return (total / this.getExchangeRate).toFixed(2)
-          },
+     props: ['dataPayment'],
+     data(){
+          return{
+               
+          }
+     },
+     mounted() {
           
-          dameSubMontoTotal(){
-               if (this.getTypeCurrencySymbol === 1)
-                    return this.subMontoTotal.toFixed(2)
-               else
-                    return (this.subMontoTotal / this.getExchangeRate).toFixed(2)
-          },
+     },
+     computed: {
+          ...mapGetters('shopping/buy', ['getDataBuy']),
+          
+          
      },
      methods: {
-          getPrice(price){
-               if (this.getTypeCurrencySymbol === 1)
-                    return price.toFixed(2)
-               else 
-                    return (price / this.getExchangeRate).toFixed(2)
-          },
+          
      },
 }
 </script>
@@ -259,7 +281,10 @@ export default {
                               width: 120px
                               @media screen and (min-width: 992px)
                                    padding: 0 0 0 1.5rem
-                                   width: auto
+                                   width: 180px
+                              @media screen and (min-width: 1200px)
+                                   padding: 0 0 0 1.5rem
+                                   width: 290px
                               h2
                                    @include font-libre(0.875rem,0.875rem, 0.875rem,0.75rem,$Montserrat,600,$grayDark18)
                               p

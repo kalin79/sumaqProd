@@ -29,8 +29,7 @@
                                                   Para finalizar el proceso debera abonar el monto a una de las cuentas de <span class="bold">SUMAQ</span> las cuales se indican lineas abajo.
                                              </p>
                                              <p class="description mb-2">
-                                                  Luego deberia enviarnos el voucher por nuestro WhatsApp <a href="https://wa.link/i7kwid" target="_blank">(+51) 985 757 450</a> indicandonos el <span class="bold">Número de orden</span>
-                                                  o el correo que indico en <span class="bold">"Información de contacto:"</span>.
+                                                  Luego deberia enviarnos el voucher por nuestro WhatsApp <a href="https://wa.link/i7kwid" target="_blank">(+51) 985 757 450</a> indicandonos el <span class="bold">Número de orden</span>.
                                              </p>
                                              
                                              <p class="description">
