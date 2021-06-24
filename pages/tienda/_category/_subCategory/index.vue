@@ -2,11 +2,13 @@
      <div class="boxCategoryProduct" v-if="getDataCategoryNivel1">
           <banner />
           <filtro />
-          <div class="boxtitle" v-if="getDataCategoryNivel1.sub_categorias.length > 0">
-               <h1>Tienda de {{ getDataCategoryNivel1.sub_categorias[0].title }}</h1>
-               <h2 v-html="getDataCategoryNivel1.sub_categorias[0].description"></h2>
+          <div class="bgFondo">
+               <div class="boxtitle" v-if="getDataCategoryNivel1.sub_categorias.length > 0">
+                    <h1>Tienda de {{ getDataCategoryNivel1.sub_categorias[0].title }}</h1>
+                    <h2 v-html="getDataCategoryNivel1.sub_categorias[0].description"></h2>
+               </div>
+               <products-category :getProducts = getProducts />
           </div>
-          <products-category :getProducts = getProducts />
      </div>
 </template>
 <script>
@@ -108,6 +110,7 @@ export default {
 </script>
 <style lang="sass">
      .boxCategoryProduct
+          
           .boxtitle
                // border: 1px solid red
                width: 60%

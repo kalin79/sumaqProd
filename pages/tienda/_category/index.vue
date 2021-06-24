@@ -2,11 +2,13 @@
      <div class="boxCategoryProduct" v-if="getDataCategoryNivel1">
           <banner />
           <filtro />
-          <div class="boxtitle">
-               <h1>Tienda de {{ getDataCategoryNivel1.title }}</h1>
-               <h2 v-html="getDataCategoryNivel1.description"></h2>
+          <div class="bgFondo">
+               <div class="boxtitle">
+                    <h1>Tienda de {{ getDataCategoryNivel1.title }}</h1>
+                    <h2 v-html="getDataCategoryNivel1.description"></h2>
+               </div>
+               <products-category :getProducts = getProducts />
           </div>
-          <products-category :getProducts = getProducts />
      </div>
 </template>
 <script>
@@ -109,6 +111,11 @@ export default {
 </script>
 <style lang="sass">
      .boxCategoryProduct
+          .bgFondo
+               background-image: url('~/assets/images/bg_sumaq.png')
+               background-repeat: no-repeat
+               background-position: center 50px
+               background-size: cover
           .boxtitle
                // border: 1px solid red
                width: 60%

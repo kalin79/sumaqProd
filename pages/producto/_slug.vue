@@ -420,12 +420,18 @@ export default {
           $anchoContent : 85%
           $anchoContent2 : 80%
      .boxProductDetail
-          padding: 0 0 5rem 0
+          padding: 0 0 0rem 0
           @media screen and (min-width: 992px)
-               padding: 0 0 8rem 0
+               padding: 0 0 0rem 0
           .boxProductosRelaciones
-               padding: 3rem 0 0
+               padding: 3rem 0 5rem
                overflow: hidden
+               background-image: url('~/assets/images/bg_sumaq.png')
+               background-repeat: no-repeat
+               background-position: center
+               background-size: cover
+               @media screen and (min-width: 992px)
+                    padding: 0 0 8rem 0
                .boxCarrusel
                     padding: 2rem 0 0
                     .VueCarousel-navigation-button

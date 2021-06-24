@@ -1,6 +1,6 @@
 <template>
      <div class="boxListProducts">
-          <div class="boxVector pos4">
+          <!-- <div class="boxVector pos4">
                <picture>
                     <img src="@/assets/images/vect1.png" />
                </picture>
@@ -19,7 +19,7 @@
                <picture>
                     <img src="@/assets/images/vect6.png" />
                </picture>
-          </div>
+          </div> -->
           
           <div class="container-fluid container-fluid-xxl" v-if="getProducts">
                <div class="boxProducts">
@@ -92,6 +92,7 @@ export default {
      .boxListProducts
           padding-bottom: 5rem
           position: relative 
+          
           @media screen and (min-width: 992px)
                padding-bottom: 5rem
           @media screen and (min-width: 1200px)
@@ -247,7 +248,7 @@ export default {
                               color: white
                               font-size: 1rem 
           .boxProducts
-               padding: 3rem 0 1rem
+               margin: 3rem 0 1rem
                .cardDetail,
                .cardImage
                     cursor: pointer

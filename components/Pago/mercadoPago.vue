@@ -10,9 +10,9 @@
                     <form id="paymentForm" @submit.prevent="generateCardToken">
                          <h3>Detalles del comprador</h3> 
                               <div>
-                                   <div class="mb-3" v-if="getForm">
+                                   <div class="mb-3">
                                         <label for="email">E-mail</label>
-                                        <input id="email" class="form-control" name="email" type="text" placeholder="Escriba su correo"/>
+                                        <input id="email" class="form-control" name="email" autocomplete=off type="text" placeholder="Escriba su correo"/>
                                    </div>
                                    <div class="row ">
                                         <div class="col-12 col-md-6 mb-3">
@@ -30,51 +30,51 @@
                                    </div>
                               </div>
                          <h3>Detalles de la tarjeta</h3>
-                              <div>
+                         <div>
+                              <div class="row">
+                                   <div class="mb-3 col-12 col-md-6">
+                                        <label for="cardholderName">Titular de la tarjeta</label>
+                                        <input id="cardholderName" name="cardholderName" class="form-control" data-checkout="cardholderName" type="text" placeholder="Escriba el nombre como aparece en su tarjeta">
+                                   </div>
+                                   <div class="mb-3 col-12 col-md-6">
+                                        <label for="cardNumber">Número de la tarjeta</label>
+                                        <input type="text" id="cardNumber" name="cardNumber" class="form-control" data-checkout="cardNumber"
+                                             onselectstart="return false" onpaste="return false"
+                                             oncopy="return false" oncut="return false"
+                                             ondrag="return false" ondrop="return false" autocomplete=off>
+                                   </div>
+                              </div>
+                              
+                              <div class="">
                                    <div class="row">
-                                        <div class="mb-3 col-12 col-md-6" v-if="getForm">
-                                             <label for="cardholderName">Titular de la tarjeta</label>
-                                             <input id="cardholderName" name="cardholderName" class="form-control" data-checkout="cardholderName" type="text" placeholder="Escriba el nombre como aparece en su tarjeta">
-                                        </div>
-                                        <div class="mb-3 col-12 col-md-6">
-                                             <label for="cardNumber">Número de la tarjeta</label>
-                                             <input type="text" id="cardNumber" name="cardNumber" class="form-control" data-checkout="cardNumber"
+                                        <div class="col-12 col-md-6 mb-3">
+                                             <div class="row">
+                                                  <div class="col-6 col-md-6">
+                                                       <label for="">Mes que expira</label>
+                                                       <input type="text" class="form-control" placeholder="MM" id="cardExpirationMonth" name="cardExpirationMonth" data-checkout="cardExpirationMonth"
+                                                       onselectstart="return false" onpaste="return false"
+                                                       oncopy="return false" oncut="return false"
+                                                       ondrag="return false" ondrop="return false" autocomplete=off>
+                                                  </div>
+                                                  <div class="col-6 col-md-6">
+                                                       <label for="">Año que expira</label>
+                                                       <input type="text" placeholder="YY" class="form-control" id="cardExpirationYear" name="cardExpirationYear" data-checkout="cardExpirationYear"
+                                                       onselectstart="return false" onpaste="return false"
+                                                       oncopy="return false" oncut="return false"
+                                                       ondrag="return false" ondrop="return false" autocomplete=off>
+                                                  </div>
+                                             </div>
+                                        </div>     
+                                        
+                                        <div class="col-12 col-md-6 mb-3">
+                                             <label for="securityCode">Código de seguridad</label>
+                                             <input id="securityCode" name="securityCode" class="form-control" data-checkout="securityCode" type="text"
                                                   onselectstart="return false" onpaste="return false"
                                                   oncopy="return false" oncut="return false"
                                                   ondrag="return false" ondrop="return false" autocomplete=off>
                                         </div>
                                    </div>
-                                   
-                                   <div class="">
-                                        <div class="row">
-                                             <div class="col-12 col-md-6 mb-3">
-                                                  <div class="row">
-                                                       <div class="col-6 col-md-6">
-                                                            <label for="">Mes que expira</label>
-                                                            <input type="text" class="form-control" placeholder="MM" id="cardExpirationMonth" name="cardExpirationMonth" data-checkout="cardExpirationMonth"
-                                                            onselectstart="return false" onpaste="return false"
-                                                            oncopy="return false" oncut="return false"
-                                                            ondrag="return false" ondrop="return false" autocomplete=off>
-                                                       </div>
-                                                       <div class="col-6 col-md-6">
-                                                            <label for="">Año que expira</label>
-                                                            <input type="text" placeholder="YY" class="form-control" id="cardExpirationYear" name="cardExpirationYear" data-checkout="cardExpirationYear"
-                                                            onselectstart="return false" onpaste="return false"
-                                                            oncopy="return false" oncut="return false"
-                                                            ondrag="return false" ondrop="return false" autocomplete=off>
-                                                       </div>
-                                                  </div>
-                                             </div>     
-                                             
-                                             <div class="col-12 col-md-6 mb-3">
-                                                  <label for="securityCode">Código de seguridad</label>
-                                                  <input id="securityCode" name="securityCode" class="form-control" data-checkout="securityCode" type="text"
-                                                       onselectstart="return false" onpaste="return false"
-                                                       oncopy="return false" oncut="return false"
-                                                       ondrag="return false" ondrop="return false" autocomplete=off>
-                                             </div>
-                                        </div>
-                                   </div>
+                              </div>
                               
                               
                               <div class="row">
@@ -90,17 +90,17 @@
                               </div>
                               
                               <div class="mb-3">
-                                   <input type="text" name="transactionAmount" class="form-control" id="transactionAmount" v-model="getMontoTotal" />
+                                   <input type="text" autocomplete=off name="transactionAmount" class="form-control" id="transactionAmount" v-model="getMontoTotal" />
                                    <input type="hidden" name="paymentMethodId" class="form-control" id="paymentMethodId" />
                                    <input type="hidden" name="description" class="form-control" id="description" value="Compra de productos de SUMAQ" />
-                                   <input type="text" name="codigoProducto" class="form-control" id="codigoProducto" v-model="getDataBuy.idSalesCode" />
+                                   <input type="text" name="codeProduct" class="form-control" id="codeProduct" v-model="getDataBuy.idSalesCode"  autocomplete=off/>
                                   
                                    <div class="boxButtom">
                                         <button type="submit"><p>Pagar</p></button>
                                    </div>
                               </div>
                          </div>
-                         </form>
+                    </form>
                </div>
           </div>
      </div>
@@ -129,6 +129,7 @@ export default {
      mounted() {
           window.Mercadopago.setPublishableKey(this.keyMercadopago)
           window.Mercadopago.getIdentificationTypes()
+          
           document.getElementById('cardNumber').addEventListener('change', this.guessPaymentMethod)
           // document.getElementById('paymentForm').addEventListener('submit', this.getCardToken)
      },
@@ -167,14 +168,16 @@ export default {
                          'installments' : $('#installments').val(),
                          'transactionAmount' : $('#transactionAmount').val(),
                          'description' : $('#description').val(),
-                         'codigoProducto' : $('#codigoProducto').val(),
+                         'codigoProducto' : $('#codeProduct').val(),
                          'paymentMethodId' : $('#paymentMethodId').val(),
                          'token' : response.id,
                     }
                     this.doSubmit=true;
                     console.log(dataSolicitud)
+                    console.log(this.getDataBuy.idSalesCode)
+                    return false
                     try{
-                         let sendContact = await _this.$axios.$post(`process_payment/${_this.getIdSalesCode}`,dataSolicitud)
+                         let sendContact = await _this.$axios.$post(`process_payment/${_this.getDataBuy.idSalesCode}`,dataSolicitud)
                          console.log(sendContact)
                     }catch (error) {
                          console.log(error)

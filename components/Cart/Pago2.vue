@@ -510,13 +510,13 @@
                                                        </div>
                                                   </div>
                                              </div>
-                                             <div class="rowCard mt-3" v-if="1===2">
+                                             <div class="rowCard mt-3">
                                                   <div class="d-flex">
                                                        <div>
                                                             <b-form-radio v-model="paymentType" name="some-radios" :value="tipoMeotodosPago[1]"></b-form-radio>
                                                        </div>
                                                        <div>
-                                                            <h3>Pagar con tarjeta de crédito o débito</h3>
+                                                            <h3>Pagar con tarjeta de crédito</h3>
                                                        </div>
                                                   </div>
                                              </div>

@@ -1,11 +1,14 @@
 <template>
      <div class="boxCategoryProduct2">
           <banner />
-          <div class="boxtitle">
-               <h1>{{ getMenuMain[1].name }}</h1>
+          <div class="bgFondo">
+               
+               <div class="boxtitle">
+                    <h1>{{ getMenuMain[1].name }}</h1>
+               </div>
+               <!-- {{ getProducts }} -->
+               <special-products :getProducts = getProducts />
           </div>
-          <!-- {{ getProducts }} -->
-          <special-products :getProducts = getProducts />
      </div>
 </template>
 <script>
@@ -101,6 +104,11 @@ export default {
 </script>
 <style lang="sass">
      .boxCategoryProduct2
+          .bgFondo
+               background-image: url('~/assets/images/bg_sumaq.png')
+               background-repeat: no-repeat
+               background-position: center 100px
+               background-size: cover
           .boxtitle
                // border: 1px solid red
                width: 60%

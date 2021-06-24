@@ -1,7 +1,7 @@
 <template>
      <div class="homeCategory">
           <div class="container-fluid container-fluid-xxl">
-               <div class="boxVector pos1">
+               <!-- <div class="boxVector pos1">
                     <img src="@/assets/images/vect1.png" alt="Flor"/>
                </div>
                <div class="boxVector pos2">
@@ -12,7 +12,7 @@
                </div>
                <div class="boxVector pos4">
                     <img src="@/assets/images/vect4.png" alt=""/>
-               </div>
+               </div> -->
                <div class="boxTitle">
                     <figure>
                          <img src="@/assets/images/flor.png" alt="Flor"/>
@@ -70,6 +70,10 @@ export default {
 <style lang="sass">
      .homeCategory
           padding: 0rem 0 2rem
+          background-image: url('~/assets/images/bg_sumaq.png')
+          background-repeat: no-repeat
+          background-position: center
+          background-size: cover
           @media screen and (min-width: 992px)
                padding: 1.25rem 0 2.5rem
           .boxCarrusel
