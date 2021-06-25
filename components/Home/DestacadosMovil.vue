@@ -8,7 +8,7 @@
           <div class="animationSection">
                <div class="container-fluid container-fluid-xxl">
                     <div class="boxDestacadoTop">
-                         <div class="boxVector pos1">
+                         <!-- <div class="boxVector pos1">
                               <picture>
                                    <img src="@/assets/images/vect5.png" />
                               </picture>
@@ -22,7 +22,7 @@
                               <picture>
                                    <img src="@/assets/images/vect6.png" />
                               </picture>
-                         </div>
+                         </div> -->
                          <div class="row">
                               <div class="col-12">
                                    <div class="boxTitle">
@@ -282,8 +282,11 @@ export default {
                left: 0
                width: 100%
                height: 35rem
-               background: white
-               
+               background-color: white
+               background-image: url('~/assets/images/bg_sumaq.png')
+               background-repeat: no-repeat
+               background-position: center
+               background-size: cover
           .boxButtonTienda
                padding-top: 2.5rem 
                position: relative

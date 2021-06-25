@@ -103,13 +103,13 @@
                                                                       <div class="tab-content d-flex justify-content-center">
                                                                            <section id="tab-item-1" class="active">
                                                                                 <!-- <client-side> -->
-                                                                                <b-calendar v-model="CalendarValue" @selected="setDaySelect()" :min="minDate.toISOString()" locale="es-Es"></b-calendar>
+                                                                                <b-calendar v-model="CalendarValue" @selected="setDaySelect()" :min="minDate.toISOString()" @context="onContext" locale="es-Es"></b-calendar>
                                                                                 <!-- </client-side> -->
                                                                            </section>
                                                                            <section id="tab-item-2" >
                                                                                 <!-- {{ DeliveryTimes }}  -->
                                                                                 <div class="contentItem">
-                                                                                     <div v-for="(item, index) in DeliveryTimes" :key="index">
+                                                                                     <div v-for="(item, index) in DeliveryTimesAux" :key="index">
                                                                                      <div class="form-check" @change="setHourSelect(item)" v-bind:class="{'disabled' : item.notEnabled === 'disabled'}">
                                                                                           <b-form-radio v-model="selectedDeliveryTime" :value="item" :disabled="item.notEnabled">{{ item.start_time }} - {{ item.end_time }}</b-form-radio>
                                                                                      </div>
@@ -612,7 +612,7 @@ export default {
      },
      data(){
           const now = new Date()
-          const today = new Date(now.getFullYear(), now.getMonth(), (now.getDate() + 1 ))
+          const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
           let todayPicker = new Date(today)
           // console.log(todayPicker.getMonth())
           todayPicker.setMonth(todayPicker.getMonth())
@@ -630,7 +630,7 @@ export default {
                boolTerminos: false,
                selectContentextPredeterminado: '',
                selectMensajePredeterminado: '',
-               
+               DeliveryTimesAux: [],
                comprobanteSelectTipo: {id: 0, name: ''},
                
                selectDepartamento: 'Lima',
@@ -648,6 +648,7 @@ export default {
      },
      mounted() {
           this.comprobanteSelectTipo = this.tipoComprobantes[0]
+          this.DeliveryTimesAux = this.DeliveryTimes
           // console.log(this.comprobanteSelectTipo)
           this.$store.commit('shopping/cart/setCargoDelivery', 0)
      },
@@ -687,6 +688,85 @@ export default {
           },
      },
      methods: {
+          async processDate(){
+               this.selectedDeliveryTime = null
+               let valDateString = this.CalendarValue
+               let _this = this
+               let _arrDay = valDateString.split('-')
+               const selectedDate = new Date(_arrDay[0],_arrDay[1],_arrDay[2])
+               let valDay = selectedDate.getDay() + 1
+               let selectedDay = selectedDate.getDate()
+               let selectedMonth = selectedDate.getMonth()
+               let selectedYear = selectedDate.getFullYear()
+          
+               const nowDate = new Date()
+               let nowDay = nowDate.getDate()
+               let nowhourDay = nowDate.getHours()
+               let nowMonth = nowDate.getMonth() + 1
+               let nowYear = nowDate.getFullYear()
+
+               console.log(nowhourDay)
+               console.log(selectedDay)
+               console.log(selectedMonth)
+               console.log(selectedYear)
+               console.log('*******')
+               console.log(nowDay)
+               console.log(nowMonth)
+               console.log(nowYear)
+               
+               this.DeliveryTimesAux = []
+               try{
+                    let res = await this.$axios.get(`https://admin.floreriasumaq.pe/api/v1/schedule`)
+                    console.log(res.data)
+                    let resData = res.data
+                    // return false
+                    resData.every(function(data, index){
+                    
+                         if ((selectedDay === nowDay) && (selectedMonth === nowMonth) && (selectedYear === nowYear)){
+                              
+                              if (data.day === valDay){
+                                   // console.log()
+                                   data.schedule.every(function(dataAux, index){
+                                        let _arr = dataAux.start_time.split(':')
+                                        let _arrhour = _arr[0].split('"')
+                                        let _hour = parseInt(_arrhour[0])
+                                        // console.log(nowhourDay)
+                                        if (nowhourDay > 12){
+                                             if (_hour > 12){
+                                                  _this.DeliveryTimesAux.push(dataAux)
+                                             }
+                                        }else{
+                                             _this.DeliveryTimesAux.push(dataAux)  
+                                        }
+                                        return true
+                                   })
+                                   return false
+                              }else{
+                                   return true
+                              }
+
+                         }else{
+                              
+                              if (data.day === valDay){
+                                   _this.DeliveryTimesAux = data.schedule
+                                   return false
+                              }else{
+                                   return true
+                              }
+                         }
+
+                    })
+               }catch (error) {
+                    console.log(error)
+               } finally {
+                    console.log('final')
+               }
+          },
+          onContext(ctx) {
+               if (this.CalendarValue != null){
+                    this.processDate()
+               }
+          },
           setHourSelect(data){
                this.$store.commit('shopping/cart/setHora', data)
                gsap.to(window, {duration: .5, scrollTo:"#BoxHourAndDay"});
@@ -797,7 +877,7 @@ export default {
                     formData.append("recepcionaObjDistrito", JSON.stringify(this.selectDistrito)) // { costo: 50.99, description: 'San Miguel', id: 150132}
                     formData.append("recepcionaFecha", this.dataCart.fecha) 
                     formData.append("recepcionaHora", this.dataCart.hora) 
-                    console.log(this.$axios)
+                    // console.log(this.$axios)
                     try{
                          let sendSolicitud = await this.$axios.$post('order/',formData)
                          if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
