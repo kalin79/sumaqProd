@@ -87,7 +87,10 @@ export const state = () => ({
         state.dataCart.fecha = payload
     },
     setHora(state,payload){
-        state.dataCart.hora = `${payload.start_time} - ${payload.end_time}`
+        if (payload === '')
+            state.dataCart.hora = 'Hora'
+        else
+            state.dataCart.hora = `${payload.start_time} - ${payload.end_time}`
     },
     setRest(state){
         state.dataCart.order = []

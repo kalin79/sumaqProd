@@ -73,12 +73,10 @@ export default {
                // console.log(_this.DeliveryTimes)
                // console.log(hour)
                // console.log(_hour)
-               if (hour > 12){
-                    if (_hour > 12){
+               if (hour < 13){
+                    if (_hour < 13){
                          _this.DeliveryTimes.push(data)
                     }
-               }else{
-                  _this.DeliveryTimes.push(data)  
                }
                return true
           })

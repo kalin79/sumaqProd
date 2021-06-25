@@ -63,6 +63,9 @@
                                                                  <b-form-radio v-model="selectedDeliveryTime" :value="item" :disabled="item.notEnabled">{{ item.start_time }} - {{ item.end_time }}</b-form-radio>
                                                             </div>
                                                        </div>
+                                                       <div class="alert alert-danger" role="alert" v-if="DeliveryTimesAux.length === 0">
+                                                            El Delivery para hoy es solo hasta el medio día.
+                                                       </div>
                                                   </div>
                                              </section>
                                         </div>
@@ -218,12 +221,10 @@ export default {
                                         let _arrhour = _arr[0].split('"')
                                         let _hour = parseInt(_arrhour[0])
                                         // console.log(nowhourDay)
-                                        if (nowhourDay > 12){
-                                             if (_hour > 12){
+                                        if (nowhourDay < 13){
+                                             if (_hour < 13){
                                                   _this.DeliveryTimesAux.push(dataAux)
                                              }
-                                        }else{
-                                             _this.DeliveryTimesAux.push(dataAux)  
                                         }
                                         return true
                                    })
@@ -366,6 +367,12 @@ $anchoContent2: 100%
           margin-top: 1.5rem
      @media screen and (min-width: 1400px)
           margin-top: 1.72rem
+     .alert-danger
+          width: 80%
+          @include font-libre(0.75rem,0.75rem,0.75rem,.75rem,$Montserrat,600,#721c24)
+          margin: auto
+          text-align: center
+          line-height: 3rem
      .boxAlerts
           padding: .5rem 1.75rem .5rem 1rem
           svg
