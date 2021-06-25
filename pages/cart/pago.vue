@@ -21,6 +21,7 @@ export default {
           return {
                titleHead: 'Preceso de Confirmación y Pago' , 
                descriptionHead: 'Ya estamos a un paso de ser parte de este momento en especial',
+               DeliveryTimes: [],
           }
      },
      head () {
@@ -55,11 +56,38 @@ export default {
           }
      },
      mounted () {
+          const now = new Date()
+          const hour = now.getHours()
+          const min = now.getMinutes()
+          const seg = now.getSeconds()
+          let _this = this
+          // console.log(hour)
+          // console.log(min)
+          // console.log(seg)
+          
+          
+          this.DeliveryTimesAux.every(function(data, index){
+               let _arr = data.start_time.split(':')
+               let _arrhour = _arr[0].split('"')
+               let _hour = parseInt(_arrhour[0])
+               // console.log(_this.DeliveryTimes)
+               // console.log(hour)
+               // console.log(_hour)
+               if (hour > 12){
+                    if (_hour > 12){
+                         _this.DeliveryTimes.push(data)
+                    }
+               }else{
+                  _this.DeliveryTimes.push(data)  
+               }
+               return true
+          })
+
      },
      async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
           // console.log(11)
           let distritos = []
-          let DeliveryTimes = []
+          let DeliveryTimesAux = []
           let tipoComprobantes = []
           let dedicatorias = []
           let tipoMeotodosPago = []
@@ -87,7 +115,7 @@ export default {
                     // console.log(data.day)
                     // console.log(valDay)
                     if (data.day === valDay){
-                         DeliveryTimes = data.schedule
+                         DeliveryTimesAux = data.schedule
                          return false
                     }else{
                          return true
@@ -115,7 +143,7 @@ export default {
 
           return {
                distritos,
-               DeliveryTimes,
+               DeliveryTimesAux,
                tipoMeotodosPago,
                dedicatorias,
                tipoComprobantes,

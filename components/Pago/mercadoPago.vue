@@ -111,7 +111,7 @@ export default {
      data() {
           return {
                doSubmit : false,
-               keyMercadopago : 'TEST-70e352dd-6cef-4547-b207-232ef3004548'
+               keyMercadopago : 'APP_USR-453ed9d1-e798-4dab-ba4f-bd8a1bbba416'
           }
      },
      computed: {

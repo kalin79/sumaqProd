@@ -14,9 +14,10 @@ export default {
           BannerCart,
           CartResumen
      },
+     
      async asyncData({isDev, route, store, env, params, query, req, res, redirect, error, $axios}) {
           // console.log(params.category)
-          let DeliveryTimes = []
+          let DeliveryTimesAux = []
           try {
                res = await $axios.$get(`https://admin.floreriasumaq.pe/api/v1/menu`)
                // console.log(res)
@@ -41,7 +42,7 @@ export default {
                     // console.log(data.day)
                     // console.log(valDay)
                     if (data.day === valDay){
-                         DeliveryTimes = data.schedule
+                         DeliveryTimesAux = data.schedule
                          return false
                     }else{
                          return true
@@ -53,13 +54,14 @@ export default {
           }
 
           return {
-               DeliveryTimes
+               DeliveryTimesAux
           }
      },
      data(){
           return {
                titleHead: 'Primera etapa de confirmación de su pedido' , 
                descriptionHead: 'Verifique su pedido e indiquenos para cuando y a que hora lo desea.',
+               DeliveryTimes: [],
           }
      },
      head () {
@@ -94,6 +96,32 @@ export default {
           }
      },
      mounted () {
+          const now = new Date()
+          const hour = now.getHours()
+          const min = now.getMinutes()
+          const seg = now.getSeconds()
+          let _this = this
+          // console.log(hour)
+          // console.log(min)
+          // console.log(seg)
+          
+          
+          this.DeliveryTimesAux.every(function(data, index){
+               let _arr = data.start_time.split(':')
+               let _arrhour = _arr[0].split('"')
+               let _hour = parseInt(_arrhour[0])
+               // console.log(_this.DeliveryTimes)
+               // console.log(hour)
+               // console.log(_hour)
+               if (hour > 12){
+                    if (_hour > 12){
+                         _this.DeliveryTimes.push(data)
+                    }
+               }else{
+                  _this.DeliveryTimes.push(data)  
+               }
+               return true
+          })
 
      },
 }

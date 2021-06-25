@@ -14,9 +14,9 @@
                     <img src="@/assets/images/vect4.png" alt=""/>
                </div> -->
                <div class="boxTitle">
-                    <figure>
+                    <!-- <figure>
                          <img src="@/assets/images/flor.png" alt="Flor"/>
-                    </figure>
+                    </figure> -->
                     <h2>Tiendas por categoría</h2>
                     <p>Encuentra ese detalle para toda ocasión, desde unos <br>tulipanes.</p>
                </div>
@@ -286,6 +286,7 @@ export default {
                                    width: 556px
           .boxTitle
                text-align: center
+               padding-top: 2rem
                figure
                     margin: 0
                h2
