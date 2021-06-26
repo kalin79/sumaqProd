@@ -1140,7 +1140,9 @@ export default {
                     @include font-libre(0.75rem,0.75rem,0.75rem,.75rem,$Montserrat,600,#721c24)
                     margin: auto
                     text-align: center
-                    line-height: 3rem
+                    line-height: 1.5rem
+                    padding-top: 1.5rem
+                    padding-bottom: 1.5rem
           .boxSwitch
                @include boxSwicth()
                p

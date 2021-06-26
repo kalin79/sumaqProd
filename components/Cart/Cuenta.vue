@@ -15,7 +15,7 @@
                          <label class="title">Seleciona fecha y horario de entrega:</label>
                          <div class="boxHorario">
                               <div class="selectHorario">
-                                   <div class="cbxHorario d-flex justify-content-start align-items-center" v-on:click="timeDelivery">
+                                   <div class="cbxHorario d-flex justify-content-center align-items-center" v-on:click="timeDelivery">
                                         <div class="d-flex justify-content-start align-items-center">
                                              <img src="@/assets/images/horario.png" class="imgIcon" />
                                              <span v-if="CalendarValue!=null">{{ CalendarValue }}</span>
@@ -372,7 +372,9 @@ $anchoContent2: 100%
           @include font-libre(0.75rem,0.75rem,0.75rem,.75rem,$Montserrat,600,#721c24)
           margin: auto
           text-align: center
-          line-height: 3rem
+          line-height: 1.5rem
+          padding-top: 1.5rem
+          padding-bottom: 1.5rem
      .boxAlerts
           padding: .5rem 1.75rem .5rem 1rem
           svg
