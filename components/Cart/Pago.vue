@@ -513,7 +513,7 @@
                                                        </div>
                                                   </div>
                                              </div>
-                                             <div class="rowCard mt-3" v-if="1===2">
+                                             <div class="rowCard mt-3">
                                                   <div class="d-flex">
                                                        <div>
                                                             <b-form-radio v-model="paymentType" name="some-radios" :value="tipoMeotodosPago[1]"></b-form-radio>
@@ -883,7 +883,7 @@ export default {
                     try{
                          let sendSolicitud = await this.$axios.$post('order/',formData)
                          if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
-                              console.log(sendSolicitud)
+                              // console.log(sendSolicitud)
                               // this.$store.commit('shopping/cart/setCargoDelivery', this.selectDistrito.costo)
                               // this.$store.commit('shopping/buy/setCargoDelivery', this.selectDistrito.costo)
                               this.$store.commit('shopping/buy/setSalesCode', sendSolicitud.data.order_no)
