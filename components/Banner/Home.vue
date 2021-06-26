@@ -16,7 +16,7 @@
                     :touchDrag="true"
                     >
                          <slide v-for="(items, index) in getSliderHome" :key="index">
-                              <nuxt-link to="/" v-if="items.link!=''">
+                              <nuxt-link :to="items.link" v-if="items.link!=''">
                                    <div class="boxImages">
                                         <picture>
                                              <source
