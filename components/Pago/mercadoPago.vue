@@ -90,13 +90,13 @@
                               </div>
                               
                               <div class="mb-3">
-                                   <input type="text" autocomplete=off name="transactionAmount" class="form-control" id="transactionAmount" v-model="getMontoTotal" />
+                                   <input type="hidden" autocomplete=off name="transactionAmount" class="form-control" id="transactionAmount" v-model="getMontoTotal" />
                                    <input type="hidden" name="paymentMethodId" class="form-control" id="paymentMethodId" />
                                    <input type="hidden" name="description" class="form-control" id="description" value="Compra de productos de SUMAQ" />
                                    <input type="hidden" name="codeProduct" class="form-control" id="codeProduct" v-model="getDataBuy.idSalesCode"  autocomplete=off/>
                                   
                                    <div class="boxButtom">
-                                        <button type="submit"><p>Pagar</p></button>
+                                        <button type="submit"><p>Pagar S./ {{ getMontoTotal }}</p></button>
                                    </div>
                               </div>
                          </div>

@@ -369,7 +369,7 @@
                                                                       </b-button>
                                                                       
                                                                  </b-card-header>
-                                                                 <b-collapse id="accordion-3" accordion="my-accordion3" role="tabpanel">
+                                                                 <b-collapse id="accordion-3" visible accordion="my-accordion3" role="tabpanel">
                                                                       <b-card-body>
                                                                            <div class="row mb-3 mt-3">
                                                                                 <div class="col">
