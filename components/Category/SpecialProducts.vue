@@ -39,7 +39,7 @@
                                              <h3>{{ product.title }}<br> {{ getCurrencySymbol }} {{ getPrice(product.price) }}</h3>
                                         </div>
                                         <div class="cardPriceOld">
-                                             <h5 class="card-price-old" v-if="product.price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(product.price) }}</span></h5>
+                                             <h5 class="card-price-old" v-if="product.price_old > 0">Antes: <span>{{ getCurrencySymbol }} {{ getPrice(product.price_old) }}</span></h5>
                                              <h5 v-else class="card-price-old blanco">Antes</h5>
                                         </div>
                                    </div>
