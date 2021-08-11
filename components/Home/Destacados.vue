@@ -512,13 +512,16 @@
                          border-bottom: 1px solid $grayDark8
                          border-top: 1px solid $grayDark8
                          border-right: 1px solid $grayDark8
+                         width: 65%
                          > .d-flex
                               &:last-child
                                    > div
+                                        width: 50%
                                         &:first-child
                                              border-right: 1px solid $grayDark8
                               &:first-child
                                    > div
+                                        width: 50%
                                         &:first-child
                                              border-bottom: 1px solid $grayDark8
                                              border-right: 1px solid $grayDark8
