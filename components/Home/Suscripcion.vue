@@ -130,10 +130,10 @@ export default {
                formData.append("email", this.emailUser)
                try{
                     let sendSolicitud = await this.$axios.post(`subscription`,formData)
-                    console.log(sendSolicitud)
-                    if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
+                    // console.log(sendSolicitud)
+                    if (sendSolicitud.status === 201){
                          
-                         console.log(sendSolicitud)
+                         // console.log(sendSolicitud)
                          alert("Se guardo Correctamente")
                          
                     }else{
