@@ -24,9 +24,9 @@
                                              <p>No te pierdas de las promociones y descuentos <br>en nuestra tienda.</p>
                                         </div>
                                         <div class="boxForm">
-                                             <input type="email" class="form-control" placeholder="tucorreo@correo.com">
+                                             <input type="email" class="form-control" placeholder="tucorreo@correo.com" v-model="emailUser">
                                              <div class="boxButtonTienda d-flex justify-content-center align-items-center">
-                                                  <button>SUSCRIBIRME</button>
+                                                  <button @click="saveSucription()">SUSCRIBIRME</button>
                                              </div>
                                         </div>
                                    </div>
@@ -76,9 +76,9 @@
                                    </div>
                               </div>
                               <div class="d-flex justify-content-start align-items-start boxForm">
-                                   <input type="email" class="form-control" placeholder="tucorreo@correo.com">
+                                   <input type="email" class="form-control" placeholder="tucorreo@correo.com" v-model="emailUser">
                                    <div class="boxButtonTienda d-flex justify-content-center align-items-center">
-                                        <button>SUSCRIBIRME</button>
+                                        <button @click="saveSucription()">SUSCRIBIRME</button>
                                    </div>
                               </div>
                          </div>
@@ -117,6 +117,49 @@
           </div>
      </div>
 </template>
+<script>
+export default {
+     data(){
+          return {
+               emailUser: ''
+          }
+     },
+     methods : {
+          async guardarEmail (){
+               let formData = new FormData()
+               formData.append("email", this.emailUser)
+               try{
+                    let sendSolicitud = await this.$axios.post(`subscription`,formData)
+                    console.log(sendSolicitud)
+                    if ((sendSolicitud.code === 201) && (sendSolicitud.status === 1)){
+                         
+                         console.log(sendSolicitud)
+                         alert("Se guardo Correctamente")
+                         
+                    }else{
+                         console.log('error')
+                    }
+               }catch (error) {
+                    console.log(error)
+               } finally {
+                    console.log('final')
+                    $(".boxButtonTienda").fadeIn("slow")
+               }
+          },
+          saveSucription(){
+               var reLargo = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
+               console.log(this.emailUser)
+               if (reLargo.test(this.emailUser))
+               {
+                    $(".boxButtonTienda").fadeOut("slow")
+                    this.guardarEmail()
+               }else{
+                    alert("No es correo valido")
+               }
+          }
+     }
+}
+</script>
 <style lang="sass">
      .suscriptionHome
           border-top: 0px solid $grayDark4
