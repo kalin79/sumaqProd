@@ -19,10 +19,10 @@
                               <div class="boxImages">
                                    <picture>
                                         <source
-                                             srcset="@/assets/images/especial.jpg"
+                                             srcset="@/assets/images/especial2.jpg"
                                              media="(min-width:992px)" 
                                         >
-                                        <img src="@/assets/images/especialM.jpg" alt="">
+                                        <img src="@/assets/images/especialM2.jpg" alt="">
                                    </picture>
                               </div>
                          </slide>
