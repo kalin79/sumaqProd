@@ -54,7 +54,9 @@ export default {
      computed: {
           ...mapGetters('generaldata/', ['getSliderHome']),
      },
-     mounted() {},
+     mounted() {
+          console.log(this.getSliderHome)
+     },
 }
 </script>
 <style lang="sass">

@@ -15,14 +15,25 @@
                     :mouse-drag="true"
                     :touchDrag="true"
                     >
-                         <slide>
-                              <div class="boxImages">
+                         <slide v-for="(items, index) in getSliderEspecial" :key="index">
+                              <nuxt-link :to="items.link" v-if="items.link!=''">
+                                   <div class="boxImages">
+                                        <picture>
+                                             <source
+                                                  :srcset="items.image"
+                                                  media="(min-width:992px)" 
+                                             >
+                                             <img :src="items.imagemobile" alt="">
+                                        </picture>
+                                   </div>
+                              </nuxt-link>
+                              <div class="boxImages" v-else>
                                    <picture>
                                         <source
-                                             srcset="@/assets/images/especial2.jpg"
+                                             :srcset="items.image"
                                              media="(min-width:992px)" 
                                         >
-                                        <img src="@/assets/images/especialM2.jpg" alt="">
+                                        <img :src="items.imagemobile" alt="">
                                    </picture>
                               </div>
                          </slide>
@@ -33,14 +44,18 @@
      </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
      data() {
           return {
                
           }
      },
+     computed: {
+          ...mapGetters('generaldata/', ['getSliderEspecial']),
+     },
      mounted() {
-               
+          console.log(this.getSliderEspecial)
      },
 }
 </script>

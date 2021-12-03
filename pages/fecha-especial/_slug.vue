@@ -17,6 +17,7 @@ import Banner from '@/components/Banner/Especial'
 import SpecialProducts from '@/components/Category/SpecialProducts'
 
 export default {
+     middleware: ['fechaEspecial'],
      components: {
           SpecialProducts,
           Banner
