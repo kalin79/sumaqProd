@@ -6,7 +6,9 @@ export const state = () => ({
         currencySymbol: 'S./',
         typeCurrencySymbol: 1,
         exchangeRate: 3.55,
-        cargoDelivery: 0
+        cargoDelivery: 0,
+        montoDescuento: 0,
+        codigiDescuento: '',
      }
  })
  
@@ -61,8 +63,14 @@ export const state = () => ({
             state.dataCart.order.unshift(payload)
         }
     },
+    setMontoDescuento(state,payload){
+        state.dataCart.montoDescuento = payload
+    },
     setCargoDelivery(state,payload){
         state.dataCart.cargoDelivery = payload
+    },
+    setCodigiDescuento(state,payload){
+        state.dataCart.codigiDescuento = payload
     },
     removeCart(state,index){
         state.dataCart.order.splice(index,1)
@@ -110,9 +118,15 @@ export const state = () => ({
         // console.log(state.dataCart.exchangeRate)
         return state.dataCart.exchangeRate
     },
+    getCodigiDescuento(state){
+        return state.dataCart.codigiDescuento
+    },
     getCurrencySymbol(state){
         // console.log(state.dataCart.currencySymbol)
         return state.dataCart.currencySymbol
+    },
+    getMontoDescuento(state){
+        return state.dataCart.montoDescuento
     },
     getTypeCurrencySymbol(state){
         return state.dataCart.typeCurrencySymbol
@@ -142,12 +156,13 @@ export const state = () => ({
         let typeCurrencySymbol = state.dataCart.typeCurrencySymbol
         let exchangeRate = state.dataCart.exchangeRate
         let cargoDelivery = state.dataCart.cargoDelivery
+        let montoDescuento = state.dataCart.montoDescuento
         // console.log(cargoDelivery)
         state.dataCart.order.forEach(function(data) {
             if (typeCurrencySymbol === 1){
-                monto = monto + (data.precio * data.cantidad)
+                monto = monto + (data.precio * data.cantidad) - montoDescuento
             }else{
-                monto = monto + ((data.precio / exchangeRate) * data.cantidad)
+                monto = monto + ((data.precio / exchangeRate) * data.cantidad) - (montoDescuento / exchangeRate)
             }
         });
         return (monto + cargoDelivery).toFixed(2)

@@ -10,11 +10,11 @@
                                    <p class="brown">Home</p> 
                               </nuxt-link>
                               <p class="separateP brown">></p>
-                              <nuxt-link to="cart/informacion">
+                              <nuxt-link to="/cart/informacion">
                                    <p class="brown">Carrito</p> 
                               </nuxt-link>
                               <p class="separateP brown">></p>
-                              <nuxt-link to="cart/informacion">
+                              <nuxt-link to="/cart/informacion">
                                    <p class="brown">Información</p> 
                               </nuxt-link>
                               

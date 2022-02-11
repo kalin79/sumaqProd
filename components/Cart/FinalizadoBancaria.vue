@@ -246,9 +246,14 @@
                                                        <h3>Impuesto (18%)</h3>
                                                        <h3>{{ getCurrencySymbol }} {{ getImpuesto }}</h3>
                                                   </div> -->
-                                                  <div class="pb-4 d-flex justify-content-between align-items-start">
+                                                  <div class="mb-2 d-flex justify-content-between align-items-start">
                                                        <h3>Costo por Delivery</h3>
                                                        <h3>{{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].recepcionaObjDistrito.precio }}</h3>
+                                                  </div>
+                                                  <div class="pb-4 d-flex justify-content-between align-items-start">
+                                                       <h3>Descuento</h3>
+                                                       <!-- {{ dataPayment[0] }} -->
+                                                       <h3>(-) {{ dataPayment[0].productoSimboloMoneda }} {{ dataPayment[0].montoDescuento }}</h3>
                                                   </div>
                                              </div>
                                              <div class="rowCosto mt-3">

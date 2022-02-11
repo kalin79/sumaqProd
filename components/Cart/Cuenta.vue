@@ -2,13 +2,17 @@
      <div>
           <div class="boxCartCuenta">
                <div class="borderCartCuenta">
-                    <div class="boxRow" v-if="1==2"> 
+                    <div class="boxRow"> 
                          <label class="title">Código de promoción</label>
                          <div class="boxRowForm">
                               <div class="d-flex boxFormAction">
-                                   <input type="text" class="form-control" placeholder="Código">
-                                   <button type="button" class="btn-form">APLICAR</button>
+                                   <input type="text" class="form-control" placeholder="Código" v-model="codigoDescuento">
+                                   <button type="button" class="btn-form" v-on:click="verificarDescuento">APLICAR</button>
                               </div>
+                              <div class="alert alert-info mt-3" role="alert" v-if="msnDescuentoBool === 1">
+                              {{ msnDescuento }}
+                              </div>
+                              
                          </div>
                     </div>
                     <div class="boxRow">
@@ -95,6 +99,16 @@
                                         <h2>{{ getCurrencySymbol }} {{ dameSubMontoTotal }}</h2>
                                    </div>
                               </div>
+                              <div class="d-flex">
+                                   <div class="colflex">
+                                        <h2>Descuento:</h2>
+                                        <!-- <p>No esta incluido el impuesto.</p> <p>Los gastos de envío se calculan en la pantalla de pagos.</p> -->
+                                        <p>Si el cup&oacute;n es valido se le mostrar&aacute; su descuento.</p>
+                                   </div>
+                                   <div class="colflex">
+                                        <h2>(-) {{ getCurrencySymbol }} {{ montoDescuento }}</h2>
+                                   </div>
+                              </div>
                          </div>
                     </div>
                </div>
@@ -147,6 +161,11 @@ export default {
                minDate: today,
                boolAlert: false,
                DeliveryTimesAux: [],
+               montoDescuento: 0,
+               codigoDescuento: '',
+               msnDescuento: '',
+               msnDescuentoBool: 0
+
                // DeliveryTimes: [
                //      {
                //           id: '1',
@@ -178,6 +197,39 @@ export default {
           },
      },
      methods : {
+          async verificarDescuento(){
+               
+               let formData = new FormData()
+               // console.log(this.codigoDescuento)
+               formData.append("codigo", this.codigoDescuento)
+               this.msnDescuentoBool = 1
+               try{
+                    let res = await this.$axios.post(`https://admin.floreriasumaq.pe/api/v1/valid-cupon`,formData)
+                    console.log(res.data)
+                    if ((res.data.code === 201) && (res.data.status === 1)){
+                         this.$store.commit('shopping/cart/setMontoDescuento', res.data.data.monto)
+                         this.$store.commit('shopping/cart/setCodigiDescuento', this.codigoDescuento)
+                         this.montoDescuento = res.data.data.monto
+                         this.montoDescuento = this.montoDescuento.toFixed(2)
+                         // console.log(res.data.data.monto)
+                         // console.log(this.codigoDescuento)
+                         this.msnDescuento = "Su código es válido !!"
+                    }else{
+                         this.$store.commit('shopping/cart/setMontoDescuento', 0)
+                         this.$store.commit('shopping/cart/setCodigiDescuento', '')
+                         this.montoDescuento = 0
+                         this.montoDescuento = this.montoDescuento.toFixed(2)
+                         console.log('Descuento no disponible')
+                         this.msnDescuento = "Su código no es válido !!"
+                    }
+                    
+                    
+               }catch (error) {
+                    console.log(error)
+               } finally {
+                    console.log('final')
+               }
+          },
           async processDate(){
                this.selectedDeliveryTime = null
                let valDateString = this.CalendarValue
@@ -266,6 +318,7 @@ export default {
                          this.boolAlert = false
                          this.$store.commit('shopping/cart/setFecha', this.CalendarValue)
                          this.$store.commit('shopping/cart/setHora', this.selectedDeliveryTime)
+                         this.$store.commit('shopping/cart/setMontoDescuento', this.montoDescuento)
                          this.$router.push('/cart/pago')
                     }else{
                          console.log('error')

@@ -479,10 +479,15 @@
                                                        <h3>Subtotal</h3>
                                                        <h3>{{ getCurrencySymbol }} {{ subMontoTotal }}</h3>
                                                   </div>
-                                                  <div class="pb-4 d-flex justify-content-between align-items-start">
+                                                  <div class="mb-2 d-flex justify-content-between align-items-start">
                                                        <h3>Costo por Delivery</h3>
                                                        <h3 v-if="priceDelivery === 0 ">Indique el distrito</h3>
                                                        <h3 v-else>{{ getCurrencySymbol }} {{ damePriceDelivery }}</h3>
+                                                  </div>
+                                                  <div class="pb-4 d-flex justify-content-between align-items-start">
+                                                       <h3>Descuento</h3>
+                                                       <h3 v-if="getMontoDescuento === 0 ">No tiene descuento</h3>
+                                                       <h3 v-else>(-) {{ getCurrencySymbol }} {{ getMontoDescuento }}</h3>
                                                   </div>
                                              </div>
                                              <div class="rowCosto mt-3">
@@ -657,6 +662,8 @@ export default {
           ...mapGetters('shopping/cart/', ['getCurrencySymbol']),
           ...mapGetters('shopping/cart/', ['getTypeCurrencySymbol']),
           ...mapGetters('shopping/cart/', ['getExchangeRate']),
+          ...mapGetters('shopping/cart/', ['getCodigiDescuento']),
+          ...mapGetters('shopping/cart/', ['getMontoDescuento']),
           ...mapState(
                { dataCart: state => state.shopping.cart.dataCart},
           ),
@@ -749,7 +756,8 @@ export default {
                     console.log('Cambio del Dolar',this.getExchangeRate)
                     console.log('Monto Total' , this.getMontoTotal)
                     console.log('Monto SubTotal' , this.subMontoTotal)
-
+                    console.log("codigoDescuento", this.getCodigiDescuento)
+                    console.log("montoDescuento", this.getMontoDescuento)
                     // chicos de programacion.
 
                     // Tipo de Usuario tipoUser: 1 => visitante , tipoUser: 2 => registrado en el sistema
@@ -797,6 +805,10 @@ export default {
                     formData.append("recepcionaObjDistrito", JSON.stringify(this.selectDistrito)) // { costo: 50.99, description: 'San Miguel', id: 150132}
                     formData.append("recepcionaFecha", this.dataCart.fecha) 
                     formData.append("recepcionaHora", this.dataCart.hora) 
+                    formData.append("codigoDescuento", this.getCodigiDescuento)
+                    formData.append("montoDescuento", this.getMontoDescuento)
+                   
+                    // return false
                     // console.log(this.$axios)
                     try{
                          let sendSolicitud = await this.$axios.$post('order/',formData)
