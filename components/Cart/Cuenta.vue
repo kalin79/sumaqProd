@@ -236,7 +236,7 @@ export default {
                let _this = this
                let _arrDay = valDateString.split('-')
                const selectedDate = new Date(_arrDay[0],_arrDay[1],_arrDay[2])
-               let valDay = selectedDate.getDay() + 1
+               let valDay = selectedDate.getDay()
                let selectedDay = selectedDate.getDate()
                let selectedMonth = selectedDate.getMonth()
                let selectedYear = selectedDate.getFullYear()
@@ -251,7 +251,7 @@ export default {
                console.log(selectedDay)
                console.log(selectedMonth)
                console.log(selectedYear)
-               console.log('*******')
+               console.log('******* kalin')
                console.log(nowDay)
                console.log(nowMonth)
                console.log(nowYear)
@@ -259,13 +259,14 @@ export default {
                this.DeliveryTimesAux = []
                try{
                     let res = await this.$axios.get(`https://admin.floreriasumaq.pe/api/v1/schedule`)
-                    console.log(res.data)
+                    // console.log(res.data)
                     let resData = res.data
                     // return false
                     resData.every(function(data, index){
                     
                          if ((selectedDay === nowDay) && (selectedMonth === nowMonth) && (selectedYear === nowYear)){
-                              
+                              // console.log(`dataDay ${data.day}`)
+                              // console.log(`valDay ${valDay}`)
                               if (data.day === valDay){
                                    // console.log()
                                    data.schedule.every(function(dataAux, index){
@@ -273,8 +274,8 @@ export default {
                                         let _arrhour = _arr[0].split('"')
                                         let _hour = parseInt(_arrhour[0])
                                         // console.log(nowhourDay)
-                                        if (nowhourDay < 13){
-                                             if (_hour < 13){
+                                        if (nowhourDay < 23){
+                                             if (_hour < 23){
                                                   _this.DeliveryTimesAux.push(dataAux)
                                              }
                                         }
